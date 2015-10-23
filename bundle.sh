@@ -82,6 +82,7 @@ _config(){
 		echo "[INFO] Changing port for ee-6.2.x..."
 		sed -i "s/\"8/\"7/g" $tomcatDir/conf/server.xml
 	fi
+}
 
 clean(){
 	_clean_database
@@ -115,8 +116,6 @@ getDirs(){
 
 	export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62/"
 }
-
-getDirs $@
 
 pull(){
 	cd $buildDir
