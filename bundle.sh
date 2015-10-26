@@ -6,7 +6,7 @@ _build_log(){
 
 	logStructure=(d logs ${branch} $(_timestamp_date))
 
-	for (( i=0; i<${#logStructure}; i++ )); do
+	for (( i=0; i<${#logStructure[@]}; i++ )); do
 		logDir=${logDir}/${logStructure[i]}
 		if [ ! -e $logDir ]; then
 			mkdir $logDir
