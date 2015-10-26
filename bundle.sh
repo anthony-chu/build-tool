@@ -10,6 +10,7 @@ _build_log(){
 		logDir=${logDir}/${logStructure[i]}
 		if [ ! -e $logDir ]; then
 			mkdir $logDir
+			cd $logDir
 		else
 			cd $logDir
 		fi
