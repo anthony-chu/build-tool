@@ -51,6 +51,14 @@ rebase(){
 }
 
 sf(){
+	cd $portalDir/tools/
+
+	if [ ! -e $portalDir/tools/sdk/ ]; then
+		cd $portalDir
+
+		ant setup-sdk
+	fi
+
 	echo "[INFO] Running source formatter..."
 	echo
 	cd $implDir
