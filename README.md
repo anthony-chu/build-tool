@@ -1,6 +1,6 @@
 # HOW TO USE
 
-### build.sh
+### build
 
 Enter script name followed by successive arguments
 - Example:
@@ -11,7 +11,7 @@ Enter script name followed by successive arguments
 Each argument is a separate command
 
 
-### build-test.sh
+### test
 
 Enter script file name followed by an argument
 - Example:
