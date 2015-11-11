@@ -24,6 +24,8 @@ build(){
 
 	_clean_hard
 
+	_clean_source
+
 	cd $buildDir
 
 	echo "[INFO] Unzipping tomcat..."
@@ -129,10 +131,9 @@ getDirs(){
 }
 
 pull(){
+	_clean_source
+
 	cd $buildDir
-	git reset --hard -q
-	git checkout $branch -q
-	git clean -fdqx -e "*.anthonychu.properties"
 
 	echo "[INFO] Pulling changes from upstream..."
 	git pull upstream $branch
