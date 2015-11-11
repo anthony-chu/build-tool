@@ -51,7 +51,8 @@ _clean_database(){
 _clean_hard(){
 	echo "[INFO] Deleting all files and folder in the bundles directory..."
 	cd $bundleDir
-	rm -rf $bundleDir/data $bundleDir/deploy $bundleDir/logs $bundleDir/osgi
+	_clean_liferay_home
+	rm -rf $bundleDir/deploy $bundleDir/osgi
 	rm -rf $tomcatDir
 	echo "[INFO] DONE."
 	cd $baseDir
@@ -127,7 +128,7 @@ getDirs(){
 		"ee-6.2.x") buildDir=d:/private/ee-6.2.x-portal; bundleDir=d:/private/ee-6.2.x-bundles; database=lportal;;
 	esac
 
-	export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62/"
+	export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
 }
 
 pull(){
