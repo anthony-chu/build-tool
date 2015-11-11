@@ -3,7 +3,7 @@
 ### build.sh
 
 Enter script name followed by successive arguments
-- Example: 
+- Example:
     ```
     $ build.sh pull push build
     ```
@@ -20,7 +20,7 @@ Enter script file name followed by an argument
     ```
 This argument is the command
 
-Follow the command with necsesary arguments
+Follow the command with necessary arguments
 - Example:
     ```
     $ build-test.sh test $TESTCASE#COMMAND

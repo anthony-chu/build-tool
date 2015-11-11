@@ -25,7 +25,7 @@ newbranch(){
 }
 
 pr(){
-	echo "[INFO] Submitting pull request..."	
+	echo "[INFO] Submitting pull request..."
 	if (( !"$#" )); then
 		echo "[ERROR] Missing branch, reviewer, comment, and title."
 	else
