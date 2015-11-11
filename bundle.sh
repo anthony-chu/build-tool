@@ -64,6 +64,16 @@ _clean_liferay_home(){
 	cd $baseDir
 }
 
+_clean_source(){
+	cd $buildDir
+	git reset --hard -q
+	git checkout $branch -q
+
+	git clean -fdqx -e "*.anthonychu.properties"
+
+	cd $baseDir
+}
+
 _clean_temp_files(){
 	echo "[INFO] Deleting temp files..."
 	cd $tomcatDir
