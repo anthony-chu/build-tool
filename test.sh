@@ -14,7 +14,7 @@ clean(){
 	cd $baseDir
 }
 
-newbranch(){
+new(){
 	echo "[INFO] Checking out a new branch: $1"
 
 	cd $portalDir
@@ -68,7 +68,7 @@ sf(){
 	cd $baseDir
 }
 
-showbranch(){
+show(){
 	echo "[INFO] Listing all branches..."
 	cd $portalDir
 
