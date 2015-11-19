@@ -1,4 +1,4 @@
-baseDir=c:/users/liferay/Desktop
+source setdir.sh
 
 _build_log(){
 	timestamp=$(_timestamp_clock)
@@ -51,17 +51,17 @@ _clean_database(){
 _clean_hard(){
 	echo "[INFO] Deleting all files and folder in the bundles directory..."
 	cd $bundleDir
-	_clean_liferay_home
-	rm -rf $bundleDir/deploy $bundleDir/osgi
+	rm -rf deploy osgi
 	rm -rf $tomcatDir
+	_clean_liferay_home
 	echo "[INFO] DONE."
 	cd $baseDir
 }
 
 _clean_liferay_home(){
 	echo "[INFO] Deleting liferay home folders..."
-	cd ${bundleDir}
-	rm -rf $bundleDir/data $bundleDir/logs
+	cd $bundleDir
+	rm -rf data logs
 	echo "[INFO] DONE."
 	echo
 	cd $baseDir
@@ -70,7 +70,6 @@ _clean_liferay_home(){
 _clean_source(){
 	cd $buildDir
 	git reset --hard -q
-	git checkout $branch -q
 
 	git clean -fdqx -e "*.anthonychu.properties"
 
@@ -108,27 +107,6 @@ _gitlog(){
 	cd $buildDir
 	git log --oneline --pretty=format:%h -1
 	cd $baseDir
-}
-
-getDirs(){
-	args=$@
-
-	if [[ $args == *master* ]]; then
-		branch=master
-	elif [[ $args == *ee-6.2.x* ]]; then
-		branch=ee-6.2.x
-	else
-		branch=master
-	fi
-
-	args=${args/$branch/""}
-
-	case $branch in
-		"master") buildDir=d:/public/master-portal; bundleDir=d:/public/master-bundles; database=lportalmaster;;
-		"ee-6.2.x") buildDir=d:/private/ee-6.2.x-portal; bundleDir=d:/private/ee-6.2.x-bundles; database=lportal;;
-	esac
-
-	export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
 }
 
 pull(){
@@ -185,5 +163,6 @@ main(){
 }
 
 clear
+getBaseDir
 getDirs $@
 main $args
