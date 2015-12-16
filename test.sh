@@ -40,7 +40,7 @@ sf(){
 
 	cd $buildDir/tools/
 
-	if [ ! -e $buildDir/tools/sdk/ ]; then
+	if [ ! -e $buildDir/tools/sdk/tmp/portal-tools ]; then
 		cd $buildDir
 
 		ant setup-sdk
