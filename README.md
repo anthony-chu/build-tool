@@ -24,4 +24,4 @@ Follow the command with necessary arguments
 - Example:
     ```
     $ build-test.sh test $TESTCASE#COMMAND
-    ````
+    ```
