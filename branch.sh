@@ -83,7 +83,7 @@ if [[ $# > 1 ]]; then
 else
   if [[ $args == *#* ]]; then
     args="test $args"
-    $args
+    "$args"
   else
     $1
   fi
