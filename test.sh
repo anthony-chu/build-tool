@@ -64,7 +64,17 @@ validate(){
 }
 
 test(){
-	newDir=d:/test-results
+	testStructure=("d" "test-results" "${branch}")
+
+	for (( i=0; i<${#testStructure[@]}; i++ )); do
+		testDir=${testDir}/${testStructure[i]}
+		if [ ! -e $testDir ]; then
+			mkdir $testDir
+			cd $testDir
+		else
+			cd $testDir
+		fi
+	done
 
 	if (( !"$#" )); then
 		echo "[ERROR] Missing test name."
@@ -81,7 +91,7 @@ test(){
 
 		echo "[INFO] Moving test results..."
 		echo
-		mv ${resultDir}/index.html ${newDir}/$1_index.html
+		mv ${resultDir}/index.html ${testDir}/$1_index.html
 
 		cd $baseDir
 	fi
