@@ -10,6 +10,19 @@ current(){
   cd $baseDir
 }
 
+delete(){
+    cd $buildDir
+
+    if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
+        echo "Cannot delete the current branch"
+    else
+        git branch -D $1
+        echo "Deleted local branch: $1"
+    fi
+
+    cd $baseDir
+}
+
 list(){
   cd $buildDir
 
@@ -34,6 +47,30 @@ switch(){
   git checkout -q $1
 
   echo "Switched to an existing branch: $1"
+
+  cd $baseDir
+}
+
+rename(){
+    cd $buildDir
+
+    originalBranch="$(git rev-parse --abbrev-ref HEAD)"
+
+    git branch -m $1
+
+    echo "Renamed branch from $originalBranch to $1"
+
+    cd $baseDir
+}
+
+reset(){
+  cd $buildDir
+
+  if [[ -e $1 ]]; then
+    git reset --hard $1
+  else
+    git reset --hard
+  fi
 
   cd $baseDir
 }

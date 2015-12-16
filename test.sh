@@ -55,6 +55,14 @@ sf(){
 	cd $baseDir
 }
 
+validate(){
+	cd $buildDir
+
+	ant -f build-test.xml run-poshi-validation
+
+	cd $baseDir
+}
+
 test(){
 	newDir=d:/test-results
 
