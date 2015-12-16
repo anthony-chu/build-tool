@@ -6,16 +6,16 @@ pr(){
 	if (( !"$#" )); then
 		echo "[ERROR] Missing branch, reviewer, comment, and title."
 	else
-		echo "  branch:   $1"
-		echo "  reviewer: $2"
-		echo "  comment:  $3"
+		echo "  branch:			$1"
+		echo "  reviewer:			$2"
+		echo "  description:			$3"
 
 		if [ -z ${4} ]; then
 			title="$(git rev-parse --abbrev-ref HEAD)"
-			echo "  title:    $title"
+			echo "  title:			$title"
 		else
 			title="$4"
-			echo "  title:    $title"
+			echo "  title:			$title"
 		fi
 
 		echo
