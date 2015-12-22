@@ -64,6 +64,7 @@ _config(){
 	if [[ $branch == ee-6.2.x ]]; then
 		echo "[INFO] Changing port for ee-6.2.x..."
 		sed -i "s/\"8/\"7/g" $tomcatDir/conf/server.xml
+		echo "[INFO] DONE."
 	fi
 }
 
