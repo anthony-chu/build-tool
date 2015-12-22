@@ -37,12 +37,19 @@ _clean_hard(){
 	cd $baseDir
 }
 
-_clean_liferay_home(){
+_clean_bundle(){
 	echo "[INFO] Deleting liferay home folders..."
 	cd $bundleDir
 	rm -rf data logs
 	echo "[INFO] DONE."
 	echo
+
+	echo "[INFO] Deleting temp files..."
+	cd $tomcatDir
+	rm -rf temp work
+	echo "[INFO] DONE."
+	echo
+
 	cd $baseDir
 }
 
@@ -52,15 +59,6 @@ _clean_source(){
 
 	git clean -fdqx -e "*.anthonychu.properties"
 
-	cd $baseDir
-}
-
-_clean_temp_files(){
-	echo "[INFO] Deleting temp files..."
-	cd $tomcatDir
-	rm -rf temp work
-	echo "[INFO] DONE."
-	echo
 	cd $baseDir
 }
 
@@ -112,8 +110,7 @@ build(){
 }
 clean(){
 	_clean_database
-	_clean_liferay_home
-	_clean_temp_files
+	_clean_bundle
 }
 
 pull(){
