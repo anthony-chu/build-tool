@@ -31,6 +31,18 @@ list(){
   cd $baseDir
 }
 
+log(){
+    cd $buildDir
+
+    if [[ $# == 0 ]]; then
+        git log -1 --oneline
+    else
+        git log -$1 --oneline
+    fi
+
+    cd $baseDir
+}
+
 new(){
   cd $buildDir
 
