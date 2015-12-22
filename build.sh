@@ -47,6 +47,7 @@ _clean_bundle(){
 
 _clean_source(){
 	cd $buildDir
+
 	git reset --hard -q
 
 	git clean -fdqx -e "*.anthonychu.properties"
