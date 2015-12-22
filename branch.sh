@@ -23,6 +23,14 @@ delete(){
     cd $baseDir
 }
 
+loadSaves(){
+    cd $buildDir
+
+    git stash list
+
+    cd $baseDir
+}
+
 list(){
   cd $buildDir
 
@@ -51,6 +59,26 @@ new(){
   echo "Checked out a new branch: $1"
 
   cd $baseDir
+}
+
+pop(){
+    cd $buildDir
+
+    if [[ $# == 0 ]]; then
+        git stash pop
+    else
+        git stash pop $1
+    fi
+
+    cd $baseDir
+}
+
+save(){
+    cd $buildDir
+
+    git stash save "$1"
+
+    cd $baseDir
 }
 
 switch(){
