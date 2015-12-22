@@ -19,27 +19,6 @@ _build_log(){
 	export logFile=$logDir/$branch-build-$(_gitlog)-${timestamp}.log
 }
 
-build(){
-	_build_log
-
-	_clean_hard
-
-	_clean_source
-
-	cd $buildDir
-
-	echo "[INFO] Unzipping tomcat..."
-	ant -f build-dist.xml unzip-tomcat
-	echo "[INFO] DONE."
-
-	_config
-
-	echo "[INFO] Building portal..."
-	ant all > $logFile | tail -f --pid=$$ "$logFile"
-	echo "[INFO] Build complete. Please see the build log for details."
-	cd $baseDir
-}
-
 _clean_database(){
 	echo "[INFO] Rebuilding database..."
 	mysql -e "drop database if exists $database; create database $database char set utf8;"
@@ -97,16 +76,44 @@ _config(){
 	fi
 }
 
-clean(){
-	_clean_database
-	_clean_liferay_home
-	_clean_temp_files
-}
-
 _gitlog(){
 	cd $buildDir
 	git log --oneline --pretty=format:%h -1
 	cd $baseDir
+}
+
+_timestamp_clock(){
+	date +%T%s
+}
+
+_timestamp_date(){
+	date +%Y%m%d
+}
+
+build(){
+	_build_log
+
+	_clean_hard
+
+	_clean_source
+
+	cd $buildDir
+
+	echo "[INFO] Unzipping tomcat..."
+	ant -f build-dist.xml unzip-tomcat
+	echo "[INFO] DONE."
+
+	_config
+
+	echo "[INFO] Building portal..."
+	ant all > $logFile | tail -f --pid=$$ "$logFile"
+	echo "[INFO] Build complete. Please see the build log for details."
+	cd $baseDir
+}
+clean(){
+	_clean_database
+	_clean_liferay_home
+	_clean_temp_files
 }
 
 pull(){
@@ -134,14 +141,6 @@ run(){
 	sleep 5s
 	clear
 	$tomcatDir/bin/catalina.sh run # | firefox
-}
-
-_timestamp_clock(){
-	date +%T%s
-}
-
-_timestamp_date(){
-	date +%Y%m%d
 }
 
 main(){
