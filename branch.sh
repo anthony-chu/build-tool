@@ -66,12 +66,8 @@ rename(){
 reset(){
   cd $buildDir
 
-  if [[ -e $1 ]]; then
-    git reset --hard $1
-  else
-    git reset --hard
-  fi
-
+  git reset --hard $1
+  
   cd $baseDir
 }
 
