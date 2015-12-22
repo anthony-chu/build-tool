@@ -107,7 +107,7 @@ reset(){
   cd $buildDir
 
   git reset --hard $1
-  
+
   cd $baseDir
 }
 
