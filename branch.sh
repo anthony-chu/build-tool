@@ -16,7 +16,7 @@ delete(){
     if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
         echo "Cannot delete the current branch"
     else
-        git branch -D $1
+        git branch -q -D $1
         echo "Deleted local branch: $1"
     fi
 
