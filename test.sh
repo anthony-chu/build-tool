@@ -91,7 +91,7 @@ test(){
 
 		echo "[INFO] Moving test results..."
 		echo
-		mv ${resultDir}/index.html ${testDir}/$1_index.html
+		cp ${resultDir}/index.html ${testDir}/$1_index.html
 
 		cd $baseDir
 	fi
