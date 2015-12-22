@@ -19,14 +19,6 @@ _build_log(){
 	export logFile=$logDir/$branch-build-$(_gitlog)-${timestamp}.log
 }
 
-_clean_database(){
-	echo "[INFO] Rebuilding database..."
-	mysql -e "drop database if exists $database; create database $database char set utf8;"
-	echo "[INFO] DONE."
-	echo
-	cd $baseDir
-}
-
 _clean_hard(){
 	echo "[INFO] Deleting all files and folder in the bundles directory..."
 	cd $bundleDir
@@ -80,6 +72,14 @@ _gitlog(){
 	cd $baseDir
 }
 
+_rebuild_db(){
+	echo "[INFO] Rebuilding database..."
+	mysql -e "drop database if exists $database; create database $database char set utf8;"
+	echo "[INFO] DONE."
+	echo
+	cd $baseDir
+}
+
 _timestamp_clock(){
 	date +%T%s
 }
@@ -109,7 +109,7 @@ build(){
 	cd $baseDir
 }
 clean(){
-	_clean_database
+	_rebuild_db
 	_clean_bundle
 }
 
