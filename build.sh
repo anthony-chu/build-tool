@@ -115,6 +115,38 @@ clean(){
 	_clean_bundle
 }
 
+help(){
+	funcList=("build" "clean" "pull" "push" "run")
+
+	maxFuncLength=0
+	for (( i=0; i<${#funcList[@]}; i++ )); do
+		if [[ ${#funcList[i]} > $maxFuncLength ]]; then
+			maxFuncLength=${#funcList[i]}
+		else
+			maxFuncLength=${maxFuncLength}
+		fi
+	done
+
+	newFuncList=()
+	for (( i=0; i<${#funcList[@]}; i++ )); do
+		function=${funcList[i]}
+		space=" "
+
+		while [ ${#function} -lt $maxFuncLength ]; do
+			function="${function}${space}"
+		done
+
+		newFuncList+=("${function}")
+	done
+
+	helpList=("builds bundle" "rebuilds database and prepares bundle" "pulls from upstream master" "pushes to origin master" "runs bundle")
+
+	echo "Usage:"
+	for (( i=0; i<${#newFuncList[@]}; i++ )); do
+		echo "  ${newFuncList[i]}  ${helpList[i]}"
+	done
+}
+
 pull(){
 	_clean_source
 
@@ -143,17 +175,6 @@ run(){
 }
 
 main(){
-	if (( !"$#" )); then
-		echo "Usage: $0 (commands...)"
-		echo "Commands:"
-		echo "    build     builds a bundle"
-		echo "    clean     prepares a fresh bundle"
-		echo "    pull      pulls changes from upstream"
-		echo "    push      pushes changes to origin"
-		echo "    run       runs a bundle"
-		exit
-	fi
-
 	while (( "$#" )); do
 		$1
 		shift
