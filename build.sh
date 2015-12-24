@@ -36,6 +36,8 @@ _clean_bundle(){
 	echo "[INFO] DONE."
 	echo
 
+	cd $baseDir
+
 	echo "[INFO] Deleting temp files..."
 	cd $tomcatDir
 	rm -rf temp work
