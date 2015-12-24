@@ -22,9 +22,9 @@ _build_log(){
 _clean_hard(){
 	echo "[INFO] Deleting all files and folder in the bundles directory..."
 	cd $bundleDir
-	rm -rf deploy osgi
+	rm -rf deploy osgi data logs
 	rm -rf $tomcatDir
-	_clean_liferay_home
+
 	echo "[INFO] DONE."
 	cd $baseDir
 }
