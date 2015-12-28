@@ -40,7 +40,7 @@ pr(){
 			project=LRQA
 		fi
 
-		key="${title/master-*-}"
+		key=${title/master-*-}
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		detailText=("$branch" "$1" "$comment" "$title")
