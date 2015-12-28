@@ -120,12 +120,12 @@ clean(){
 help(){
 	funcList=("build" "clean" "pull" "push" "run")
 
-	maxFuncLength=0
+	maxLength=0
 	for (( i=0; i<${#funcList[@]}; i++ )); do
-		if [[ ${#funcList[i]} > $maxFuncLength ]]; then
-			maxFuncLength=${#funcList[i]}
+		if [[ ${#funcList[i]} > $maxLength ]]; then
+			maxLength=${#funcList[i]}
 		else
-			maxFuncLength=${maxFuncLength}
+			maxLength=${maxLength}
 		fi
 	done
 
@@ -134,7 +134,7 @@ help(){
 		function=${funcList[i]}
 		space=" "
 
-		while [ ${#function} -lt $maxFuncLength ]; do
+		while [ ${#function} -lt $maxLength ]; do
 			function="${function}${space}"
 		done
 
@@ -176,14 +176,11 @@ run(){
 	$tomcatDir/bin/catalina.sh run # | firefox
 }
 
-main(){
-	while (( "$#" )); do
-		$1
-		shift
-	done
-}
-
 clear
 getBaseDir
 getDirs $@
-main $args
+
+while (( "$#" )); do
+	$1
+	shift
+done
