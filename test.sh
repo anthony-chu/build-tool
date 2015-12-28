@@ -131,7 +131,7 @@ test(){
 
 		cd ${testDir}/${testname}
 
-		cp ${resultDir}/index.html ${testDir}/$1_index.html
+		mv index.html $1_index.html
 
 		cd $baseDir
 	fi
