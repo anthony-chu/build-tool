@@ -3,24 +3,55 @@ source setdir.sh
 
 pr(){
 	echo "[INFO] Submitting pull request..."
+
+	detailHeading=("branch:" "reviewer:" "comment:" "title:")
+
+	maxLength=0
+	for (( i=0; i<${#detailHeading[@]}; i++ )); do
+		if [[ ${#detailHeading[i]} > $maxLength ]]; then
+			maxLength=${#detailHeading[i]}
+		else
+			maxLength=${maxLength}
+		fi
+	done
+
+	newDetailHeading=()
+	for (( i=0; i<${#detailHeading[@]}; i++ )); do
+		detail=${detailHeading[i]}
+		space=" "
+
+		while [ ${#detail} -lt $maxLength ]; do
+			detail="${detail}${space}"
+		done
+
+		newDetailHeading+=("${detail}")
+	done
+
 	if (( !"$#" )); then
 		echo "[ERROR] Missing branch, reviewer, comment, and title."
 	else
-		echo "  branch:			$1"
-		echo "  reviewer:			$2"
-		echo "  description:			$3"
+		cd $buildDir
+		title="$(git rev-parse --abbrev-ref HEAD)"
+		cd $baseDir
 
-		if [ -z ${4} ]; then
-			title="$(git rev-parse --abbrev-ref HEAD)"
-			echo "  title:			$title"
-		else
-			title="$4"
-			echo "  title:			$title"
+		if [[ $title == *lps* ]]; then
+			project=LPS
+		elif [[ $title == *qa* ]]; then
+			project=LRQA
 		fi
+
+		key="${title/master-*-}"
+		comment=https://issues.liferay.com/browse/${project}-${key}
+
+		detailText=("$1" "$2" "$comment" "$title")
+
+		for (( i=0; i<${#detailText[@]}; i++)); do
+			echo "    ${newDetailHeading[i]} ${detailText[i]}"
+		done
 
 		echo
 		cd $buildDir
-		gitpr -b $1 -u $2 submit $3 $title
+		gitpr -b $1 -u $2 submit $comment $title
 		cd $baseDir
 	fi
 }
