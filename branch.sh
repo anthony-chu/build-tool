@@ -23,6 +23,18 @@ delete(){
     cd $baseDir
 }
 
+hardReset(){
+    cd $buildDir
+
+    git pull upstream
+
+    git reset --hard
+
+    git clean -fdqx -e "*.anthonychu.properties"
+
+    cd $baseDir
+}
+
 list(){
   cd $buildDir
 
