@@ -16,12 +16,12 @@ Each argument is a separate command
 Enter script file name followed by an argument
 - Example:
     ```
-    $ build-test.sh rebase
+    $ test.sh rebase
     ```
 This argument is the command
 
 Follow the command with necessary arguments
 - Example:
     ```
-    $ build-test.sh test $TESTCASE#COMMAND
+    $ test.sh master $TESTCASE#COMMAND
     ```
