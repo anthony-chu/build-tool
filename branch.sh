@@ -68,7 +68,7 @@ rename(){
 
     originalBranch="$(git rev-parse --abbrev-ref HEAD)"
 
-    git branch -m $1
+    git branch -q -m $1
 
     echo "Renamed branch from $originalBranch to $1"
 
