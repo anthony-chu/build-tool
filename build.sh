@@ -59,8 +59,8 @@ _clean_source(){
 
 _config(){
 	echo "[INFO] Increasing memory limit..."
-	sed -i "s/-Xmx1024m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
-	sed -i "s/-XX:MaxPermSize=256m/-XX:MaxPermSize=512m/g" $tomcatDir/bin/setenv.sh
+	sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
+	sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=512m/g" $tomcatDir/bin/setenv.sh
 	echo "[INFO] DONE."
 
 	if [[ $branch == ee-6.2.x ]]; then
