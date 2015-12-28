@@ -43,7 +43,7 @@ pr(){
 		key="${title/master-*-}"
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
-		detailText=("$1" "$2" "$comment" "$title")
+		detailText=("$branch" "$1" "$comment" "$title")
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
 			echo "    ${newDetailHeading[i]} ${detailText[i]}"
@@ -51,7 +51,7 @@ pr(){
 
 		echo
 		cd $buildDir
-		gitpr -b $1 -u $2 submit $comment $title
+		gitpr -b $branch -u $1 submit $comment $title
 		cd $baseDir
 	fi
 }
