@@ -122,6 +122,15 @@ test(){
 
 		echo "[INFO] Moving test results..."
 		echo
+
+		cd $resultDir
+
+		cd ..
+
+		cp -r ${resultDir} ${testDir}
+
+		cd ${testDir}/${testname}
+
 		cp ${resultDir}/index.html ${testDir}/$1_index.html
 
 		cd $baseDir
