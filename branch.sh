@@ -1,5 +1,17 @@
 source setdir.sh
 
+_hardReset(){
+    cd $buildDir
+
+    git pull upstream
+
+    git reset --hard
+
+    git clean -fdqx -e "*.anthonychu.properties"
+
+    cd $baseDir
+}
+
 current(){
   cd $buildDir
 
