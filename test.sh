@@ -1,6 +1,38 @@
 source "c:/users/liferay/.bashrc"
 source setdir.sh
 
+help(){
+	funcList=("pr" "rebase" "sf" "validate" "test")
+
+	maxLength=0
+	for (( i=0; i<${#funcList[@]}; i++ )); do
+		if [[ ${#funcList[i]} > $maxLength ]]; then
+			maxLength=${#funcList[i]}
+		else
+			maxLength=${maxLength}
+		fi
+	done
+
+	newFuncList=()
+	for (( i=0; i<${#funcList[@]}; i++ )); do
+		function=${funcList[i]}
+		space=" "
+
+		while [ ${#function} -lt $maxLength ]; do
+			function="${function}${space}"
+		done
+
+		newFuncList+=("${function}")
+	done
+
+	helpList=("submits a pull request" "rebases current branch to HEAD" "formats source files" "runs poshi validation" "executes a front-end test")
+
+	echo "Usage:"
+	for (( i=0; i<${#newFuncList[@]}; i++ )); do
+		echo "  ${newFuncList[i]}  ${helpList[i]}"
+	done
+}
+
 pr(){
 	echo "[INFO] Submitting pull request..."
 

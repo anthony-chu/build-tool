@@ -35,16 +35,36 @@ delete(){
     cd $baseDir
 }
 
-hardReset(){
-    cd $buildDir
+help(){
+	funcList=("current" "delete" "list" "log" "new" "switch" "rename" "reset")
 
-    git pull upstream
+	maxLength=0
+	for (( i=0; i<${#funcList[@]}; i++ )); do
+		if [[ ${#funcList[i]} > $maxLength ]]; then
+			maxLength=${#funcList[i]}
+		else
+			maxLength=${maxLength}
+		fi
+	done
 
-    git reset --hard
+	newFuncList=()
+	for (( i=0; i<${#funcList[@]}; i++ )); do
+		function=${funcList[i]}
+		space=" "
 
-    git clean -fdqx -e "*.anthonychu.properties"
+		while [ ${#function} -lt $maxLength ]; do
+			function="${function}${space}"
+		done
 
-    cd $baseDir
+		newFuncList+=("${function}")
+	done
+
+	helpList=("displays the current branch" "deletes the branch" "displays all local branches" "shows the log for the current branch" "creates and switches to a new branch" "changes to a different local branch" "renames the current branch" "restores source to designated commit")
+
+	echo "Usage:"
+	for (( i=0; i<${#newFuncList[@]}; i++ )); do
+		echo "  ${newFuncList[i]}  ${helpList[i]}"
+	done
 }
 
 list(){
