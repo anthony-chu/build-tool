@@ -36,7 +36,17 @@ delete(){
 }
 
 help(){
-	funcList=("current" "delete" "list" "log" "new" "switch" "rename" "reset")
+	funcList=(
+    "current"
+    "delete"
+    "list"
+    "log"
+    "pullDevBranch"
+    "new"
+    "switch"
+    "rename"
+    "reset"
+    )
 
 	maxLength=0
 	for (( i=0; i<${#funcList[@]}; i++ )); do
@@ -59,10 +69,17 @@ help(){
 		newFuncList+=("${function}")
 	done
 
-	helpList=("displays the current branch" "deletes the branch"
-    "displays all local branches" "shows the log for the current branch"
-    "creates and switches to a new branch" "changes to a different local branch"
-    "renames the current branch" "restores source to designated commit")
+	helpList=(
+    "displays the current branch"
+    "deletes the branch"
+    "displays all local branches"
+    "shows the log for the current branch"
+    "fetches a developer's branch"
+    "creates and switches to a new branch"
+    "changes to a different local branch"
+    "renames the current branch"
+    "restores source to designated commit"
+    )
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do

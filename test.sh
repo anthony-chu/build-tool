@@ -2,7 +2,13 @@ source "c:/users/liferay/.bashrc"
 source setdir.sh
 
 help(){
-	funcList=("pr" "rebase" "sf" "validate" "test")
+	funcList=(
+	"pr"
+	"rebase"
+	"sf"
+	"validate"
+	"test"
+	)
 
 	maxLength=0
 	for (( i=0; i<${#funcList[@]}; i++ )); do
@@ -25,8 +31,13 @@ help(){
 		newFuncList+=("${function}")
 	done
 
-	helpList=("submits a pull request" "rebases current branch to HEAD"
-	"formats source files" "runs poshi validation" "executes a front-end test")
+	helpList=(
+	"submits a pull request"
+	"rebases current branch to HEAD"
+	"formats source files"
+	"runs poshi validation"
+	"executes a front-end test"
+	)
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
@@ -188,3 +199,4 @@ clear
 getBaseDir
 getDirs $@
 main $args
+exit
