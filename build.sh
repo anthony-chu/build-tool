@@ -185,3 +185,4 @@ while (( "$#" )); do
 	$1
 	shift
 done
+exit
