@@ -100,6 +100,19 @@ new(){
   cd $baseDir
 }
 
+pullDevBranch(){
+    cd $buildDir
+
+    dev=$1
+    branch=$2
+
+    git pull git@github.com:$dev/liferay-portal.git $branch
+
+    cd $baseDir
+
+    log
+}
+
 switch(){
   cd $buildDir
 
