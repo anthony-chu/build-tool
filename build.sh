@@ -141,7 +141,8 @@ help(){
 		newFuncList+=("${function}")
 	done
 
-	helpList=("builds bundle" "rebuilds database and prepares bundle" "pulls from upstream master" "pushes to origin master" "runs bundle")
+	helpList=("builds bundle" "rebuilds database and prepares bundle"
+	"pulls from upstream master" "pushes to origin master" "runs bundle")
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do

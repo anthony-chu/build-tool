@@ -59,7 +59,10 @@ help(){
 		newFuncList+=("${function}")
 	done
 
-	helpList=("displays the current branch" "deletes the branch" "displays all local branches" "shows the log for the current branch" "creates and switches to a new branch" "changes to a different local branch" "renames the current branch" "restores source to designated commit")
+	helpList=("displays the current branch" "deletes the branch"
+    "displays all local branches" "shows the log for the current branch"
+    "creates and switches to a new branch" "changes to a different local branch"
+    "renames the current branch" "restores source to designated commit")
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do

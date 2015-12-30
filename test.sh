@@ -25,7 +25,8 @@ help(){
 		newFuncList+=("${function}")
 	done
 
-	helpList=("submits a pull request" "rebases current branch to HEAD" "formats source files" "runs poshi validation" "executes a front-end test")
+	helpList=("submits a pull request" "rebases current branch to HEAD"
+	"formats source files" "runs poshi validation" "executes a front-end test")
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
