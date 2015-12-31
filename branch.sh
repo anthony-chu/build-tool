@@ -160,6 +160,7 @@ reset(){
   cd $baseDir
 }
 
+clear
 getBaseDir
 getDirs $@
 
