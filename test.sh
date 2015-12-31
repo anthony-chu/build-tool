@@ -193,6 +193,10 @@ main(){
 			$1
 		fi
 	fi
+
+	if [[ !$# ]]; then
+		help
+	fi
 }
 
 clear

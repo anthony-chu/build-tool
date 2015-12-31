@@ -173,3 +173,7 @@ else
     $1
   fi
 fi
+
+if [[ !$# ]]; then
+	help
+fi

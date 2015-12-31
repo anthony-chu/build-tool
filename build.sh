@@ -192,6 +192,10 @@ clear
 getBaseDir
 getDirs $@
 
+if [[ !$# ]]; then
+	help
+fi
+
 while (( "$#" )); do
 	$1
 	shift
