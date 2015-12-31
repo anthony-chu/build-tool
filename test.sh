@@ -183,19 +183,13 @@ test(){
 
 
 main(){
-	if [[ $# > 1 ]]; then
-		$1 ${@:2}
-	else
-		if [[ $args == *#* ]]; then
-			args="test $args"
-			$args
-		else
-			$1
-		fi
-	fi
-
 	if [[ !$# ]]; then
 		help
+	elif [[ $args == *#* ]]; then
+			args="test $args"
+			$args
+	else
+		$1
 	fi
 }
 
