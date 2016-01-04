@@ -4,7 +4,6 @@ source setdir.sh
 help(){
 	funcList=(
 	"pr"
-	"rebase"
 	"sf"
 	"validate"
 	"test"
@@ -33,7 +32,6 @@ help(){
 
 	helpList=(
 	"submits a pull request"
-	"rebases current branch to HEAD"
 	"formats source files"
 	"runs poshi validation"
 	"executes a front-end test"
