@@ -100,16 +100,6 @@ pr(){
 	fi
 }
 
-rebase(){
-	echo "[INFO] Updating to HEAD and rebasing commits..."
-	echo
-	cd $buildDir
-	git pull --rebase upstream master
-	echo "[INFO] DONE."
-	echo
-	cd $baseDir
-}
-
 sf(){
 	implDir=$buildDir/portal-impl
 
