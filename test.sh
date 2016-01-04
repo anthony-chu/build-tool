@@ -179,7 +179,7 @@ main(){
 		args="test $args"
 		$args
 	else
-		$1
+		$args
 	fi
 }
 
