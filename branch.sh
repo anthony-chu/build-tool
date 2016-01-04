@@ -47,6 +47,7 @@ help(){
     "rename"
     "reset"
     "switch"
+    "tunnel"
     )
 
 	maxLength=0
@@ -81,6 +82,7 @@ help(){
     "renames the current branch"
     "restores source to designated commit"
     "changes to a different local branch"
+    "provides direct shell access to git directory"
     )
 
 	echo "Usage:"
@@ -203,6 +205,24 @@ reset(){
   git reset --hard $1
 
   cd $baseDir
+}
+
+tunnel(){
+    cd $buildDir
+
+    tunnelCommand=""
+    while [[ true ]]; do
+        echo -n "Enter git command to run (begin with git): "
+        read tunnelCommand
+
+        if [[ $tunnelCommand == q ]]; then
+            exit
+        else
+            $tunnelCommand
+        fi
+    done
+
+    cd $baseDir
 }
 
 clear
