@@ -43,9 +43,9 @@ help(){
     "log"
     "pullDevBranch"
     "new"
-    "switch"
     "rename"
     "reset"
+    "switch"
     )
 
 	maxLength=0
@@ -76,9 +76,9 @@ help(){
     "shows the log for the current branch"
     "fetches a developer's branch"
     "creates and switches to a new branch"
-    "changes to a different local branch"
     "renames the current branch"
     "restores source to designated commit"
+    "changes to a different local branch"
     )
 
 	echo "Usage:"
