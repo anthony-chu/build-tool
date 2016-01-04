@@ -71,7 +71,7 @@ pr(){
 		newDetailHeading+=("${detail}")
 	done
 
-	if (( !"$#" )); then
+	if (( $# == 0 )); then
 		echo "[ERROR] Missing branch, reviewer, comment, and title."
 	else
 		cd $buildDir
@@ -183,11 +183,11 @@ test(){
 
 
 main(){
-	if [[ !$# ]]; then
+	if [[ $# == 0 ]]; then
 		help
 	elif [[ $args == *#* ]]; then
-			args="test $args"
-			$args
+		args="test $args"
+		$args
 	else
 		$1
 	fi

@@ -192,7 +192,7 @@ clear
 getBaseDir
 getDirs $@
 
-if [[ !$# ]]; then
+if [[ $# == 0 ]]; then
 	help
 fi
 

@@ -164,8 +164,13 @@ clear
 getBaseDir
 getDirs $@
 
-if [[ !$# ]]; then
+if [[ $# == 0 ]]; then
   help
 else
-  $1 ${@:2}
+    until [[ $# == 0 ]]; do
+        $@
+        while [[ $# != 0 ]]; do
+            shift
+        done
+    done
 fi
