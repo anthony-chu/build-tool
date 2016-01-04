@@ -169,20 +169,17 @@ test(){
 	fi
 }
 
-
-main(){
-	if [[ $# == 0 ]]; then
-		help
-	elif [[ $args == *#* ]]; then
-		args="test $args"
-		$args
-	else
-		$args
-	fi
-}
-
 clear
 getBaseDir
 getDirs $@
-main $args
+
+if [[ $# == 0 ]]; then
+	help
+elif [[ $args == *#* ]]; then
+	args="test $args"
+	$args
+else
+	$args
+fi
+
 exit
