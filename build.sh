@@ -197,7 +197,7 @@ if [[ $# == 0 ]]; then
 fi
 
 while (( "$#" )); do
-	$1
+	$args
 	shift
 done
 exit
