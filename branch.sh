@@ -235,7 +235,7 @@ if [[ $# == 0 ]]; then
   help
 else
     until [[ $# == 0 ]]; do
-        $@
+        $args
         while [[ $# != 0 ]]; do
             shift
         done
