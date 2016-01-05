@@ -219,6 +219,8 @@ tunnel(){
             exit
         else
             $tunnelCommand
+            echo
+            echo
         fi
     done
 
