@@ -25,10 +25,7 @@ getDirs(){
     args=${args/$branch/""}
   fi
 
-  case $branch in
-    "ee-6.2.x") buildDir=d:/private/ee-6.2.x-portal; bundleDir=d:/private/ee-6.2.x-bundles; database=lportal;;
-    "master") buildDir=d:/public/master-portal; bundleDir=d:/public/master-bundles; database=lportalmaster;;
-  esac
+  buildDir=d:/$privacy/$branch-portal; bundleDir=d:/$privacy/$branch-bundles; database=lportal$branch;;
 
   export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
 }
