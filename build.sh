@@ -192,7 +192,7 @@ clear
 getBaseDir
 getDirs $@
 
-if [[ $# == 0 ]]; then
+if [[ ${#args} == 0 ]]; then
 	help
 fi
 
