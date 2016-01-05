@@ -135,30 +135,6 @@ pullDevBranch(){
 }
 
 rebase(){
-    abort(){
-        echo "[INFO] Terminating current rebase..."
-
-        cd $buildDir
-
-        git rebase --abort
-
-        cd $baseDir
-
-        echo "[INFO] DONE."
-    }
-
-    continue(){
-        echo "[INFO] Continuing current rebase..."
-
-        cd $buildDir
-
-        git rebase --continue
-
-        cd $baseDir
-
-        echo "[INFO] DONE."
-    }
-
     default(){
         echo "[INFO] Rebasing current branch to HEAD..."
 
@@ -171,10 +147,7 @@ rebase(){
         echo "[INFO] DONE."
     }
 
-    case $1 in
-        abort|continue) $1;;
-        *) default;;
-    esac
+    default
 }
 
 rename(){
