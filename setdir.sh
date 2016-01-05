@@ -25,7 +25,9 @@ getDirs(){
     args=${args/$branch/""}
   fi
 
-  buildDir=d:/$privacy/$branch-portal; bundleDir=d:/$privacy/$branch-bundles; database=lportal${branch//[-.]/""};;
+    buildDir=d:/${privacy}/${branch}-portal
+    bundleDir=d:/${privacy}/${branch}-bundles
+    database=lportal${branch//[-.]/""}
 
   export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
 }
