@@ -134,16 +134,6 @@ pullDevBranch(){
     log
 }
 
-switch(){
-  cd $buildDir
-
-  git checkout -q $1
-
-  echo "Switched to an existing branch: $1"
-
-  cd $baseDir
-}
-
 rebase(){
     abort(){
         echo "[INFO] Terminating current rebase..."
@@ -203,6 +193,22 @@ reset(){
   cd $buildDir
 
   git reset --hard $1
+
+  cd $baseDir
+}
+
+switch(){
+  cd $buildDir
+
+  if [[ $# == 0 ]]; then
+      b=master
+  else
+      b=$1
+  fi
+
+  git checkout -q $b
+
+  echo "Switched to an existing branch: $b"
 
   cd $baseDir
 }
