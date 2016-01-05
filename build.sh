@@ -197,7 +197,7 @@ if [[ ${#args} == 0 ]]; then
 fi
 
 until [[ $# == 1 ]]; do
-	$args
+	$1
 	shift
 done
 exit
