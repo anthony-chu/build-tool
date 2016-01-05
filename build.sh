@@ -196,7 +196,7 @@ if [[ $# == 0 ]]; then
 	help
 fi
 
-while (( "$#" )); do
+until [[ $# == 1 ]]; do
 	$args
 	shift
 done
