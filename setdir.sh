@@ -12,11 +12,11 @@ getDirs(){
     fi
 
     if [[ $args == *master* ]]; then
-    branch=master
+        branch=master
     elif [[ $args == *ee-6.2.x* ]]; then
-    branch=ee-6.2.x
+        branch=ee-6.2.x
     else
-    branch=master
+        branch=master
     fi
 
     buildDir=d:/${privacy}/${branch}-portal
