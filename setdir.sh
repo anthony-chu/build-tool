@@ -19,12 +19,6 @@ getDirs(){
     branch=master
     fi
 
-    if [[ $args == *pr* ]]; then
-    args=${args}
-    else
-    args=${args/$branch/""}
-    fi
-
     buildDir=d:/${privacy}/${branch}-portal
     bundleDir=d:/${privacy}/${branch}-bundles
     database=lportal${branch//[-.]/""}
