@@ -1,33 +1,33 @@
 getBaseDir(){
-  export baseDir=$(PWD)
+    export baseDir=$(PWD)
 }
 
 getDirs(){
-  args=$@
+    args=$@
 
-  if [[ $args == *ee* ]]; then
-      privacy=private
-  else
-      privacy=public
-  fi
+    if [[ $args == *ee* ]]; then
+        privacy=private
+    else
+        privacy=public
+    fi
 
-  if [[ $args == *master* ]]; then
+    if [[ $args == *master* ]]; then
     branch=master
-  elif [[ $args == *ee-6.2.x* ]]; then
+    elif [[ $args == *ee-6.2.x* ]]; then
     branch=ee-6.2.x
-  else
+    else
     branch=master
-  fi
+    fi
 
-  if [[ $args == *pr* ]]; then
+    if [[ $args == *pr* ]]; then
     args=${args}
-  else
+    else
     args=${args/$branch/""}
-  fi
+    fi
 
     buildDir=d:/${privacy}/${branch}-portal
     bundleDir=d:/${privacy}/${branch}-bundles
     database=lportal${branch//[-.]/""}
 
-  export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
+    export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
 }
