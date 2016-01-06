@@ -213,8 +213,5 @@ getDirs $@
 if [[ $# == 0 ]]; then
   help
 else
-    until [[ $# == 0 ]]; do
-        $1
-        shift
-    done
+    $@
 fi
