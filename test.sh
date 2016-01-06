@@ -70,7 +70,7 @@ pr(){
 	done
 
 	if (( $# == 0 )); then
-		echo "[ERROR] Missing branch, reviewer, comment, and title."
+		echo "[ERROR] Missing reviewer."
 	else
 		cd $buildDir
 		title="$(git rev-parse --abbrev-ref HEAD)"
