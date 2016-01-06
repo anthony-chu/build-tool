@@ -3,17 +3,15 @@ getBaseDir(){
 }
 
 getDirs(){
-    args=$@
-
     if [[ $args == *ee* ]]; then
         privacy=private
     else
         privacy=public
     fi
 
-    if [[ $args == *master* ]]; then
+    if [[ $@ == *master* ]]; then
         branch=master
-    elif [[ $args == *ee-6.2.x* ]]; then
+    elif [[ $@ == *ee-6.2.x* ]]; then
         branch=ee-6.2.x
     else
         branch=master
@@ -23,5 +21,5 @@ getDirs(){
     bundleDir=d:/${privacy}/${branch}-bundles
     database=lportal${branch//[-.]/""}
 
-    export args="${args}" branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
+    export branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
 }

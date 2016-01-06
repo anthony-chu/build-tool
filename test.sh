@@ -175,11 +175,11 @@ getDirs $@
 
 if [[ $# == 0 ]]; then
 	help
-elif [[ $args == *#* ]]; then
-	args="test $args"
+elif [[ $@ == *#* ]]; then
+	args="test $@"
 	$args
 else
-	$args
+	$@
 fi
 
 exit

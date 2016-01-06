@@ -192,12 +192,11 @@ clear
 getBaseDir
 getDirs $@
 
-if [[ ${#args} == 0 ]]; then
-	help
+if [[ $# == 0 ]]; then
+  help
+else
+    until [[ $# == 0 ]]; do
+        $1
+        shift
+    done
 fi
-
-until [[ $# == 1 ]]; do
-	$1
-	shift
-done
-exit
