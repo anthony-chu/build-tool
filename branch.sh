@@ -135,6 +135,42 @@ pullDevBranch(){
 }
 
 rebase(){
+    abort(){
+        echo "[INFO] Terminating previous rebase process..."
+
+        cd $buildDir
+
+        git rebase --abort
+
+        cd $baseDir
+
+        echo "[INFO] DONE."
+    }
+
+    amend(){
+        echo "[INFO] Amending the previous commit..."
+
+        cd $buildDir
+
+        git commit --amend
+
+        cd $baseDir
+
+        echo "[INFO] DONE."
+    }
+
+    cont(){
+        echo "[INFO] Continuing the current rebase process..."
+
+        cd $buildDir
+
+        git rebase --continue
+
+        cd $baseDir
+
+        echo "[INFO] DONE."
+    }
+
     default(){
         echo "[INFO] Rebasing current branch to HEAD..."
 
@@ -147,7 +183,31 @@ rebase(){
         echo "[INFO] DONE."
     }
 
-    default
+    start(){
+        if [[ $opt > 1 ]]; then
+            isPlural="s"
+        else
+            isPlural=""
+        fi
+
+        echo "Rebasing the last $opt commit${isPlural}..."
+
+        cd $buildDir
+
+        git rebase -i head~$opt
+
+        cd $baseDir
+
+        echo "[INFO] DONE."
+    }
+
+    export opt=$1
+
+    case $opt in
+        [0-9]*) start;;
+        abort|amend|cont) $opt;;
+        *) default;;
+    esac
 }
 
 rename(){
