@@ -185,7 +185,7 @@ run(){
 	echo "[INFO] Starting server..."
 	sleep 5s
 	clear
-	$tomcatDir/bin/catalina.sh run # | firefox
+	$tomcatDir/bin/catalina.sh run
 }
 
 clear
