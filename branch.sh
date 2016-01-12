@@ -1,4 +1,5 @@
 source setdir.sh
+source help.sh
 
 _hardReset(){
     cd $buildDir
@@ -60,7 +61,7 @@ new(){
 
   git checkout -q -b $1
 
-  echo "Checked out a new branch: $1"
+  current
 
   cd $baseDir
 }
@@ -185,7 +186,7 @@ switch(){
 
   git checkout -q $b
 
-  echo "Switched to an existing branch: $b"
+  current
 
   cd $baseDir
 }
@@ -215,7 +216,7 @@ getBaseDir
 getDirs $@
 
 if [[ $# == 0 ]]; then
-  help
+  branch_help
 else
     $@
 fi

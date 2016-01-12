@@ -1,4 +1,5 @@
 source setdir.sh
+source help.sh
 
 _build_log(){
 	timestamp=$(_timestamp_clock)
@@ -149,7 +150,7 @@ getBaseDir
 getDirs $@
 
 if [[ $# == 0 ]]; then
-  help
+  build_help
 else
     until [[ $# == 0 ]]; do
         $1

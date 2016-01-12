@@ -1,5 +1,6 @@
 source "c:/users/liferay/.bashrc"
 source setdir.sh
+source help.sh
 
 pr(){
 	echo "[INFO] Submitting pull request..."
@@ -132,7 +133,7 @@ getBaseDir
 getDirs $@
 
 if [[ $# == 0 ]]; then
-	help
+	test_help
 elif [[ $@ == *#* ]]; then
 	args="test $@"
 	$args
