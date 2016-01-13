@@ -30,7 +30,7 @@ _placeholder(){
 		newArray="${newArray} \"${arrayElement}\""
 	done
 
-    export newFuncList="(${newArray})"
+    export newArray="(${newArray})"
 }
 
 branch_help(){
@@ -50,7 +50,7 @@ branch_help(){
 
 	_maxLength "$funcList"
 	_placeholder "$funcList"
-	newFuncList=${newFuncList//\"/}
+	newFuncList=${newArray//\"/}
     newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
@@ -84,7 +84,7 @@ build_help(){
 
 	_maxLength "$funcList"
 	_placeholder "$funcList"
-	newFuncList=${newFuncList//\"/}
+	newFuncList=${newArray//\"/}
 	newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
@@ -111,7 +111,7 @@ test_help(){
 
 	_maxLength "$funcList"
 	_placeholder "$funcList"
-	newFuncList=${newFuncList//\"/}
+	newFuncList=${newArray//\"/}
     newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
