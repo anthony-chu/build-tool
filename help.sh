@@ -1,38 +1,57 @@
-branch_help(){
-	funcList=(
-    "current"
-    "delete"
-    "list"
-    "log"
-    "pullDevBranch"
-    "new"
-    "rebase"
-    "rename"
-    "reset"
-    "switch"
-    "tunnel"
-    )
-
+_maxLength(){
 	maxLength=0
-	for (( i=0; i<${#funcList[@]}; i++ )); do
-		if [[ ${#funcList[i]} > $maxLength ]]; then
-			maxLength=${#funcList[i]}
+	array=$funcList
+
+	for (( i=0; i<${#array[@]}; i++ )); do
+		if [[ ${#array[i]} > $maxLength ]]; then
+			maxLength=${#array[i]}
 		else
 			maxLength=${maxLength}
 		fi
 	done
 
-	newFuncList=()
-	for (( i=0; i<${#funcList[@]}; i++ )); do
-		function=${funcList[i]}
-		space=" "
+	export maxLength=$maxLength
+}
 
-		while [ ${#function} -lt $maxLength ]; do
-			function="${function}${space}"
+_placeholder(){
+    array=${1//\"/}
+    array=(${array//[()]/""})
+    maxLength=$maxLength
+    newArray=""
+
+    for (( i=0; i<${#array[@]}; i++ )); do
+		arrayElement=${array[i]}
+		placeholder="."
+
+		while [ ${#arrayElement} -lt $maxLength ]; do
+			arrayElement="${arrayElement}${placeholder}"
 		done
 
-		newFuncList+=("${function}")
+		newArray="${newArray} \"${arrayElement}\""
 	done
+
+    export newFuncList="(${newArray})"
+}
+
+branch_help(){
+	funcList="(
+		\"current\"
+		\"delete\"
+		\"list\"
+		\"log\"
+		\"pullDevBranch\"
+		\"new\"
+		\"rebase\"
+		\"rename\"
+		\"reset\"
+		\"switch\"
+		\"\"
+		)"
+
+	_maxLength "$funcList"
+	_placeholder "$funcList"
+	newFuncList=${newFuncList//\"/}
+    newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
     "displays the current branch"
@@ -50,39 +69,23 @@ branch_help(){
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}  ${helpList[i]}"
+		echo "  ${newFuncList[i]}${helpList[i]}"
 	done
 }
 
 build_help(){
-	funcList=(
-	"build"
-	"clean"
-	"pull"
-	"push"
-	"run"
-	)
+	funcList="(
+		\"build\"
+		\"clean\"
+		\"pull\"
+		\"push\"
+		\"run\"
+		)"
 
-	maxLength=0
-	for (( i=0; i<${#funcList[@]}; i++ )); do
-		if [[ ${#funcList[i]} > $maxLength ]]; then
-			maxLength=${#funcList[i]}
-		else
-			maxLength=${maxLength}
-		fi
-	done
-
-	newFuncList=()
-	for (( i=0; i<${#funcList[@]}; i++ )); do
-		function=${funcList[i]}
-		space=" "
-
-		while [ ${#function} -lt $maxLength ]; do
-			function="${function}${space}"
-		done
-
-		newFuncList+=("${function}")
-	done
+	_maxLength "$funcList"
+	_placeholder "$funcList"
+	newFuncList=${newFuncList//\"/}
+    newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
 	"builds bundle"
@@ -94,38 +97,22 @@ build_help(){
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}  ${helpList[i]}"
+		echo "  ${newFuncList[i]}${helpList[i]}"
 	done
 }
 
 test_help(){
-	funcList=(
-	"pr"
-	"sf"
-	"validate"
-	"test"
-	)
+	funcList="(
+		\"pr\"
+		\"sf\"
+		\"validate\"
+		\"test\"
+		)"
 
-	maxLength=0
-	for (( i=0; i<${#funcList[@]}; i++ )); do
-		if [[ ${#funcList[i]} > $maxLength ]]; then
-			maxLength=${#funcList[i]}
-		else
-			maxLength=${maxLength}
-		fi
-	done
-
-	newFuncList=()
-	for (( i=0; i<${#funcList[@]}; i++ )); do
-		function=${funcList[i]}
-		space=" "
-
-		while [ ${#function} -lt $maxLength ]; do
-			function="${function}${space}"
-		done
-
-		newFuncList+=("${function}")
-	done
+	_maxLength "$funcList"
+	_placeholder "$funcList"
+	newFuncList=${newFuncList//\"/}
+    newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
 	"submits a pull request"
@@ -136,6 +123,6 @@ test_help(){
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}  ${helpList[i]}"
+		echo "  ${newFuncList[i]}${helpList[i]}"
 	done
 }
