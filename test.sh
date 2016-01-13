@@ -7,26 +7,10 @@ pr(){
 
 	detailHeading="(\"branch:\" \"reviewer:\" \"comment:\" \"title:\")"
 
-	maxLength=0
-	for (( i=0; i<${#detailHeading[@]}; i++ )); do
-		if [[ ${#detailHeading[i]} > $maxLength ]]; then
-			maxLength=${#detailHeading[i]}
-		else
-			maxLength=${maxLength}
-		fi
-	done
-
-	newDetailHeading=()
-	for (( i=0; i<${#detailHeading[@]}; i++ )); do
-		detail=${detailHeading[i]}
-		space=" "
-
-		while [ ${#detail} -lt $maxLength ]; do
-			detail="${detail}${space}"
-		done
-
-		newDetailHeading+=("${detail}")
-	done
+	_maxLength "${detailHeading}"
+	_placeholder "${detailHeading}"
+	newDetailHeading=${newArray//\"/}
+    newDetailHeading=(${newHeading//[()]/})
 
 	if (( $# == 0 )); then
 		echo "[ERROR] Missing reviewer."
