@@ -85,7 +85,7 @@ build_help(){
 	_maxLength "$funcList"
 	_placeholder "$funcList"
 	newFuncList=${newFuncList//\"/}
-    newFuncList=(${newFuncList//[()]/})
+	newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
 	"builds bundle"
