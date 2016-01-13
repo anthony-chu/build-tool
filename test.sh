@@ -5,7 +5,7 @@ source help.sh
 pr(){
 	echo "[INFO] Submitting pull request..."
 
-	detailHeading=("branch:" "reviewer:" "comment:" "title:")
+	detailHeading="(\"branch:\" \"reviewer:\" \"comment:\" \"title:\")"
 
 	maxLength=0
 	for (( i=0; i<${#detailHeading[@]}; i++ )); do
