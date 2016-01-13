@@ -1,6 +1,7 @@
 _maxLength(){
 	maxLength=0
-	array=$funcList
+	array=${1//\"/}
+    array=(${array//[()]/""})
 
 	for (( i=0; i<${#array[@]}; i++ )); do
 		if [[ ${#array[i]} > $maxLength ]]; then
