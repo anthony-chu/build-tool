@@ -70,7 +70,7 @@ branch_help(){
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}${helpList[i]}"
+		echo "  ${newFuncList[i]}..........${helpList[i]}"
 	done
 }
 
@@ -98,7 +98,7 @@ build_help(){
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}${helpList[i]}"
+		echo "  ${newFuncList[i]}..........${helpList[i]}"
 	done
 }
 
@@ -124,6 +124,6 @@ test_help(){
 
 	echo "Usage:"
 	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}${helpList[i]}"
+		echo "  ${newFuncList[i]}..........${helpList[i]}"
 	done
 }
