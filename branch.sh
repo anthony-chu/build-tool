@@ -36,6 +36,19 @@ delete(){
     cd $baseDir
 }
 
+dev(){
+    cd $buildDir
+
+    dev=$1
+    branch=$2
+
+    git pull git@github.com:$dev/liferay-portal.git $branch
+
+    cd $baseDir
+
+    log
+}
+
 list(){
   cd $buildDir
 
@@ -64,19 +77,6 @@ new(){
   current
 
   cd $baseDir
-}
-
-pullDevBranch(){
-    cd $buildDir
-
-    dev=$1
-    branch=$2
-
-    git pull git@github.com:$dev/liferay-portal.git $branch
-
-    cd $baseDir
-
-    log
 }
 
 rebase(){

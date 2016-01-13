@@ -38,9 +38,9 @@ branch_help(){
 	funcList="(
 		\"current\"
 		\"delete\"
+		\"dev\"
 		\"list\"
 		\"log\"
-		\"pullDevBranch\"
 		\"new\"
 		\"rebase\"
 		\"rename\"
@@ -52,14 +52,14 @@ branch_help(){
 	_maxLength "$funcList"
 	_placeholder "$funcList"
 	newFuncList=${newArray//\"/}
-    newFuncList=(${newFuncList//[()]/})
+	newFuncList=(${newFuncList//[()]/})
 
 	helpList=(
     "displays the current branch"
     "deletes the branch"
+    "fetches a developer's branch"
     "displays all local branches"
     "shows the log for the current branch"
-    "fetches a developer's branch"
     "creates and switches to a new branch"
     "rebases the current branch to HEAD"
     "renames the current branch"
