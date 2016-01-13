@@ -45,7 +45,7 @@ branch_help(){
 		\"rename\"
 		\"reset\"
 		\"switch\"
-		\"\"
+		\"tunnel\"
 		)"
 
 	_maxLength "$funcList"
