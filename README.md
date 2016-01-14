@@ -1,6 +1,6 @@
 # HOW TO USE
 
-### build
+### build.sh
 
 Enter script name followed by successive arguments
 - Example:
@@ -11,17 +11,17 @@ Enter script name followed by successive arguments
 Each argument is a separate command
 
 
-### test
+### branch.sh
 
 Enter script file name followed by an argument
 - Example:
     ```
-    $ test.sh rebase
+    $ branch.sh rebase
     ```
 This argument is the command
 
 Follow the command with necessary arguments
 - Example:
     ```
-    $ test.sh master $TESTCASE#COMMAND
+    $ branch.sh rebase abort
     ```
