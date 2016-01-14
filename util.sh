@@ -49,6 +49,14 @@ _placeholder(){
     export newArray="(${newArray})"
 }
 
+_stringReplace(){
+	str=$1
+	orig=$2
+	new=$3
+
+	export newStr=${str//$orig/$new}
+}
+
 _stringToArray(){
 	str=$1
 
