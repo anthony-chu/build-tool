@@ -1,19 +1,19 @@
 source util.sh
 
 branch_help(){
-	funcList="(
-		\"current\"
-		\"delete\"
-		\"dev\"
-		\"list\"
-		\"log\"
-		\"new\"
-		\"rebase\"
-		\"rename\"
-		\"reset\"
-		\"switch\"
-		\"tunnel\"
-		)"
+	funcList=(
+		current
+		delete
+		dev
+		list
+		log
+		new
+		rebase
+		rename
+		reset
+		switch
+		tunnel
+		)
 
 	_maxLength "$funcList"
 	_placeholder "$funcList"
@@ -41,13 +41,13 @@ branch_help(){
 }
 
 build_help(){
-	funcList="(
-		\"build\"
-		\"clean\"
-		\"pull\"
-		\"push\"
-		\"run\"
-		)"
+	funcList=(
+		build
+		clean
+		pull
+		push
+		run
+		)
 
 	_maxLength "$funcList"
 	_placeholder "$funcList"
@@ -69,12 +69,12 @@ build_help(){
 }
 
 test_help(){
-	funcList="(
-		\"pr\"
-		\"sf\"
-		\"validate\"
-		\"test\"
-		)"
+	funcList=(
+	pr
+	sf
+	validate
+	test
+	)
 
 	_maxLength "$funcList"
 	_placeholder "$funcList"
