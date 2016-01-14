@@ -1,5 +1,18 @@
 source util.sh
 
+_printHelpMessage(){
+	_stringToArray "$1"
+	newFuncList=($array)
+	_stringToArray "$2"
+	helpList=($array)
+
+	echo "Usage:"
+	for (( i=0; i<${#newFuncList[@]}; i++ )); do
+		_stringReplace ${helpList[i]} "-" " "
+		echo "  ${newFuncList[i]}..........${newStr}"
+	done
+}
+
 branch_help(){
 	funcList=(
 		current
@@ -35,10 +48,12 @@ branch_help(){
 	    provides-direct-shell-access-to-git-directory
     )
 
-	echo "Usage:"
-	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}..........${helpList[i]}"
-	done
+	_arrayToStr ${newFuncList[@]}
+	newFuncListStr="$arrayString"
+	_arrayToStr ${helpList[@]}
+	newHelpListStr="$arrayString"
+
+	_printHelpMessage "$newFuncListStr" "$newHelpListStr"
 }
 
 build_help(){
@@ -64,10 +79,12 @@ build_help(){
 		runs-bundle
 	)
 
-	echo "Usage:"
-	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}..........${helpList[i]}"
-	done
+	_arrayToStr ${newFuncList[@]}
+	newFuncListStr="$arrayString"
+	_arrayToStr ${helpList[@]}
+	newHelpListStr="$arrayString"
+
+	_printHelpMessage "$newFuncListStr" "$newHelpListStr"
 }
 
 test_help(){
@@ -91,8 +108,10 @@ test_help(){
 		executes-a-frontend-test
 	)
 
-	echo "Usage:"
-	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		echo "  ${newFuncList[i]}..........${helpList[i]}"
-	done
+	_arrayToStr ${newFuncList[@]}
+	newFuncListStr="$arrayString"
+	_arrayToStr ${helpList[@]}
+	newHelpListStr="$arrayString"
+
+	_printHelpMessage "$newFuncListStr" "$newHelpListStr"
 }
