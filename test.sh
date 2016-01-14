@@ -5,12 +5,13 @@ source help.sh
 pr(){
 	echo "[INFO] Submitting pull request..."
 
-	detailHeading="(\"branch:\" \"reviewer:\" \"comment:\" \"title:\")"
+	detailHeading=(branch: reviewer: comment: title:)
 
-	_maxLength "${detailHeading}"
-	_placeholder "${detailHeading}"
-	newDetailHeading=${newArray//\"/}
-    newDetailHeading=(${newHeading//[()]/})
+	_arrayToStr ${detailHeading[@]}
+	_maxLength "$arrayString"
+	_placeholder "$arrayString"
+	_stringToArray "$newArray"
+	newDetailHeading=($array)
 
 	if (( $# == 0 )); then
 		echo "[ERROR] Missing reviewer."

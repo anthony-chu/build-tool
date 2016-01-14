@@ -15,10 +15,11 @@ branch_help(){
 		tunnel
 		)
 
-	_maxLength "$funcList"
-	_placeholder "$funcList"
-	newFuncList=${newArray//\"/}
-	newFuncList=(${newFuncList//[()]/})
+	_arrayToStr ${funcList[@]}
+	_maxLength "$arrayString"
+	_placeholder "$arrayString"
+	_stringToArray "$newArray"
+	newFuncList=($array)
 
 	helpList=(
     "displays the current branch"
@@ -49,10 +50,11 @@ build_help(){
 		run
 		)
 
-	_maxLength "$funcList"
-	_placeholder "$funcList"
-	newFuncList=${newArray//\"/}
-	newFuncList=(${newFuncList//[()]/})
+	_arrayToStr ${funcList[@]}
+	_maxLength "$arrayString"
+	_placeholder "$arrayString"
+	_stringToArray "$newArray"
+	newFuncList=($array)
 
 	helpList=(
 	"builds bundle"
@@ -76,10 +78,11 @@ test_help(){
 	test
 	)
 
-	_maxLength "$funcList"
-	_placeholder "$funcList"
-	newFuncList=${newArray//\"/}
-    newFuncList=(${newFuncList//[()]/})
+	_arrayToStr ${funcList[@]}
+	_maxLength "$arrayString"
+	_placeholder "$arrayString"
+	_stringToArray "$newArray"
+	newFuncList=($array)
 
 	helpList=(
 	"submits a pull request"

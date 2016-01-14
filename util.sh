@@ -1,7 +1,22 @@
+_arrayToStr(){
+	array=($@)
+
+	arrayString=""
+	for (( i=0; i<${#array[@]}; i++ )); do
+		if [[ $i == 0 ]]; then
+			arrayString="\"${array[i]}\""
+		else
+			arrayString="${arrayString} \"${array[i]}\""
+		fi
+	done
+
+	export arrayString="(${arrayString})"
+}
+
 _maxLength(){
 	maxLength=0
-	array=${1//\"/}
-    array=(${array//[()]/""})
+	_stringToArray "$1"
+	array=($array)
 
 	for (( i=0; i<${#array[@]}; i++ )); do
 		if [[ ${#array[i]} > $maxLength ]]; then
@@ -15,8 +30,8 @@ _maxLength(){
 }
 
 _placeholder(){
-    array=${1//\"/}
-    array=(${array//[()]/""})
+    _stringToArray "$1"
+	array=($array)
     maxLength=$maxLength
     newArray=""
 
@@ -32,4 +47,13 @@ _placeholder(){
 	done
 
     export newArray="(${newArray})"
+}
+
+_stringToArray(){
+	str=$1
+
+	array=${str//\"/}
+    array=(${array//[()]/""})
+
+	export array=${array[@]}
 }
