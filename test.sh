@@ -10,7 +10,7 @@ pr(){
 	_arrayToStr ${detailHeading[@]}
 	_maxLength "$arrayString"
 	_placeholder "$arrayString"
-	_stringToArray "$newArray"
+	_strToArray "$newArray"
 	newDetailHeading=($array)
 
 	if (( $# == 0 )); then

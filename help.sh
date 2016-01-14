@@ -1,9 +1,9 @@
 source util.sh
 
 _printHelpMessage(){
-	_stringToArray "$1"
+	_strToArray "$1"
 	newFuncList=($array)
-	_stringToArray "$2"
+	_strToArray "$2"
 	helpList=($array)
 
 	echo "Usage:"
@@ -31,7 +31,7 @@ branch_help(){
 	_arrayToStr ${funcList[@]}
 	_maxLength "$arrayString"
 	_placeholder "$arrayString"
-	_stringToArray "$newArray"
+	_strToArray "$newArray"
 	newFuncList=($array)
 
 	helpList=(
@@ -68,7 +68,7 @@ build_help(){
 	_arrayToStr ${funcList[@]}
 	_maxLength "$arrayString"
 	_placeholder "$arrayString"
-	_stringToArray "$newArray"
+	_strToArray "$newArray"
 	newFuncList=($array)
 
 	helpList=(
@@ -98,7 +98,7 @@ test_help(){
 	_arrayToStr ${funcList[@]}
 	_maxLength "$arrayString"
 	_placeholder "$arrayString"
-	_stringToArray "$newArray"
+	_strToArray "$newArray"
 	newFuncList=($array)
 
 	helpList=(

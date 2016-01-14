@@ -15,7 +15,7 @@ _arrayToStr(){
 
 _maxLength(){
 	maxLength=0
-	_stringToArray "$1"
+	_strToArray "$1"
 	array=($array)
 
 	for (( i=0; i<${#array[@]}; i++ )); do
@@ -30,7 +30,7 @@ _maxLength(){
 }
 
 _placeholder(){
-    _stringToArray "$1"
+    _strToArray "$1"
 	array=($array)
     maxLength=$maxLength
     newArray=""
@@ -57,7 +57,7 @@ _stringReplace(){
 	export newStr=${str//$orig/$new}
 }
 
-_stringToArray(){
+_strToArray(){
 	str=$1
 
 	array=${str//\"/}
