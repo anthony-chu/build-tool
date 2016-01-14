@@ -13,7 +13,7 @@ branch_help(){
 		reset
 		switch
 		tunnel
-		)
+	)
 
 	_arrayToStr ${funcList[@]}
 	_maxLength "$arrayString"
@@ -48,7 +48,7 @@ build_help(){
 		pull
 		push
 		run
-		)
+	)
 
 	_arrayToStr ${funcList[@]}
 	_maxLength "$arrayString"
@@ -72,10 +72,10 @@ build_help(){
 
 test_help(){
 	funcList=(
-	pr
-	sf
-	validate
-	test
+		pr
+		sf
+		validate
+		test
 	)
 
 	_arrayToStr ${funcList[@]}
