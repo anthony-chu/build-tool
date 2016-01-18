@@ -5,7 +5,7 @@
 Enter script name followed by successive arguments
 - Example:
     ```
-    $ build.sh pull push build
+    $ ./build.sh pull push build
     ```
 
 Each argument is a separate command
@@ -16,12 +16,12 @@ Each argument is a separate command
 Enter script file name followed by an argument
 - Example:
     ```
-    $ branch.sh rebase
+    $ ./branch.sh rebase
     ```
 This argument is the command
 
 Follow the command with necessary arguments
 - Example:
     ```
-    $ branch.sh rebase abort
+    $ ./branch.sh rebase abort
     ```
