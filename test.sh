@@ -109,6 +109,11 @@ test(){
 
 		mv index.html $1_index.html
 
+		cd $testDir/$testname
+		testcase=${testname//[_]/%23}
+		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
+		"$chromeDir/chrome.exe" file:\/\/\/${testDir//d/D\:}/$testname/${testcase}_index.html
+
 		cd $baseDir
 	fi
 }
