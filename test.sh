@@ -1,4 +1,3 @@
-source "c:/users/liferay/.bashrc"
 source setdir.sh
 source help.sh
 
