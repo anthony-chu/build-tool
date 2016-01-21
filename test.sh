@@ -36,6 +36,9 @@ pr(){
 
 		echo
 		cd $buildDir
+
+		git push -f origin $title
+
 		gitpr -b $branch -u $1 submit $comment $title
 		cd $baseDir
 	fi
