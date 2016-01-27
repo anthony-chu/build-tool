@@ -3,7 +3,7 @@ getBaseDir(){
 }
 
 getDirs(){
-    if [[ $args == *ee* ]]; then
+    if [[ $@ == *ee* ]]; then
         privacy=private
     else
         privacy=public
