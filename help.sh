@@ -18,6 +18,7 @@ branch_help(){
 		current
 		delete
 		dev
+		jira
 		list
 		log
 		new
@@ -38,6 +39,7 @@ branch_help(){
 	    displays-the-current-branch
 	    deletes-the-branch
 	    fetches-a-developer\'s-branch
+		prints-a-formatted-jira-message
 	    displays-all-local-branches
 	    shows-the-log-for-the-current-branch
 	    creates-and-switches-to-a-new-branch
