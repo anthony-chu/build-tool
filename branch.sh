@@ -58,6 +58,42 @@ dev(){
     log
 }
 
+jira(){
+    local _gitid=$(_longLog)
+
+    if [[ $branch == master ]]; then
+        branch=${branch^}
+    else
+        branch=$branch
+    fi
+
+    local gitinfo="Portal $branch GIT ID: ${_gitid}"
+
+    fixed(){
+        echo "Fixed on:"
+    }
+
+    nlr(){
+        echo "No Longer Reproducible on:"
+    }
+
+    repro(){
+        echo "Reproduced on:"
+    }
+
+    _env(){
+        echo "Tomcat 8.0.30 + MySQL 5.6"
+    }
+
+    case $1 in
+        fixed|nlr|repro) $1;;
+        *) echo "" ;;
+    esac
+
+    echo $(_env)
+    echo ${gitinfo}
+}
+
 list(){
   cd $buildDir
 
