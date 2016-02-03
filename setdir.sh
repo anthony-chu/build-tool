@@ -11,15 +11,21 @@ getDirs(){
 
     if [[ $@ == *master* ]]; then
         branch=master
+        tomcatVersion=8.0.30
     elif [[ $@ == *ee-6.2.x* ]]; then
         branch=ee-6.2.x
+        tomcatVersion=7.0.62
+    elif [[ $@ == *ee-7.0.x* ]]; then
+        branch=ee-7.0.x
+        tomcatVersion=8.0.30    
     else
         branch=master
+        tomcatVersion=8.0.30
     fi
 
     buildDir=d:/${privacy}/${branch}-portal
     bundleDir=d:/${privacy}/${branch}-bundles
     database=lportal${branch//[-.]/""}
 
-    export branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-7.0.62"
+    export branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}" tomcatDir="$bundleDir/tomcat-$tomcatVersion"
 }
