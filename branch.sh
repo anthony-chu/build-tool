@@ -22,6 +22,14 @@ _longLog(){
     cd $baseDir
 }
 
+changes(){
+    cd $buildDir
+
+    git status
+
+    cd $baseDir
+}
+
 current(){
   cd $buildDir
 
