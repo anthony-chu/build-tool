@@ -15,6 +15,7 @@ _printHelpMessage(){
 
 branch_help(){
 	funcList=(
+		changes
 		current
 		delete
 		dev
@@ -36,6 +37,7 @@ branch_help(){
 	newFuncList=($array)
 
 	helpList=(
+		displays-all-changes-made-to-the-current-branch
 	    displays-the-current-branch
 	    deletes-the-branch
 	    fetches-a-developer\'s-branch
