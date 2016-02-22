@@ -59,10 +59,25 @@ _clean_source(){
 }
 
 _config(){
+	echo "[INFO] Building properties..."
+
+	cd $buildDir/../properties
+	cp *.anthonychu.properties $buildDir
+
+	cd $buildDir
+	sed -i "s/app.server.type=/app.server.type=${appServer}/g" app.server.anthonychu.properties
+	sed -i "s/app.server.type=/app.server.type=${appServer}/g" build.anthonychu.properties
+	echo "[INFO] Done."
+
 	echo "[INFO] Increasing memory limit..."
-	sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
-	sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $tomcatDir/bin/setenv.sh
-	echo "[INFO] DONE."
+	if [[ $appServer == tomcat ]]; then
+		sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
+		sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $tomcatDir/bin/setenv.sh
+	elif [[ $appServer == wildfly ]]; then
+		sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $bundleDir/wildfly-10.0.0/bin/standalone.conf
+		sed -i "s/-XX:MaxMetaspaceSize=[:digit:][:digit:][:digit:]m/-XX:MaxMetaspaceSize=768m" $bundleDir/wildfly-10.0.0/bin/standalone.conf
+	fi
+	echo "[INFO] Done."
 
 	if [[ $branch == ee-6.2.x ]]; then
 		echo "[INFO] Changing port for ee-6.2.x..."
@@ -102,13 +117,34 @@ build(){
 
 	cd $buildDir
 
-	echo "[INFO] Unzipping tomcat..."
-	ant -f build-dist.xml unzip-tomcat
+	validAppServer=(tomcat wildfly)
+
+	for (( i=0; i<${#validAppServer[@]}; i++ )); do
+		local isValidAppServer=false
+
+		if [[ $1 == ${validAppServer[i]} ]]; then
+			isValidAppServer=true
+			break
+		fi
+	done
+
+	if [[ $isValidAppServer == false ]]; then
+		echo "[FAIL] $1 is not a valid app server."
+		exit
+	else
+		appServer=$1
+		shift
+	fi
+
+	echo "[INFO] Unzipping $appServer..."
+	ant -f build-dist.xml unzip-$appServer
 	echo "[INFO] DONE."
 
 	_config
 
 	echo "[INFO] Building portal..."
+	echo "[INFO] Switching to JDK 7..."
+	export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
 	ant all > $logFile | tail -f --pid=$$ "$logFile"
 	echo "[INFO] Build complete. Please see the build log for details."
 	cd $baseDir
@@ -142,6 +178,35 @@ run(){
 	echo "[INFO] Starting server..."
 	sleep 5s
 	clear
+
+	validAppServer=(tomcat wildfly)
+
+	for (( i=0; i<${#validAppServer[@]}; i++ )); do
+		local isValidAppServer=false
+
+		if [[ $1 == ${validAppServer[i]} ]]; then
+			isValidAppServer=true
+			break
+		fi
+	done
+
+	if [[ $isValidAppServer == false ]]; then
+		echo "[FAIL] $1 is not a valid app server."
+		exit
+	else
+		appServer=$1
+		shift
+	fi
+
+	if [[ $appServer == tomcat ]]; then
+		export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
+		$tomcatDir/bin/catalina.sh run
+	elif [[ $appServer == wildfly ]]; then
+		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
+		$bundleDir/wildfly-10.0.0/bin/standalone.sh
+	fi
+
+
 	$tomcatDir/bin/catalina.sh run
 }
 
