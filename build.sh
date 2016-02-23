@@ -218,7 +218,7 @@ if [[ $# == 0 ]]; then
   build_help
 else
     until [[ $# == 0 ]]; do
-        $1
+		$1 ${@:2}
         shift
     done
 fi
