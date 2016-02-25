@@ -198,9 +198,6 @@ run(){
 		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
 		$bundleDir/wildfly-10.0.0/bin/standalone.sh
 	fi
-
-
-	$tomcatDir/bin/catalina.sh run
 }
 
 clear
