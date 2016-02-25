@@ -59,31 +59,39 @@ _clean_source(){
 }
 
 _config(){
-	echo "[INFO] Building properties..."
+	source(){
+		echo "[INFO] Building properties..."
 
-	cd $buildDir/../properties
-	cp *.anthonychu.properties $buildDir
+		cd $buildDir/../properties
+		cp *.anthonychu.properties $buildDir
 
-	cd $buildDir
-	sed -i "s/app.server.type=/app.server.type=${appServer}/g" app.server.anthonychu.properties
-	sed -i "s/app.server.type=/app.server.type=${appServer}/g" build.anthonychu.properties
-	echo "[INFO] Done."
+		cd $buildDir
+		sed -i "s/app.server.type=/app.server.type=${appServer}/g" app.server.anthonychu.properties
+		sed -i "s/app.server.type=/app.server.type=${appServer}/g" build.anthonychu.properties
+		echo "app.server.parent.dir=${bundleDir}" >> app.server.anthonychu.properties
+		echo "app.server.parent.dir=${bundleDir}" >> build.anthonychu.properties
+		echo "[INFO] Done."
+	}
 
-	echo "[INFO] Increasing memory limit..."
-	if [[ $appServer == tomcat ]]; then
-		sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
-		sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $tomcatDir/bin/setenv.sh
-	elif [[ $appServer == wildfly ]]; then
-		sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $bundleDir/wildfly-10.0.0/bin/standalone.conf
-		sed -i "s/-XX:MaxMetaspaceSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxMetaspaceSize=1024m" $bundleDir/wildfly-10.0.0/bin/standalone.conf
-	fi
-	echo "[INFO] Done."
+	appServer(){
+		echo "[INFO] Increasing memory limit..."
+		if [[ $appServer == tomcat ]]; then
+			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
+			sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $tomcatDir/bin/setenv.sh
+		elif [[ $appServer == wildfly ]]; then
+			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $bundleDir/wildfly-10.0.0/bin/standalone.conf
+			sed -i "s/-XX:MaxMetaspaceSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxMetaspaceSize=1024m" $bundleDir/wildfly-10.0.0/bin/standalone.conf
+		fi
+		echo "[INFO] Done."
 
-	if [[ $branch == ee-6.2.x ]]; then
-		echo "[INFO] Changing port for ee-6.2.x..."
-		sed -i "s/\"8/\"7/g" $tomcatDir/conf/server.xml
-		echo "[INFO] DONE."
-	fi
+		if [[ $branch == ee-6.2.x ]]; then
+			echo "[INFO] Changing port for ee-6.2.x..."
+			sed -i "s/\"8/\"7/g" $tomcatDir/conf/server.xml
+			echo "[INFO] DONE."
+		fi
+	}
+
+	$1
 }
 
 _gitlog(){
@@ -140,11 +148,13 @@ build(){
 		shift
 	fi
 
+	_config source
+
 	echo "[INFO] Unzipping $appServer..."
 	ant -f build-dist.xml unzip-$appServer
 	echo "[INFO] DONE."
 
-	_config
+	_config appServer
 
 	echo "[INFO] Building portal..."
 	echo "[INFO] Switching to JDK 7..."
