@@ -68,8 +68,8 @@ _config(){
 		cd $buildDir
 		sed -i "s/app.server.type=/app.server.type=${appServer}/g" app.server.anthonychu.properties
 		sed -i "s/app.server.type=/app.server.type=${appServer}/g" build.anthonychu.properties
-		echo "app.server.parent.dir=${bundleDir}" >> app.server.anthonychu.properties
-		echo "app.server.parent.dir=${bundleDir}" >> build.anthonychu.properties
+		echo -e "\napp.server.parent.dir=${bundleDir}" >> app.server.anthonychu.properties
+		echo -e "\napp.server.parent.dir=${bundleDir}" >> build.anthonychu.properties
 		echo "[INFO] Done."
 	}
 
