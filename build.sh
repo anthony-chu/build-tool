@@ -148,7 +148,6 @@ build(){
 
 	echo "[INFO] Building portal..."
 	echo "[INFO] Switching to JDK 7..."
-	export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
 	ant all > $logFile | tail -f --pid=$$ "$logFile"
 	echo "[INFO] Build complete. Please see the build log for details."
 	cd $baseDir
