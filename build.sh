@@ -200,15 +200,11 @@ run(){
 		shift
 	fi
 
-	if [[ $appServer == tomcat ]]; then
-		export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
-		$tomcatDir/bin/catalina.sh run
-	elif [[ $appServer == wildfly ]]; then
-		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
-		$bundleDir/wildfly-10.0.0/bin/standalone.sh
-	elif [[ $appServer == weblogic ]]; then
-		$bundleDir/$appServer-12.1.3/domains/liferay/bin/startWebLogic.sh
-	fi
+	case $appServer in
+		tomcat) $tomcatDir/bin/catalina.sh run;;
+		wildfly) export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"; $bundleDir/wildfly-10.0.0/bin/standalone.sh;;
+		weblogic) $bundleDir/$appServer-12.1.3/domains/liferay/bin/startWebLogic.sh;;
+	esac
 }
 
 clear
