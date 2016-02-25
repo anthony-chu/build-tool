@@ -75,7 +75,7 @@ _config(){
 		sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $tomcatDir/bin/setenv.sh
 	elif [[ $appServer == wildfly ]]; then
 		sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $bundleDir/wildfly-10.0.0/bin/standalone.conf
-		sed -i "s/-XX:MaxMetaspaceSize=[:digit:][:digit:][:digit:]m/-XX:MaxMetaspaceSize=768m" $bundleDir/wildfly-10.0.0/bin/standalone.conf
+		sed -i "s/-XX:MaxMetaspaceSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxMetaspaceSize=1024m" $bundleDir/wildfly-10.0.0/bin/standalone.conf
 	fi
 	echo "[INFO] Done."
 
