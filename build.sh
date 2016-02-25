@@ -108,16 +108,8 @@ _timestamp_date(){
 	date +%Y%m%d
 }
 
-build(){
-	_build_log
-
-	_clean_hard
-
-	_clean_source
-
-	cd $buildDir
-
-	validAppServer=(tomcat wildfly)
+_validateAppServer(){
+	validAppServer=(jboss-eap jonas tomcat weblogic websphere wildfly)
 
 	for (( i=0; i<${#validAppServer[@]}; i++ )); do
 		local isValidAppServer=false
@@ -128,8 +120,20 @@ build(){
 		fi
 	done
 
-	if [[ $isValidAppServer == false ]]; then
-		echo "[FAIL] $1 is not a valid app server."
+	echo $isValidAppServer
+}
+
+build(){
+	_build_log
+
+	_clean_hard
+
+	_clean_source
+
+	cd $buildDir
+
+	if [[ $(_validateAppServer $1) == false ]]; then
+		echo "$1 is not a valid app server."
 		exit
 	else
 		appServer=$1
@@ -179,19 +183,8 @@ run(){
 	sleep 5s
 	clear
 
-	validAppServer=(tomcat wildfly)
-
-	for (( i=0; i<${#validAppServer[@]}; i++ )); do
-		local isValidAppServer=false
-
-		if [[ $1 == ${validAppServer[i]} ]]; then
-			isValidAppServer=true
-			break
-		fi
-	done
-
-	if [[ $isValidAppServer == false ]]; then
-		echo "[FAIL] $1 is not a valid app server."
+	if [[ $(_validateAppServer $1) == false ]]; then
+		echo "$1 is not a valid app server."
 		exit
 	else
 		appServer=$1
