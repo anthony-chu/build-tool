@@ -17,7 +17,7 @@ getDirs(){
         tomcatVersion=7.0.62
     elif [[ $@ == *ee-7.0.x* ]]; then
         branch=ee-7.0.x
-        tomcatVersion=8.0.30    
+        tomcatVersion=8.0.30
     else
         branch=master
         tomcatVersion=8.0.30
