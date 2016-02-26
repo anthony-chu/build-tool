@@ -164,6 +164,7 @@ build(){
 	echo "[INFO] Build complete. Please see the build log for details."
 	cd $baseDir
 }
+
 clean(){
 	_rebuild_db
 	_clean_bundle
