@@ -119,7 +119,7 @@ _timestamp_date(){
 }
 
 _validateAppServer(){
-	validAppServer=(jboss-eap jonas tomcat weblogic websphere wildfly)
+	validAppServer=(jboss jonas tomcat weblogic websphere wildfly)
 
 	for (( i=0; i<${#validAppServer[@]}; i++ )); do
 		local isValidAppServer=false
