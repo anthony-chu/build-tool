@@ -159,7 +159,6 @@ build(){
 	_config appServer
 
 	echo "[INFO] Building portal..."
-	echo "[INFO] Switching to JDK 7..."
 	ant all > $logFile | tail -f --pid=$$ "$logFile"
 	echo "[INFO] Build complete. Please see the build log for details."
 	cd $baseDir
