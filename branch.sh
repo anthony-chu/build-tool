@@ -182,13 +182,13 @@ rebase(){
     }
 
     start(){
-        if [[ $opt > 1 ]]; then
+        if [[ $(getOption $1) > 1 ]]; then
             isPlural="s"
         else
             isPlural=""
         fi
 
-        echo "Rebasing the last $opt commit${isPlural}..."
+        echo "Rebasing the last $(getOption $1) commit${isPlural}..."
 
         cd $buildDir
 
@@ -199,12 +199,12 @@ rebase(){
         echo "[INFO] DONE."
     }
 
-    export opt=$1
-
-    case $opt in
+    case $(getOption $1) in
         [0-9]*) start;;
-        abort|amend|cont) $opt;;
-        *) default;;
+        q) abort;;
+        c) cont;;
+        m) amend;;
+        d) default;;
     esac
 }
 
