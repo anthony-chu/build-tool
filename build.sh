@@ -169,6 +169,13 @@ clean(){
 	_clean_bundle
 }
 
+deploy(){
+	input=$@
+	path=${input//./\/}
+	cd ${buildDir}/modules/apps/$path
+	$buildDir/gradlew clean deploy
+}
+
 pull(){
 	_clean_source
 
