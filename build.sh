@@ -132,14 +132,6 @@ _validateAppServer(){
 }
 
 build(){
-	_build_log
-
-	_clean_hard
-
-	_clean_source
-
-	cd $buildDir
-
 	if [[ $(_validateAppServer $1) == false ]]; then
 		echo "$1 is not a valid app server."
 		exit
@@ -147,6 +139,14 @@ build(){
 		appServer=$1
 		shift
 	fi
+
+	_build_log
+
+	_clean_hard
+
+	_clean_source
+
+	cd $buildDir
 
 	_config source
 
