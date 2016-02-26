@@ -2,10 +2,12 @@ source setdir.sh
 source help.sh
 
 _build_log(){
+	appServer=$1
+
 	timestamp=$(_timestamp_clock)
 	timestamp=${timestamp//[:]/}
 
-	logStructure=("d" "logs" "${branch}" "$(_timestamp_date)")
+	logStructure=("d" "logs" "${branch}" "${appServer}" "$(_timestamp_date)")
 
 	for (( i=0; i<${#logStructure[@]}; i++ )); do
 		logDir=${logDir}/${logStructure[i]}
@@ -140,7 +142,7 @@ build(){
 		shift
 	fi
 
-	_build_log
+	_build_log $appServer
 
 	_clean_hard
 
