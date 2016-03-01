@@ -26,7 +26,7 @@ _clean_hard(){
 	echo "[INFO] Deleting all files and folder in the bundles directory..."
 	cd $bundleDir
 	rm -rf deploy osgi data logs
-	rm -rf $tomcatDir
+	rm -rf ${appServer}*
 
 	echo "[INFO] DONE."
 	cd $baseDir
@@ -72,6 +72,11 @@ _config(){
 		sed -i "s/app.server.type=/app.server.type=${appServer}/g" build.anthonychu.properties
 		echo -e "\napp.server.parent.dir=${bundleDir}" >> app.server.anthonychu.properties
 		echo -e "\napp.server.parent.dir=${bundleDir}" >> build.anthonychu.properties
+
+		if [[ $appServer == jboss ]]; then
+			echo -e "\napp.server.${appServer}.version=6.0.1" >> app.server.anthonychu.properties
+		fi
+
 		echo "[INFO] Done."
 	}
 
@@ -210,6 +215,7 @@ run(){
 	fi
 
 	case $appServer in
+		jboss) $bundleDir/jboss-eap-6.0.1/bin/standalone.sh;;
 		tomcat) $tomcatDir/bin/catalina.sh run;;
 		wildfly) export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"; $bundleDir/wildfly-10.0.0/bin/standalone.sh;;
 		weblogic) $bundleDir/$appServer-12.1.3/domains/liferay/bin/startWebLogic.sh;;
