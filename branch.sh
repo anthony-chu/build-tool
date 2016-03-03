@@ -90,7 +90,7 @@ jira(){
     }
 
     _env(){
-        echo "Tomcat 8.0.30 + MySQL 5.6"
+        echo "Tomcat 8.0.32 + MySQL 5.7"
     }
 
     case $1 in
