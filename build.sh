@@ -81,6 +81,8 @@ _config(){
 	}
 
 	appServer(){
+		appServer=$1
+
 		echo "[INFO] Increasing memory limit..."
 		if [[ $appServer == tomcat ]]; then
 			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
@@ -161,7 +163,7 @@ build(){
 	ant -f build-dist.xml unzip-$appServer
 	echo "[INFO] DONE."
 
-	_config appServer
+	_config appServer ${appServer}
 
 	echo "[INFO] Building portal..."
 	ant all > $logFile | tail -f --pid=$$ "$logFile"
