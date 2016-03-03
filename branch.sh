@@ -203,7 +203,7 @@ rebase(){
         [0-9]*) start $1;;
         q) abort;;
         c) cont;;
-        m) amend;;
+        a) amend;;
         d) default;;
     esac
 }
