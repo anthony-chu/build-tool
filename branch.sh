@@ -192,7 +192,7 @@ rebase(){
 
         cd $buildDir
 
-        git rebase -i head~$opt
+        git rebase -i head~$(getOption $1)
 
         cd $baseDir
 
@@ -200,7 +200,7 @@ rebase(){
     }
 
     case $(getOption $1) in
-        [0-9]*) start;;
+        [0-9]*) start $1;;
         q) abort;;
         c) cont;;
         m) amend;;
