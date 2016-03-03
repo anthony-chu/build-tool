@@ -198,6 +198,9 @@ push(){
 	cd $buildDir
 
 	echo "[INFO] Pushing changes to origin..."
+
+	branch=$(git rev-parse --abbrev-ref HEAD)
+
 	git push -f origin $branch
 	echo "[INFO] DONE."
 	cd $baseDir
