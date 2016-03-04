@@ -81,7 +81,7 @@ build_help(){
 		rebuilds-database-and-prepares-bundle
 		deploys-the-specified-module-to-bundle
 		pulls-from-upstream-master
-		pushes-to-origin-master
+		pushes-current-branch-to-origin
 		runs-bundle
 	)
 
