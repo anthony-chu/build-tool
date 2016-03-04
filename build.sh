@@ -1,4 +1,5 @@
 source setdir.sh
+source util.sh
 source help.sh
 
 _build_log(){
