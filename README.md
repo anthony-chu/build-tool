@@ -16,12 +16,12 @@ Each argument is a separate command
 Enter script file name followed by an argument
 - Example:
     ```
-    $ ./branch.sh rebase
+    $ ./branch.sh current
     ```
 This argument is the command
 
 Follow the command with necessary arguments
 - Example:
     ```
-    $ ./branch.sh rebase abort
+    $ ./branch.sh rebase -c
     ```
