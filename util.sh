@@ -29,7 +29,7 @@ _maxLength(){
 	export maxLength=$maxLength
 }
 
-_nullChecker(){
+_nullValidator(){
 	local string=$1
 
 	if [[ $string ]]; then

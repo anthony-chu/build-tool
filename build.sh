@@ -142,7 +142,7 @@ _validateAppServer(){
 
 build(){
 	if [[ $(_validateAppServer $1) == false ]]; then
-		if [[ $(_nullChecker $1) == true ]]; then
+		if [[ $(_nullValidator $1) == true ]]; then
 			appServer=tomcat
 		else
 			echo "$1 is not a valid app server."
@@ -216,7 +216,7 @@ run(){
 	clear
 
 	if [[ $(_validateAppServer $1) == false ]]; then
-		if [[ $(_nullChecker $1) == true ]]; then
+		if [[ $(_nullValidator $1) == true ]]; then
 			appServer=tomcat
 		else
 			echo "$1 is not a valid app server."
