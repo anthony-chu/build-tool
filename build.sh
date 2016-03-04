@@ -129,10 +129,9 @@ _validateAppServer(){
 	validAppServer=(jboss jonas tomcat weblogic websphere wildfly)
 
 	for (( i=0; i<${#validAppServer[@]}; i++ )); do
-		local isValidAppServer=false
+		local isValidAppServer=$(_stringValidator ${validAppServer[i]} $1)
 
-		if [[ $1 == ${validAppServer[i]} ]]; then
-			isValidAppServer=true
+		if [[ $isValidAppServer == true ]]; then
 			break
 		fi
 	done
@@ -181,8 +180,8 @@ clean(){
 }
 
 deploy(){
-	input=$@
-	path=${input//./\/}
+	local input=$@
+	local path=${input//./\/}
 	cd ${buildDir}/modules/apps/$path
 	$buildDir/gradlew clean deploy
 }
