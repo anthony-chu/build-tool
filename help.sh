@@ -64,6 +64,7 @@ build_help(){
 	funcList=(
 		build
 		clean
+		deploy
 		pull
 		push
 		run
@@ -78,6 +79,7 @@ build_help(){
 	helpList=(
 		builds-bundle
 		rebuilds-database-and-prepares-bundle
+		deploys-the-specified-module-to-bundle
 		pulls-from-upstream-master
 		pushes-to-origin-master
 		runs-bundle
