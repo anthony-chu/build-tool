@@ -199,6 +199,11 @@ rebase(){
         echo "[INFO] DONE."
     }
 
+    if [[ $(_nullValidator $1) == true ]]; then
+        echo "Please provide a valid rebase option."
+        exit
+    fi
+
     case $(getOption $1) in
         [0-9]*) start $1;;
         q) abort;;
