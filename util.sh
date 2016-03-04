@@ -76,6 +76,17 @@ _strToArray(){
 	export array=${array[@]}
 }
 
+_stringValidator(){
+	local str1=$1
+	local str2=$1
+
+	if [[ $1 == $2 ]]; then
+		echo true
+	else
+		echo false
+	fi
+}
+
 gitpr(){
 	alias gitpr="source d:/git-tools/git-pull-request/git-pull-request.sh"
 	source "c:/users/liferay/.bashrc"
