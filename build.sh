@@ -142,8 +142,12 @@ _validateAppServer(){
 
 build(){
 	if [[ $(_validateAppServer $1) == false ]]; then
-		echo "$1 is not a valid app server."
-		exit
+		if [[ $1 == "" ]]; then
+			appServer=tomcat
+		else
+			echo "$1 is not a valid app server."
+			exit
+		fi
 	else
 		appServer=$1
 		shift
@@ -212,8 +216,12 @@ run(){
 	clear
 
 	if [[ $(_validateAppServer $1) == false ]]; then
-		echo "$1 is not a valid app server."
-		exit
+		if [[ $1 == "" ]]; then
+			appServer=tomcat
+		else
+			echo "$1 is not a valid app server."
+			exit
+		fi
 	else
 		appServer=$1
 		shift
