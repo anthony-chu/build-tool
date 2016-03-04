@@ -29,6 +29,16 @@ _maxLength(){
 	export maxLength=$maxLength
 }
 
+_nullChecker(){
+	local string=$1
+
+	if [[ $string ]]; then
+		echo false
+	else
+		echo true
+	fi
+}
+
 _placeholder(){
     _strToArray "$1"
 	array=($array)
