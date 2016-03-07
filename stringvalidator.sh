@@ -31,12 +31,10 @@ StringValidator(){
     }
 
     isNull(){
-        local string=$1
-
-        if [[ $string ]]; then
-            echo false
-        else
+        if [ -z $@ ]; then
             echo true
+        else
+            echo false
         fi
     }
 
@@ -50,5 +48,5 @@ StringValidator(){
         fi
     }
 
-    $1
+    $@
 }
