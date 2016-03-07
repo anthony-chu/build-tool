@@ -1,4 +1,5 @@
 source setdir.sh
+source stringvalidator.sh
 source util.sh
 source help.sh
 
@@ -199,7 +200,7 @@ rebase(){
         echo "[INFO] DONE."
     }
 
-    if [[ $(_nullValidator $1) == true ]]; then
+    if [[ $(StringValidator isNull $1) == true ]]; then
         echo "Please provide a valid rebase option."
         exit
     fi

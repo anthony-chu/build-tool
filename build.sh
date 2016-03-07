@@ -1,4 +1,5 @@
 source setdir.sh
+source stringvalidator.sh
 source util.sh
 source help.sh
 
@@ -130,7 +131,7 @@ _validateAppServer(){
 	validAppServer=(jboss jonas tomcat weblogic websphere wildfly)
 
 	for (( i=0; i<${#validAppServer[@]}; i++ )); do
-		local isValidAppServer=$(_stringValidator ${validAppServer[i]} $1)
+		local isValidAppServer=$(StringValidator isEqual ${validAppServer[i]} $1)
 
 		if [[ $isValidAppServer == true ]]; then
 			break
@@ -142,7 +143,7 @@ _validateAppServer(){
 
 build(){
 	if [[ $(_validateAppServer $1) == false ]]; then
-		if [[ $(_nullValidator $1) == true ]]; then
+		if [[ $(StringValidator isNull $1) == true ]]; then
 			appServer=tomcat
 		else
 			echo "$1 is not a valid app server."
@@ -215,7 +216,7 @@ run(){
 	clear
 
 	if [[ $(_validateAppServer $1) == false ]]; then
-		if [[ $(_nullValidator $1) == true ]]; then
+		if [[ $(StringValidator isNull $1) == true ]]; then
 			appServer=tomcat
 		else
 			echo "$1 is not a valid app server."
