@@ -105,6 +105,22 @@ _config(){
 	$1
 }
 
+_getAppServer(){
+	local appServer=$1
+
+	if [[ $(_validateAppServer $appServer) == false ]]; then
+		if [[ $(StringValidator isNull $1) == true ]]; then
+			echo "tomcat"
+		else
+			echo "$appServer is not a valid app server."
+			exit
+		fi
+	else
+		echo $appServer
+		shift
+	fi
+}
+
 _gitlog(){
 	cd $buildDir
 	git log --oneline --pretty=format:%h -1
@@ -142,17 +158,7 @@ _validateAppServer(){
 }
 
 build(){
-	if [[ $(_validateAppServer $1) == false ]]; then
-		if [[ $(StringValidator isNull $1) == true ]]; then
-			appServer=tomcat
-		else
-			echo "$1 is not a valid app server."
-			exit
-		fi
-	else
-		appServer=$1
-		shift
-	fi
+	appServer=$(_getAppServer $1)
 
 	_build_log $appServer
 
@@ -215,17 +221,7 @@ run(){
 	sleep 5s
 	clear
 
-	if [[ $(_validateAppServer $1) == false ]]; then
-		if [[ $(StringValidator isNull $1) == true ]]; then
-			appServer=tomcat
-		else
-			echo "$1 is not a valid app server."
-			exit
-		fi
-	else
-		appServer=$1
-		shift
-	fi
+	appServer=$(_getAppServer $1)
 
 	case $appServer in
 		jboss) $bundleDir/jboss-eap-6.0.1/bin/standalone.sh;;
