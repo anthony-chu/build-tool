@@ -29,16 +29,6 @@ _maxLength(){
 	export maxLength=$maxLength
 }
 
-_nullValidator(){
-	local string=$1
-
-	if [[ $string ]]; then
-		echo false
-	else
-		echo true
-	fi
-}
-
 _placeholder(){
     _strToArray "$1"
 	array=($array)
@@ -74,17 +64,6 @@ _strToArray(){
     array=(${array//[()]/""})
 
 	export array=${array[@]}
-}
-
-_stringValidator(){
-	local str1=$1
-	local str2=$1
-
-	if [[ $1 == $2 ]]; then
-		echo true
-	else
-		echo false
-	fi
 }
 
 gitpr(){
