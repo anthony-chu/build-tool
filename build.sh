@@ -200,10 +200,9 @@ pull(){
 
 push(){
 	cd $buildDir
+	local branch=$(git rev-parse --abbrev-ref HEAD)
 
-	echo "[INFO] Pushing changes to origin..."
-
-	branch=$(git rev-parse --abbrev-ref HEAD)
+	echo "[INFO] Pushing changes to origin branch ${branch}..."
 
 	git push -f origin $branch
 	echo "[INFO] DONE."
