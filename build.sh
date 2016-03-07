@@ -106,18 +106,17 @@ _config(){
 }
 
 _getAppServer(){
-	local appServer=$1
+	local appServer=$@
 
-	if [[ $(_validateAppServer $appServer) == false ]]; then
-		if [[ $(StringValidator isNull $1) == true ]]; then
-			echo "tomcat"
+	if [[ $(StringValidator isNull $appServer) == true ]]; then
+		echo "tomcat"
+	else
+		if [[ $(_validateAppServer $appServer) == true ]]; then
+			echo $appServer
 		else
-			echo "$appServer is not a valid app server."
+			echo "$appServer is not a valid app server"
 			exit
 		fi
-	else
-		echo $appServer
-		shift
 	fi
 }
 
