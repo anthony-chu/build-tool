@@ -157,7 +157,7 @@ _validateAppServer(){
 }
 
 build(){
-	appServer=$(_getAppServer $1)
+	appServer=$(_getAppServer $@)
 
 	_build_log $appServer
 
@@ -220,7 +220,7 @@ run(){
 	sleep 5s
 	clear
 
-	appServer=$(_getAppServer $1)
+	appServer=$(_getAppServer $@)
 
 	case $appServer in
 		jboss) $bundleDir/jboss-eap-6.0.1/bin/standalone.sh;;
