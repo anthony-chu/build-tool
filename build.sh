@@ -118,6 +118,8 @@ _gitlog(){
 }
 
 _rebuild_db(){
+	local database=lportal${branch//[-.]/""}
+
 	echo "[INFO] Rebuilding database..."
 	mysql -e "drop database if exists $database; create database $database char set utf8;"
 	echo "[INFO] DONE."

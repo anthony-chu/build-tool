@@ -21,7 +21,6 @@ getDirs(){
 
     buildDir=d:/${privacy}/${branch}-portal
     bundleDir=d:/${privacy}/${branch}-bundles
-    database=lportal${branch//[-.]/""}
 
-    export branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}"
+    export branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}"
 }
