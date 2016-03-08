@@ -36,6 +36,9 @@ _clean_hard(){
 }
 
 _clean_bundle(){
+	local appServer=$(AppServerValidator returnAppServer $@)
+	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
+
 	echo "[INFO] Deleting liferay home folders..."
 	cd $bundleDir
 	rm -rf data logs
@@ -45,7 +48,7 @@ _clean_bundle(){
 	cd $baseDir
 
 	echo "[INFO] Deleting temp files..."
-	cd $tomcatDir
+	cd $appServerDir
 	rm -rf temp work
 	echo "[INFO] DONE."
 	echo
@@ -84,21 +87,22 @@ _config(){
 	}
 
 	appServer(){
-		appServer=$1
+		local appServer=$(AppServerValidator returnAppServer $@)
+		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
 
 		echo "[INFO] Increasing memory limit..."
 		if [[ $appServer == tomcat ]]; then
-			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $tomcatDir/bin/setenv.sh
-			sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $tomcatDir/bin/setenv.sh
+			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $appServerDir/bin/setenv.sh
+			sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $appServerDir/bin/setenv.sh
 		elif [[ $appServer == wildfly ]]; then
-			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $bundleDir/wildfly-10.0.0/bin/standalone.conf
-			sed -i "s/-XX:MaxMetaspaceSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxMetaspaceSize=1024m/g" $bundleDir/wildfly-10.0.0/bin/standalone.conf
+			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $appServerDir/bin/standalone.conf
+			sed -i "s/-XX:MaxMetaspaceSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxMetaspaceSize=1024m/g" $appServerDir/bin/standalone.conf
 		fi
 		echo "[INFO] Done."
 
 		if [[ $branch == ee-6.2.x ]]; then
 			echo "[INFO] Changing port for ee-6.2.x..."
-			sed -i "s/\"8/\"7/g" $tomcatDir/conf/server.xml
+			sed -i "s/\"8/\"7/g" $appServerDir/conf/server.xml
 			echo "[INFO] DONE."
 		fi
 	}
@@ -133,7 +137,7 @@ build(){
 
 	_build_log $appServer
 
-	_clean_hard
+	_clean_hard $appServer
 
 	_clean_source
 
@@ -193,16 +197,17 @@ run(){
 	clear
 
 	local appServer=$(AppServerValidator returnAppServer $@)
+	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
 
 	if [[ $(AppServerValidator isJboss $appServer) == true ]]; then
-		 $bundleDir/jboss-eap-6.0.1/bin/standalone.sh
+		 $appServerDir/bin/standalone.sh
 	 elif [[ $(AppServerValidator isTomcat $appServer) == true ]]; then
-		 $tomcatDir/bin/catalina.sh run
+		 $appServerDir/bin/catalina.sh run
 	 elif [[ $(AppServerValidator isWildfly $appServer) == true ]]; then
 		 export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
-		 $bundleDir/wildfly-10.0.0/bin/standalone.sh
+		 $appServerDir/bin/standalone.sh
 	 elif [[ $(AppServerValidator isWeblogic $appServer) == true ]]; then
-		 $bundleDir/$appServer-12.1.3/domains/liferay/bin/startWebLogic.sh
+		 $appServerDir/domains/liferay/bin/startWebLogic.sh
 	 fi
 }
 
