@@ -105,21 +105,6 @@ _config(){
 	$1
 }
 
-_getAppServer(){
-	local appServer=$@
-
-	if [[ $(StringValidator isNull $appServer) == true ]]; then
-		echo "tomcat"
-	else
-		if [[ $(_validateAppServer $appServer) == true ]]; then
-			echo $appServer
-		else
-			echo "$appServer is not a valid app server"
-			exit
-		fi
-	fi
-}
-
 _gitlog(){
 	cd $buildDir
 	git log --oneline --pretty=format:%h -1
@@ -140,20 +125,6 @@ _timestamp_clock(){
 
 _timestamp_date(){
 	date +%Y%m%d
-}
-
-_validateAppServer(){
-	validAppServer=(jboss jonas tomcat weblogic websphere wildfly)
-
-	for (( i=0; i<${#validAppServer[@]}; i++ )); do
-		local isValidAppServer=$(StringValidator isEqual ${validAppServer[i]} $1)
-
-		if [[ $isValidAppServer == true ]]; then
-			break
-		fi
-	done
-
-	echo $isValidAppServer
 }
 
 build(){
