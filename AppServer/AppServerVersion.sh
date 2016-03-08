@@ -1,5 +1,4 @@
 source String/StringValidator.sh
-source AppServer/AppServerValidator.sh
 
 AppServerVersion(){
     _glassfishVersion(){
