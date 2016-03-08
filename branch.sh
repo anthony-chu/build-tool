@@ -1,5 +1,7 @@
 source setdir.sh
 source String/StringValidator.sh
+source AppServer/AppServerValidator.sh
+source AppServer/AppServerVersion.sh
 source util.sh
 source help.sh
 
@@ -91,7 +93,10 @@ jira(){
     }
 
     _env(){
-        echo "Tomcat 8.0.32 + MySQL 5.7"
+        local appServer=$(AppServerValidator returnAppServer)
+        local appServerVersion=$(AppServerVersion returnAppServerVersion $appServer)
+
+        echo "${appServer^} ${appServerVersion} + MySQL 5.7"
     }
 
     case $1 in
