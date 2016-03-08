@@ -212,7 +212,7 @@ run(){
 	 fi
 }
 
-#clear
+clear
 getBaseDir
 getDirs $@
 
