@@ -6,10 +6,10 @@ source util.sh
 source help.sh
 
 _build_log(){
-	appServer=$1
+	local appServer=$1
 
-	timestamp=$(_timestamp_clock)
-	timestamp=${timestamp//[:]/}
+	local timestamp=$(_timestamp_clock)
+	local timestamp=${timestamp//[:]/}
 
 	logStructure=("d" "logs" "${branch}" "${appServer}" "$(_timestamp_date)")
 
@@ -136,7 +136,7 @@ _timestamp_date(){
 }
 
 build(){
-	appServer=$(AppServerValidator returnAppServer $@)
+	local appServer=$(AppServerValidator returnAppServer $@)
 
 	_build_log $appServer
 
