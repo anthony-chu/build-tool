@@ -1,6 +1,15 @@
 source String/StringValidator.sh
 
 AppServerValidator(){
+    isGlassfish(){
+        local appServer=$1
+
+        if [[ $appServer == glassfish ]]; then
+            echo true
+        else
+            echo false
+        fi
+    }
     isJboss(){
         local appServer=$1
 
@@ -11,10 +20,50 @@ AppServerValidator(){
         fi
     }
 
+    isJetty(){
+        local appServer=$1
+
+        if [[ $appServer == jetty ]]; then
+            echo true
+        else
+            echo false
+        fi
+    }
+
     isJonas(){
         local appServer=$1
 
         if [[ $appServer == jonas ]]; then
+            echo true
+        else
+            echo false
+        fi
+    }
+
+    isResin(){
+        local appServer=$1
+
+        if [[ $appServer == resin ]]; then
+            echo true
+        else
+            echo false
+        fi
+    }
+
+    isTcat(){
+        local appServer=$1
+
+        if [[ $appServer == tcat ]]; then
+            echo true
+        else
+            echo false
+        fi
+    }
+
+    isTCServer(){
+        local appServer=$1
+
+        if [[ $appServer == tcserver ]]; then
             echo true
         else
             echo false
@@ -77,7 +126,7 @@ AppServerValidator(){
     }
 
     validateAppServer(){
-        validAppServer=(jboss jonas tomcat weblogic websphere wildfly)
+        validAppServer=(glassfish jetty jboss jonas resin tcat tcserver tomcat weblogic websphere wildfly)
 
     	for (( i=0; i<${#validAppServer[@]}; i++ )); do
     		local isValidAppServer=$(StringValidator isEqual ${validAppServer[i]} $1)
