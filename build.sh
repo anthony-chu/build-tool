@@ -1,5 +1,6 @@
 source setdir.sh
 source AppServer/AppServerValidator.sh
+source AppServer/AppServerVersion.sh
 source String/StringValidator.sh
 source util.sh
 source help.sh
@@ -211,7 +212,7 @@ run(){
 	 fi
 }
 
-clear
+#clear
 getBaseDir
 getDirs $@
 
