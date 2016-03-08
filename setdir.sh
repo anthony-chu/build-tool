@@ -24,3 +24,4 @@ getDirs(){
     database=lportal${branch//[-.]/""}
 
     export branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}" database="${database}"
+}
