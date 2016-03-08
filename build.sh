@@ -129,7 +129,7 @@ _timestamp_date(){
 }
 
 build(){
-	appServer=$(_getAppServer $@)
+	appServer=$(AppServerValidator returnAppServer $@)
 
 	_build_log $appServer
 
@@ -192,14 +192,18 @@ run(){
 	sleep 5s
 	clear
 
-	appServer=$(_getAppServer $@)
+	local appServer=$(AppServerValidator returnAppServer $@)
 
-	case $appServer in
-		jboss) $bundleDir/jboss-eap-6.0.1/bin/standalone.sh;;
-		tomcat) $tomcatDir/bin/catalina.sh run;;
-		wildfly) export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"; $bundleDir/wildfly-10.0.0/bin/standalone.sh;;
-		weblogic) $bundleDir/$appServer-12.1.3/domains/liferay/bin/startWebLogic.sh;;
-	esac
+	if [[ $(AppServerValidator isJboss $appServer) == true ]]; then
+		 $bundleDir/jboss-eap-6.0.1/bin/standalone.sh
+	 elif [[ $(AppServerValidator isTomcat $appServer) == true ]]; then
+		 $tomcatDir/bin/catalina.sh run
+	 elif [[ $(AppServerValidator isWildfly $appServer) == true ]]; then
+		 export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
+		 $bundleDir/wildfly-10.0.0/bin/standalone.sh
+	 elif [[ $(AppServerValidator isWeblogic $appServer) == true ]]; then
+		 $bundleDir/$appServer-12.1.3/domains/liferay/bin/startWebLogic.sh
+	 fi
 }
 
 clear
