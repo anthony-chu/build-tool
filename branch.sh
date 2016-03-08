@@ -1,5 +1,5 @@
 source setdir.sh
-source stringvalidator.sh
+source String/StringValidator.sh
 source util.sh
 source help.sh
 

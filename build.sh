@@ -1,5 +1,6 @@
 source setdir.sh
-source stringvalidator.sh
+source AppServer/AppServerValidator.sh
+source String/StringValidator.sh
 source util.sh
 source help.sh
 
