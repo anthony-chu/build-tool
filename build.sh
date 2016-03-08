@@ -6,7 +6,7 @@ source util.sh
 source help.sh
 
 _build_log(){
-	local appServer=$1
+	local appServer=$(AppServerValidator returnAppServer $1)
 
 	local timestamp=$(_timestamp_clock)
 	local timestamp=${timestamp//[:]/}
