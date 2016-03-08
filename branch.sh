@@ -59,8 +59,8 @@ delete(){
 dev(){
     cd $buildDir
 
-    dev=$1
-    branch=$2
+    local dev=$1
+    local branch=$2
 
     git pull git@github.com:$dev/liferay-portal.git $branch
 
@@ -222,7 +222,7 @@ rebase(){
 rename(){
     cd $buildDir
 
-    originalBranch="$(git rev-parse --abbrev-ref HEAD)"
+    local originalBranch="$(git rev-parse --abbrev-ref HEAD)"
 
     git branch -q -m $1
 
@@ -258,7 +258,7 @@ switch(){
 tunnel(){
     cd $buildDir
 
-    tunnelCommand=""
+    local tunnelCommand=""
     while [[ true ]]; do
         echo -n "Enter git command to run (begin with git): "
         read tunnelCommand
