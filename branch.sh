@@ -272,8 +272,10 @@ tunnel(){
 }
 
 clear
-getBaseDir
-getDirs $@
+baseDir=$(BaseVars returnBaseDir)
+branch=$(BaseVars returnBranch $@)
+buildDir=$(BaseVars returnBuildDir $@)
+bundleDir=$(BaseVars returnBundleDir $@)
 
 if [[ $# == 0 ]]; then
   branch_help
