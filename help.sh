@@ -68,12 +68,12 @@ build_help(){
 	newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
 	helpList=(
-		builds-bundle
+		builds-bundle-on-specified-app-server
 		rebuilds-database-and-prepares-bundle
 		deploys-the-specified-module-to-bundle
 		pulls-from-upstream-master
 		pushes-current-branch-to-origin
-		runs-bundle
+		runs-a-bundle-on-specified-app-server
 	)
 
 	_printHelpMessage ${newFuncList[@]} ${helpList[@]}
