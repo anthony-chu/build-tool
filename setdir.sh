@@ -1,26 +1,43 @@
-getBaseDir(){
-    export baseDir=$(PWD)
-}
+BaseVars(){
+    _returnPrivacy(){
+        if [[ $@ == *ee* ]]; then
+            echo private
+        else
+            echo public
+        fi
+    }
 
-getDirs(){
-    if [[ $@ == *ee* ]]; then
-        privacy=private
-    else
-        privacy=public
-    fi
+    returnBaseDir(){
+        pwd
+    }
 
-    if [[ $@ == *master* ]]; then
-        branch=master
-    elif [[ $@ == *ee-6.2.x* ]]; then
-        branch=ee-6.2.x
-    elif [[ $@ == *ee-7.0.x* ]]; then
-        branch=ee-7.0.x
-    else
-        branch=master
-    fi
+    returnBranch(){
+        if [[ $@ == *master* ]]; then
+            branch=master
+        elif [[ $@ == *ee-6.2.x* ]]; then
+            branch=ee-6.2.x
+        elif [[ $@ == *ee-7.0.x* ]]; then
+            branch=ee-7.0.x
+        else
+            branch=master
+        fi
 
-    buildDir=d:/${privacy}/${branch}-portal
-    bundleDir=d:/${privacy}/${branch}-bundles
+        echo $branch
+    }
 
-    export branch="${branch}" buildDir="${buildDir}" bundleDir="${bundleDir}"
+    returnBuildDir(){
+        local branch=$(returnBranch $@)
+        local privacy=$(_returnPrivacy $@)
+
+        echo "d:/${privacy}/${branch}-portal"
+    }
+
+    returnBundleDir(){
+        local branch=$(returnBranch $@)
+        local privacy=$(_returnPrivacy $@)
+
+        echo "d:/${privacy}/${branch}-bundles"
+    }
+
+    $@
 }
