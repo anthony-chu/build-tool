@@ -2,6 +2,7 @@ source setdir.sh
 source AppServer/AppServerValidator.sh
 source AppServer/AppServerVersion.sh
 source String/StringValidator.sh
+source String/StringUtil.sh
 source util.sh
 source help.sh
 
@@ -170,7 +171,7 @@ clean(){
 
 deploy(){
 	local input=$@
-	local path=${input//./\/}
+	local path=$(StringUtil replace $input . \/)
 	cd ${buildDir}/modules/apps/$path
 	$buildDir/gradlew clean deploy
 }
