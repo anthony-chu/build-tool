@@ -1,8 +1,8 @@
-source BaseVars.sh
 source String/StringValidator.sh
 source AppServer/AppServerValidator.sh
 source AppServer/AppServerVersion.sh
-source util.sh
+source Base/BaseUtil.sh
+source Base/BaseVars.sh
 source help.sh
 
 _hardReset(){
