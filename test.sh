@@ -1,16 +1,13 @@
 source setdir.sh
 source help.sh
+source Array/ArrayUtil.sh
 
 pr(){
 	echo "[INFO] Submitting pull request..."
 
 	detailHeading=(branch: reviewer: comment: title:)
 
-	_arrayToStr ${detailHeading[@]}
-	_maxLength "$arrayString"
-	_placeholder "$arrayString"
-	_strToArray "$newArray"
-	newDetailHeading=($array)
+	newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
 
 	if (( $# == 0 )); then
 		echo "[ERROR] Missing reviewer."
