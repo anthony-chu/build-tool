@@ -28,7 +28,7 @@ pr(){
 		detailText=("$branch" "$1" "$comment" "$title")
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
-			echo "    ${newDetailHeading[i]}..........${detailText[i]}"
+			echo "    ${newDetailHeading[i]}................${detailText[i]}"
 		done
 
 		echo
