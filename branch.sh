@@ -262,13 +262,9 @@ tunnel(){
         echo -n "Enter git command to run (begin with git): "
         read tunnelCommand
 
-        if [[ $tunnelCommand == q ]]; then
-            exit
-        else
-            $tunnelCommand
-            echo
-            echo
-        fi
+        $tunnelCommand
+        echo
+        echo
     done
 
     cd $baseDir
