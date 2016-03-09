@@ -133,7 +133,7 @@ else
 	if [[ $1 == ${branch} ]]; then
 		shift
 	fi
-	
+
 	$@
 fi
 
