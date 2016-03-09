@@ -129,7 +129,7 @@ elif [[ $@ == *#* ]]; then
 	args="test $@"
 	$args
 else
-	$@
+	${@//${branch}/}
 fi
 
 exit
