@@ -71,6 +71,9 @@ _config(){
 	source(){
 		echo "[INFO] Building properties..."
 
+		local appServer=$(AppServerValidator returnAppServer $@)
+		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
+
 		cd $buildDir/../properties
 		cp *.anthonychu.properties $buildDir
 
@@ -146,7 +149,7 @@ build(){
 
 	cd $buildDir
 
-	_config source
+	_config source ${appServer}
 
 	echo "[INFO] Unzipping $appServer..."
 	ant -f build-dist.xml unzip-$appServer
