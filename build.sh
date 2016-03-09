@@ -2,9 +2,9 @@ source AppServer/AppServerValidator.sh
 source AppServer/AppServerVersion.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
+source Help/HelpMessage.sh
 source String/StringUtil.sh
 source String/StringValidator.sh
-source help.sh
 
 _build_log(){
 	local appServer=$(AppServerValidator returnAppServer $1)
