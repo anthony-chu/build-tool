@@ -180,7 +180,7 @@ rebase(){
 
         cd $buildDir
 
-        git pull --rebase upstream master
+        git pull --rebase upstream ${branch}
 
         cd $baseDir
 
