@@ -1,15 +1,19 @@
-source util.sh
+source Array/ArrayUtil.sh
+source String/StringUtil.sh
 
 _printHelpMessage(){
-	_strToArray "$1"
-	newFuncList=($array)
-	_strToArray "$2"
-	helpList=($array)
+	local everything=($@)
+	local everythingSize=${#everything[@]}
+
+	local funcList=(${everything[@]:0:$everythingSize/2})
+	local helpList=(${everything[@]:$everythingSize/2:${everythingSize}})
 
 	echo "Usage:"
-	for (( i=0; i<${#newFuncList[@]}; i++ )); do
-		_stringReplace ${helpList[i]} "-" " "
-		echo "  ${newFuncList[i]}..........${newStr}"
+	for (( i=0; i<${everythingSize}/2; i++ )); do
+		funcListEntry=${funcList[i]}
+		helpListEntry=$(StringUtil replace ${helpList[i]} "-" space)
+
+		echo "    ${funcListEntry}................${helpListEntry}"
 	done
 }
 
@@ -30,11 +34,7 @@ branch_help(){
 		tunnel
 	)
 
-	_arrayToStr ${funcList[@]}
-	_maxLength "$arrayString"
-	_placeholder "$arrayString"
-	_strToArray "$newArray"
-	newFuncList=($array)
+	newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
 	helpList=(
 		displays-all-changes-made-to-the-current-branch
@@ -52,12 +52,7 @@ branch_help(){
 	    provides-direct-shell-access-to-git-directory
     )
 
-	_arrayToStr ${newFuncList[@]}
-	newFuncListStr="$arrayString"
-	_arrayToStr ${helpList[@]}
-	newHelpListStr="$arrayString"
-
-	_printHelpMessage "$newFuncListStr" "$newHelpListStr"
+	_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 }
 
 build_help(){
@@ -70,11 +65,7 @@ build_help(){
 		run
 	)
 
-	_arrayToStr ${funcList[@]}
-	_maxLength "$arrayString"
-	_placeholder "$arrayString"
-	_strToArray "$newArray"
-	newFuncList=($array)
+	newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
 	helpList=(
 		builds-bundle
@@ -85,12 +76,7 @@ build_help(){
 		runs-bundle
 	)
 
-	_arrayToStr ${newFuncList[@]}
-	newFuncListStr="$arrayString"
-	_arrayToStr ${helpList[@]}
-	newHelpListStr="$arrayString"
-
-	_printHelpMessage "$newFuncListStr" "$newHelpListStr"
+	_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 }
 
 test_help(){
@@ -101,11 +87,7 @@ test_help(){
 		test
 	)
 
-	_arrayToStr ${funcList[@]}
-	_maxLength "$arrayString"
-	_placeholder "$arrayString"
-	_strToArray "$newArray"
-	newFuncList=($array)
+	newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
 	helpList=(
 		submits-a-pull-request
@@ -114,10 +96,5 @@ test_help(){
 		executes-a-frontend-test
 	)
 
-	_arrayToStr ${newFuncList[@]}
-	newFuncListStr="$arrayString"
-	_arrayToStr ${helpList[@]}
-	newHelpListStr="$arrayString"
-
-	_printHelpMessage "$newFuncListStr" "$newHelpListStr"
+	_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 }
