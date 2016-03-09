@@ -1,4 +1,5 @@
 source Array/ArrayUtil.sh
+source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Help/HelpMessage.sh
 
