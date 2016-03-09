@@ -226,7 +226,7 @@ buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
 if [[ $# == 0 ]]; then
-  build_help
+  HelpMessage buildHelpMessage
 else
     until [[ $# == 0 ]]; do
 		$1 ${@:2}

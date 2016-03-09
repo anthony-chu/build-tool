@@ -18,7 +18,7 @@ HelpMessage(){
 		done
 	}
 
-	branch_help(){
+	branchHelpMessage(){
 		funcList=(
 			changes
 			current
@@ -56,7 +56,7 @@ HelpMessage(){
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 	}
 
-	build_help(){
+	buildHelpMessage(){
 		funcList=(
 			build
 			clean
@@ -80,7 +80,7 @@ HelpMessage(){
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 	}
 
-	test_help(){
+	testHelpMessage(){
 		funcList=(
 			pr
 			sf

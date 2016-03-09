@@ -278,7 +278,7 @@ buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
 if [[ $# == 0 ]]; then
-  branch_help
+  HelpMessage branchHelpMessage
 else
     $@
 fi

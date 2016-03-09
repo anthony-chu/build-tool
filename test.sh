@@ -124,7 +124,7 @@ buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
 if [[ $# == 0 ]]; then
-	test_help
+	HelpMessage testHelpMessage
 elif [[ $@ == *#* ]]; then
 	args="test $@"
 	$args
