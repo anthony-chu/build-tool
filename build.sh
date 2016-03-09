@@ -1,4 +1,4 @@
-source setdir.sh
+source BaseVars.sh
 source AppServer/AppServerValidator.sh
 source AppServer/AppServerVersion.sh
 source String/StringUtil.sh

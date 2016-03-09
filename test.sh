@@ -1,4 +1,4 @@
-source setdir.sh
+source BaseVars.sh
 source help.sh
 source Array/ArrayUtil.sh
 
