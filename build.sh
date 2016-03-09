@@ -1,6 +1,8 @@
 source setdir.sh
-source AppServer/*
-source String/*
+source AppServer/AppServerValidator.sh
+source AppServer/AppServerVersion.sh
+source String/StringUtil.sh
+source String/StringValidator.sh
 source util.sh
 source help.sh
 
@@ -203,6 +205,7 @@ run(){
 
 	local appServer=$(AppServerValidator returnAppServer $@)
 	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
+
 
 	if [[ $(AppServerValidator isJboss $appServer) == true ]]; then
 		 $appServerDir/bin/standalone.sh
