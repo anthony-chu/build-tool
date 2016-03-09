@@ -210,7 +210,7 @@ rebase(){
         exit
     fi
 
-    case $(getOption $1) in
+    case $(BaseUtil getOption $1) in
         [0-9]*) start $1;;
         q) abort;;
         c) cont;;
