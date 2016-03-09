@@ -45,7 +45,7 @@ branch_help(){
 	    displays-all-local-branches
 	    shows-the-log-for-the-current-branch
 	    creates-and-switches-to-a-new-branch
-	    rebases-the-current-branch-to-HEAD
+	    provides-options-for-interactive-rebase
 	    renames-the-current-branch
 	    restores-source-to-designated-commit
 	    changes-to-a-different-local-branch
