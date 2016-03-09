@@ -36,7 +36,7 @@ pr(){
 
 		git push -f origin $title
 
-		gitpr -b $branch -u $1 submit $comment $title
+		BaseUtil gitpr -b $branch -u $1 submit $comment $title
 		cd $baseDir
 	fi
 }

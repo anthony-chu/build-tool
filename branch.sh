@@ -188,17 +188,17 @@ rebase(){
     }
 
     start(){
-        if [[ $(getOption $1) > 1 ]]; then
+        if [[ $(BaseUtil getOption $1) > 1 ]]; then
             isPlural="s"
         else
             isPlural=""
         fi
 
-        echo "Rebasing the last $(getOption $1) commit${isPlural}..."
+        echo "Rebasing the last $(BaseUtil getOption $1) commit${isPlural}..."
 
         cd $buildDir
 
-        git rebase -i head~$(getOption $1)
+        git rebase -i head~$(BaseUtil getOption $1)
 
         cd $baseDir
 
