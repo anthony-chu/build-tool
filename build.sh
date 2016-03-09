@@ -229,7 +229,11 @@ if [[ $# == 0 ]]; then
   HelpMessage buildHelpMessage
 else
     until [[ $# == 0 ]]; do
-		$1 ${@:2//${branch}/}
+		if [[ $1 == ${branch} ]]; then
+			shift
+		fi
+
+		$1 ${@:2}
         shift
     done
 fi

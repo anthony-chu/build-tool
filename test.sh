@@ -129,7 +129,11 @@ elif [[ $@ == *#* ]]; then
 	args="test $@"
 	$args
 else
-	${@//${branch}/}
+	if [[ $1 == ${branch} ]]; then
+		shift
+	fi
+	
+	$@
 fi
 
 exit

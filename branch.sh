@@ -280,5 +280,9 @@ bundleDir=$(BaseVars returnBundleDir $@)
 if [[ $# == 0 ]]; then
   HelpMessage branchHelpMessage
 else
-    ${@//${branch}/}
+    if [[ $1 == ${branch} ]]; then
+        shift
+    fi
+
+    $@
 fi
