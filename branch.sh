@@ -38,7 +38,7 @@ current(){
 
   name="$(git rev-parse --abbrev-ref HEAD)"
 
-  echo "Current branch: $name"
+  echo "Current ${branch} branch: $name"
 
   cd $baseDir
 }
