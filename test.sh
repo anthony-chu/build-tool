@@ -1,6 +1,6 @@
-source help.sh
 source Array/ArrayUtil.sh
 source Base/BaseVars.sh
+source help.sh
 
 pr(){
 	echo "[INFO] Submitting pull request..."
