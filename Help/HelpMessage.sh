@@ -9,7 +9,7 @@ HelpMessage(){
 		local funcList=(${everything[@]:0:$everythingSize/2})
 		local helpList=(${everything[@]:$everythingSize/2:${everythingSize}})
 
-		echo "Usage:"
+		echo "Commands:"
 		for (( i=0; i<${everythingSize}/2; i++ )); do
 			funcListEntry=${funcList[i]}
 			helpListEntry=$(StringUtil replace ${helpList[i]} "-" space)
