@@ -203,18 +203,20 @@ run(){
 	sleep 5s
 	clear
 
-	local appServer=$(AppServerValidator returnAppServer $@)
+	local ASValidator=AppServerValidator
+
+	local appServer=$($ASValidator returnAppServer $@)
 	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
 
 
-	if [[ $(AppServerValidator isJboss $appServer) == true ]]; then
+	if [[ $($ASV isJboss $appServer) == true ]]; then
 		 $appServerDir/bin/standalone.sh
-	 elif [[ $(AppServerValidator isTomcat $appServer) == true ]]; then
+	 elif [[ $($ASValidator isTomcat $appServer) == true ]]; then
 		 $appServerDir/bin/catalina.sh run
-	 elif [[ $(AppServerValidator isWildfly $appServer) == true ]]; then
+	 elif [[ $($ASValidator isWildfly $appServer) == true ]]; then
 		 export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
 		 $appServerDir/bin/standalone.sh
-	 elif [[ $(AppServerValidator isWeblogic $appServer) == true ]]; then
+	 elif [[ $($ASValidator isWeblogic $appServer) == true ]]; then
 		 $appServerDir/domains/liferay/bin/startWebLogic.sh
 	 fi
 }

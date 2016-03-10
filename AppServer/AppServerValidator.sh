@@ -1,6 +1,8 @@
 source String/StringValidator.sh
 
 AppServerValidator(){
+    local SV="StringValidator"
+
     isGlassfish(){
         local appServer=$1
 
