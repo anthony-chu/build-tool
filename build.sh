@@ -39,7 +39,8 @@ _clean_hard(){
 
 _clean_bundle(){
 	local appServer=$(AppServerValidator returnAppServer $@)
-	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
+	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
+		returnAppServerVersion ${appServer})
 
 	echo "[INFO] Deleting liferay home folders..."
 	cd $bundleDir
@@ -73,7 +74,8 @@ _config(){
 		echo "[INFO] Building properties..."
 
 		local appServer=$(AppServerValidator returnAppServer $@)
-		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
+		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
+			returnAppServerVersion ${appServer})
 
 		cd $buildDir/../properties
 		cp *.anthonychu.properties $buildDir
@@ -93,7 +95,8 @@ _config(){
 
 	appServer(){
 		local appServer=$(AppServerValidator returnAppServer $@)
-		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
+		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
+			returnAppServerVersion ${appServer})
 
 		echo "[INFO] Increasing memory limit..."
 		if [[ $appServer == tomcat ]]; then
@@ -125,7 +128,8 @@ _rebuild_db(){
 	local database=lportal${branch//[-.]/""}
 
 	echo "[INFO] Rebuilding database..."
-	mysql -e "drop database if exists $database; create database $database char set utf8;"
+	mysql -e "drop database if exists $database;
+		create database $database char set utf8;"
 	echo "[INFO] DONE."
 	echo
 	cd $baseDir
@@ -206,7 +210,8 @@ run(){
 	local ASValidator=AppServerValidator
 
 	local appServer=$($ASValidator returnAppServer $@)
-	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion returnAppServerVersion ${appServer})
+	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
+		returnAppServerVersion ${appServer})
 
 
 	if [[ $($ASV isJboss $appServer) == true ]]; then

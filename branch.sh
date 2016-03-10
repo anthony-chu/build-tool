@@ -94,7 +94,8 @@ jira(){
 
     _env(){
         local appServer=$(AppServerValidator returnAppServer)
-        local appServerVersion=$(AppServerVersion returnAppServerVersion $appServer)
+        local appServerVersion=$(AppServerVersion
+            returnAppServerVersion $appServer)
 
         echo "${appServer^} ${appServerVersion} + MySQL 5.7"
     }
