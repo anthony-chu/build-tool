@@ -188,6 +188,8 @@ rebase(){
     }
 
     start(){
+        local value=$(StringUtil returnOption $1)
+
         if [[ $(BaseUtil getOption $1) > 1 ]]; then
             isPlural="s"
         else
@@ -210,7 +212,7 @@ rebase(){
         exit
     fi
 
-    case $(BaseUtil getOption $1) in
+    case $(StringUtil returnOption $1) in
         [0-9]*) start $1;;
         q) abort;;
         c) cont;;
