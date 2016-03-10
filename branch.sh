@@ -190,17 +190,17 @@ rebase(){
     start(){
         local value=$(StringUtil returnOption $1)
 
-        if [[ $(BaseUtil getOption $1) > 1 ]]; then
+        if [[ $value > 1 ]]; then
             isPlural="s"
         else
             isPlural=""
         fi
 
-        echo "Rebasing the last $(BaseUtil getOption $1) commit${isPlural}..."
+        echo "Rebasing the last $value commit${isPlural}..."
 
         cd $buildDir
 
-        git rebase -i head~$(BaseUtil getOption $1)
+        git rebase -i head~$value
 
         cd $baseDir
 
