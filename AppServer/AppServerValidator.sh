@@ -10,6 +10,7 @@ AppServerValidator(){
             echo false
         fi
     }
+
     isJboss(){
         local appServer=$1
 
