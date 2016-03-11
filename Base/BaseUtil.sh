@@ -5,5 +5,14 @@ BaseUtil(){
 		source "d:/git-tools/git-pull-request/git-pull-request.sh"
 	}
 
+	timestamp(){
+		if [[ $1 == clock ]]; then
+			local t=$(date +%T%s)
+			echo ${t//[:]/}
+		elif [[ $1 == date ]]; then
+			time +%Y%m%d
+		fi
+	}
+
 	$@
 }

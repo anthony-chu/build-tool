@@ -135,14 +135,6 @@ _rebuild_db(){
 	cd $baseDir
 }
 
-_timestamp_clock(){
-	date +%T%s
-}
-
-_timestamp_date(){
-	date +%Y%m%d
-}
-
 build(){
 	local appServer=$(AppServerValidator returnAppServer $@)
 
