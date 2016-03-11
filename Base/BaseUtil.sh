@@ -10,7 +10,7 @@ BaseUtil(){
 			local t=$(date +%T%s)
 			echo ${t//[:]/}
 		elif [[ $1 == date ]]; then
-			time +%Y%m%d
+			date +%Y%m%d
 		fi
 	}
 
