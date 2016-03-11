@@ -25,8 +25,6 @@ ArrayUtil(){
         for (( i=0; i<${#array[@]}; i++ )); do
             if [[ ${#array[i]} > $maxLength ]]; then
                 maxLength=${#array[i]}
-            else
-                maxLength=$maxLength
             fi
         done
 
