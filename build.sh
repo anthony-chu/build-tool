@@ -9,10 +9,10 @@ source String/StringValidator.sh
 _build_log(){
 	local appServer=$(AppServerValidator returnAppServer $1)
 
-	local timestamp=$(_timestamp_clock)
-	local timestamp=${timestamp//[:]/}
+	local clock=$(BaseUtil timestamp clock)
+	local date=$(BaseUtil timestamp date)
 
-	logStructure=("d" "logs" "${branch}" "${appServer}" "$(_timestamp_date)")
+	logStructure=("d" "logs" "${branch}" "${appServer}" "$date")
 
 	for (( i=0; i<${#logStructure[@]}; i++ )); do
 		logDir=${logDir}/${logStructure[i]}
@@ -24,7 +24,7 @@ _build_log(){
 		fi
 	done
 
-	export logFile=$logDir/$branch-build-$(_gitlog)-${timestamp}.log
+	export logFile=$logDir/$branch-build-$(_gitlog)-$clock.log
 }
 
 _clean_hard(){
