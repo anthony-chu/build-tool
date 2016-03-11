@@ -2,12 +2,12 @@
 
 ### Jump to section
 
-- [About](#About)
-- [Using the tool](#Using the tool)
-    - [build.sh](#build.sh)
-    - [branch.sh](#branch.sh)
-    - [test.sh](#test.sh)
-- [Help!](#Help!)
+- [About](#about)
+- [Using the tool](#using-the-tool)
+    - [build.sh](#buildsh)
+    - [branch.sh](#branchsh)
+    - [test.sh](#testsh)
+- [Help!](#help)
 
 
 ## About
