@@ -1,5 +1,3 @@
-source String/StringValidator.sh
-
 AppServerVersion(){
     _glassfishVersion(){
         echo "3.1.2.2"
