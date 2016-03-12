@@ -31,7 +31,10 @@ _clean_hard(){
 	echo "[INFO] Deleting all files and folder in the bundles directory..."
 	cd $bundleDir
 	rm -rf deploy osgi data logs
-	rm -rf ${appServer}*
+
+	if [[ $(StringValidator isNull $appServer) == false ]]; then
+		rm -rf ${appServer}*
+	fi
 
 	echo "[INFO] DONE."
 	cd $baseDir
