@@ -36,9 +36,9 @@ changes(){
 current(){
   cd $buildDir
 
-  name="$(git rev-parse --abbrev-ref HEAD)"
+  name=$(git rev-parse --abbrev-ref HEAD)
 
-  echo "Current ${branch} branch: $name"
+  echo Current ${branch} branch: $name
 
   cd $baseDir
 }
@@ -47,10 +47,10 @@ delete(){
     cd $buildDir
 
     if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
-        echo "Cannot delete the current branch"
+        echo Cannot delete the current branch
     else
         git branch -q -D $1
-        echo "Deleted local branch: $1"
+        echo Deleted local branch: $1
     fi
 
     cd $baseDir
@@ -78,18 +78,18 @@ jira(){
         branch=$branch
     fi
 
-    local gitinfo="Portal $branch GIT ID: ${_gitid}"
+    local gitinfo=Portal $branch GIT ID: ${_gitid}
 
     fixed(){
-        echo "Fixed on:"
+        echo Fixed on:
     }
 
     nlr(){
-        echo "No Longer Reproducible on:"
+        echo No Longer Reproducible on:
     }
 
     repro(){
-        echo "Reproduced on:"
+        echo Reproduced on:
     }
 
     _env(){
@@ -97,7 +97,7 @@ jira(){
         local appServerVersion=$(AppServerVersion
             returnAppServerVersion $appServer)
 
-        echo "${appServer^} ${appServerVersion} + MySQL 5.7"
+        echo ${appServer^} ${appServerVersion} + MySQL 5.7
     }
 
     case $1 in
@@ -141,7 +141,7 @@ new(){
 
 rebase(){
     abort(){
-        echo "[INFO] Terminating previous rebase process..."
+        echo [INFO] Terminating previous rebase process...
 
         cd $buildDir
 
@@ -149,11 +149,11 @@ rebase(){
 
         cd $baseDir
 
-        echo "[INFO] DONE."
+        echo [INFO] DONE.
     }
 
     amend(){
-        echo "[INFO] Amending the previous commit..."
+        echo [INFO] Amending the previous commit...
 
         cd $buildDir
 
@@ -161,11 +161,11 @@ rebase(){
 
         cd $baseDir
 
-        echo "[INFO] DONE."
+        echo [INFO] DONE.
     }
 
     cont(){
-        echo "[INFO] Continuing the current rebase process..."
+        echo [INFO] Continuing the current rebase process...
 
         cd $buildDir
 
@@ -173,11 +173,11 @@ rebase(){
 
         cd $baseDir
 
-        echo "[INFO] DONE."
+        echo [INFO] DONE.
     }
 
     default(){
-        echo "[INFO] Rebasing current branch to HEAD..."
+        echo [INFO] Rebasing current branch to HEAD...
 
         cd $buildDir
 
@@ -185,19 +185,19 @@ rebase(){
 
         cd $baseDir
 
-        echo "[INFO] DONE."
+        echo [INFO] DONE.
     }
 
     start(){
         local value=$(StringUtil returnOption $1)
 
         if [[ $value > 1 ]]; then
-            isPlural="s"
+            isPlural=s
         else
             isPlural=""
         fi
 
-        echo "Rebasing the last $value commit${isPlural}..."
+        echo Rebasing the last $value commit${isPlural}...
 
         cd $buildDir
 
@@ -205,11 +205,11 @@ rebase(){
 
         cd $baseDir
 
-        echo "[INFO] DONE."
+        echo [INFO] DONE.
     }
 
     if [[ $(StringValidator isNull $1) == true ]]; then
-        echo "Please provide a valid rebase option."
+        echo Please provide a valid rebase option.
         exit
     fi
 
@@ -225,11 +225,11 @@ rebase(){
 rename(){
     cd $buildDir
 
-    local originalBranch="$(git rev-parse --abbrev-ref HEAD)"
+    local originalBranch=$(git rev-parse --abbrev-ref HEAD)
 
     git branch -q -m $1
 
-    echo "Renamed branch from $originalBranch to $1"
+    echo Renamed branch from $originalBranch to $1
 
     cd $baseDir
 }
