@@ -42,8 +42,16 @@ _clean_hard(){
 
 _clean_bundle(){
 	local appServer=$(AppServerValidator returnAppServer $@)
-	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
-		returnAppServerVersion ${appServer})
+
+	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
+		appServerVersion=8.0.30
+	elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
+		appServerVersion=7.0.62
+	else
+		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+	fi
+
+	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 	echo "[INFO] Deleting liferay home folders..."
 	cd $bundleDir
@@ -98,8 +106,16 @@ _config(){
 
 	appServer(){
 		local appServer=$(AppServerValidator returnAppServer $@)
-		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
-			returnAppServerVersion ${appServer})
+
+		if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
+			appServerVersion=8.0.30
+		elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
+			appServerVersion=7.0.62
+		else
+			appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+		fi
+
+		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 		echo "[INFO] Increasing memory limit..."
 		if [[ $appServer == tomcat ]]; then
@@ -205,9 +221,16 @@ run(){
 	local ASValidator=AppServerValidator
 
 	local appServer=$($ASValidator returnAppServer $@)
-	local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
-		returnAppServerVersion ${appServer})
 
+	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
+		appServerVersion=8.0.30
+	elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
+		appServerVersion=7.0.62
+	else
+		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+	fi
+
+	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 	if [[ $($ASValidator isJboss $appServer) == true ]]; then
 		 $appServerDir/bin/standalone.sh
