@@ -78,7 +78,7 @@ jira(){
         branch=$branch
     fi
 
-    local gitinfo=Portal $branch GIT ID: ${_gitid}
+    local gitinfo="Portal $branch GIT ID: ${_gitid}"
 
     fixed(){
         echo Fixed on:
@@ -165,7 +165,7 @@ rebase(){
     }
 
     cont(){
-        echo [INFO] Continuing the current rebase process...
+        echo "[INFO] Continuing the current rebase process..."
 
         cd $buildDir
 
