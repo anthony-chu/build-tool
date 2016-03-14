@@ -13,10 +13,10 @@ BaseVars(){
 
     returnBranch(){
         case $@ in
-            *master*) echo master;;
-            *7.0.x*) echo 7.0.x;;
             *ee-6.2.x*) echo ee-6.2.x;;
             *ee-7.0.x*) echo ee-7.0.x;;
+            *master*) echo master;;
+            *7.0.x*) echo 7.0.x;;
             *) echo master;;
         esac
     }
