@@ -209,7 +209,7 @@ run(){
 		returnAppServerVersion ${appServer})
 
 
-	if [[ $($ASV isJboss $appServer) == true ]]; then
+	if [[ $($ASValidator isJboss $appServer) == true ]]; then
 		 $appServerDir/bin/standalone.sh
 	 elif [[ $($ASValidator isTomcat $appServer) == true ]]; then
 		 $appServerDir/bin/catalina.sh run
