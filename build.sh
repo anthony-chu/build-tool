@@ -32,7 +32,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	$MF printInfoMessage "Deleting all files and folder in the bundles directory.."
+	$MF printInfoMessage "Deleting all content in the bundles directory.."
 	cd $bundleDir
 	rm -rf deploy osgi data logs
 
