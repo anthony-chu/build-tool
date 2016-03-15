@@ -11,6 +11,8 @@ BaseUtil(){
 			echo ${t//[:]/}
 		elif [[ $1 == date ]]; then
 			date +%Y%m%d
+		else
+			date +%T
 		fi
 	}
 
