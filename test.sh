@@ -42,6 +42,8 @@ pr(){
 
 		BaseUtil gitpr -b $branch -u $1 submit $comment $title
 		cd $baseDir
+
+		$MF printDone
 	fi
 }
 
