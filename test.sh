@@ -7,15 +7,15 @@ source Message/MessageFactory.sh
 MF=MessageFactory
 
 pr(){
-	$MF printInfoMessage "Submitting pull request.."
-
-	detailHeading=(branch: reviewer: comment: title:)
-
-	newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
-
 	if (( $# == 0 )); then
 		$MF printErrorMessage "Missing reviewer"
 	else
+		$MF printInfoMessage "Submitting pull request.."
+
+		detailHeading=(branch: reviewer: comment: title:)
+
+		newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
+
 		cd $buildDir
 		title="$(git rev-parse --abbrev-ref HEAD)"
 		cd $baseDir
