@@ -8,10 +8,12 @@ source Message/MessageFactory.sh
 source String/StringUtil.sh
 source String/StringValidator.sh
 
+ASValidator=AppServerValidator
+ASVersion=AppServerVersion
 MF=MessageFactory
 
 _build_log(){
-	local appServer=$(AppServerValidator returnAppServer $1)
+	local appServer=$($ASValidator returnAppServer $1)
 
 	local clock=$(BaseUtil timestamp clock)
 	local date=$(BaseUtil timestamp date)
@@ -45,14 +47,14 @@ _clean_hard(){
 }
 
 _clean_bundle(){
-	local appServer=$(AppServerValidator returnAppServer $@)
+	local appServer=$($ASValidator returnAppServer $@)
 
 	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=8.0.30
 	elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
-		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+		appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
 	fi
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
@@ -88,8 +90,8 @@ _config(){
 	source(){
 		$MF printInfoMessage "Building properties.."
 
-		local appServer=$(AppServerValidator returnAppServer $@)
-		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
+		local appServer=$($ASValidator returnAppServer $@)
+		local appServerDir=${bundleDir}/${appServer}-$($ASVersion
 			returnAppServerVersion ${appServer})
 
 		cd $buildDir/../properties
@@ -109,14 +111,14 @@ _config(){
 	}
 
 	appServer(){
-		local appServer=$(AppServerValidator returnAppServer $@)
+		local appServer=$($ASValidator returnAppServer $@)
 
 		if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
 			appServerVersion=8.0.30
 		elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
 			appServerVersion=7.0.62
 		else
-			appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+			appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
 		fi
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
@@ -159,7 +161,7 @@ _rebuild_db(){
 }
 
 build(){
-	local appServer=$(AppServerValidator returnAppServer $@)
+	local appServer=$($ASValidator returnAppServer $@)
 
 	_build_log $appServer
 
@@ -218,7 +220,6 @@ push(){
 }
 
 run(){
-	local ASValidator=AppServerValidator
 	local appServer=$($ASValidator returnAppServer $@)
 
 	$MF printInfoMessage "Updating database jar..."
@@ -235,7 +236,7 @@ run(){
 	elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
-		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+		appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
 	fi
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
