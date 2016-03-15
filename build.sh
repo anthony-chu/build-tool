@@ -221,6 +221,7 @@ run(){
 	echo "[INFO] Updating database jar..."
 	AppServerUtil copyDatabaseJar $appServer $branch
 	echo "[INFO] DONE."
+	echo
 
 	echo "[INFO] Starting server..."
 	sleep 5s
