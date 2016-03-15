@@ -3,7 +3,10 @@ source AppServer/AppServerVersion.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Help/HelpMessage.sh
+source Message/MessageFactory.sh
 source String/StringValidator.sh
+
+MF=MessageFactory
 
 _hardReset(){
     cd $buildDir
@@ -38,7 +41,7 @@ current(){
 
   name=$(git rev-parse --abbrev-ref HEAD)
 
-  echo Current ${branch} branch: $name
+  $MF printInfoMessage "Current ${branch} branch: $name"
 
   cd $baseDir
 }
@@ -47,10 +50,10 @@ delete(){
     cd $buildDir
 
     if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
-        echo Cannot delete the current branch
+        $MF printErrorMessage "Cannot delete the current branch"
     else
         git branch -q -D $1
-        echo Deleted local branch: $1
+        $MF printInfoMessage "Deleted local branch: $1"
     fi
 
     cd $baseDir
@@ -141,7 +144,7 @@ new(){
 
 rebase(){
     abort(){
-        echo [INFO] Terminating previous rebase process...
+        $MF printInfoMessage "Terminating previous rebase process.."
 
         cd $buildDir
 
@@ -149,11 +152,11 @@ rebase(){
 
         cd $baseDir
 
-        echo [INFO] DONE.
+        $MF printDone
     }
 
     amend(){
-        echo [INFO] Amending the previous commit...
+        $MF printInfoMessage "Amending the previous commit.."
 
         cd $buildDir
 
@@ -161,11 +164,11 @@ rebase(){
 
         cd $baseDir
 
-        echo [INFO] DONE.
+        $MF printDone
     }
 
     cont(){
-        echo "[INFO] Continuing the current rebase process..."
+        $MF printInfoMessage "Continuing the current rebase process.."
 
         cd $buildDir
 
@@ -173,11 +176,11 @@ rebase(){
 
         cd $baseDir
 
-        echo [INFO] DONE.
+        $MF printDone
     }
 
     default(){
-        echo [INFO] Rebasing current branch to HEAD...
+        $MF printInfoMessage "Rebasing current branch to HEAD.."
 
         cd $buildDir
 
@@ -185,7 +188,7 @@ rebase(){
 
         cd $baseDir
 
-        echo [INFO] DONE.
+        $MF printDone
     }
 
     start(){
@@ -197,7 +200,7 @@ rebase(){
             isPlural=""
         fi
 
-        echo Rebasing the last $value commit${isPlural}...
+        $MF printInfoMessage "Rebasing the last $value commit${isPlural}.."
 
         cd $buildDir
 
@@ -205,11 +208,11 @@ rebase(){
 
         cd $baseDir
 
-        echo [INFO] DONE.
+        $MF printDone
     }
 
     if [[ $(StringValidator isNull $1) == true ]]; then
-        echo Please provide a valid rebase option.
+        $MF printErrorMessage "Please provide a valid rebase option"
         exit
     fi
 
@@ -229,7 +232,7 @@ rename(){
 
     git branch -q -m $1
 
-    echo Renamed branch from $originalBranch to $1
+    $MF printInfoMessage "Renamed branch from $originalBranch to $1"
 
     cd $baseDir
 }

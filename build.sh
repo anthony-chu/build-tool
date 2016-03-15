@@ -4,8 +4,11 @@ source AppServer/AppServerVersion.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Help/HelpMessage.sh
+source Message/MessageFactory.sh
 source String/StringUtil.sh
 source String/StringValidator.sh
+
+MF=MessageFactory
 
 _build_log(){
 	local appServer=$(AppServerValidator returnAppServer $1)
@@ -29,7 +32,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	echo "[INFO] Deleting all files and folder in the bundles directory..."
+	$MF printInfoMessage "Deleting all files and folder in the bundles directory.."
 	cd $bundleDir
 	rm -rf deploy osgi data logs
 
@@ -37,7 +40,7 @@ _clean_hard(){
 		rm -rf ${appServer}*
 	fi
 
-	echo "[INFO] DONE."
+	$MF printDone
 	cd $baseDir
 }
 
@@ -54,18 +57,18 @@ _clean_bundle(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	echo "[INFO] Deleting liferay home folders..."
+	$MF printInfoMessage "Deleting liferay home folders.."
 	cd $bundleDir
 	rm -rf data logs
-	echo "[INFO] DONE."
+	$MF printDone
 	echo
 
 	cd $baseDir
 
-	echo "[INFO] Deleting temp files..."
+	$MF printInfoMessage "Deleting temp files.."
 	cd $appServerDir
 	rm -rf temp work
-	echo "[INFO] DONE."
+	$MF printDone
 	echo
 
 	cd $baseDir
@@ -83,7 +86,7 @@ _clean_source(){
 
 _config(){
 	source(){
-		echo "[INFO] Building properties..."
+		$MF printInfoMessage "Building properties.."
 
 		local appServer=$(AppServerValidator returnAppServer $@)
 		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
@@ -102,7 +105,7 @@ _config(){
 			echo -e "\napp.server.${appServer}.version=6.0.1" >> app.server.anthonychu.properties
 		fi
 
-		echo "[INFO] Done."
+		$MF printDone
 	}
 
 	appServer(){
@@ -118,7 +121,7 @@ _config(){
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-		echo "[INFO] Increasing memory limit..."
+		$MF printInfoMessage "Increasing memory limit.."
 		if [[ $appServer == tomcat ]]; then
 			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $appServerDir/bin/setenv.sh
 			sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $appServerDir/bin/setenv.sh
@@ -126,12 +129,12 @@ _config(){
 			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $appServerDir/bin/standalone.conf
 			sed -i "s/-XX:MaxMetaspaceSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxMetaspaceSize=1024m/g" $appServerDir/bin/standalone.conf
 		fi
-		echo "[INFO] Done."
+		$MF printDone
 
 		if [[ $branch == ee-6.2.x ]]; then
-			echo "[INFO] Changing port for ee-6.2.x..."
+			$MF printInfoMessage "Changing port for ee-6.2.x.."
 			sed -i "s/\"8/\"7/g" $appServerDir/conf/server.xml
-			echo "[INFO] DONE."
+			$MF printDone
 		fi
 	}
 
@@ -147,10 +150,10 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal${branch//[-.]/""}
 
-	echo "[INFO] Rebuilding database..."
+	$MF printInfoMessage "Rebuilding database.."
 	mysql -e "drop database if exists $database;
 		create database $database char set utf8;"
-	echo "[INFO] DONE."
+	$MF printDone
 	echo
 	cd $baseDir
 }
@@ -168,15 +171,15 @@ build(){
 
 	_config source ${appServer}
 
-	echo "[INFO] Unzipping $appServer..."
+	$MF printInfoMessage "Unzipping $appServer.."
 	ant -f build-dist.xml unzip-$appServer
-	echo "[INFO] DONE."
+	$MF printDone
 
 	_config appServer ${appServer}
 
-	echo "[INFO] Building portal..."
+	$MF printInfoMessage "Building portal.."
 	ant all > $logFile | tail -f --pid=$$ "$logFile"
-	echo "[INFO] Build complete. Please see the build log for details."
+	$MF printInfoMessage "Build complete. Please see the build log for details"
 	cd $baseDir
 }
 
@@ -197,9 +200,9 @@ pull(){
 
 	cd $buildDir
 
-	echo "[INFO] Pulling changes from upstream..."
+	$MF printInfoMessage "Pulling changes from upstream.."
 	git pull upstream $branch
-	echo "[INFO] DONE."
+	$MF printDone
 	cd $baseDir
 }
 
@@ -207,10 +210,10 @@ push(){
 	cd $buildDir
 	local branch=$(git rev-parse --abbrev-ref HEAD)
 
-	echo "[INFO] Pushing changes to origin branch ${branch}..."
+	$MF printInfoMessage "Pushing changes to origin branch ${branch}..."
 
 	git push -f origin $branch
-	echo "[INFO] DONE."
+
 	cd $baseDir
 }
 
@@ -218,12 +221,12 @@ run(){
 	local ASValidator=AppServerValidator
 	local appServer=$($ASValidator returnAppServer $@)
 
-	echo "[INFO] Updating database jar..."
+	$MF printInfoMessage "Updating database jar..."
 	AppServerUtil copyDatabaseJar $appServer $branch
-	echo "[INFO] DONE."
+	$MF printDone
 	echo
 
-	echo "[INFO] Starting server..."
+	$MF printInfoMessage "Starting server..."
 	sleep 5s
 	clear
 

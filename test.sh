@@ -2,16 +2,19 @@ source Array/ArrayUtil.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Help/HelpMessage.sh
+source Message/MessageFactory.sh
+
+MF=MessageFactory
 
 pr(){
-	echo "[INFO] Submitting pull request..."
+	$MF printInfoMessage "Submitting pull request.."
 
 	detailHeading=(branch: reviewer: comment: title:)
 
 	newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
 
 	if (( $# == 0 )); then
-		echo "[ERROR] Missing reviewer."
+		$MF printErrorMessage "Missing reviewer"
 	else
 		cd $buildDir
 		title="$(git rev-parse --abbrev-ref HEAD)"
@@ -53,11 +56,11 @@ sf(){
 		ant setup-sdk
 	fi
 
-	echo "[INFO] Running source formatter..."
+	$MF printInfoMessage "Running source formatter.."
 	echo
 	cd $implDir
 	ant format-source
-	echo "[INFO] DONE."
+	$MF printDone
 	echo
 	cd $baseDir
 }
@@ -84,9 +87,9 @@ test(){
 	done
 
 	if (( !"$#" )); then
-		echo "[ERROR] Missing test name."
+		$MF printErrorMessage "Missing test name"
 	else
-		echo "[INFO] Running test $1..."
+		$MF printInfoMessage "Running test $1.."
 		echo
 		cd $buildDir
 		ant -f build-test.xml run-selenium-test -Dtest.class="$1"
@@ -96,7 +99,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		echo "[INFO] Moving test results..."
+		$MF printInfoMessage "Moving test results.."
 		echo
 
 		cd $resultDir
