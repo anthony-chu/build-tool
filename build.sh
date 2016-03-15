@@ -212,7 +212,7 @@ push(){
 	cd $buildDir
 	local branch=$(git rev-parse --abbrev-ref HEAD)
 
-	$MF printInfoMessage "Pushing changes to origin branch ${branch}..."
+	$MF printInfoMessage "Pushing changes to origin branch ${branch}.."
 
 	git push -f origin $branch
 
@@ -222,12 +222,12 @@ push(){
 run(){
 	local appServer=$($ASValidator returnAppServer $@)
 
-	$MF printInfoMessage "Updating database jar..."
+	$MF printInfoMessage "Updating database jar.."
 	AppServerUtil copyDatabaseJar $appServer $branch
 	$MF printDone
 	echo
 
-	$MF printInfoMessage "Starting server..."
+	$MF printInfoMessage "Starting server.."
 	sleep 5s
 	clear
 
