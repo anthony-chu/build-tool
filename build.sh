@@ -1,3 +1,4 @@
+source AppServer/AppServerUtil.sh
 source AppServer/AppServerValidator.sh
 source AppServer/AppServerVersion.sh
 source Base/BaseUtil.sh
@@ -214,13 +215,16 @@ push(){
 }
 
 run(){
-	echo "[INFO] Starting server..."
-	sleep 5s
-	clear
-
 	local ASValidator=AppServerValidator
-
 	local appServer=$($ASValidator returnAppServer $@)
+
+	echo "[INFO] Updating database jar..."
+	AppServerUtil copyDatabaseJar $appServer $branch
+	echo "[INFO] DONE."
+
+	echo "[INFO] Starting server..."
+	clear
+	sleep 5s
 
 	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=8.0.30
