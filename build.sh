@@ -223,8 +223,8 @@ run(){
 	echo "[INFO] DONE."
 
 	echo "[INFO] Starting server..."
-	clear
 	sleep 5s
+	clear
 
 	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=8.0.30
