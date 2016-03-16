@@ -3,6 +3,7 @@ source AppServer/AppServerValidator.sh
 source AppServer/AppServerVersion.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
+source Base/BaseFileIO/BaseFileIOUtil.sh
 source Help/HelpMessage.sh
 source Message/MessageFactory.sh
 source String/StringUtil.sh
@@ -87,6 +88,9 @@ _clean_source(){
 }
 
 _config(){
+	local append="BaseFileIOUtil append"
+	local replace="BaseFileIOUtil replace"
+
 	source(){
 		$MF printInfoMessage "Building properties.."
 
@@ -97,11 +101,14 @@ _config(){
 		cd $buildDir/../properties
 		cp *.anthonychu.properties $buildDir
 
+		local asProps="app.server.anthonychu.properties"
+		local buildProps="build.anthonychu.properties"
+
 		cd $buildDir
-		sed -i "s/app.server.type=/app.server.type=${appServer}/g" app.server.anthonychu.properties
-		sed -i "s/app.server.type=/app.server.type=${appServer}/g" build.anthonychu.properties
-		echo -e "\napp.server.parent.dir=${bundleDir}" >> app.server.anthonychu.properties
-		echo -e "\napp.server.parent.dir=${bundleDir}" >> build.anthonychu.properties
+		$replace $asProps app.server.type= app.server.type=${appServer}
+		$replace $buildProps app.server.type= app.server.type=${appServer}
+		$append $asProps "app.server.parent.dir=${bundleDir}"
+		$append $buildProps "app.server.parent.dir=${bundleDir}"
 
 		if [[ $appServer == jboss ]]; then
 			echo -e "\napp.server.${appServer}.version=6.0.1" >> app.server.anthonychu.properties
@@ -123,19 +130,21 @@ _config(){
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
+		local d=[[:digit:]]
+
 		$MF printInfoMessage "Increasing memory limit.."
 		if [[ $appServer == tomcat ]]; then
-			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $appServerDir/bin/setenv.sh
-			sed -i "s/-XX:MaxPermSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxPermSize=1024m/g" $appServerDir/bin/setenv.sh
+			$replace $appServerDir/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
+			$replace $appServerDir/bin/setenv.sh MaxPermSize=${d}${d}${d}m MaxPermSize=1024m
 		elif [[ $appServer == wildfly ]]; then
-			sed -i "s/-Xmx[[:digit:]][[:digit:]][[:digit:]][[:digit:]]m/-Xmx2048m/g" $appServerDir/bin/standalone.conf
-			sed -i "s/-XX:MaxMetaspaceSize=[[:digit:]][[:digit:]][[:digit:]]m/-XX:MaxMetaspaceSize=1024m/g" $appServerDir/bin/standalone.conf
+			$replace $appServerDir/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
+			$replace $appServerDir/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
 		fi
 		$MF printDone
 
 		if [[ $branch == ee-6.2.x ]]; then
 			$MF printInfoMessage "Changing port for ee-6.2.x.."
-			sed -i "s/\"8/\"7/g" $appServerDir/conf/server.xml
+			$replace ${appServerDir}/conf/server.xml 8 7
 			$MF printDone
 		fi
 	}
