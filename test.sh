@@ -2,10 +2,10 @@ source Array/ArrayUtil.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Help/HelpMessage.sh
-source Message/MessageFactory.sh
+source Message/MessageBuilder.sh
 source String/StringUtil.sh
 
-MF=MessageFactory
+MF=MessageBuilder
 
 pr(){
 	if (( $# == 0 )); then

@@ -5,13 +5,13 @@ source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Base/BaseFileIO/BaseFileIOUtil.sh
 source Help/HelpMessage.sh
-source Message/MessageFactory.sh
+source Message/MessageBuilder.sh
 source String/StringUtil.sh
 source String/StringValidator.sh
 
 ASValidator=AppServerValidator
 ASVersion=AppServerVersion
-MF=MessageFactory
+MF=MessageBuilder
 
 _build_log(){
 	local appServer=$($ASValidator returnAppServer $1)

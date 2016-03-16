@@ -3,10 +3,10 @@ source AppServer/AppServerVersion.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Help/HelpMessage.sh
-source Message/MessageFactory.sh
+source Message/MessageBuilder.sh
 source String/StringValidator.sh
 
-MF=MessageFactory
+MF=MessageBuilder
 
 _hardReset(){
     cd $buildDir
