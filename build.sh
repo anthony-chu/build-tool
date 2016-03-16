@@ -144,7 +144,7 @@ _config(){
 
 		if [[ $branch == ee-6.2.x ]]; then
 			$MF printInfoMessage "Changing port for ee-6.2.x.."
-			$replace ${appServerDir}/conf/server.xml 8 7
+			$replace ${appServerDir}/conf/server.xml "\"8" "\"7"
 			$MF printDone
 		fi
 	}
