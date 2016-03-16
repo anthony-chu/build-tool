@@ -96,7 +96,7 @@ jira(){
     }
 
     _env(){
-        local appServer=$(AppServerValidator returnAppServer)
+        local appServer=$(AppServerValidator returnAppServer $1)
         local appServerVersion=$(AppServerVersion
             returnAppServerVersion $appServer)
 
@@ -108,7 +108,7 @@ jira(){
         *) echo "" ;;
     esac
 
-    echo $(_env)
+    echo $(_env $2)
     echo ${gitinfo}
 }
 
