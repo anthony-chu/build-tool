@@ -3,6 +3,7 @@ source Base/BaseUtil.sh
 source Base/BaseVars.sh
 source Help/HelpMessage.sh
 source Message/MessageFactory.sh
+source String/StringUtil.sh
 
 MF=MessageFactory
 
@@ -96,8 +97,7 @@ test(){
 		cd $buildDir
 		ant -f build-test.xml run-selenium-test -Dtest.class="$1"
 
-		testname=$1
-		testname=${testname//[#]/_}
+		testname=$(StringUtil replace $1 "#" _)
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
