@@ -23,7 +23,7 @@ _hardReset(){
 _longLog(){
     cd $buildDir
 
-     git --git-dir=${buildDir}/.git rev-parse origin/$branch
+    git --git-dir=${buildDir}/.git rev-parse origin/$branch
 
     cd $baseDir
 }
