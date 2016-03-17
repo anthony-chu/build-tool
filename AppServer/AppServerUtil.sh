@@ -17,7 +17,8 @@ AppServerUtil(){
         elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
             appServerVersion=7.0.62
         else
-            appServerVersion=$(AppServerVersion returnAppServerVersion $appServer)
+            appServerVersion=$(AppServerVersion
+				returnAppServerVersion $appServer)
         fi
 
         local bundleDir=$(BaseVars returnBundleDir $@)
