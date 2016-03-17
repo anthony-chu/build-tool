@@ -219,11 +219,11 @@ pull(){
 
 push(){
 	cd $buildDir
-	local branch=$(git rev-parse --abbrev-ref HEAD)
+	local curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-	$MF printInfoMessage "Pushing changes to origin branch ${branch}.."
+	$MF printInfoMessage "Pushing changes to origin branch ${curBranch}.."
 
-	git push -f origin $branch
+	git push -f origin $curBranch
 
 	cd $baseDir
 }
