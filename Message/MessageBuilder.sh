@@ -1,6 +1,6 @@
 source Base/BaseUtil.sh
 
-MessageFactory(){
+MessageBuilder(){
     local time=$(BaseUtil timestamp)
 
     _buildMessage(){
