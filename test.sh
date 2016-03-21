@@ -132,16 +132,16 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
+if [[ $1 == ${branch} ]]; then
+	shift
+fi
+
 if [[ $# == 0 ]]; then
 	HelpMessage testHelpMessage
 elif [[ $@ == *#* ]]; then
 	args="test $@"
 	$args
 else
-	if [[ $1 == ${branch} ]]; then
-		shift
-	fi
-
 	$@
 fi
 
