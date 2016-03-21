@@ -1,4 +1,3 @@
-source AppServer/AppServerUtil.sh
 source AppServer/AppServerValidator.sh
 source AppServer/AppServerVersion.sh
 source Base/BaseUtil.sh
@@ -52,7 +51,7 @@ _clean_bundle(){
 
 	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=8.0.30
-	elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
+	elif [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
 		appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
@@ -114,6 +113,12 @@ _config(){
 			echo -e "\napp.server.${appServer}.version=6.0.1" >> app.server.anthonychu.properties
 		fi
 
+		if [[ $appServer == tcserver ]]; then
+			local asv=$(AppServerVersion returnAppServerVersion tcserver)
+
+			echo -e "\napp.server.${appServer}.version=$asv" >> app.server.anthonychu.properties
+		fi
+
 		$MF printDone
 	}
 
@@ -122,7 +127,7 @@ _config(){
 
 		if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
 			appServerVersion=8.0.30
-		elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
+		elif [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
 			appServerVersion=7.0.62
 		else
 			appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
@@ -231,18 +236,13 @@ push(){
 run(){
 	local appServer=$($ASValidator returnAppServer $@)
 
-	$MF printInfoMessage "Updating database jar.."
-	AppServerUtil copyDatabaseJar $appServer $branch
-	$MF printDone
-	echo
-
 	$MF printInfoMessage "Starting server.."
 	sleep 5s
 	clear
 
 	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=8.0.30
-	elif [[ $branch == ee-6.2.x ]] && [[ $appServer == tomcat ]]; then
+	elif [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
 		appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
@@ -254,6 +254,8 @@ run(){
 		 $appServerDir/bin/standalone.sh
 	 elif [[ $($ASValidator isTomcat $appServer) == true ]]; then
 		 $appServerDir/bin/catalina.sh run
+	 elif [[ $($ASValidator isTCServer $appServer) == true ]]; then
+		 $appServerDir/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
 	 elif [[ $($ASValidator isWildfly $appServer) == true ]]; then
 		 export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
 		 $appServerDir/bin/standalone.sh
