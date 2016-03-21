@@ -139,8 +139,7 @@ fi
 if [[ $# == 0 ]]; then
 	HelpMessage testHelpMessage
 elif [[ $@ == *#* ]]; then
-	args="test $@"
-	$args
+	test $@
 else
 	$@
 fi
