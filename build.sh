@@ -10,7 +10,7 @@ source String/StringValidator.sh
 
 ASValidator=AppServerValidator
 ASVersion=AppServerVersion
-MF=MessageBuilder
+MB=MessageBuilder
 
 _build_log(){
 	local appServer=$($ASValidator returnAppServer $1)
@@ -34,7 +34,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	$MF printInfoMessage "Deleting all content in the bundles directory.."
+	$MB printInfoMessage "Deleting all content in the bundles directory.."
 	cd $bundleDir
 	rm -rf deploy osgi data logs
 
@@ -42,7 +42,7 @@ _clean_hard(){
 		rm -rf ${appServer}*
 	fi
 
-	$MF printDone
+	$MB printDone
 	cd $baseDir
 }
 
@@ -59,18 +59,18 @@ _clean_bundle(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	$MF printInfoMessage "Deleting liferay home folders.."
+	$MB printInfoMessage "Deleting liferay home folders.."
 	cd $bundleDir
 	rm -rf data logs
-	$MF printDone
+	$MB printDone
 	echo
 
 	cd $baseDir
 
-	$MF printInfoMessage "Deleting temp files.."
+	$MB printInfoMessage "Deleting temp files.."
 	cd $appServerDir
 	rm -rf temp work
-	$MF printDone
+	$MB printDone
 	echo
 
 	cd $baseDir
@@ -91,7 +91,7 @@ _config(){
 	local replace="BaseFileIOUtil replace"
 
 	source(){
-		$MF printInfoMessage "Building properties.."
+		$MB printInfoMessage "Building properties.."
 
 		local appServer=$($ASValidator returnAppServer $@)
 		local appServerDir=${bundleDir}/${appServer}-$($ASVersion
@@ -119,7 +119,7 @@ _config(){
 			echo -e "\napp.server.${appServer}.version=$asv" >> app.server.anthonychu.properties
 		fi
 
-		$MF printDone
+		$MB printDone
 	}
 
 	appServer(){
@@ -137,7 +137,7 @@ _config(){
 
 		local d=[[:digit:]]
 
-		$MF printInfoMessage "Increasing memory limit.."
+		$MB printInfoMessage "Increasing memory limit.."
 		if [[ $appServer == tomcat ]]; then
 			$replace $appServerDir/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
 			$replace $appServerDir/bin/setenv.sh MaxPermSize=${d}${d}${d}m MaxPermSize=1024m
@@ -145,12 +145,12 @@ _config(){
 			$replace $appServerDir/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
 			$replace $appServerDir/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
 		fi
-		$MF printDone
+		$MB printDone
 
 		if [[ $branch == ee-6.2.x ]]; then
-			$MF printInfoMessage "Changing port for ee-6.2.x.."
+			$MB printInfoMessage "Changing port for ee-6.2.x.."
 			$replace ${appServerDir}/conf/server.xml "\"8" "\"7"
-			$MF printDone
+			$MB printDone
 		fi
 	}
 
@@ -166,10 +166,10 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal${branch//[-.]/""}
 
-	$MF printInfoMessage "Rebuilding database.."
+	$MB printInfoMessage "Rebuilding database.."
 	mysql -e "drop database if exists $database;
 		create database $database char set utf8;"
-	$MF printDone
+	$MB printDone
 	echo
 	cd $baseDir
 }
@@ -187,15 +187,15 @@ build(){
 
 	_config source ${appServer}
 
-	$MF printInfoMessage "Unzipping $appServer.."
+	$MB printInfoMessage "Unzipping $appServer.."
 	ant -f build-dist.xml unzip-$appServer
-	$MF printDone
+	$MB printDone
 
 	_config appServer ${appServer}
 
-	$MF printInfoMessage "Building portal.."
+	$MB printInfoMessage "Building portal.."
 	ant all > $logFile | tail -f --pid=$$ "$logFile"
-	$MF printInfoMessage "Build complete. Please see the build log for details"
+	$MB printInfoMessage "Build complete. Please see the build log for details"
 	cd $baseDir
 }
 
@@ -216,9 +216,9 @@ pull(){
 
 	cd $buildDir
 
-	$MF printInfoMessage "Pulling changes from upstream.."
+	$MB printInfoMessage "Pulling changes from upstream.."
 	git pull upstream $branch
-	$MF printDone
+	$MB printDone
 	cd $baseDir
 }
 
@@ -226,7 +226,7 @@ push(){
 	cd $buildDir
 	local curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-	$MF printInfoMessage "Pushing changes to origin branch ${curBranch}.."
+	$MB printInfoMessage "Pushing changes to origin branch ${curBranch}.."
 
 	git push -f origin $curBranch
 
@@ -236,7 +236,7 @@ push(){
 run(){
 	local appServer=$($ASValidator returnAppServer $@)
 
-	$MF printInfoMessage "Starting server.."
+	$MB printInfoMessage "Starting server.."
 	sleep 5s
 	clear
 

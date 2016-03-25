@@ -5,13 +5,13 @@ source Help/HelpMessage.sh
 source Message/MessageBuilder.sh
 source String/StringUtil.sh
 
-MF=MessageBuilder
+MB=MessageBuilder
 
 pr(){
 	if (( $# == 0 )); then
-		$MF printErrorMessage "Missing reviewer"
+		$MB printErrorMessage "Missing reviewer"
 	else
-		$MF printInfoMessage "Submitting pull request.."
+		$MB printInfoMessage "Submitting pull request.."
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -44,7 +44,7 @@ pr(){
 		BaseUtil gitpr -b $branch -u $1 submit $comment $title
 		cd $baseDir
 
-		$MF printDone
+		$MB printDone
 	fi
 }
 
@@ -59,11 +59,11 @@ sf(){
 		ant setup-sdk
 	fi
 
-	$MF printInfoMessage "Running source formatter.."
+	$MB printInfoMessage "Running source formatter.."
 	echo
 	cd $implDir
 	ant format-source
-	$MF printDone
+	$MB printDone
 	echo
 	cd $baseDir
 }
@@ -90,9 +90,9 @@ test(){
 	done
 
 	if (( !"$#" )); then
-		$MF printErrorMessage "Missing test name"
+		$MB printErrorMessage "Missing test name"
 	else
-		$MF printInfoMessage "Running test $1.."
+		$MB printInfoMessage "Running test $1.."
 		echo
 		cd $buildDir
 		ant -f build-test.xml run-selenium-test -Dtest.class="$1"
@@ -101,7 +101,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		$MF printInfoMessage "Moving test results.."
+		$MB printInfoMessage "Moving test results.."
 		echo
 
 		cd $resultDir
