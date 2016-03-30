@@ -211,6 +211,11 @@ deploy(){
 	$buildDir/gradlew clean deploy
 }
 
+logger(){
+	cd $bundleDir/logs
+	tail -f liferay*.log
+}
+
 pull(){
 	_clean_source
 
