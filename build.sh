@@ -245,9 +245,7 @@ run(){
 	sleep 5s
 	clear
 
-	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
-		appServerVersion=8.0.30
-	elif [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
+	if [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
 		appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
