@@ -62,7 +62,7 @@ sf(){
 	$MB printInfoMessage "Running source formatter.."
 	echo
 	cd $implDir
-	ant format-source
+	ant format-source-local-changes
 	$MB printDone
 	echo
 	cd $baseDir
