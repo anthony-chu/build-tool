@@ -30,7 +30,15 @@ pr(){
 		key=${title/${branch}-*-}
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
-		detailText=("$branch" "$1" "$comment" "$title")
+		if [[ $# == 1 ]]; then
+			branch=$branch
+			user=$1
+		else
+			branch=$1
+			user=$2
+		fi
+
+		detailText=("$branch" "$user" "$comment" "$title")
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
 			echo "    ${newDetailHeading[i]}................${detailText[i]}"
@@ -41,7 +49,7 @@ pr(){
 
 		git push -f origin $title
 
-		BaseUtil gitpr -b $branch -u $1 submit $comment $title
+		BaseUtil gitpr -b $branch -u $user submit $comment $title
 		cd $baseDir
 
 		$MB printDone
