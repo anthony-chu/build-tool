@@ -49,9 +49,7 @@ _clean_hard(){
 _clean_bundle(){
 	local appServer=$($ASValidator returnAppServer $@)
 
-	if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
-		appServerVersion=8.0.30
-	elif [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
+	if [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
 		appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
@@ -125,9 +123,7 @@ _config(){
 	appServer(){
 		local appServer=$($ASValidator returnAppServer $@)
 
-		if [[ $branch == ee-7.0.x ]] && [[ $appServer == tomcat ]]; then
-			appServerVersion=8.0.30
-		elif [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
+		if [[ $branch == *6.2.x* ]] && [[ $appServer == tomcat ]]; then
 			appServerVersion=7.0.62
 		else
 			appServerVersion=$($ASVersion returnAppServerVersion ${appServer})
@@ -253,6 +249,9 @@ run(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
+	#
+	# trap shutdown SIGINT
+
 	if [[ $($ASValidator isJboss $appServer) == true ]]; then
 		 $appServerDir/bin/standalone.sh
 	 elif [[ $($ASValidator isTomcat $appServer) == true ]]; then
@@ -265,6 +264,18 @@ run(){
 	 elif [[ $($ASValidator isWeblogic $appServer) == true ]]; then
 		 $appServerDir/domains/liferay/bin/startWebLogic.sh
 	 fi
+}
+
+shutdown(){
+	local appServer=$(AppServerValidator returnAppServer $1)
+	local appServerVersion=$(AppServerVersion returnAppServerVersion $appServer)
+	local appServerDir=$bundleDir/$appServer-$appServerVersion
+
+	$MB printInfoMessage "Shutting down server.."
+
+	if [[ $appServer == tomcat ]]; then
+		$appServerDir/bin/catalina.sh stop
+	fi
 }
 
 clear
