@@ -100,12 +100,14 @@ test(){
 	if (( !"$#" )); then
 		$MB printErrorMessage "Missing test name"
 	else
-		$MB printInfoMessage "Running test $1.."
+		test=$1
+		shift
+		$MB printInfoMessage "Running test $test.."
 		echo
 		cd $buildDir
-		ant -f build-test.xml run-selenium-test -Dtest.class="$1"
+		ant -f build-test.xml run-selenium-test -Dtest.class="$test" $@
 
-		testname=$(StringUtil replace $1 "#" _)
+		testname=$(StringUtil replace $test "#" _)
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
@@ -120,7 +122,7 @@ test(){
 
 		cd ${testDir}/${testname}
 
-		mv index.html $1_index.html
+		mv index.html $test_index.html
 
 		cd $testDir/$testname
 		testcase=${testname//[_]/%23}
