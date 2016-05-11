@@ -142,7 +142,7 @@ test(){
 
 		cd ${testDir}/${testname}
 
-		mv index.html $test_index.html
+		mv index.html ${test}_index.html
 
 		cd $testDir/$testname
 		testcase=${testname//[_]/%23}
