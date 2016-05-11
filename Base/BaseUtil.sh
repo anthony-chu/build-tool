@@ -12,7 +12,7 @@ BaseUtil(){
 		elif [[ $1 == date ]]; then
 			date +%Y%m%d
 		else
-			date +%T
+			date +%H:%M:$(($(date +%s)/10000000))
 		fi
 	}
 
