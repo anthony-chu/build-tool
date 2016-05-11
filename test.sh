@@ -7,6 +7,26 @@ source String/StringUtil.sh
 
 MB=MessageBuilder
 
+mockmock(){
+	cd $buildDir
+
+	$MB printInfoMessage "Building MockMock jar.."
+
+	ant -f build-test.xml start-test-smtp-server
+
+	clear
+
+	$MB printInfoMessage "Starting MockMock SMTP server.."
+
+	sleep 5s
+
+	clear
+
+	cd lib/development
+
+	java -jar MockMock.jar
+}
+
 pr(){
 	if (( $# == 0 )); then
 		$MB printErrorMessage "Missing reviewer"
