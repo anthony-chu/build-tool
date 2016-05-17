@@ -162,16 +162,18 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
-if [[ $1 == ${branch} ]]; then
-	shift
+args=$@
+
+if [[ $@ == ${branch} ]]; then
+	args=${@/$branch/}
 fi
 
 if [[ $# == 0 ]]; then
 	HelpMessage testHelpMessage
-elif [[ $@ == *#* ]]; then
-	test $@
+elif [[ $args == *#* ]]; then
+	test $args
 else
-	$@
+	$args
 fi
 
 exit
