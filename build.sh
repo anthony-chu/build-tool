@@ -202,9 +202,7 @@ build(){
 	_config appServer ${appServer}
 
 	$MB printInfoMessage "Building portal.."
-	ant all > $logFile | tail -f --pid=$$ "$logFile"
-	$MB printInfoMessage "Build complete. Please see the build log for details"
-	cd $baseDir
+	_build $logFile & _end
 }
 
 clean(){
