@@ -106,6 +106,7 @@ _config(){
 		$replace $buildProps app.server.type= app.server.type=${appServer}
 		$append $asProps "app.server.parent.dir=${bundleDir}"
 		$append $buildProps "app.server.parent.dir=${bundleDir}"
+		$append $buildProps "jsp.precompile=on"
 
 		if [[ $appServer == jboss ]]; then
 			echo -e "\napp.server.${appServer}.version=6.0.1" >> app.server.anthonychu.properties
