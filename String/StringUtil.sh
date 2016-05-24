@@ -6,18 +6,18 @@ StringUtil(){
 		local orig=$2
 		local new=$3
 
-		if [[ $new == space ]]; then
+		if [[ ${new} == space ]]; then
 			new=" "
 		fi
 
-		echo ${str//$orig/$new}
+		echo ${str//${orig}/${new}}
 	}
 
 	returnOption(){
 		local opt=$1
 		local isValidOpt=$(StringValidator isAlphaNum ${opt//-/})
 
-		if [[ $isValidOpt == true ]]; then
+		if [[ ${isValidOpt} == true ]]; then
 			echo ${opt/-/ }
 		fi
 	}

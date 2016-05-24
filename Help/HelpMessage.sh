@@ -6,8 +6,8 @@ HelpMessage(){
 		local everything=($@)
 		local everythingSize=${#everything[@]}
 
-		local funcList=(${everything[@]:0:$everythingSize/2})
-		local helpList=(${everything[@]:$everythingSize/2:${everythingSize}})
+		local funcList=(${everything[@]:0:${everythingSize}/2})
+		local helpList=(${everything[@]:${everythingSize}/2:${everythingSize}})
 
 		echo "Commands:"
 		for (( i=0; i<${everythingSize}/2; i++ )); do

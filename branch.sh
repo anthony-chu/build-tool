@@ -9,7 +9,7 @@ source String/StringValidator.sh
 MB=MessageBuilder
 
 _hardReset(){
-	cd $buildDir
+	cd ${buildDir}
 
 	git pull upstream
 
@@ -17,57 +17,57 @@ _hardReset(){
 
 	git clean -fdqx -e "*.anthonychu.properties"
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 _longLog(){
-	cd $buildDir
+	cd ${buildDir}
 
-	git --git-dir=${buildDir}/.git rev-parse origin/$branch
+	git --git-dir=${buildDir}/.git rev-parse origin/${branch}
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 changes(){
-	cd $buildDir
+	cd ${buildDir}
 
 	git status
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 current(){
-  cd $buildDir
+  cd ${buildDir}
 
   name=$(git rev-parse --abbrev-ref HEAD)
 
-  $MB printInfoMessage "Current ${branch} branch: $name"
+  ${MB} printInfoMessage "Current ${branch} branch: ${name}"
 
-  cd $baseDir
+  cd ${baseDir}
 }
 
 delete(){
-	cd $buildDir
+	cd ${buildDir}
 
 	if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
-		$MB printErrorMessage "Cannot delete the current branch"
+		${MB} printErrorMessage "Cannot delete the current branch"
 	else
 		git branch -q -D $1
-		$MB printInfoMessage "Deleted local branch: $1"
+		${MB} printInfoMessage "Deleted local branch: $1"
 	fi
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 dev(){
-	cd $buildDir
+	cd ${buildDir}
 
 	local dev=$1
 	local branch=$2
 
-	git pull git@github.com:$dev/liferay-portal.git $branch
+	git pull git@github.com:${dev}/liferay-portal.git ${branch}
 
-	cd $baseDir
+	cd ${baseDir}
 
 	log
 }
@@ -75,13 +75,13 @@ dev(){
 jira(){
 	local _gitid=$(_longLog)
 
-	if [[ $branch == master ]]; then
+	if [[ ${branch} == master ]]; then
 		branch=${branch^}
 	else
-		branch=$branch
+		branch=${branch}
 	fi
 
-	local gitinfo="Portal $branch GIT ID: ${_gitid}"
+	local gitinfo="Portal ${branch} GIT ID: ${_gitid}"
 
 	fixed(){
 		echo Fixed on:
@@ -98,7 +98,7 @@ jira(){
 	_env(){
 		local appServer=$(AppServerValidator returnAppServer $1)
 		local appServerVersion=$(AppServerVersion
-			returnAppServerVersion $appServer)
+			returnAppServerVersion ${appServer})
 
 		echo ${appServer^} ${appServerVersion} + MySQL 5.7
 	}
@@ -113,15 +113,15 @@ jira(){
 }
 
 list(){
-  cd $buildDir
+  cd ${buildDir}
 
   git branch
 
-  cd $baseDir
+  cd ${baseDir}
 }
 
 log(){
-	cd $buildDir
+	cd ${buildDir}
 
 	if [[ $# == 0 ]]; then
 		git log -1 --oneline
@@ -129,90 +129,90 @@ log(){
 		git log -$1 --oneline
 	fi
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 new(){
-  cd $buildDir
+  cd ${buildDir}
 
   git checkout -q -b $1
 
   current
 
-  cd $baseDir
+  cd ${baseDir}
 }
 
 rebase(){
 	abort(){
-		$MB printInfoMessage "Terminating previous rebase process.."
+		${MB} printInfoMessage "Terminating previous rebase process.."
 
-		cd $buildDir
+		cd ${buildDir}
 
 		git rebase --abort
 
-		cd $baseDir
+		cd ${baseDir}
 
-		$MB printDone
+		${MB} printDone
 	}
 
 	amend(){
-		$MB printInfoMessage "Amending the previous commit.."
+		${MB} printInfoMessage "Amending the previous commit.."
 
-		cd $buildDir
+		cd ${buildDir}
 
 		git commit --amend
 
-		cd $baseDir
+		cd ${baseDir}
 
-		$MB printDone
+		${MB} printDone
 	}
 
 	cont(){
-		$MB printInfoMessage "Continuing the current rebase process.."
+		${MB} printInfoMessage "Continuing the current rebase process.."
 
-		cd $buildDir
+		cd ${buildDir}
 
 		git rebase --continue
 
-		cd $baseDir
+		cd ${baseDir}
 
-		$MB printDone
+		${MB} printDone
 	}
 
 	default(){
-		$MB printInfoMessage "Rebasing current branch to HEAD.."
+		${MB} printInfoMessage "Rebasing current branch to HEAD.."
 
-		cd $buildDir
+		cd ${buildDir}
 
 		git pull --rebase upstream ${branch}
 
-		cd $baseDir
+		cd ${baseDir}
 
-		$MB printDone
+		${MB} printDone
 	}
 
 	start(){
 		local value=$(StringUtil returnOption $1)
 
-		if [[ $value > 1 ]]; then
+		if [[ ${value} > 1 ]]; then
 			isPlural=s
 		else
 			isPlural=""
 		fi
 
-		$MB printInfoMessage "Rebasing the last $value commit${isPlural}.."
+		${MB} printInfoMessage "Rebasing the last ${value} commit${isPlural}.."
 
-		cd $buildDir
+		cd ${buildDir}
 
-		git rebase -i head~$value
+		git rebase -i head~${value}
 
-		cd $baseDir
+		cd ${baseDir}
 
-		$MB printDone
+		${MB} printDone
 	}
 
 	if [[ $(StringValidator isNull $1) == true ]]; then
-		$MB printErrorMessage "Please provide a valid rebase option"
+		${MB} printErrorMessage "Please provide a valid rebase option"
 		exit
 	fi
 
@@ -226,27 +226,27 @@ rebase(){
 }
 
 rename(){
-	cd $buildDir
+	cd ${buildDir}
 
 	local originalBranch=$(git rev-parse --abbrev-ref HEAD)
 
 	git branch -q -m $1
 
-	$MB printInfoMessage "Renamed branch from $originalBranch to $1"
+	${MB} printInfoMessage "Renamed branch from ${originalBranch} to $1"
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 reset(){
-  cd $buildDir
+  cd ${buildDir}
 
   git reset --hard $1
 
-  cd $baseDir
+  cd ${baseDir}
 }
 
 switch(){
-  cd $buildDir
+  cd ${buildDir}
 
   if [[ $# == 0 ]]; then
 	b=master
@@ -254,27 +254,27 @@ switch(){
 	b=$1
   fi
 
-  git checkout -q $b
+  git checkout -q ${b}
 
   current
 
-  cd $baseDir
+  cd ${baseDir}
 }
 
 tunnel(){
-	cd $buildDir
+	cd ${buildDir}
 
 	local tunnelCommand=""
 	while [[ true ]]; do
 		echo -n "Enter git command to run (begin with git): "
 		read tunnelCommand
 
-		$tunnelCommand
+		${tunnelCommand}
 		echo
 		echo
 	done
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 clear

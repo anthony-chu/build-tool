@@ -8,7 +8,7 @@ ArrayUtil(){
 		for (( i=0; i<${#array[@]}; i++ )); do
 			arrayEntry=${array[i]}
 
-			while [ ${#arrayEntry} -lt $maxLength ]; do
+			while [ ${#arrayEntry} -lt ${maxLength} ]; do
 				arrayEntry=${arrayEntry}${placeholder}
 			done
 
@@ -23,12 +23,12 @@ ArrayUtil(){
 		local maxLength=0
 
 		for (( i=0; i<${#array[@]}; i++ )); do
-			if [[ ${#array[i]} > $maxLength ]]; then
+			if [[ ${#array[i]} > ${maxLength} ]]; then
 				maxLength=${#array[i]}
 			fi
 		done
 
-		echo $maxLength
+		echo ${maxLength}
 	}
 
 	$@

@@ -8,15 +8,15 @@ source String/StringUtil.sh
 MB=MessageBuilder
 
 mockmock(){
-	cd $buildDir
+	cd ${buildDir}
 
-	$MB printInfoMessage "Building MockMock jar.."
+	${MB} printInfoMessage "Building MockMock jar.."
 
 	ant -f build-test.xml start-test-smtp-server
 
 	clear
 
-	$MB printInfoMessage "Starting MockMock SMTP server.."
+	${MB} printInfoMessage "Starting MockMock SMTP server.."
 
 	sleep 5s
 
@@ -29,21 +29,21 @@ mockmock(){
 
 pr(){
 	if (( $# == 0 )); then
-		$MB printErrorMessage "Missing reviewer"
+		${MB} printErrorMessage "Missing reviewer"
 	else
-		$MB printInfoMessage "Submitting pull request.."
+		${MB} printInfoMessage "Submitting pull request.."
 
 		detailHeading=(branch: reviewer: comment: title:)
 
 		newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
 
-		cd $buildDir
+		cd ${buildDir}
 		title="$(git rev-parse --abbrev-ref HEAD)"
-		cd $baseDir
+		cd ${baseDir}
 
-		if [[ $title == *lps* ]]; then
+		if [[ ${title} == *lps* ]]; then
 			project=LPS
-		elif [[ $title == *qa* ]]; then
+		elif [[ ${title} == *qa* ]]; then
 			project=LRQA
 		fi
 
@@ -51,57 +51,57 @@ pr(){
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
-			branch=$branch
+			branch=${branch}
 			user=$1
 		else
 			branch=$1
 			user=$2
 		fi
 
-		detailText=("$branch" "$user" "$comment" "$title")
+		detailText=("${branch}" "${user}" "${comment}" "${title}")
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
 			echo "	${newDetailHeading[i]}................${detailText[i]}"
 		done
 
 		echo
-		cd $buildDir
+		cd ${buildDir}
 
-		git push -f origin $title
+		git push -f origin ${title}
 
-		BaseUtil gitpr -b $branch -u $user submit $comment $title
-		cd $baseDir
+		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
+		cd ${baseDir}
 
-		$MB printDone
+		${MB} printDone
 	fi
 }
 
 sf(){
-	implDir=$buildDir/portal-impl
+	implDir=${buildDir}/portal-impl
 
-	cd $buildDir/tools/
+	cd ${buildDir}/tools/
 
-	if [ ! -e $buildDir/tools/sdk/tmp/portal-tools ]; then
-		cd $buildDir
+	if [ ! -e ${buildDir}/tools/sdk/tmp/portal-tools ]; then
+		cd ${buildDir}
 
 		ant setup-sdk
 	fi
 
-	$MB printInfoMessage "Running source formatter.."
+	${MB} printInfoMessage "Running source formatter.."
 	echo
-	cd $implDir
+	cd ${implDir}
 	ant format-source-local-changes
-	$MB printDone
+	${MB} printDone
 	echo
-	cd $baseDir
+	cd ${baseDir}
 }
 
 validate(){
-	cd $buildDir
+	cd ${buildDir}
 
 	ant -f build-test.xml run-poshi-validation
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 test(){
@@ -109,32 +109,32 @@ test(){
 
 	for (( i=0; i<${#testStructure[@]}; i++ )); do
 		testDir=${testDir}/${testStructure[i]}
-		if [ ! -e $testDir ]; then
-			mkdir $testDir
-			cd $testDir
+		if [ ! -e ${testDir} ]; then
+			mkdir ${testDir}
+			cd ${testDir}
 		else
-			cd $testDir
+			cd ${testDir}
 		fi
 	done
 
 	if (( !"$#" )); then
-		$MB printErrorMessage "Missing test name"
+		${MB} printErrorMessage "Missing test name"
 	else
 		test=$1
 		shift
-		$MB printInfoMessage "Running test $test.."
+		${MB} printInfoMessage "Running test ${test}.."
 		echo
-		cd $buildDir
-		ant -f build-test.xml run-selenium-test -Dtest.class="$test" $@
+		cd ${buildDir}
+		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
 
-		testname=$(StringUtil replace $test "#" _)
+		testname=$(StringUtil replace ${test} "#" _)
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		$MB printInfoMessage "Moving test results.."
+		${MB} printInfoMessage "Moving test results.."
 		echo
 
-		cd $resultDir
+		cd ${resultDir}
 
 		cd ..
 
@@ -144,15 +144,15 @@ test(){
 
 		mv index.html ${test}_index.html
 
-		cd $testDir/$testname
+		cd ${testDir}/${testname}
 		testcase=${testname//[_]/%23}
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 
-		file="\/\/\/${testDir//d/D\:}/$testname/${testcase}_index.html"
+		file="\/\/\/${testDir//d/D\:}/${testname}/${testcase}_index.html"
 
-		"$chromeDir/chrome.exe" "file:${file}"
+		"${chromeDir}/chrome.exe" "file:${file}"
 
-		cd $baseDir
+		cd ${baseDir}
 	fi
 }
 
@@ -165,15 +165,15 @@ bundleDir=$(BaseVars returnBundleDir $@)
 args=$@
 
 if [[ $@ == ${branch} ]]; then
-	args=${@/$branch/}
+	args=${@/${branch}/}
 fi
 
 if [[ $# == 0 ]]; then
 	HelpMessage testHelpMessage
-elif [[ $args == *#* ]]; then
-	test $args
+elif [[ ${args} == *#* ]]; then
+	test ${args}
 else
-	$args
+	${args}
 fi
 
 exit

@@ -6,7 +6,7 @@ MessageBuilder(){
 	_buildMessage(){
 		local message=$@
 
-		echo "$time [${logLevel^^}] $message."
+		echo "${time} [${logLevel^^}] ${message}."
 	}
 
 	printDone(){
@@ -17,14 +17,14 @@ MessageBuilder(){
 		local logLevel=error
 		local message=$@
 
-		_buildMessage $message
+		_buildMessage ${message}
 	}
 
 	printInfoMessage(){
 		local logLevel=info
 		local message=$@
 
-		_buildMessage $message
+		_buildMessage ${message}
 	}
 
 	$@
