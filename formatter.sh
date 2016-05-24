@@ -21,4 +21,5 @@ includedFiles=(${allFiles[@]/*$curFile/})
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
 	Formatter formatTabs ${includedFiles[i]}
 	Formatter formatSpaceAfterTab ${includedFiles[i]}
+	Formatter formatTrailingSpaces ${includedFiles[i]}
 done
