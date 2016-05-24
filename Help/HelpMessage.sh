@@ -14,7 +14,7 @@ HelpMessage(){
 			funcListEntry=${funcList[i]}
 			helpListEntry=$(StringUtil replace ${helpList[i]} "-" space)
 
-			echo "    ${funcListEntry}................${helpListEntry}"
+			echo "	${funcListEntry}................${helpListEntry}"
 		done
 	}
 
@@ -39,19 +39,19 @@ HelpMessage(){
 
 		helpList=(
 			displays-all-changes-made-to-the-current-branch
-		    displays-the-current-branch
-		    deletes-the-branch
-		    fetches-a-developer\'s-branch
+			displays-the-current-branch
+			deletes-the-branch
+			fetches-a-developer\'s-branch
 			prints-a-formatted-jira-message
-		    displays-all-local-branches
-		    shows-the-log-for-the-current-branch
-		    creates-and-switches-to-a-new-branch
-		    provides-options-for-interactive-rebase
-		    renames-the-current-branch
-		    restores-source-to-designated-commit
-		    changes-to-a-different-local-branch
-		    provides-direct-shell-access-to-git-directory
-	    )
+			displays-all-local-branches
+			shows-the-log-for-the-current-branch
+			creates-and-switches-to-a-new-branch
+			provides-options-for-interactive-rebase
+			renames-the-current-branch
+			restores-source-to-designated-commit
+			changes-to-a-different-local-branch
+			provides-direct-shell-access-to-git-directory
+		)
 
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 	}

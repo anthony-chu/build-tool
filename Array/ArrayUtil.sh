@@ -1,35 +1,35 @@
 ArrayUtil(){
-    appendArrayEntry(){
-        local array=($@)
-        local maxLength=$(returnMaxLength ${array[@]})
-        local newArray=()
-        local placeholder=.
+	appendArrayEntry(){
+		local array=($@)
+		local maxLength=$(returnMaxLength ${array[@]})
+		local newArray=()
+		local placeholder=.
 
-        for (( i=0; i<${#array[@]}; i++ )); do
-            arrayEntry=${array[i]}
+		for (( i=0; i<${#array[@]}; i++ )); do
+			arrayEntry=${array[i]}
 
-            while [ ${#arrayEntry} -lt $maxLength ]; do
-                arrayEntry=${arrayEntry}${placeholder}
-            done
+			while [ ${#arrayEntry} -lt $maxLength ]; do
+				arrayEntry=${arrayEntry}${placeholder}
+			done
 
-            newArray+=(${arrayEntry})
-        done
+			newArray+=(${arrayEntry})
+		done
 
-        echo ${newArray[@]}
-    }
+		echo ${newArray[@]}
+	}
 
-    returnMaxLength(){
-        local array=($@)
-        local maxLength=0
+	returnMaxLength(){
+		local array=($@)
+		local maxLength=0
 
-        for (( i=0; i<${#array[@]}; i++ )); do
-            if [[ ${#array[i]} > $maxLength ]]; then
-                maxLength=${#array[i]}
-            fi
-        done
+		for (( i=0; i<${#array[@]}; i++ )); do
+			if [[ ${#array[i]} > $maxLength ]]; then
+				maxLength=${#array[i]}
+			fi
+		done
 
-        echo $maxLength
-    }
+		echo $maxLength
+	}
 
-    $@
+	$@
 }

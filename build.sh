@@ -263,17 +263,17 @@ run(){
 	# trap shutdown SIGINT
 
 	if [[ $($ASValidator isJboss $appServer) == true ]]; then
-		 $appServerDir/bin/standalone.sh
-	 elif [[ $($ASValidator isTomcat $appServer) == true ]]; then
-		 $appServerDir/bin/catalina.sh run
-	 elif [[ $($ASValidator isTCServer $appServer) == true ]]; then
-		 $appServerDir/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
-	 elif [[ $($ASValidator isWildfly $appServer) == true ]]; then
-		 export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
-		 $appServerDir/bin/standalone.sh
-	 elif [[ $($ASValidator isWeblogic $appServer) == true ]]; then
-		 $appServerDir/domains/liferay/bin/startWebLogic.sh
-	 fi
+		$appServerDir/bin/standalone.sh
+	elif [[ $($ASValidator isTomcat $appServer) == true ]]; then
+		$appServerDir/bin/catalina.sh run
+	elif [[ $($ASValidator isTCServer $appServer) == true ]]; then
+		$appServerDir/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
+	elif [[ $($ASValidator isWildfly $appServer) == true ]]; then
+		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
+		$appServerDir/bin/standalone.sh
+	elif [[ $($ASValidator isWeblogic $appServer) == true ]]; then
+		$appServerDir/domains/liferay/bin/startWebLogic.sh
+	fi
 }
 
 shutdown(){
@@ -297,12 +297,12 @@ bundleDir=$(BaseVars returnBundleDir $@)
 if [[ $# == 0 ]]; then
   HelpMessage buildHelpMessage
 else
-    until [[ $# == 0 ]]; do
+	until [[ $# == 0 ]]; do
 		if [[ $1 == ${branch} ]]; then
 			shift
 		fi
 
 		$1 ${@:2}
-        shift
-    done
+		shift
+	done
 fi

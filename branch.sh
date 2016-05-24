@@ -9,31 +9,31 @@ source String/StringValidator.sh
 MB=MessageBuilder
 
 _hardReset(){
-    cd $buildDir
+	cd $buildDir
 
-    git pull upstream
+	git pull upstream
 
-    git reset --hard
+	git reset --hard
 
-    git clean -fdqx -e "*.anthonychu.properties"
+	git clean -fdqx -e "*.anthonychu.properties"
 
-    cd $baseDir
+	cd $baseDir
 }
 
 _longLog(){
-    cd $buildDir
+	cd $buildDir
 
-    git --git-dir=${buildDir}/.git rev-parse origin/$branch
+	git --git-dir=${buildDir}/.git rev-parse origin/$branch
 
-    cd $baseDir
+	cd $baseDir
 }
 
 changes(){
-    cd $buildDir
+	cd $buildDir
 
-    git status
+	git status
 
-    cd $baseDir
+	cd $baseDir
 }
 
 current(){
@@ -47,69 +47,69 @@ current(){
 }
 
 delete(){
-    cd $buildDir
+	cd $buildDir
 
-    if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
-        $MB printErrorMessage "Cannot delete the current branch"
-    else
-        git branch -q -D $1
-        $MB printInfoMessage "Deleted local branch: $1"
-    fi
+	if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
+		$MB printErrorMessage "Cannot delete the current branch"
+	else
+		git branch -q -D $1
+		$MB printInfoMessage "Deleted local branch: $1"
+	fi
 
-    cd $baseDir
+	cd $baseDir
 }
 
 dev(){
-    cd $buildDir
+	cd $buildDir
 
-    local dev=$1
-    local branch=$2
+	local dev=$1
+	local branch=$2
 
-    git pull git@github.com:$dev/liferay-portal.git $branch
+	git pull git@github.com:$dev/liferay-portal.git $branch
 
-    cd $baseDir
+	cd $baseDir
 
-    log
+	log
 }
 
 jira(){
-    local _gitid=$(_longLog)
+	local _gitid=$(_longLog)
 
-    if [[ $branch == master ]]; then
-        branch=${branch^}
-    else
-        branch=$branch
-    fi
+	if [[ $branch == master ]]; then
+		branch=${branch^}
+	else
+		branch=$branch
+	fi
 
-    local gitinfo="Portal $branch GIT ID: ${_gitid}"
+	local gitinfo="Portal $branch GIT ID: ${_gitid}"
 
-    fixed(){
-        echo Fixed on:
-    }
+	fixed(){
+		echo Fixed on:
+	}
 
-    nlr(){
-        echo No Longer Reproducible on:
-    }
+	nlr(){
+		echo No Longer Reproducible on:
+	}
 
-    repro(){
-        echo Reproduced on:
-    }
+	repro(){
+		echo Reproduced on:
+	}
 
-    _env(){
-        local appServer=$(AppServerValidator returnAppServer $1)
-        local appServerVersion=$(AppServerVersion
-            returnAppServerVersion $appServer)
+	_env(){
+		local appServer=$(AppServerValidator returnAppServer $1)
+		local appServerVersion=$(AppServerVersion
+			returnAppServerVersion $appServer)
 
-        echo ${appServer^} ${appServerVersion} + MySQL 5.7
-    }
+		echo ${appServer^} ${appServerVersion} + MySQL 5.7
+	}
 
-    case $1 in
-        fixed|nlr|repro) $1;;
-        *) echo "" ;;
-    esac
+	case $1 in
+		fixed|nlr|repro) $1;;
+		*) echo "" ;;
+	esac
 
-    echo $(_env $2)
-    echo ${gitinfo}
+	echo $(_env $2)
+	echo ${gitinfo}
 }
 
 list(){
@@ -121,15 +121,15 @@ list(){
 }
 
 log(){
-    cd $buildDir
+	cd $buildDir
 
-    if [[ $# == 0 ]]; then
-        git log -1 --oneline
-    else
-        git log -$1 --oneline
-    fi
+	if [[ $# == 0 ]]; then
+		git log -1 --oneline
+	else
+		git log -$1 --oneline
+	fi
 
-    cd $baseDir
+	cd $baseDir
 }
 
 new(){
@@ -143,98 +143,98 @@ new(){
 }
 
 rebase(){
-    abort(){
-        $MB printInfoMessage "Terminating previous rebase process.."
+	abort(){
+		$MB printInfoMessage "Terminating previous rebase process.."
 
-        cd $buildDir
+		cd $buildDir
 
-        git rebase --abort
+		git rebase --abort
 
-        cd $baseDir
+		cd $baseDir
 
-        $MB printDone
-    }
+		$MB printDone
+	}
 
-    amend(){
-        $MB printInfoMessage "Amending the previous commit.."
+	amend(){
+		$MB printInfoMessage "Amending the previous commit.."
 
-        cd $buildDir
+		cd $buildDir
 
-        git commit --amend
+		git commit --amend
 
-        cd $baseDir
+		cd $baseDir
 
-        $MB printDone
-    }
+		$MB printDone
+	}
 
-    cont(){
-        $MB printInfoMessage "Continuing the current rebase process.."
+	cont(){
+		$MB printInfoMessage "Continuing the current rebase process.."
 
-        cd $buildDir
+		cd $buildDir
 
-        git rebase --continue
+		git rebase --continue
 
-        cd $baseDir
+		cd $baseDir
 
-        $MB printDone
-    }
+		$MB printDone
+	}
 
-    default(){
-        $MB printInfoMessage "Rebasing current branch to HEAD.."
+	default(){
+		$MB printInfoMessage "Rebasing current branch to HEAD.."
 
-        cd $buildDir
+		cd $buildDir
 
-        git pull --rebase upstream ${branch}
+		git pull --rebase upstream ${branch}
 
-        cd $baseDir
+		cd $baseDir
 
-        $MB printDone
-    }
+		$MB printDone
+	}
 
-    start(){
-        local value=$(StringUtil returnOption $1)
+	start(){
+		local value=$(StringUtil returnOption $1)
 
-        if [[ $value > 1 ]]; then
-            isPlural=s
-        else
-            isPlural=""
-        fi
+		if [[ $value > 1 ]]; then
+			isPlural=s
+		else
+			isPlural=""
+		fi
 
-        $MB printInfoMessage "Rebasing the last $value commit${isPlural}.."
+		$MB printInfoMessage "Rebasing the last $value commit${isPlural}.."
 
-        cd $buildDir
+		cd $buildDir
 
-        git rebase -i head~$value
+		git rebase -i head~$value
 
-        cd $baseDir
+		cd $baseDir
 
-        $MB printDone
-    }
+		$MB printDone
+	}
 
-    if [[ $(StringValidator isNull $1) == true ]]; then
-        $MB printErrorMessage "Please provide a valid rebase option"
-        exit
-    fi
+	if [[ $(StringValidator isNull $1) == true ]]; then
+		$MB printErrorMessage "Please provide a valid rebase option"
+		exit
+	fi
 
-    case $(StringUtil returnOption $1) in
-        [0-9]*) start $1;;
-        q) abort;;
-        c) cont;;
-        a) amend;;
-        d) default;;
-    esac
+	case $(StringUtil returnOption $1) in
+		[0-9]*) start $1;;
+		q) abort;;
+		c) cont;;
+		a) amend;;
+		d) default;;
+	esac
 }
 
 rename(){
-    cd $buildDir
+	cd $buildDir
 
-    local originalBranch=$(git rev-parse --abbrev-ref HEAD)
+	local originalBranch=$(git rev-parse --abbrev-ref HEAD)
 
-    git branch -q -m $1
+	git branch -q -m $1
 
-    $MB printInfoMessage "Renamed branch from $originalBranch to $1"
+	$MB printInfoMessage "Renamed branch from $originalBranch to $1"
 
-    cd $baseDir
+	cd $baseDir
 }
 
 reset(){
@@ -249,9 +249,9 @@ switch(){
   cd $buildDir
 
   if [[ $# == 0 ]]; then
-      b=master
+	 b=master
   else
-      b=$1
+	 b=$1
   fi
 
   git checkout -q $b
@@ -262,19 +262,19 @@ switch(){
 }
 
 tunnel(){
-    cd $buildDir
+	cd $buildDir
 
-    local tunnelCommand=""
-    while [[ true ]]; do
-        echo -n "Enter git command to run (begin with git): "
-        read tunnelCommand
+	local tunnelCommand=""
+	while [[ true ]]; do
+		echo -n "Enter git command to run (begin with git): "
+		read tunnelCommand
 
-        $tunnelCommand
-        echo
-        echo
-    done
+		$tunnelCommand
+		echo
+		echo
+	done
 
-    cd $baseDir
+	cd $baseDir
 }
 
 clear
@@ -286,9 +286,9 @@ bundleDir=$(BaseVars returnBundleDir $@)
 if [[ $# == 0 ]]; then
   HelpMessage branchHelpMessage
 else
-    if [[ $1 == ${branch} ]]; then
-        shift
-    fi
+	if [[ $1 == ${branch} ]]; then
+		shift
+	fi
 
-    $@
+	$@
 fi

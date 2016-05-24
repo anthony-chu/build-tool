@@ -4,9 +4,9 @@
 
 - [About](#about)
 - [Using the tool](#using-the-tool)
-    - [build.sh](#buildsh)
-    - [branch.sh](#branchsh)
-    - [test.sh](#testsh)
+	- [build.sh](#buildsh)
+	- [branch.sh](#branchsh)
+	- [test.sh](#testsh)
 - [Help!](#help)
 
 
@@ -18,16 +18,16 @@ Each script may function in one of two ways.
 
 - The argument provided to the script is the command executed.  
 Example:  
-    ```
-    $ ./branch.sh list
-    ```
+	```
+	$ ./branch.sh list
+	```
 In this case, _list_ is the command executed.
 
 - The argument provided to the command provides more information for the command to execute.  
 Example:  
-    ```
-    $ ./build.sh build tomcat
-    ```
+	```
+	$ ./build.sh build tomcat
+	```
 In this case, the command executed is _build_, and the option (the app server, in this case) is _tomcat_.
 
 ### build.sh
@@ -65,5 +65,5 @@ This script will perform the following actions:
 #### A list of available commands for each script can be obtained by calling the script without providing any commands to be executed:  
 Example:  
 
-        $ ./build.sh  
+		$ ./build.sh  
 This will bring up the list of commands available for use in the _build.sh_ script.
