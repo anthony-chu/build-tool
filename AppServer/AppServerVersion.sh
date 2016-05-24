@@ -1,46 +1,48 @@
+source AppServer/AppServerConstants.sh
+
 AppServerVersion(){
     _glassfishVersion(){
-        echo "3.1.2.2"
+        AppServerConstants glassfishVersion
     }
 
     _jettyVersion(){
-        echo "8.1.10"
+        AppServerConstants jettyVersion
     }
 
     _jbossVersion(){
-        echo "eap-6.4.0"
+        AppServerConstants jbossVersion
     }
 
     _jonasVersion(){
-        echo "5.2.3"
+        AppServerConstants jonasVersion
     }
 
     _resinVersion(){
-        echo "4.0.44"
+        AppServerConstants resinVersion
     }
 
     _tcatVersion(){
-        echo "7.0.2"
+        AppServerConstants tcatVersion
     }
 
     _tcserverVersion(){
-        echo "2.9.11"
+        AppServerConstants tcserverVersion
     }
 
     _tomcatVersion(){
-        echo "8.0.32"
+        AppServerConstants tomcatVersion
     }
 
     _weblogicVersion(){
-        echo "12.1.3"
+        AppServerConstants weblogicVersion
     }
 
     _websphereVersion(){
-        echo "8.5.5.0"
+        AppServerConstants websphereVersion
     }
 
     _wildflyVersion(){
-        echo "10.0.0"
+        AppServerConstants wildflyVersion
     }
 
     returnAppServerVersion(){
