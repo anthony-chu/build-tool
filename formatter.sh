@@ -3,6 +3,10 @@ Formatter(){
 		sed -i "s/	/\t/g" $1
 	}
 
+	formatVars(){
+		sed -i "s/\$\([a-zA-Z]\+\)/\${\1\}/g" $1
+	}
+
 	removeSpacesAfterTab(){
 		sed -i "s/\t /\t/g" $1
 	}
@@ -20,6 +24,7 @@ includedFiles=(${allFiles[@]/*$curFile/})
 
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
 	Formatter convertSpacesToTab ${includedFiles[i]}
+	Formatter formatVars ${includedFiles[i]}
 	Formatter removeSpacesAfterTab ${includedFiles[i]}
 	Formatter trimTrailingSpaces ${includedFiles[i]}
 done
