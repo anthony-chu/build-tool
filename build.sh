@@ -172,17 +172,6 @@ _rebuild_db(){
 }
 
 build(){
-	_build(){
-		ant all > $1 | tail -f $1
-	}
-
-	_end(){
-		if [[ $(cat $logFile) =~ seconds ]] || [[ $(cat $logFile) =~ second ]]; then
-			$MB printInfoMessage "Build complete. Please see the build log for details"
-			cd $baseDir
-		fi
-	}
-
 	local appServer=$($ASValidator returnAppServer $@)
 
 	_build_log $appServer
@@ -202,7 +191,8 @@ build(){
 	_config appServer ${appServer}
 
 	$MB printInfoMessage "Building portal.."
-	_build $logFile & _end
+	ant all >> ${logFile} | tail -f --pid=$$ $logFile
+	$MB printDone
 }
 
 clean(){
