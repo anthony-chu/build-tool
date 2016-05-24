@@ -1,22 +1,20 @@
 Formatter(){
-	curFile=${0/.\//}
-	allFiles=($(find * -type f))
-	includedFiles=(${allFiles[@]/*$curFile/})
-
 	formatTabs(){
-		for (( i=0; i<${#includedFiles[@]}; i++ )); do
-			sed -i "s/	/\t/g" ${includedFiles[i]}
-		done
+		sed -i "s/	/\t/g" $1
 	}
 
 	formatSpaceAfterTab(){
-		for (( i=0; i<${#includedFiles[@]}; i++ )); do
-			sed -i "s/\t /\t/g" ${includedFiles[i]}
-		done
+		sed -i "s/\t /\t/g" $1
 	}
 
 	$@
 }
 
-Formatter formatTabs
-Formatter formatSpaceAfterTab
+curFile=${0/.\//}
+allFiles=($(find * -type f))
+includedFiles=(${allFiles[@]/*$curFile/})
+
+for (( i=0; i<${#includedFiles[@]}; i++ )); do
+	Formatter formatTabs ${includedFiles[i]}
+	Formatter formatSpaceAfterTab ${includedFiles[i]}
+done
