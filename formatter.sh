@@ -7,6 +7,10 @@ Formatter(){
 		sed -i "s/\t /\t/g" $1
 	}
 
+	formatTrailingSpaces(){
+		sed -i "s/} \+$/}/g" $1
+	}
+
 	$@
 }
 
