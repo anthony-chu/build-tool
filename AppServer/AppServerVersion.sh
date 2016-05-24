@@ -2,7 +2,7 @@ source AppServer/AppServerConstants.sh
 
 AppServerVersion(){
 
-    returnAppServerVersion(){
+	returnAppServerVersion(){
 		local appServer=$1
 
 		AppServerConstants ${appServer}Version

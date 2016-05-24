@@ -249,9 +249,9 @@ switch(){
   cd $buildDir
 
   if [[ $# == 0 ]]; then
-	 b=master
+	b=master
   else
-	 b=$1
+	b=$1
   fi
 
   git checkout -q $b
