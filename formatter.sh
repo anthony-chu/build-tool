@@ -1,13 +1,13 @@
 Formatter(){
-	formatTabs(){
+	convertSpacesToTab(){
 		sed -i "s/	/\t/g" $1
 	}
 
-	formatSpaceAfterTab(){
+	removeSpacesAfterTab(){
 		sed -i "s/\t /\t/g" $1
 	}
 
-	formatTrailingSpaces(){
+	trimTrailingSpaces(){
 		sed -i "s/} \+$/}/g" $1
 	}
 
@@ -19,7 +19,7 @@ allFiles=($(find * -type f))
 includedFiles=(${allFiles[@]/*$curFile/})
 
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
-	Formatter formatTabs ${includedFiles[i]}
-	Formatter formatSpaceAfterTab ${includedFiles[i]}
-	Formatter formatTrailingSpaces ${includedFiles[i]}
+	Formatter convertSpacesToTab ${includedFiles[i]}
+	Formatter removeSpacesAfterTab ${includedFiles[i]}
+	Formatter trimTrailingSpaces ${includedFiles[i]}
 done
