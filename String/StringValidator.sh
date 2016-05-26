@@ -23,7 +23,7 @@ StringValidator(){
 		local str1=$1
 		local str2=$2
 
-		if [[ ${str}1 == ${str}2 ]]; then
+		if [[ ${str1} == ${str2} ]]; then
 			echo true
 		else
 			echo false
