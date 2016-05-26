@@ -12,7 +12,10 @@ HelpMessage(){
 		echo "Commands:"
 		for (( i=0; i<${everythingSize}/2; i++ )); do
 			funcListEntry=${funcList[i]}
-			helpListEntry=$(StringUtil replace ${helpList[i]} "-" space)
+
+			helpMessage=$(StringUtil capitalize ${helpList[i]})
+
+			helpListEntry=$(StringUtil replace ${helpMessage} "-" space)
 
 			echo "	${funcListEntry}................${helpListEntry}"
 		done
