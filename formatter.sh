@@ -24,8 +24,7 @@ includedFiles=(${allFiles[@]/*$curFile/})
 availableMethods=(convertSpacesToTab formatVars removeSpacesAfterTab trimTrailingSpaces)
 
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
-	Formatter convertSpacesToTab ${includedFiles[i]}
-	Formatter formatVars ${includedFiles[i]}
-	Formatter removeSpacesAfterTab ${includedFiles[i]}
-	Formatter trimTrailingSpaces ${includedFiles[i]}
+	for (( j=0; j<${#availableMethods[@]}; j++ )); do
+		Formatter ${availableMethods[j]} ${includedFiles[i]}
+	done
 done
