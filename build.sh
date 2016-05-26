@@ -8,12 +8,20 @@ source Message/MessageBuilder.sh
 source String/StringUtil.sh
 source String/StringValidator.sh
 
-ASValidator=AppServerValidator
-ASVersion=AppServerVersion
-MB=MessageBuilder
+ASValidator(){
+	AppServerValidator $@
+}
+
+ASVersion(){
+	AppServerVersion $@
+}
+
+MB(){
+	MessageBuilder $@
+}
 
 _build_log(){
-	local appServer=$(${ASValidator} returnAppServer ${1})
+	local appServer=$(ASValidator returnAppServer ${1})
 
 	local clock=$(BaseUtil timestamp clock)
 	local date=$(BaseUtil timestamp date)
@@ -34,7 +42,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	${MB} printInfoMessage "Deleting all content in the bundles directory.."
+	MB printInfoMessage "Deleting all content in the bundles directory.."
 	cd ${bundleDir}
 	rm -rf deploy osgi data logs
 
@@ -42,33 +50,33 @@ _clean_hard(){
 		rm -rf ${appServer}*
 	fi
 
-	${MB} printDone
+	MB printDone
 	cd ${baseDir}
 }
 
 _clean_bundle(){
-	local appServer=$(${ASValidator} returnAppServer $@)
+	local appServer=$(ASValidator returnAppServer $@)
 
 	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
-		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
+		appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 	fi
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	${MB} printInfoMessage "Deleting liferay home folders.."
+	MB printInfoMessage "Deleting liferay home folders.."
 	cd ${bundleDir}
 	rm -rf data logs
-	${MB} printDone
+	MB printDone
 	echo
 
 	cd ${baseDir}
 
-	${MB} printInfoMessage "Deleting temp files.."
+	MB printInfoMessage "Deleting temp files.."
 	cd ${appServerDir}
 	rm -rf temp work
-	${MB} printDone
+	MB printDone
 	echo
 
 	cd ${baseDir}
@@ -89,10 +97,10 @@ _config(){
 	local replace="BaseFileIOUtil replace"
 
 	source(){
-		${MB} printInfoMessage "Building properties.."
+		MB printInfoMessage "Building properties.."
 
-		local appServer=$(${ASValidator} returnAppServer $@)
-		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
+		local appServer=$(ASValidator returnAppServer $@)
+		local appServerDir=${bundleDir}/${appServer}-$(ASVersion
 			returnAppServerVersion ${appServer})
 
 		cd ${buildDir}/../properties
@@ -118,23 +126,23 @@ _config(){
 			echo -e "\napp.server.${appServer}.version=${asv}" >> app.server.anthonychu.properties
 		fi
 
-		${MB} printDone
+		MB printDone
 	}
 
 	appServer(){
-		local appServer=$(${ASValidator} returnAppServer $@)
+		local appServer=$(ASValidator returnAppServer $@)
 
 		if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 			appServerVersion=7.0.62
 		else
-			appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
+			appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 		fi
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 		local d=[[:digit:]]
 
-		${MB} printInfoMessage "Increasing memory limit.."
+		MB printInfoMessage "Increasing memory limit.."
 		if [[ ${appServer} == tomcat ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
 			${replace} ${appServerDir}/bin/setenv.sh MaxPermSize=${d}${d}${d}m MaxPermSize=1024m
@@ -142,12 +150,12 @@ _config(){
 			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
 			${replace} ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
 		fi
-		${MB} printDone
+		MB printDone
 
 		if [[ ${branch} == ee-6.2.x ]]; then
-			${MB} printInfoMessage "Changing port for ee-6.2.x.."
+			MB printInfoMessage "Changing port for ee-6.2.x.."
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
-			${MB} printDone
+			MB printDone
 		fi
 	}
 
@@ -163,16 +171,16 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal${branch//[-.]/""}
 
-	${MB} printInfoMessage "Rebuilding database.."
+	MB printInfoMessage "Rebuilding database.."
 	mysql -e "drop database if exists ${database};
 		create database ${database} char set utf8;"
-	${MB} printDone
+	MB printDone
 	echo
 	cd ${baseDir}
 }
 
 build(){
-	local appServer=$(${ASValidator} returnAppServer $@)
+	local appServer=$(ASValidator returnAppServer $@)
 
 	_build_log ${appServer}
 
@@ -184,15 +192,15 @@ build(){
 
 	_config source ${appServer}
 
-	${MB} printInfoMessage "Unzipping ${appServer}.."
+	MB printInfoMessage "Unzipping ${appServer}.."
 	ant -f build-dist.xml unzip-${appServer}
-	${MB} printDone
+	MB printDone
 
 	_config appServer ${appServer}
 
-	${MB} printInfoMessage "Building portal.."
+	MB printInfoMessage "Building portal.."
 	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
-	${MB} printDone
+	MB printDone
 }
 
 clean(){
@@ -217,9 +225,9 @@ pull(){
 
 	cd ${buildDir}
 
-	${MB} printInfoMessage "Pulling changes from upstream.."
+	MB printInfoMessage "Pulling changes from upstream.."
 	git pull upstream ${branch}
-	${MB} printDone
+	MB printDone
 	cd ${baseDir}
 }
 
@@ -227,7 +235,7 @@ push(){
 	cd ${buildDir}
 	local curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-	${MB} printInfoMessage "Pushing changes to origin branch ${curBranch}.."
+	MB printInfoMessage "Pushing changes to origin branch ${curBranch}.."
 
 	git push -f origin ${curBranch}
 
@@ -235,16 +243,16 @@ push(){
 }
 
 run(){
-	local appServer=$(${ASValidator} returnAppServer $@)
+	local appServer=$(ASValidator returnAppServer $@)
 
-	${MB} printInfoMessage "Starting server.."
+	MB printInfoMessage "Starting server.."
 	sleep 5s
 	clear
 
 	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 		appServerVersion=7.0.62
 	else
-		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
+		appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 	fi
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
@@ -252,16 +260,16 @@ run(){
 	#
 	# trap shutdown SIGINT
 
-	if [[ $(${ASValidator} isJboss ${appServer}) == true ]]; then
+	if [[ $(ASValidator isJboss ${appServer}) == true ]]; then
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(${ASValidator} isTomcat ${appServer}) == true ]]; then
+	elif [[ $(ASValidator isTomcat ${appServer}) == true ]]; then
 		${appServerDir}/bin/catalina.sh run
-	elif [[ $(${ASValidator} isTCServer ${appServer}) == true ]]; then
+	elif [[ $(ASValidator isTCServer ${appServer}) == true ]]; then
 		${appServerDir}/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
-	elif [[ $(${ASValidator} isWildfly ${appServer}) == true ]]; then
+	elif [[ $(ASValidator isWildfly ${appServer}) == true ]]; then
 		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(${ASValidator} isWeblogic ${appServer}) == true ]]; then
+	elif [[ $(ASValidator isWeblogic ${appServer}) == true ]]; then
 		${appServerDir}/domains/liferay/bin/startWebLogic.sh
 	fi
 }
@@ -271,7 +279,7 @@ shutdown(){
 	local appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	${MB} printInfoMessage "Shutting down server.."
+	MB printInfoMessage "Shutting down server.."
 
 	if [[ ${appServer} == tomcat ]]; then
 		${appServerDir}/bin/catalina.sh stop

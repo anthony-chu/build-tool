@@ -5,18 +5,20 @@ source Help/HelpMessage.sh
 source Message/MessageBuilder.sh
 source String/StringUtil.sh
 
-MB=MessageBuilder
+MB(){
+	MessageBuilder
+}
 
 mockmock(){
 	cd ${buildDir}
 
-	${MB} printInfoMessage "Building MockMock jar.."
+	MB printInfoMessage "Building MockMock jar.."
 
 	ant -f build-test.xml start-test-smtp-server
 
 	clear
 
-	${MB} printInfoMessage "Starting MockMock SMTP server.."
+	MB printInfoMessage "Starting MockMock SMTP server.."
 
 	sleep 5s
 
@@ -29,9 +31,9 @@ mockmock(){
 
 pr(){
 	if (( $# == 0 )); then
-		${MB} printErrorMessage "Missing reviewer"
+		MB printErrorMessage "Missing reviewer"
 	else
-		${MB} printInfoMessage "Submitting pull request.."
+		MB printInfoMessage "Submitting pull request.."
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -72,7 +74,7 @@ pr(){
 		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
 		cd ${baseDir}
 
-		${MB} printDone
+		MB printDone
 	fi
 }
 
@@ -87,11 +89,11 @@ sf(){
 		ant setup-sdk
 	fi
 
-	${MB} printInfoMessage "Running source formatter.."
+	MB printInfoMessage "Running source formatter.."
 	echo
 	cd ${implDir}
 	ant format-source-local-changes
-	${MB} printDone
+	MB printDone
 	echo
 	cd ${baseDir}
 }
@@ -118,11 +120,11 @@ test(){
 	done
 
 	if (( !"$#" )); then
-		${MB} printErrorMessage "Missing test name"
+		MB printErrorMessage "Missing test name"
 	else
 		test=${1}
 		shift
-		${MB} printInfoMessage "Running test ${test}.."
+		MB printInfoMessage "Running test ${test}.."
 		echo
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
@@ -131,7 +133,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		${MB} printInfoMessage "Moving test results.."
+		MB printInfoMessage "Moving test results.."
 		echo
 
 		cd ${resultDir}

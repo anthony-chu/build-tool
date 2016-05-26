@@ -6,7 +6,9 @@ source Help/HelpMessage.sh
 source Message/MessageBuilder.sh
 source String/StringValidator.sh
 
-MB=MessageBuilder
+MB(){
+	MessageBuilder $@
+}
 
 _hardReset(){
 	cd ${buildDir}
@@ -41,7 +43,7 @@ current(){
 
   name=$(git rev-parse --abbrev-ref HEAD)
 
-  ${MB} printInfoMessage "Current ${branch} branch: ${name}"
+  MB printInfoMessage "Current ${branch} branch: ${name}"
 
   cd ${baseDir}
 }
@@ -50,10 +52,10 @@ delete(){
 	cd ${buildDir}
 
 	if [[ ${1} == $(git rev-parse --abbrev-ref HEAD) ]]; then
-		${MB} printErrorMessage "Cannot delete the current branch"
+		MB printErrorMessage "Cannot delete the current branch"
 	else
 		git branch -q -D ${1}
-		${MB} printInfoMessage "Deleted local branch: ${1}"
+		MB printInfoMessage "Deleted local branch: ${1}"
 	fi
 
 	cd ${baseDir}
@@ -144,7 +146,7 @@ new(){
 
 rebase(){
 	abort(){
-		${MB} printInfoMessage "Terminating previous rebase process.."
+		MB printInfoMessage "Terminating previous rebase process.."
 
 		cd ${buildDir}
 
@@ -152,11 +154,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		MB printDone
 	}
 
 	amend(){
-		${MB} printInfoMessage "Amending the previous commit.."
+		MB printInfoMessage "Amending the previous commit.."
 
 		cd ${buildDir}
 
@@ -164,11 +166,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		MB printDone
 	}
 
 	cont(){
-		${MB} printInfoMessage "Continuing the current rebase process.."
+		MB printInfoMessage "Continuing the current rebase process.."
 
 		cd ${buildDir}
 
@@ -176,11 +178,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		MB printDone
 	}
 
 	default(){
-		${MB} printInfoMessage "Rebasing current branch to HEAD.."
+		MB printInfoMessage "Rebasing current branch to HEAD.."
 
 		cd ${buildDir}
 
@@ -188,7 +190,7 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		MB printDone
 	}
 
 	start(){
@@ -200,7 +202,7 @@ rebase(){
 			isPlural=""
 		fi
 
-		${MB} printInfoMessage "Rebasing the last ${value} commit${isPlural}.."
+		MB printInfoMessage "Rebasing the last ${value} commit${isPlural}.."
 
 		cd ${buildDir}
 
@@ -208,11 +210,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		MB printDone
 	}
 
 	if [[ $(StringValidator isNull ${1}) == true ]]; then
-		${MB} printErrorMessage "Please provide a valid rebase option"
+		MB printErrorMessage "Please provide a valid rebase option"
 		exit
 	fi
 
@@ -232,7 +234,7 @@ rename(){
 
 	git branch -q -m ${1}
 
-	${MB} printInfoMessage "Renamed branch from ${originalBranch} to ${1}"
+	MB printInfoMessage "Renamed branch from ${originalBranch} to ${1}"
 
 	cd ${baseDir}
 }
