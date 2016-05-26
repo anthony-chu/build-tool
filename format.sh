@@ -27,8 +27,8 @@ excludedFiles=(${curFile} md)
 includedFiles=()
 
 for (( i=0; i<${#allFiles[@]}; i++ )); do
-	for (( j=0; j<${#excludedFiles[j]}; j++ )); do
-		if [[ ${allFiles[i]} == *${excludedFiles}* ]]; then
+	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
+		if [[ ${allFiles[i]} == *${excludedFiles[j]}* ]]; then
 			continue
 		else
 			includedFiles+=(${allFiles[i]})
