@@ -21,6 +21,7 @@ Formatter(){
 curFile=${0/.\//}
 allFiles=($(find * -type f))
 includedFiles=(${allFiles[@]/*$curFile/})
+availableMethods=(convertSpacesToTab formatVars removeSpacesAfterTab trimTrailingSpaces)
 
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
 	Formatter convertSpacesToTab ${includedFiles[i]}
