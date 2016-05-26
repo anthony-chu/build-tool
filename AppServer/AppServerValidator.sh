@@ -99,7 +99,7 @@ AppServerValidator(){
 			if [[ $(validateAppServer ${appServer}) == true ]]; then
 				echo ${appServer}
 			else
-				echo
+				echo null
 				exit
 			fi
 		fi
