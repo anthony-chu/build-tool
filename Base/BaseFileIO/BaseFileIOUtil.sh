@@ -1,6 +1,6 @@
 BaseFileIOUtil(){
 	append(){
-		local toFile=$1
+		local toFile=${1}
 		shift
 		local string=$@
 
@@ -8,9 +8,9 @@ BaseFileIOUtil(){
 	}
 
 	replace(){
-		local toFile=$1
-		local oldStr=$2
-		local newStr=$3
+		local toFile=${1}
+		local oldStr=${2}
+		local newStr=${3}
 
 		sed -i "s/${oldStr}/${newStr}/g" ${toFile}
 	}

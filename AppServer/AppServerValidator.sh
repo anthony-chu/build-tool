@@ -2,7 +2,7 @@ source String/StringValidator.sh
 
 AppServerValidator(){
 	local SV="StringValidator"
-	local appServer=$2
+	local appServer=${2}
 
 	isGlassfish(){
 		if [[ $(${SV} isEqual ${appServer} glassfish) == true ]]; then
@@ -121,7 +121,7 @@ AppServerValidator(){
 		)
 
 		for (( i=0; i<${#validAppServer[@]}; i++ )); do
-			local isValidAppServer=$(${SV} isEqual ${validAppServer[i]} $1)
+			local isValidAppServer=$(${SV} isEqual ${validAppServer[i]} ${1})
 
 			if [[ ${isValidAppServer} == true ]]; then
 				break

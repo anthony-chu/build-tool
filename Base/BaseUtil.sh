@@ -6,10 +6,10 @@ BaseUtil(){
 	}
 
 	timestamp(){
-		if [[ $1 == clock ]]; then
+		if [[ ${1} == clock ]]; then
 			local t=$(date +%T%s)
 			echo ${t//[:]/}
-		elif [[ $1 == date ]]; then
+		elif [[ ${1} == date ]]; then
 			date +%Y%m%d
 		else
 			date +%H:%M:$(($(date +%s)/10000000))

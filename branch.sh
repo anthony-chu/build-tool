@@ -49,11 +49,11 @@ current(){
 delete(){
 	cd ${buildDir}
 
-	if [[ $1 == $(git rev-parse --abbrev-ref HEAD) ]]; then
+	if [[ ${1} == $(git rev-parse --abbrev-ref HEAD) ]]; then
 		${MB} printErrorMessage "Cannot delete the current branch"
 	else
-		git branch -q -D $1
-		${MB} printInfoMessage "Deleted local branch: $1"
+		git branch -q -D ${1}
+		${MB} printInfoMessage "Deleted local branch: ${1}"
 	fi
 
 	cd ${baseDir}
@@ -62,8 +62,8 @@ delete(){
 dev(){
 	cd ${buildDir}
 
-	local dev=$1
-	local branch=$2
+	local dev=${1}
+	local branch=${2}
 
 	git pull git@github.com:${dev}/liferay-portal.git ${branch}
 
@@ -96,19 +96,19 @@ jira(){
 	}
 
 	_env(){
-		local appServer=$(AppServerValidator returnAppServer $1)
+		local appServer=$(AppServerValidator returnAppServer ${1})
 		local appServerVersion=$(AppServerVersion
 			returnAppServerVersion ${appServer})
 
 		echo ${appServer^} ${appServerVersion} + MySQL 5.7
 	}
 
-	case $1 in
-		fixed|nlr|repro) $1;;
+	case ${1} in
+		fixed|nlr|repro) ${1};;
 		*) echo "" ;;
 	esac
 
-	echo $(_env $2)
+	echo $(_env ${2})
 	echo ${gitinfo}
 }
 
@@ -126,7 +126,7 @@ log(){
 	if [[ $# == 0 ]]; then
 		git log -1 --oneline
 	else
-		git log -$1 --oneline
+		git log -${1} --oneline
 	fi
 
 	cd ${baseDir}
@@ -135,7 +135,7 @@ log(){
 new(){
   cd ${buildDir}
 
-  git checkout -q -b $1
+  git checkout -q -b ${1}
 
   current
 
@@ -192,7 +192,7 @@ rebase(){
 	}
 
 	start(){
-		local value=$(StringUtil returnOption $1)
+		local value=$(StringUtil returnOption ${1})
 
 		if [[ ${value} > 1 ]]; then
 			isPlural=s
@@ -211,13 +211,13 @@ rebase(){
 		${MB} printDone
 	}
 
-	if [[ $(StringValidator isNull $1) == true ]]; then
+	if [[ $(StringValidator isNull ${1}) == true ]]; then
 		${MB} printErrorMessage "Please provide a valid rebase option"
 		exit
 	fi
 
-	case $(StringUtil returnOption $1) in
-		[0-9]*) start $1;;
+	case $(StringUtil returnOption ${1}) in
+		[0-9]*) start ${1};;
 		q) abort;;
 		c) cont;;
 		a) amend;;
@@ -230,9 +230,9 @@ rename(){
 
 	local originalBranch=$(git rev-parse --abbrev-ref HEAD)
 
-	git branch -q -m $1
+	git branch -q -m ${1}
 
-	${MB} printInfoMessage "Renamed branch from ${originalBranch} to $1"
+	${MB} printInfoMessage "Renamed branch from ${originalBranch} to ${1}"
 
 	cd ${baseDir}
 }
@@ -240,7 +240,7 @@ rename(){
 reset(){
   cd ${buildDir}
 
-  git reset --hard $1
+  git reset --hard ${1}
 
   cd ${baseDir}
 }
@@ -251,7 +251,7 @@ switch(){
   if [[ $# == 0 ]]; then
 	b=master
   else
-	b=$1
+	b=${1}
   fi
 
   git checkout -q ${b}
@@ -286,7 +286,7 @@ bundleDir=$(BaseVars returnBundleDir $@)
 if [[ $# == 0 ]]; then
   HelpMessage branchHelpMessage
 else
-	if [[ $1 == ${branch} ]]; then
+	if [[ ${1} == ${branch} ]]; then
 		shift
 	fi
 

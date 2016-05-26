@@ -1,6 +1,6 @@
 StringValidator(){
 	isAlpha(){
-		local str=$1
+		local str=${1}
 
 		if [[ ${str} =~ [a-zA-Z\ ] ]]; then
 			echo true
@@ -10,7 +10,7 @@ StringValidator(){
 	}
 
 	isAlphaNum(){
-		local str=$1
+		local str=${1}
 
 		if [[ ${str} =~ [a-zA-Z0-9\ ] ]]; then
 			echo true
@@ -20,8 +20,8 @@ StringValidator(){
 	}
 
 	isEqual(){
-		local str1=$1
-		local str2=$2
+		local str1=${1}
+		local str2=${2}
 
 		if [[ ${str1} == ${str2} ]]; then
 			echo true
@@ -39,7 +39,7 @@ StringValidator(){
 	}
 
 	isNum(){
-		local str=$1
+		local str=${1}
 
 		if [[ ${str} =~ [0-9] ]]; then
 			echo true

@@ -52,10 +52,10 @@ pr(){
 
 		if [[ $# == 1 ]]; then
 			branch=${branch}
-			user=$1
+			user=${1}
 		else
-			branch=$1
-			user=$2
+			branch=${1}
+			user=${2}
 		fi
 
 		detailText=("${branch}" "${user}" "${comment}" "${title}")
@@ -120,7 +120,7 @@ test(){
 	if (( !"$#" )); then
 		${MB} printErrorMessage "Missing test name"
 	else
-		test=$1
+		test=${1}
 		shift
 		${MB} printInfoMessage "Running test ${test}.."
 		echo

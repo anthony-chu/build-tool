@@ -13,7 +13,7 @@ ASVersion=AppServerVersion
 MB=MessageBuilder
 
 _build_log(){
-	local appServer=$(${ASValidator} returnAppServer $1)
+	local appServer=$(${ASValidator} returnAppServer ${1})
 
 	local clock=$(BaseUtil timestamp clock)
 	local date=$(BaseUtil timestamp date)
@@ -267,7 +267,7 @@ run(){
 }
 
 shutdown(){
-	local appServer=$(AppServerValidator returnAppServer $1)
+	local appServer=$(AppServerValidator returnAppServer ${1})
 	local appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
@@ -288,11 +288,11 @@ if [[ $# == 0 ]]; then
   HelpMessage buildHelpMessage
 else
 	until [[ $# == 0 ]]; do
-		if [[ $1 == ${branch} ]]; then
+		if [[ ${1} == ${branch} ]]; then
 			shift
 		fi
 
-		$1 ${@:2}
+		${1} ${@:2}
 		shift
 	done
 fi
