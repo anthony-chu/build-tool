@@ -23,7 +23,18 @@ Formatter(){
 allFiles=($(find * -type f))
 availableMethods=(convertSpacesToTab formatVars removeSpacesAfterTab trimTrailingSpaces)
 curFile=${0/.\//}
-includedFiles=(${allFiles[@]/*$curFile/})
+excludedFiles=(${curFile} md)
+includedFiles=()
+
+for (( i=0; i<${#allFiles[@]}; i++ )); do
+	for (( j=0; j<${#excludedFiles[j]}; j++ )); do
+		if [[ ${allFiles[i]} == *${excludedFiles}* ]]; then
+			continue
+		else
+			includedFiles+=(${allFiles[i]})
+		fi
+	done
+done
 
 MB(){
 	MessageBuilder $@
