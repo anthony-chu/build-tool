@@ -18,10 +18,10 @@ Formatter(){
 	$@
 }
 
-curFile=${0/.\//}
 allFiles=($(find * -type f))
-includedFiles=(${allFiles[@]/*$curFile/})
 availableMethods=(convertSpacesToTab formatVars removeSpacesAfterTab trimTrailingSpaces)
+curFile=${0/.\//}
+includedFiles=(${allFiles[@]/*$curFile/})
 
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
 	for (( j=0; j<${#availableMethods[@]}; j++ )); do
