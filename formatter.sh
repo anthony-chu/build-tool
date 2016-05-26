@@ -4,7 +4,7 @@ Formatter(){
 	}
 
 	formatVars(){
-		sed -i "s/\$\([a-zA-Z0-9]\+\)/\${\1\}/g" $1
+		sed -i "s/\$\([a-zA-Z0-9_-]\+\)/\${\1\}/g" $1
 	}
 
 	removeSpacesAfterTab(){
