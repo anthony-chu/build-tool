@@ -1,6 +1,12 @@
 source String/StringValidator.sh
 
 StringUtil(){
+	capitalize(){
+		local str=${1}
+
+		echo ${str^}
+	}
+
 	replace(){
 		local str=${1}
 		local orig=${2}
@@ -20,6 +26,18 @@ StringUtil(){
 		if [[ ${isValidOpt} == true ]]; then
 			echo ${opt/-/ }
 		fi
+	}
+
+	toLowercase(){
+		str=${1}
+
+		echo ${str,,}
+	}
+
+	toUpperCase(){
+		str=${1}
+
+		echo ${str^^}
 	}
 
 	$@
