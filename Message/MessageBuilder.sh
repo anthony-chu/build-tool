@@ -1,22 +1,20 @@
 source Message/MessageBuilderUtil.sh
 
 MessageBuilder(){
+	local MBUtil(){
+		MessageBuilderUtil $@
+	}
+
 	printDone(){
 		printInfoMessage DONE
 	}
 
 	printErrorMessage(){
-		local logLevel=error
-		local message=$@
-
-		_buildMessage ${message}
+		MBUtil buildMessage error $1
 	}
 
 	printInfoMessage(){
-		local logLevel=info
-		local message=$@
-
-		_buildMessage ${message}
+		MBUtil buildMessage info $1
 	}
 
 	$@
