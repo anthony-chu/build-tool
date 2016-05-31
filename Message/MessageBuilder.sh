@@ -6,7 +6,7 @@ MessageBuilder(){
 	}
 
 	printDone(){
-		printInfoMessage DONE
+		printInfoMessage Done.
 	}
 
 	printErrorMessage(){
