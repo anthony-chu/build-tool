@@ -31,7 +31,12 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 		if [[ "${includedFiles[@]}" == *${allFiles[i]}* ]]; then
 			continue
 		else
-			includedFiles+=(${allFiles[i]})
+			if [[ ${allFiles[i]} =~ ${excludedFiles[j]} ]]; then
+				isExcluded=true
+				break
+			else
+				isExcluded=false
+			fi
 		fi
 	done
 done
