@@ -10,11 +10,11 @@ MessageBuilder(){
 	}
 
 	printErrorMessage(){
-		MBUtil buildMessage error $1
+		MBUtil buildMessage error ${1}
 	}
 
 	printInfoMessage(){
-		MBUtil buildMessage info $1
+		MBUtil buildMessage info ${1}
 	}
 
 	$@
