@@ -42,7 +42,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	MB printInfoMessage "Deleting all content in the bundles directory.."
+	MB printInfoMessage deleting-all-content-in-the-bundles-directory
 	cd ${bundleDir}
 	rm -rf deploy osgi data logs
 
@@ -65,7 +65,7 @@ _clean_bundle(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	MB printInfoMessage "Deleting liferay home folders.."
+	MB printInfoMessage deleting-liferay-home-folders
 	cd ${bundleDir}
 	rm -rf data logs
 	MB printDone
@@ -73,7 +73,7 @@ _clean_bundle(){
 
 	cd ${baseDir}
 
-	MB printInfoMessage "Deleting temp files.."
+	MB printInfoMessage deleting-temp-files
 	cd ${appServerDir}
 	rm -rf temp work
 	MB printDone
@@ -97,7 +97,7 @@ _config(){
 	local replace="BaseFileIOUtil replace"
 
 	source(){
-		MB printInfoMessage "Building properties.."
+		MB printInfoMessage building-properties
 
 		local appServer=$(ASValidator returnAppServer $@)
 		local appServerDir=${bundleDir}/${appServer}-$(ASVersion
@@ -142,7 +142,7 @@ _config(){
 
 		local d=[[:digit:]]
 
-		MB printInfoMessage "Increasing memory limit.."
+		MB printInfoMessage increasing-memory-limit
 		if [[ ${appServer} == tomcat ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
 			${replace} ${appServerDir}/bin/setenv.sh MaxPermSize=${d}${d}${d}m MaxPermSize=1024m
@@ -153,7 +153,7 @@ _config(){
 		MB printDone
 
 		if [[ ${branch} == ee-6.2.x ]]; then
-			MB printInfoMessage "Changing port for ee-6.2.x.."
+			MB printInfoMessage changing-port-for-${branch}
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
 			MB printDone
 		fi
@@ -171,7 +171,7 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal${branch//[-.]/""}
 
-	MB printInfoMessage "Rebuilding database.."
+	MB printInfoMessage rebuilding-database
 	mysql -e "drop database if exists ${database};
 		create database ${database} char set utf8;"
 	MB printDone
@@ -192,13 +192,13 @@ build(){
 
 	_config source ${appServer}
 
-	MB printInfoMessage "Unzipping ${appServer}.."
+	MB printInfoMessage unzipping-${appServer}
 	ant -f build-dist.xml unzip-${appServer}
 	MB printDone
 
 	_config appServer ${appServer}
 
-	MB printInfoMessage "Building portal.."
+	MB printInfoMessage building-portal
 	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
 	MB printDone
 }
@@ -225,7 +225,7 @@ pull(){
 
 	cd ${buildDir}
 
-	MB printInfoMessage "Pulling changes from upstream.."
+	MB printInfoMessage pulling-changes-from-upstream
 	git pull upstream ${branch}
 	MB printDone
 	cd ${baseDir}
@@ -235,7 +235,7 @@ push(){
 	cd ${buildDir}
 	local curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-	MB printInfoMessage "Pushing changes to origin branch ${curBranch}.."
+	MB printInfoMessage pushing-changes-to-origin-branch-${curBranch}
 
 	git push -f origin ${curBranch}
 
@@ -245,7 +245,7 @@ push(){
 run(){
 	local appServer=$(ASValidator returnAppServer $@)
 
-	MB printInfoMessage "Starting server.."
+	MB printInfoMessage starting-server
 	sleep 5s
 	clear
 

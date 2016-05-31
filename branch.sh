@@ -43,7 +43,7 @@ current(){
 
   name=$(git rev-parse --abbrev-ref HEAD)
 
-  MB printInfoMessage "Current ${branch} branch: ${name}"
+  MB printInfoMessage current-${branch}-branch:-${name}
 
   cd ${baseDir}
 }
@@ -52,10 +52,10 @@ delete(){
 	cd ${buildDir}
 
 	if [[ ${1} == $(git rev-parse --abbrev-ref HEAD) ]]; then
-		MB printErrorMessage "Cannot delete the current branch"
+		MB printErrorMessage cannot-delete-the-current-branch
 	else
 		git branch -q -D ${1}
-		MB printInfoMessage "Deleted local branch: ${1}"
+		MB printInfoMessage deleted-local-branch:-${1}
 	fi
 
 	cd ${baseDir}
@@ -146,7 +146,7 @@ new(){
 
 rebase(){
 	abort(){
-		MB printInfoMessage "Terminating previous rebase process.."
+		MB printInfoMessage terminating-previous-rebase-process
 
 		cd ${buildDir}
 
@@ -158,7 +158,7 @@ rebase(){
 	}
 
 	amend(){
-		MB printInfoMessage "Amending the previous commit.."
+		MB printInfoMessage amending-the-previous-commit
 
 		cd ${buildDir}
 
@@ -170,7 +170,7 @@ rebase(){
 	}
 
 	cont(){
-		MB printInfoMessage "Continuing the current rebase process.."
+		MB printInfoMessage continuing-the-current-rebase-process
 
 		cd ${buildDir}
 
@@ -182,7 +182,7 @@ rebase(){
 	}
 
 	default(){
-		MB printInfoMessage "Rebasing current branch to HEAD.."
+		MB printInfoMessage rebasing-current-branch-to-head
 
 		cd ${buildDir}
 
@@ -202,7 +202,7 @@ rebase(){
 			isPlural=""
 		fi
 
-		MB printInfoMessage "Rebasing the last ${value} commit${isPlural}.."
+		MB printInfoMessage rebasing-the-last-${value}-commit${isPlural}
 
 		cd ${buildDir}
 
@@ -214,7 +214,7 @@ rebase(){
 	}
 
 	if [[ $(StringValidator isNull ${1}) == true ]]; then
-		MB printErrorMessage "Please provide a valid rebase option"
+		MB printErrorMessage please-provide-a-valid-rebase-option
 		exit
 	fi
 
@@ -234,7 +234,7 @@ rename(){
 
 	git branch -q -m ${1}
 
-	MB printInfoMessage "Renamed branch from ${originalBranch} to ${1}"
+	MB printInfoMessage renamed-branch-from-${originalBranch}-to-${1}
 
 	cd ${baseDir}
 }
