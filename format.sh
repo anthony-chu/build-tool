@@ -1,5 +1,3 @@
-source Message/MessageBuilder.sh
-
 Formatter(){
 	convertSpacesToTab(){
 		sed -i "s/    /\t/g" $1
@@ -36,16 +34,8 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 	done
 done
 
-MB(){
-	MessageBuilder $@
-}
-
-MB printInfoMessage "Formatting bash files.."
-
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
 	for (( j=0; j<${#availableMethods[@]}; j++ )); do
 		Formatter ${availableMethods[j]} ${includedFiles[i]}
 	done
 done
-
-MB printDone
