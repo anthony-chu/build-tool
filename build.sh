@@ -239,6 +239,8 @@ push(){
 
 	git push -f origin ${curBranch}
 
+	MB printDone
+
 	cd ${baseDir}
 }
 
