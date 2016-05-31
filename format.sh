@@ -39,6 +39,10 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 			fi
 		fi
 	done
+
+	if [[ ${isExcluded} == false ]]; then
+		includedFiles+=(${allFiles[i]})
+	fi
 done
 
 echo "[INFO] Done."
