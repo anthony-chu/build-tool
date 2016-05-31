@@ -28,7 +28,7 @@ echo "[INFO] Determining files to format..."
 
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
-		if [[ ${allFiles[i]} == *${excludedFiles[j]}* ]]; then
+		if [[ "${includedFiles[@]}" == *${allFiles[i]}* ]]; then
 			continue
 		else
 			includedFiles+=(${allFiles[i]})
