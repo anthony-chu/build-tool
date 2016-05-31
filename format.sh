@@ -20,7 +20,7 @@ Formatter(){
 
 allFiles=($(find * -type f))
 availableMethods=(convertSpacesToTab formatVars removeSpacesAfterTab trimTrailingSpaces)
-curFile=${0/.\//}
+curFile=${0/\.\//}
 excludedFiles=(${curFile} md)
 includedFiles=()
 
