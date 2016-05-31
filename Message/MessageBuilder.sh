@@ -1,7 +1,7 @@
 source Message/MessageBuilderUtil.sh
 
 MessageBuilder(){
-	local MBUtil(){
+	MBUtil(){
 		MessageBuilderUtil $@
 	}
 
