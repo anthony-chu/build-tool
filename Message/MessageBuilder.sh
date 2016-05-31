@@ -1,14 +1,6 @@
-source Base/BaseUtil.sh
+source Message/MessageBuilderUtil.sh
 
 MessageBuilder(){
-	local time=$(BaseUtil timestamp)
-
-	_buildMessage(){
-		local message=$@
-
-		echo "${time} [${logLevel^^}] ${message}."
-	}
-
 	printDone(){
 		printInfoMessage DONE
 	}
