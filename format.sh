@@ -24,6 +24,8 @@ curFile=${0/.\//}
 excludedFiles=(${curFile} md)
 includedFiles=()
 
+echo "[INFO] Determining files to format..."
+
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
 		if [[ ${allFiles[i]} == *${excludedFiles[j]}* ]]; then
@@ -34,8 +36,13 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 	done
 done
 
+echo "[INFO] Done."
+echo
+
+echo "[INFO] Applying formatting rules..."
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
 	for (( j=0; j<${#availableMethods[@]}; j++ )); do
 		Formatter ${availableMethods[j]} ${includedFiles[i]}
 	done
 done
+echo "[INFO] Done."
