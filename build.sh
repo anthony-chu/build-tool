@@ -288,6 +288,17 @@ shutdown(){
 	fi
 }
 
+zip(){
+	cd $bundleDir
+
+	appServer=$(ASValidator returnAppServer $@)
+	appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
+
+	jar -cMf liferay-portal-${branch}.zip data deploy logs ${appServer}-${appServerVersion} osgi tools work
+
+	cd $baseDir
+}
+
 clear
 baseDir=$(BaseVars returnBaseDir)
 branch=$(BaseVars returnBranch $@)
