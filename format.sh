@@ -1,3 +1,5 @@
+source Formatter/FormatterUtil.sh
+
 Formatter(){
 	convertSpacesToTab(){
 		sed -i "s/    /\t/g" $1
@@ -31,12 +33,7 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 		if [[ "${includedFiles[@]}" == *${allFiles[i]}* ]]; then
 			continue
 		else
-			if [[ ${allFiles[i]} =~ ${excludedFiles[j]} ]]; then
-				isExcluded=true
-				break
-			else
-				isExcluded=false
-			fi
+			excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles{j})
 		fi
 	done
 
