@@ -295,7 +295,11 @@ zip(){
 	shift
 	appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 
+	MB printInfoMessage zipping-up-${appServer}-bundle
+
 	jar -cMf liferay-portal-${branch}.zip data deploy logs ${appServer}-${appServerVersion} osgi tools work
+
+	MB printDone
 
 	cd $baseDir
 }
