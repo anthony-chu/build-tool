@@ -146,7 +146,7 @@ new(){
 
 rebase(){
 	abort(){
-		MB printInfoMessage terminating-previous-rebase-process
+		MB printProgressMessage terminating-previous-rebase-process
 
 		cd ${buildDir}
 
@@ -158,7 +158,7 @@ rebase(){
 	}
 
 	amend(){
-		MB printInfoMessage amending-the-previous-commit
+		MB printProgressMessage amending-the-previous-commit
 
 		cd ${buildDir}
 
@@ -170,7 +170,7 @@ rebase(){
 	}
 
 	cont(){
-		MB printInfoMessage continuing-the-current-rebase-process
+		MB printProgressMessage continuing-the-current-rebase-process
 
 		cd ${buildDir}
 
@@ -182,7 +182,7 @@ rebase(){
 	}
 
 	default(){
-		MB printInfoMessage rebasing-current-branch-to-head
+		MB printProgressMessage rebasing-current-branch-to-head
 
 		cd ${buildDir}
 
@@ -202,7 +202,7 @@ rebase(){
 			isPlural=""
 		fi
 
-		MB printInfoMessage rebasing-the-last-${value}-commit${isPlural}
+		MB printProgressMessage rebasing-the-last-${value}-commit${isPlural}
 
 		cd ${buildDir}
 

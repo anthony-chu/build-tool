@@ -42,7 +42,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	MB printInfoMessage deleting-all-content-in-the-bundles-directory
+	MB printProgressMessage deleting-all-content-in-the-bundles-directory
 	cd ${bundleDir}
 	rm -rf deploy osgi data logs
 
@@ -65,7 +65,7 @@ _clean_bundle(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	MB printInfoMessage deleting-liferay-home-folders
+	MB printProgressMessage deleting-liferay-home-folders
 	cd ${bundleDir}
 	rm -rf data logs
 	MB printDone
@@ -73,7 +73,7 @@ _clean_bundle(){
 
 	cd ${baseDir}
 
-	MB printInfoMessage deleting-temp-files
+	MB printProgressMessage deleting-temp-files
 	cd ${appServerDir}
 	rm -rf temp work
 	MB printDone
@@ -97,7 +97,7 @@ _config(){
 	local replace="BaseFileIOUtil replace"
 
 	source(){
-		MB printInfoMessage building-properties
+		MB printProgressMessage building-properties
 
 		local appServer=$(ASValidator returnAppServer $@)
 		local appServerDir=${bundleDir}/${appServer}-$(ASVersion
@@ -142,7 +142,7 @@ _config(){
 
 		local d=[[:digit:]]
 
-		MB printInfoMessage increasing-memory-limit
+		MB printProgressMessage increasing-memory-limit
 		if [[ ${appServer} == tomcat ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
 			${replace} ${appServerDir}/bin/setenv.sh MaxPermSize=${d}${d}${d}m MaxPermSize=1024m
@@ -153,7 +153,7 @@ _config(){
 		MB printDone
 
 		if [[ ${branch} == ee-6.2.x ]]; then
-			MB printInfoMessage changing-port-for-${branch}
+			MB printProgressMessage changing-port-for-${branch}
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
 			MB printDone
 		fi
@@ -171,7 +171,7 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal${branch//[-.]/""}
 
-	MB printInfoMessage rebuilding-database
+	MB printProgressMessage rebuilding-database
 	mysql -e "drop database if exists ${database};
 		create database ${database} char set utf8;"
 	MB printDone
@@ -192,13 +192,13 @@ build(){
 
 	_config source ${appServer}
 
-	MB printInfoMessage unzipping-${appServer}
+	MB printProgressMessage unzipping-${appServer}
 	ant -f build-dist.xml unzip-${appServer}
 	MB printDone
 
 	_config appServer ${appServer}
 
-	MB printInfoMessage building-portal
+	MB printProgressMessage building-portal
 	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
 	MB printDone
 }
@@ -225,7 +225,7 @@ pull(){
 
 	cd ${buildDir}
 
-	MB printInfoMessage pulling-changes-from-upstream
+	MB printProgressMessage pulling-changes-from-upstream
 	git pull upstream ${branch}
 	MB printDone
 	cd ${baseDir}
@@ -235,7 +235,7 @@ push(){
 	cd ${buildDir}
 	local curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-	MB printInfoMessage pushing-changes-to-origin-branch-${curBranch}
+	MB printProgressMessage pushing-changes-to-origin-branch-${curBranch}
 
 	git push -f origin ${curBranch}
 
@@ -247,7 +247,7 @@ push(){
 run(){
 	local appServer=$(ASValidator returnAppServer $@)
 
-	MB printInfoMessage starting-server
+	MB printProgressMessage starting-server
 	sleep 5s
 	clear
 
@@ -281,7 +281,7 @@ shutdown(){
 	local appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	MB printInfoMessage "Shutting down server.."
+	MB printProgressMessage "Shutting down server.."
 
 	if [[ ${appServer} == tomcat ]]; then
 		${appServerDir}/bin/catalina.sh stop
@@ -295,7 +295,7 @@ zip(){
 	shift
 	appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 
-	MB printInfoMessage zipping-up-${appServer}-bundle
+	MB printProgressMessage zipping-up-${appServer}-bundle
 
 	jar -cMf liferay-portal-${branch}.zip data deploy ${appServer}-${appServerVersion} osgi tools work
 

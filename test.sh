@@ -12,13 +12,13 @@ MB(){
 mockmock(){
 	cd ${buildDir}
 
-	MB printInfoMessage building-MockMock-jar
+	MB printProgressMessage building-MockMock-jar
 
 	ant -f build-test.xml start-test-smtp-server
 
 	clear
 
-	MB printInfoMessage starting-MockMock-SMTP-server
+	MB printProgressMessage starting-MockMock-SMTP-server
 
 	sleep 5s
 
@@ -33,7 +33,7 @@ pr(){
 	if (( $# == 0 )); then
 		MB printErrorMessage missing-reviewer
 	else
-		MB printInfoMessage submitting-pull-request
+		MB printProgressMessage submitting-pull-request
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -89,7 +89,7 @@ sf(){
 		ant setup-sdk
 	fi
 
-	MB printInfoMessage running-source-formatter
+	MB printProgressMessage running-source-formatter
 	echo
 	cd ${implDir}
 	ant format-source-local-changes
@@ -124,7 +124,7 @@ test(){
 	else
 		test=${1}
 		shift
-		MB printInfoMessage running-test-${test}
+		MB printProgressMessage running-test-${test}
 		echo
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
@@ -133,7 +133,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		MB printInfoMessage moving-test-results
+		MB printProgressMessage moving-test-results
 		echo
 
 		cd ${resultDir}
