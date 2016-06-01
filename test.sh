@@ -12,13 +12,13 @@ MB(){
 mockmock(){
 	cd ${buildDir}
 
-	MB printInfoMessage "Building MockMock jar.."
+	MB printInfoMessage building-MockMock-jar
 
 	ant -f build-test.xml start-test-smtp-server
 
 	clear
 
-	MB printInfoMessage "Starting MockMock SMTP server.."
+	MB printInfoMessage starting-MockMock-SMTP-server
 
 	sleep 5s
 
@@ -31,9 +31,9 @@ mockmock(){
 
 pr(){
 	if (( $# == 0 )); then
-		MB printErrorMessage "Missing reviewer"
+		MB printErrorMessage missing-reviewer
 	else
-		MB printInfoMessage "Submitting pull request.."
+		MB printInfoMessage submitting-pull-request
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -120,11 +120,11 @@ test(){
 	done
 
 	if (( !"$#" )); then
-		MB printErrorMessage "Missing test name"
+		MB printErrorMessage missing-test-name
 	else
 		test=${1}
 		shift
-		MB printInfoMessage "Running test ${test}.."
+		MB printInfoMessage running-test-${test}
 		echo
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
@@ -133,7 +133,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		MB printInfoMessage "Moving test results.."
+		MB printInfoMessage moving-test-results
 		echo
 
 		cd ${resultDir}
