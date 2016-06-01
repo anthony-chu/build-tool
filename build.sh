@@ -281,7 +281,7 @@ shutdown(){
 	local appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	MB printProgressMessage "Shutting down server.."
+	MB printProgressMessage shutting-down-server
 
 	if [[ ${appServer} == tomcat ]]; then
 		${appServerDir}/bin/catalina.sh stop
