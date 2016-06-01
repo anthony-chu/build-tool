@@ -292,6 +292,7 @@ zip(){
 	cd $bundleDir
 
 	appServer=$(ASValidator returnAppServer $@)
+	shift
 	appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 
 	jar -cMf liferay-portal-${branch}.zip data deploy logs ${appServer}-${appServerVersion} osgi tools work
