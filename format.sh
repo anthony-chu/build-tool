@@ -37,7 +37,7 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 		fi
 	done
 
-	if [[ ${isExcluded} == false ]]; then
+	if [[ ${excludedStatus} == false ]]; then
 		includedFiles+=(${allFiles[i]})
 	fi
 done
