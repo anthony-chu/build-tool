@@ -18,7 +18,7 @@ MessageBuilder(){
 	}
 
 	printProgressMessage(){
-		MBUtil buildMessage info ${1}...
+		MBUtil printInfoMessage ${1}...
 	}
 
 	$@
