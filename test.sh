@@ -89,7 +89,7 @@ sf(){
 		ant setup-sdk
 	fi
 
-	MB printInfoMessage "Running source formatter.."
+	MB printInfoMessage running-source-formatter
 	echo
 	cd ${implDir}
 	ant format-source-local-changes
