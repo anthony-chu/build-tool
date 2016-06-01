@@ -6,7 +6,7 @@ source Message/MessageBuilder.sh
 source String/StringUtil.sh
 
 MB(){
-	MessageBuilder
+	MessageBuilder $@
 }
 
 mockmock(){
