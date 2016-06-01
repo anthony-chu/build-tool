@@ -83,7 +83,7 @@ sf(){
 
 	cd ${buildDir}/tools/
 
-	if [ ! -e ${buildDir}/tools/sdk/tmp/portal-tools ]; then
+	if [ ! -e ${buildDir}/tools/sdk/dependencies/com.liferay.source.formatter/lib ]; then
 		cd ${buildDir}
 
 		ant setup-sdk
