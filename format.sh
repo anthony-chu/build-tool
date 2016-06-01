@@ -23,7 +23,7 @@ Formatter(){
 allFiles=($(find * -type f))
 availableMethods=(convertSpacesToTab formatVars removeSpacesAfterTab trimTrailingSpaces)
 curFile=${0/\.\//}
-excludedFiles=(${curFile} md)
+excludedFiles=(${curFile} Formatter md)
 includedFiles=()
 
 echo "[INFO] Determining files to format..."
