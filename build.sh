@@ -297,7 +297,7 @@ zip(){
 
 	MB printInfoMessage zipping-up-${appServer}-bundle
 
-	jar -cMf liferay-portal-${branch}.zip data deploy logs ${appServer}-${appServerVersion} osgi tools work
+	jar -cMf liferay-portal-${branch}.zip data deploy ${appServer}-${appServerVersion} osgi tools work
 
 	MB printDone
 
