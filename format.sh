@@ -44,6 +44,10 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 				continue
 			fi
 		fi
+
+		if [[ ${excludedStatus} == true ]]; then
+			break
+		fi
 	done
 
 	if [[ ${excludedStatus} == false ]]; then
