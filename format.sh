@@ -1,3 +1,5 @@
+source Array/ArrayUtil.sh
+source String/StringValidator.sh
 source Formatter/FormatterUtil.sh
 
 Formatter(){
@@ -31,9 +33,16 @@ echo "[INFO] Determining files to format..."
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
 		isEmptyArray=$(StringValidator isNull "${includedFiles[@]}")
-			break
-		else
+		isUniqueFile=$(ArrayUtil hasUniqueEntry ${includedFiles[@]} ${allFiles[i]})
+
+		if [[ ${isEmptyArray} == true ]]; then
 			excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles[j]})
+		else
+			if [[ ${isUniqueFile} == true ]]; then
+				excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles[j]})
+			else
+				continue
+			fi
 		fi
 	done
 
