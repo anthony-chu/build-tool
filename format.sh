@@ -2,19 +2,19 @@ source Formatter/FormatterUtil.sh
 
 Formatter(){
 	convertSpacesToTab(){
-		sed -i "s/    /\t/g" $1
+		sed -i "s/    /\t/g" ${1}
 	}
 
 	formatVars(){
-		sed -i "s/\$\([a-zA-Z0-9_-]\+\)/\${\1\}/g" $1
+		sed -i "s/\$\([a-zA-Z0-9_-]\+\)/\${\1\}/g" ${1}
 	}
 
 	removeSpacesAfterTab(){
-		sed -i "s/\t /\t/g" $1
+		sed -i "s/\t /\t/g" ${1}
 	}
 
 	trimTrailingSpaces(){
-		sed -i "s/}[ 	]\+$/}/g" $1
+		sed -i "s/}[ 	]\+$/}/g" ${1}
 	}
 
 	$@
@@ -31,7 +31,7 @@ echo "[INFO] Determining files to format..."
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
 		if [[ "${includedFiles[@]}" == *${allFiles[i]}* ]]; then
-			continue
+			break
 		else
 			excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles[j]})
 		fi

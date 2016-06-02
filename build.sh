@@ -289,7 +289,7 @@ shutdown(){
 }
 
 zip(){
-	cd $bundleDir
+	cd ${bundleDir}
 
 	appServer=$(ASValidator returnAppServer $@)
 	shift
@@ -301,7 +301,7 @@ zip(){
 
 	MB printDone
 
-	cd $baseDir
+	cd ${baseDir}
 }
 
 clear
