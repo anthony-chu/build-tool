@@ -33,7 +33,7 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 		if [[ "${includedFiles[@]}" == *${allFiles[i]}* ]]; then
 			continue
 		else
-			excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles{j})
+			excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles[j]})
 		fi
 	done
 
