@@ -18,6 +18,17 @@ ArrayUtil(){
 		echo ${newArray[@]}
 	}
 
+	flipArray(){
+		inputArray=($@)
+		newArray=()
+
+		for (( i=${#inputArray}; i>0; i-- )); do
+			newArray+=(${inputArray[i]})
+		done
+
+		echo ${newArray[@]}
+	}
+
 	returnMaxLength(){
 		local array=($@)
 		local maxLength=0
