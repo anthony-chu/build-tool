@@ -1,6 +1,9 @@
+source String/StringValidator.sh
+
 FormatterUtil(){
 	getExcludeStatus(){
-		if [[ ${1} =~ ${2} ]]; then
+		isSubstring=$(StringValidator isSubstring ${1} ${2})
+		if [[ ${isSubstring} == true ]]; then
 			isExcluded=true
 		else
 			isExcluded=false
