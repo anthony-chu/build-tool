@@ -30,7 +30,7 @@ echo "[INFO] Determining files to format..."
 
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
-		if [[ "${includedFiles[@]}" == *${allFiles[i]}* ]]; then
+		isEmptyArray=$(StringValidator isNull "${includedFiles[@]}")
 			break
 		else
 			excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles[j]})
