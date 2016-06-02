@@ -31,7 +31,7 @@ StringValidator(){
 	}
 
 	isNull(){
-		if [ -z $@ ]; then
+		if [[ $@ == "" ]]; then
 			echo true
 		else
 			echo false
