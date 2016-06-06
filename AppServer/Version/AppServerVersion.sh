@@ -1,4 +1,4 @@
-source AppServer/AppServerVersionConstants.sh
+source AppServer/Version/AppServerVersionConstants.sh
 
 AppServerVersion(){
 
