@@ -145,7 +145,7 @@ _config(){
 		MB printProgressMessage increasing-memory-limit
 		if [[ ${appServer} == tomcat ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
-			${replace} ${appServerDir}/bin/setenv.sh MaxPermSize=${d}${d}${d}m MaxPermSize=1024m
+			${replace} ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}${d}${d}m Xms1024m
 		elif [[ ${appServer} == wildfly ]]; then
 			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
 			${replace} ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
