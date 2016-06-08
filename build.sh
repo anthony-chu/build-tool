@@ -8,6 +8,10 @@ source Message/MessageBuilder.sh
 source String/StringUtil.sh
 source String/StringValidator.sh
 
+append(){
+	BaseFileIOUtil append $@
+}
+
 ASValidator(){
 	AppServerValidator $@
 }
@@ -18,6 +22,10 @@ ASVersion(){
 
 MB(){
 	MessageBuilder $@
+}
+
+replace(){
+	BaseFileIOUtil replace $@
 }
 
 _build_log(){
@@ -93,9 +101,6 @@ _clean_source(){
 }
 
 _config(){
-	local append="BaseFileIOUtil append"
-	local replace="BaseFileIOUtil replace"
-
 	source(){
 		MB printProgressMessage building-properties
 
@@ -110,20 +115,20 @@ _config(){
 		local buildProps="build.anthonychu.properties"
 
 		cd ${buildDir}
-		${replace} ${asProps} app.server.type= app.server.type=${appServer}
-		${replace} ${buildProps} app.server.type= app.server.type=${appServer}
-		${append} ${asProps} "app.server.parent.dir=${bundleDir}"
-		${append} ${buildProps} "app.server.parent.dir=${bundleDir}"
-		${append} ${buildProps} "jsp.precompile=on"
+		replace ${asProps} app.server.type= app.server.type=${appServer}
+		replace ${buildProps} app.server.type= app.server.type=${appServer}
+		append ${asProps} "app.server.parent.dir=${bundleDir}"
+		append ${buildProps} "app.server.parent.dir=${bundleDir}"
+		append ${buildProps} "jsp.precompile=on"
 
 		if [[ ${appServer} == jboss ]]; then
-			echo -e "\napp.server.${appServer}.version=6.0.1" >> app.server.anthonychu.properties
+			append -e "app.server.${appServer}.version=6.0.1"
 		fi
 
 		if [[ ${appServer} == tcserver ]]; then
 			local asv=$(AppServerVersion returnAppServerVersion tcserver)
 
-			echo -e "\napp.server.${appServer}.version=${asv}" >> app.server.anthonychu.properties
+			append -e "app.server.${appServer}.version=${asv}"
 		fi
 
 		MB printDone
@@ -144,17 +149,17 @@ _config(){
 
 		MB printProgressMessage increasing-memory-limit
 		if [[ ${appServer} == tomcat ]]; then
-			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
-			${replace} ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}${d}${d}m Xms1024m
+			replace ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
+			replace ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}${d}${d}m Xms1024m
 		elif [[ ${appServer} == wildfly ]]; then
-			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
-			${replace} ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
+			replace ${appServerDir}/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
+			replace ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
 		fi
 		MB printDone
 
 		if [[ ${branch} == ee-6.2.x ]]; then
 			MB printProgressMessage changing-port-for-${branch}
-			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
+			replace ${appServerDir}/conf/server.xml "\"8" "\"7"
 			MB printDone
 		fi
 	}
