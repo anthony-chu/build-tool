@@ -8,6 +8,13 @@ MB(){
 }
 
 CTBuilder(){
+	_branchChecker(){
+		if [[ ${1} == "" ]]; then
+			branch=develop
+		else
+			branch=${1}
+		fi
+	}
 
 	build(){
 		MB printProgressMessage building-content-targeting-modules
@@ -24,11 +31,7 @@ CTBuilder(){
 	getGitId(){
 		cd ${projectDir}
 
-		if [[ $# == 0 ]]; then
-			branch=develop
-		else
-			branch=${1}
-		fi
+		branch=$(_branchChecker $1)
 
 		curBranch=$(git rev-parse --abbrev-ref HEAD)
 
@@ -48,11 +51,7 @@ CTBuilder(){
 	release(){
 		cd ${projectDir}
 
-		if [[ $# == 0 ]]; then
-			branch=develop
-		else
-			branch=${1}
-		fi
+		branch=$(_branchChecker $1)
 
 		curBranch=$(git rev-parse --abbrev-ref HEAD)
 
@@ -76,11 +75,7 @@ CTBuilder(){
 	}
 
 	update(){
-		if [[ $# == 0 ]]; then
-			branch=develop
-		else
-			branch=${1}
-		fi
+		branch=$(_branchChecker $1)
 
 		MB printProgressMessage updating-content-targeting-on-branch-${branch}
 
