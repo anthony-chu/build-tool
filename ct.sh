@@ -49,7 +49,7 @@ CTBuilder(){
 	getGitId(){
 		cd ${projectDir}
 
-		branch=$(_branchChecker $1)
+		branch=$(_branchChecker ${1})
 
 		_branchSwitcher ${branch}
 
@@ -61,7 +61,7 @@ CTBuilder(){
 
 		cd ${projectDir}
 
-		branch=$(_branchChecker $1)
+		branch=$(_branchChecker ${1})
 
 		_branchSwitcher ${branch}
 
