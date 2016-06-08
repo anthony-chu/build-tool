@@ -14,6 +14,8 @@ CTBuilder(){
 		else
 			branch=${1}
 		fi
+
+		echo ${branch}
 	}
 
 	_branchSwitcher(){
