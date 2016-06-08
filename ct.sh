@@ -24,7 +24,7 @@ CTBuilder(){
 		if [[ ${curBranch} == ${1} ]]; then
 			echo
 		else
-			if [[ $(git branch) == *${1}* ]]; then
+			if [[ $(git branch) != *${1}* ]]; then
 				git checkout ${1}
 			else
 				git checkout -b ${1}
