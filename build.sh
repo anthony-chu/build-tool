@@ -215,9 +215,33 @@ clean(){
 
 deploy(){
 	local input=$1
-	local path=$(StringUtil replace ${input} . \/)
-	cd ${buildDir}/modules/apps/${path}
-	${buildDir}/gradlew clean deploy
+
+	cd ${buildDir}/modules/apps
+
+	echo "Module: ${input}"
+
+	MB printProgressMessage searching-for-the-desired-module
+
+	allModules=($(find * -type f -iname bnd.bnd))
+
+	for (( i=0; i<${#allModules[@]}; i++ )); do
+		if [[ ${allModules[i]} == *${input}* ]]; then
+			pathToModule=${allModules[i]/bnd.bnd/}
+			MB printDone
+			break
+		fi
+	done
+
+	if [[ ${pathToModule} != "" ]]; then
+		MB printProgressMessage deploying-module
+		cd ${pathToModule}
+		${buildDir}/gradlew clean deploy
+		MB printDone
+	else
+		MB printErrorMessage a-module-with-that-name-could-not-be-found
+	fi
+
+	cd ${baseDir}
 }
 
 logger(){
