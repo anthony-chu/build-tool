@@ -214,7 +214,7 @@ clean(){
 }
 
 deploy(){
-	local input=$@
+	local input=$1
 	local path=$(StringUtil replace ${input} . \/)
 	cd ${buildDir}/modules/apps/${path}
 	${buildDir}/gradlew clean deploy
