@@ -349,6 +349,11 @@ else
 		fi
 
 		${1} ${@:2}
+
+		if [[ ${1} == deploy ]]; then
+			shift
+		fi
+
 		shift
 
 		if [[ ${1} == ${appServer} ]]; then
