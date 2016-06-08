@@ -55,7 +55,9 @@ CTBuilder(){
 
 		_branchSwitcher ${branch}
 
-		echo "Content Targeting GIT ID: $(git --git-dir=${projectDir}/.git rev-parse origin/${branch})"
+		gitId=$(git --git-dir=${projectDir}/.git rev-parse origin/${branch})
+
+		echo "Content Targeting GIT ID: ${gitId}"
 	}
 
 	release(){
