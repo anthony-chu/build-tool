@@ -75,6 +75,12 @@ pr(){
 		cd ${baseDir}
 
 		MB printDone
+
+		MB printProgressMessage switching-branch-to-${branch}
+
+		git checkout ${branch}
+
+		MB printDone
 	fi
 }
 
