@@ -109,4 +109,6 @@ CTBuilder(){
 	$@
 }
 
-$@ | CTBuilder $@
+if [[ $@ != CTBuilder* ]]; then
+	CTBuilder $@
+fi
