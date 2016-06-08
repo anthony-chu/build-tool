@@ -25,10 +25,10 @@ CTBuilder(){
 			echo
 		else
 			if [[ $(git branch) != *${1}* ]]; then
-				git checkout ${1}
-			else
-				git checkout -b ${1}
+				opt=-b
 			fi
+
+			git checkout ${opt} ${1}
 		fi
 	}
 
