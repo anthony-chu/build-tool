@@ -1,6 +1,7 @@
 source Array/ArrayUtil.sh
 source Base/BaseUtil.sh
 source Base/BaseVars.sh
+source Base/File/Name/BaseFileNameUtil.sh
 source Help/HelpMessage.sh
 source Message/MessageBuilder.sh
 source String/StringUtil.sh
@@ -157,6 +158,9 @@ test(){
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 
 		file="\/\/\/${testDir//d/D\:}/${testname}/${testcase}_index.html"
+
+		file="\/\/\/$(BaseFileNameUtil getPath
+			${testDir}/${testname}/${testcase}_index.html)"
 
 		"${chromeDir}/chrome.exe" "file:${file}"
 
