@@ -5,6 +5,10 @@ BaseUtil(){
 		source "d:/git-tools/git-pull-request/git-pull-request.sh"
 	}
 
+	getOS(){
+		echo ${OS}
+	}
+
 	timestamp(){
 		if [[ ${1} == clock ]]; then
 			local t=$(date +%T%s)
