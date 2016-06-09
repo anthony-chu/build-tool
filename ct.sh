@@ -33,13 +33,13 @@ CTBuilder(){
 	}
 
 	build(){
-		MB printProgressMessage building-content-targeting-modules
-
 		cd ${projectDir}
 
 		branch=$(_branchChecker ${1})
 
 		_branchSwitcher ${branch}
+
+		MB printProgressMessage building-content-targeting-modules
 
 		d:/private/ee-7.0.x-portal/gradlew clean deploy
 
@@ -61,13 +61,13 @@ CTBuilder(){
 	}
 
 	release(){
-		MB printProgressMessage generating-a-release-zip-for-${branch}
-
 		cd ${projectDir}
 
 		branch=$(_branchChecker ${1})
 
 		_branchSwitcher ${branch}
+
+		MB printProgressMessage generating-a-release-zip-for-${branch}
 
 		d:/private/ee-7.0.x-portal/gradlew release
 
@@ -77,13 +77,13 @@ CTBuilder(){
 	}
 
 	update(){
-		MB printProgressMessage updating-content-targeting-on-branch-${branch}
-
 		cd ${projectDir}
 
 		branch=$(_branchChecker ${1})
 
 		_branchSwitcher ${branch}
+
+		MB printProgressMessage updating-content-targeting-on-branch-${branch}
 
 		git pull upstream ${branch}
 		git push origin ${branch}
