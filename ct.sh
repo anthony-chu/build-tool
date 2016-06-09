@@ -48,6 +48,18 @@ CTBuilder(){
 		cd ${baseDir}
 	}
 
+	cleanUpJars(){
+		MB printProgressMessage removing-content-targeting-jars-from-the-bundle
+
+		cd D:/private/ee-7.0.x-bundles/osgi/modules
+
+		rm -rf *content.targeting*
+
+		cd ${baseDir}
+
+		MB printDone
+	}
+
 	getGitId(){
 		cd ${projectDir}
 
