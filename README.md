@@ -30,36 +30,6 @@ Example:
 	```
 In this case, the command executed is _build_, and the option (the app server, in this case) is _tomcat_.
 
-### build.sh
-
-This script will perform the following actions:
-- Pull updates to your local branch
-- Push changes to your remote branch
-- Build a bundle on the indicated app server
-- Run a bundle on the indicated app server
-- Deploy module(s) to your bundle
-
-### branch.sh
-
-This script will perform the following actions:
-- Retrieve a list of available branches on the indicated branch
-- Display the current branch
-- Display the log for a given branch
-- Create a new branch on the selected source folder
-- Delete a branch on the selected source folder
-- Restore the source to a designated commit in history
-- Perform an interactive rebase
-- Pull source code from the indicated remote branch
-- Display a formatted message for use with JIRA
-- Provide direct shell access to the indicated source folder
-
-### test.sh
-
-This script will perform the following actions:
-- Execute a test against the currently running portal instance and display its results
-- Format the source code using portal's formatter
-- Run validation against Poshi code
-- Submit a pull request to the indicated user
 
 ## Help!  
 #### A list of available commands for each script can be obtained by calling the script without providing any commands to be executed:  
