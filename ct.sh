@@ -33,6 +33,7 @@ CTBuilder(){
 
 			for (( i=0; i<${#allBranches[@]}; i++ )); do
 				if [[ $(SV isEqual ${allBranches[i]/remotes\/origin\//} ${1}) == false ]]; then
+					MB printErrorMessage the-branch-${1}-does-not-exist
 					opt=-b
 					break
 				fi
