@@ -29,10 +29,10 @@ CTBuilder(){
 		if [[ $(SV isEqual ${curBranch} ${1}) == true ]]; then
 			echo
 		else
-			allBranches=($(git branch))
+			allBranches=($(git branch -a | grep origin))
 
 			for (( i=0; i<${#allBranches[@]}; i++ )); do
-				if [[ $(SV isSubstring ${allBranches[i]} ${1}) == false ]]; then
+				if [[ $(SV isSubstring ${allBranches[i]/remotes\/origin\//} ${1}) == false ]]; then
 					opt=-b
 					break
 				fi
