@@ -1,3 +1,4 @@
+source String/StringValidator.sh
 source Message/MessageBuilder.sh
 
 baseDir=$(pwd)
@@ -7,9 +8,13 @@ MB(){
 	MessageBuilder $@
 }
 
+SV(){
+	StringValidator $@
+}
+
 CTBuilder(){
 	_branchChecker(){
-		if [[ ${1} == "" ]]; then
+		if [[ $(SV isNull $1) == true ]]; then
 			branch=develop
 		else
 			branch=${1}
@@ -21,10 +26,10 @@ CTBuilder(){
 	_branchSwitcher(){
 		curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-		if [[ ${curBranch} == ${1} ]]; then
+		if [[ $(SV isEqual ${curBranch} ${1}) == true ]]; then
 			echo
 		else
-			if [[ $(git branch) != *${1}* ]]; then
+			if [[ $(SV isSubstring $(git branch) ${1}) == false ]]; then
 				opt=-b
 			fi
 
