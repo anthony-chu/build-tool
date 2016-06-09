@@ -29,9 +29,14 @@ CTBuilder(){
 		if [[ $(SV isEqual ${curBranch} ${1}) == true ]]; then
 			echo
 		else
-			if [[ $(SV isSubstring $(git branch) ${1}) == false ]]; then
-				opt=-b
-			fi
+			allBranches=($(git branch))
+
+			for (( i=0; i<${#allBranches[@]}; i++ )); do
+				if [[ $(SV isSubstring ${allBranches[i]} ${1}) == false ]]; then
+					opt=-b
+					break
+				fi
+			done
 
 			git checkout ${opt} ${1}
 		fi
