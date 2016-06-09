@@ -1,3 +1,4 @@
+source Help/HelpMessage.sh
 source String/StringValidator.sh
 source Message/MessageBuilder.sh
 
@@ -125,5 +126,9 @@ CTBuilder(){
 }
 
 if [[ $@ != CTBuilder* ]]; then
-	CTBuilder $@
+	if [[ $# == 0 ]]; then
+		HelpMessage ctHelpMessage
+	else
+		CTBuilder $@
+	fi
 fi
