@@ -32,7 +32,7 @@ CTBuilder(){
 			allBranches=($(git branch -a | grep origin))
 
 			for (( i=0; i<${#allBranches[@]}; i++ )); do
-				if [[ $(SV isSubstring ${allBranches[i]/remotes\/origin\//} ${1}) == false ]]; then
+				if [[ $(SV isEqual ${allBranches[i]/remotes\/origin\//} ${1}) == false ]]; then
 					opt=-b
 					break
 				fi
