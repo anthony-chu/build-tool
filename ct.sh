@@ -38,7 +38,7 @@ CTBuilder(){
 				fi
 			done
 
-			git checkout ${opt} ${1}
+			git checkout ${1}
 		fi
 	}
 
