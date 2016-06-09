@@ -88,6 +88,7 @@ HelpMessage(){
 			pull
 			push
 			run
+			zip
 		)
 
 		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
@@ -99,6 +100,7 @@ HelpMessage(){
 			pulls-from-upstream-master
 			pushes-current-branch-to-origin
 			runs-a-bundle-on-specified-app-server
+			zips-a-bundle-on-specified-app-server
 		)
 
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
