@@ -1,4 +1,4 @@
-source Message/MessageBuilderUtil.sh
+source Message/Builder/Util/MessageBuilderUtil.sh
 
 MessageBuilder(){
 	MBUtil(){

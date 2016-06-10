@@ -1,5 +1,5 @@
 source Array/Util/ArrayUtil.sh
-source String/StringUtil.sh
+source String/Util/StringUtil.sh
 
 HelpMessage(){
 	_printHelpMessage(){

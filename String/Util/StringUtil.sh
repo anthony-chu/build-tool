@@ -1,4 +1,4 @@
-source String/StringValidator.sh
+source String/Validator/StringValidator.sh
 
 StringUtil(){
 	capitalize(){
