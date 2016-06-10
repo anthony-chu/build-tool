@@ -177,11 +177,7 @@ _disableCTCompile(){
 	submodulesDir=($(find * -type f -iname ".lfrbuild-portal"))
 
 	for (( i=0; i<${#submodulesDir[@]}; i++ )); do
-		modulePath=${submodulesDir[i]/\.lfrbuild-portal/}
-
-		cd ${moduleDir}
-
-		rm -rf ".lfrbuild-portal"
+		rm -rf ${submodulesDir[i]}
 
 		cd ${projectDir}
 	fi
