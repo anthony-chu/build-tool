@@ -180,7 +180,7 @@ _disableCTCompile(){
 		rm -rf ${submodulesDir[i]}
 
 		cd ${projectDir}
-	fi
+	done
 
 	cd ${baseDir}
 
