@@ -1,10 +1,10 @@
-source Array/ArrayUtil.sh
-source Base/BaseUtil.sh
-source Base/BaseVars.sh
-source Base/File/Name/BaseFileNameUtil.sh
-source Help/HelpMessage.sh
-source Message/MessageBuilder.sh
-source String/StringUtil.sh
+source Array/Util/ArrayUtil.sh
+source Base/Util/BaseUtil.sh
+source Base/Vars/BaseVars.sh
+source Base/File/Name/Util/BaseFileNameUtil.sh
+source Help/Message/HelpMessage.sh
+source Message/Builder/MessageBuilder.sh
+source String/Util/StringUtil.sh
 
 MB(){
 	MessageBuilder $@

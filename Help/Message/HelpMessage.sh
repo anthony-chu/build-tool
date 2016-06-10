@@ -1,4 +1,4 @@
-source Array/ArrayUtil.sh
+source Array/Util/ArrayUtil.sh
 source String/StringUtil.sh
 
 HelpMessage(){

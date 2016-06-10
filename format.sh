@@ -1,6 +1,6 @@
-source Array/ArrayUtil.sh
-source String/StringValidator.sh
-source Formatter/FormatterUtil.sh
+source Array/Util/ArrayUtil.sh
+source String/Validator/StringValidator.sh
+source Formatter/Util/FormatterUtil.sh
 
 Formatter(){
 	convertSpacesToTab(){

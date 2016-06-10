@@ -1,12 +1,12 @@
-source AppServer/AppServerValidator.sh
+source AppServer/Validator/AppServerValidator.sh
 source AppServer/Version/AppServerVersion.sh
-source Base/BaseUtil.sh
-source Base/BaseVars.sh
-source Base/File/IO//BaseFileIOUtil.sh
-source Help/HelpMessage.sh
-source Message/MessageBuilder.sh
-source String/StringUtil.sh
-source String/StringValidator.sh
+source Base/Util/BaseUtil.sh
+source Base/Vars/BaseVars.sh
+source Base/File/IO/Util/BaseFileIOUtil.sh
+source Help/Message/HelpMessage.sh
+source Message/Builder/MessageBuilder.sh
+source String/Util/StringUtil.sh
+source String/Util/StringValidator.sh
 
 append(){
 	BaseFileIOUtil append $@
