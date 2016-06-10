@@ -236,7 +236,7 @@ clean(){
 }
 
 deploy(){
-	local input=$1
+	local input=${1}
 
 	cd ${buildDir}/modules
 

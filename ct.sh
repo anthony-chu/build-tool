@@ -15,7 +15,7 @@ SV(){
 
 CTBuilder(){
 	_branchChecker(){
-		if [[ $(SV isNull $1) == true ]]; then
+		if [[ $(SV isNull ${1}) == true ]]; then
 			branch=develop
 		else
 			branch=${1}
