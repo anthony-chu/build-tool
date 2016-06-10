@@ -174,10 +174,10 @@ _disableCTCompile(){
 
 	cd ${projectDir}
 
-	modulesDir=($(find * -type f -iname ".lfrbuild-portal"))
+	submodulesDir=($(find * -type f -iname ".lfrbuild-portal"))
 
-	for (( i=0; i<${#modulesDir[@]}; i++ )); do
-		modulePath=${modulesDir[i]/\.lfrbuild-portal/}
+	for (( i=0; i<${#submodulesDir[@]}; i++ )); do
+		modulePath=${submodulesDir[i]/\.lfrbuild-portal/}
 
 		cd ${moduleDir}
 
