@@ -216,7 +216,7 @@ clean(){
 deploy(){
 	local input=$1
 
-	cd ${buildDir}/modules/apps
+	cd ${buildDir}/modules
 
 	echo "Module: ${input}"
 
