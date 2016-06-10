@@ -167,6 +167,30 @@ _config(){
 	$@
 }
 
+_disableCTCompile(){
+	MB printProgressMessage disabling-content-targeting-build-process
+
+	projectDir=${baseDir}/modules/apps/content-targeting
+
+	cd ${projectDir}
+
+	modulesDir=($(find * -type f -iname ".lfrbuild-portal"))
+
+	for (( i=0; i<${#modulesDir[@]}; i++ )); do
+		modulePath=${modulesDir[i]/\.lfrbuild-portal/}
+
+		cd ${moduleDir}
+
+		rm -rf ".lfrbuild-portal"
+
+		cd ${projectDir}
+	fi
+
+	cd ${baseDir}
+
+	MB printDone
+}
+
 _gitlog(){
 	cd ${buildDir}
 	git log --oneline --pretty=format:%h -1
@@ -192,6 +216,8 @@ build(){
 	_clean_hard ${appServer}
 
 	_clean_source
+
+	_disableCTCompile
 
 	cd ${buildDir}
 
