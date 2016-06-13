@@ -121,16 +121,6 @@ _config(){
 		append ${buildProps} "app.server.parent.dir=${bundleDir}"
 		append ${buildProps} "jsp.precompile=on"
 
-		if [[ ${appServer} == jboss ]]; then
-			append ${asProps} "app.server.${appServer}.version=6.0.1"
-		fi
-
-		if [[ ${appServer} == tcserver ]]; then
-			local asv=$(AppServerVersion returnAppServerVersion tcserver)
-
-			append ${asProps} "app.server.${appServer}.version=${asv}"
-		fi
-
 		MB printDone
 	}
 
