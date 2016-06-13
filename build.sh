@@ -6,7 +6,7 @@ source Base/File/IO/Util/BaseFileIOUtil.sh
 source Help/Message/HelpMessage.sh
 source Message/Builder/MessageBuilder.sh
 source String/Util/StringUtil.sh
-source String/Util/StringValidator.sh
+source String/Validator/StringValidator.sh
 
 append(){
 	BaseFileIOUtil append $@
