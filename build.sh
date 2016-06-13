@@ -170,7 +170,7 @@ _config(){
 _disableCTCompile(){
 	MB printProgressMessage disabling-content-targeting-build-process
 
-	projectDir=${baseDir}/modules/apps/content-targeting
+	projectDir=${buildDir}/modules/apps/content-targeting
 
 	cd ${projectDir}
 
