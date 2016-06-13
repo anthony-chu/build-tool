@@ -4,7 +4,7 @@ source Base/Util/BaseUtil.sh
 source Base/Vars/BaseVars.sh
 source Help/Message/HelpMessage.sh
 source Message/Builder/MessageBuilder.sh
-source String/Valdiator/StringValidator.sh
+source String/Validator/StringValidator.sh
 
 MB(){
 	MessageBuilder $@
