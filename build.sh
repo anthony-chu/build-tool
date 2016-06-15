@@ -319,9 +319,9 @@ run(){
 }
 
 shutdown(){
-	local appServer=$(AppServerValidator returnAppServer ${1})
-	local appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
-	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
+	local as=$(AppServerValidator returnAppServer ${1})
+	local asv=$(AppServerVersion returnAppServerVersion ${appServer})
+	local appServerDir=${bundleDir}/${as}-${asv}
 
 	MB printProgressMessage shutting-down-server
 
