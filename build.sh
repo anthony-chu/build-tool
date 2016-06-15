@@ -347,7 +347,15 @@ zip(){
 
 	MB printProgressMessage zipping-up-${appServer}-bundle
 
-	content=(data deploy ${appServer}-${appServerVersion} osgi tools work .liferay-home)
+	content=(
+		data
+		deploy
+		${appServer}-${appServerVersion}
+		osgi
+		tools
+		work
+		.liferay-home
+	)
 
 	jar -cMf ${zipFile} ${content[@]}
 	MB printDone
