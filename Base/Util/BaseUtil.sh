@@ -16,7 +16,8 @@ BaseUtil(){
 		elif [[ ${1} == date ]]; then
 			date +%Y%m%d
 		else
-			date +%H:%M:$(($(date +%S%N)/100000000))
+			ms=$(date +%S%N)
+			date +%H:%M:${ms:0:3}
 		fi
 	}
 
