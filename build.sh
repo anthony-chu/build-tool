@@ -1,9 +1,9 @@
 source AppServer/Validator/AppServerValidator.sh
 source AppServer/Version/AppServerVersion.sh
+source Base/File/IO/Util/BaseFileIOUtil.sh
+source Base/File/Util/BaseFileUtil.sh
 source Base/Util/BaseUtil.sh
 source Base/Vars/BaseVars.sh
-source Base/File/Util/BaseFileUtil.sh
-source Base/File/IO/Util/BaseFileIOUtil.sh
 source Help/Message/HelpMessage.sh
 source Message/Builder/MessageBuilder.sh
 source String/Util/StringUtil.sh

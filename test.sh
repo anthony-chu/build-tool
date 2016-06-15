@@ -1,7 +1,7 @@
 source Array/Util/ArrayUtil.sh
+source Base/File/Name/Util/BaseFileNameUtil.sh
 source Base/Util/BaseUtil.sh
 source Base/Vars/BaseVars.sh
-source Base/File/Name/Util/BaseFileNameUtil.sh
 source Help/Message/HelpMessage.sh
 source Message/Builder/MessageBuilder.sh
 source String/Util/StringUtil.sh
