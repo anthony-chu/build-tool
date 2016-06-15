@@ -347,8 +347,9 @@ zip(){
 
 	MB printProgressMessage zipping-up-${appServer}-bundle
 
-	jar -cMf ${zipFile} data deploy ${appServer}-${appServerVersion} osgi tools work
+	content=(data deploy ${appServer}-${appServerVersion} osgi tools work)
 
+	jar -cMf ${zipFile} ${content[@]}
 	MB printDone
 
 	cd ${baseDir}
