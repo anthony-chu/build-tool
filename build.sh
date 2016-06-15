@@ -347,7 +347,7 @@ zip(){
 
 	MB printProgressMessage zipping-up-${appServer}-bundle
 
-	jar -cMf liferay-portal-${branch}.zip data deploy ${appServer}-${appServerVersion} osgi tools work
+	jar -cMf ${zipFile} data deploy ${appServer}-${appServerVersion} osgi tools work
 
 	MB printDone
 
