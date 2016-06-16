@@ -1,5 +1,5 @@
-source AppServer/Validator/AppServerValidator.sh
-source AppServer/Version/AppServerVersion.sh
+source App/Server/Validator/AppServerValidator.sh
+source App/Server/Version/AppServerVersion.sh
 source Base/Util/BaseUtil.sh
 source Base/Vars/BaseVars.sh
 source Help/Message/HelpMessage.sh
