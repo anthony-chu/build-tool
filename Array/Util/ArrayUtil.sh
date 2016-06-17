@@ -22,7 +22,7 @@ ArrayUtil(){
 		inputArray=($@)
 		newArray=()
 
-		for (( i=${#inputArray[@]}; i>0; i-- )); do
+		for (( i=${#inputArray[@]}; i>=0; i-- )); do
 			newArray+=(${inputArray[i]})
 		done
 
