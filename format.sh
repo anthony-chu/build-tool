@@ -11,6 +11,10 @@ Formatter(){
 		sed -i "s/\$\([a-zA-Z0-9_-]\+\)/\${\1\}/g" ${1}
 	}
 
+	removeLineEndingSpace(){
+		sed -i "s/[ ]$//g" ${1}
+	}
+
 	removeSpacesAfterTab(){
 		sed -i "s/\t /\t/g" ${1}
 	}
