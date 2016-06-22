@@ -158,7 +158,7 @@ test(){
 		testcase=${testname//[_]/%23}
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 
-		file="\/\/\/${testDir//d/D\:}/${testname}/${testcase}_index.html"
+		file="\/\/\/${testDir/\/d/D\:}/${testname}/${testcase}_index.html"
 
 		file="\/\/\/$(BaseFileNameUtil getPath
 			${testDir}/${testname}/${testcase}_index.html)"
