@@ -73,7 +73,6 @@ pr(){
 		git push -f origin ${title}
 
 		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
-		cd ${baseDir}
 
 		MB printDone
 
@@ -82,6 +81,8 @@ pr(){
 		git checkout ${branch}
 
 		MB printDone
+
+		cd ${baseDir}
 	fi
 }
 
