@@ -68,6 +68,8 @@ _clean_bundle(){
 
 	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 		appServerVersion=7.0.62
+	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
+		appServerVersion=7.0.42
 	else
 		appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 	fi
@@ -130,6 +132,8 @@ _config(){
 
 		if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 			appServerVersion=7.0.62
+		elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
+			appServerVersion=7.0.42
 		else
 			appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 		fi
@@ -295,6 +299,8 @@ run(){
 
 	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 		appServerVersion=7.0.62
+	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
+		appServerVersion=7.0.42
 	else
 		appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
 	fi
