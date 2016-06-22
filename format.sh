@@ -27,7 +27,15 @@ Formatter(){
 }
 
 allFiles=($(find * -type f))
-availableMethods=(convertSpacesToTab formatVars removeLineEndingSpace removeSpacesAfterTab trimTrailingSpaces)
+
+availableMethods=(
+	convertSpacesToTab
+	formatVars
+	removeLineEndingSpace
+	removeSpacesAfterTab
+	trimTrailingSpaces
+)
+
 curFile=${0/\.\//}
 excludedFiles=(${curFile} Formatter md)
 includedFiles=()
@@ -37,13 +45,16 @@ echo "[INFO] Determining files to format..."
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
 		isEmptyArray=$(StringValidator isNull "${includedFiles[@]}")
-		isUniqueFile=$(ArrayUtil hasUniqueEntry ${includedFiles[@]} ${allFiles[i]})
+		isUniqueFile=$(ArrayUtil hasUniqueEntry
+			${includedFiles[@]} ${allFiles[i]})
 
 		if [[ ${isEmptyArray} == true ]]; then
-			excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles[j]})
+			excludedStatus=$(FormatterUtil getExcludeStatus
+				${allFiles[i]} ${excludedFiles[j]})
 		else
 			if [[ ${isUniqueFile} == true ]]; then
-				excludedStatus=$(FormatterUtil getExcludeStatus ${allFiles[i]} ${excludedFiles[j]})
+				excludedStatus=$(FormatterUtil getExcludeStatus
+					${allFiles[i]} ${excludedFiles[j]})
 			else
 				continue
 			fi
