@@ -1,3 +1,5 @@
+source String/Util/StringUtil.sh
+
 ArrayUtil(){
 	appendArrayEntry(){
 		local array=($@)
@@ -16,6 +18,11 @@ ArrayUtil(){
 		done
 
 		echo ${newArray[@]}
+	}
+
+	convertStringToArray(){
+		local string=${1}
+		StringUtil replace ${string} , space
 	}
 
 	flipArray(){
