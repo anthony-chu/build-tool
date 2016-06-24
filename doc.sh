@@ -34,7 +34,7 @@ listSources(){
 }
 
 case ${1} in
-	-[sS]) listSources;;
 	-[mM]) listMethodsFromSource ${2};;
+	-[sS]) listSources;;
 	*) echo "Not a valid option; please try again."
 esac
