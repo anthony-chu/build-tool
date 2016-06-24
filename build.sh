@@ -208,7 +208,9 @@ build(){
 
 	_clean_source
 
-	_disableCTCompile
+	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) == true ]]; then
+		_disableCTCompile
+	fi
 
 	cd ${buildDir}
 
