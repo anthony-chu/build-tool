@@ -45,16 +45,13 @@ echo "[INFO] Determining files to format..."
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
 		isEmptyArray=$(StringValidator isNull "${includedFiles[@]}")
-		isUniqueFile=$(ArrayValidator hasUniqueEntry
-			${includedFiles[@]} ${allFiles[i]})
+		isUniqueFile=$(ArrayValidator hasUniqueEntry ${includedFiles[@]} ${allFiles[i]})
 
 		if [[ ${isEmptyArray} == true ]]; then
-			excludedStatus=$(StringValidator isSubstring
-				${allFiles[i]} ${excludedFiles[j]})
+			excludedStatus=$(StringValidator isSubstring ${allFiles[i]} ${excludedFiles[j]})
 		else
 			if [[ ${isUniqueFile} == true ]]; then
-				excludedStatus=$(StringValidator isSubstring
-					${allFiles[i]} ${excludedFiles[j]})
+				excludedStatus=$(StringValidator isSubstring ${allFiles[i]} ${excludedFiles[j]})
 			else
 				continue
 			fi
