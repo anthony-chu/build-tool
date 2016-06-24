@@ -160,9 +160,6 @@ test(){
 
 		file="\/\/\/${testDir/\/d/D\:}/${testname}/${testcase}_index.html"
 
-		file="\/\/\/$(BaseFileNameUtil getPath
-			${testDir}/${testname}/${testcase}_index.html)"
-
 		"${chromeDir}/chrome.exe" "file:${file}"
 
 		cd ${baseDir}
