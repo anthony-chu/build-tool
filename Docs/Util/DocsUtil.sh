@@ -36,4 +36,6 @@ DocsUtil(){
 
 		echo "${listableFiles[@]}"
 	}
+
+	$@
 }
