@@ -50,11 +50,11 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 			${includedFiles[@]} ${allFiles[i]})
 
 		if [[ ${isEmptyArray} == true ]]; then
-			excludedStatus=$(FormatterUtil getExcludeStatus
+			excludedStatus=$(StringValidator isSubstring
 				${allFiles[i]} ${excludedFiles[j]})
 		else
 			if [[ ${isUniqueFile} == true ]]; then
-				excludedStatus=$(FormatterUtil getExcludeStatus
+				excludedStatus=$(StringValidator isSubstring
 					${allFiles[i]} ${excludedFiles[j]})
 			else
 				continue
