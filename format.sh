@@ -1,4 +1,5 @@
 source Array/Util/ArrayUtil.sh
+source Array/Validator/ArrayValidator.sh
 source Formatter/Util/FormatterUtil.sh
 source String/Validator/StringValidator.sh
 
@@ -45,7 +46,7 @@ echo "[INFO] Determining files to format..."
 for (( i=0; i<${#allFiles[@]}; i++ )); do
 	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
 		isEmptyArray=$(StringValidator isNull "${includedFiles[@]}")
-		isUniqueFile=$(ArrayUtil hasUniqueEntry
+		isUniqueFile=$(ArrayValidator hasUniqueEntry
 			${includedFiles[@]} ${allFiles[i]})
 
 		if [[ ${isEmptyArray} == true ]]; then
