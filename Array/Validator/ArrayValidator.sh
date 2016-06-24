@@ -1,6 +1,8 @@
+source Array/Util/ArrayUtil.sh
+
 ArrayValidator(){
 	hasUniqueEntry(){
-		local tempArray=($(flipArray $@))
+		local tempArray=($(ArrayUtil flipArray $@))
 
 		entry=${tempArray[0]}
 		array=(${tempArray[@]/${entry}/})
