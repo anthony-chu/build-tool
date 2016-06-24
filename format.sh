@@ -1,6 +1,5 @@
 source Array/Util/ArrayUtil.sh
 source Array/Validator/ArrayValidator.sh
-source Formatter/Util/FormatterUtil.sh
 source String/Validator/StringValidator.sh
 
 Formatter(){
