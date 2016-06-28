@@ -2,6 +2,15 @@ source Docs/Util/DocsUtil.sh
 source Message/Builder/MessageBuilder.sh
 source String/Validator/StringValidator.sh
 
+listAllMethodsFromSource(){
+	sources=($(DocsUtil getSources))
+
+	for (( i=0; i<${#sources[@]}; i++ )); do
+		listMethodsFromSource ${sources[i]}
+		echo
+	done
+}
+
 listMethodsFromSource(){
 	file=${1}
 
@@ -43,6 +52,7 @@ listSources(){
 }
 
 case ${1} in
+	-[gG]) listAllMethodsFromSource;;
 	-[mM]) listMethodsFromSource ${2};;
 	-[sS]) listSources;;
 	*) echo "Not a valid option; please try again."
