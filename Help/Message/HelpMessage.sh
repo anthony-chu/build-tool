@@ -106,6 +106,26 @@ HelpMessage(){
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 	}
 
+	docsHelpMessage(){
+		optList=(
+			-g|-G
+			-h|-H
+			-m|-M
+			-s|-S
+		)
+
+		newOptList=$(ArrayUtil appendArrayEntry ${optList[@]})
+
+		helpList=(
+			lists-all-available-methods
+			prints-help-message
+			lists-all-methods-from-a-given-file
+			lists-all-sourceable-files
+		)
+
+		_printHelpMessage ${newOptList} ${helpList[@]}
+	}
+
 	testHelpMessage(){
 		funcList=(
 			pr
