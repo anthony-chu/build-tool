@@ -4,6 +4,15 @@ source String/Validator/StringValidator.sh
 
 listMethodsFromSource(){
 	file=${1}
+
+	if [[ $(StringValidator isNull ${file}) == true ]]; then
+		MessageBuilder printErrorMessage please-provide-a-file-name-or-class
+		exit
+	else
+		MessageBuilder printInfoMessage available-methods-for-class-${file}
+		echo
+	fi
+
 	sources=($(DocsUtil getSources))
 
 	for (( i=0; i<${#sources[@]}; i++ )); do
