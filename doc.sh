@@ -6,7 +6,7 @@ listAllMethodsFromSource(){
 	sources=($(DocsUtil getSources))
 
 	for (( i=0; i<${#sources[@]}; i++ )); do
-		listMethodsFromSource ${sources[i]}
+		cat ${sources[i]} | grep '[a-z]*(){'
 		echo
 	done
 }
