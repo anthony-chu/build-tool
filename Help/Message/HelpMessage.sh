@@ -59,27 +59,6 @@ HelpMessage(){
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
 	}
 
-	ctHelpMessage(){
-		funcList=(
-			build
-			cleanUpJars
-			getGitId
-			release
-			update
-		)
-
-		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
-
-		helpList=(
-			builds-content-targeting-modules
-			removes-content-targeting-modules-from-bundle
-			returns-the-GIT-ID-of-the-specified-branch
-			generates-a-zip-of-the-content-targeting-jars
-		)
-
-		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
-	}
-
 	buildHelpMessage(){
 		funcList=(
 			build
@@ -101,6 +80,27 @@ HelpMessage(){
 			pushes-current-branch-to-origin
 			runs-a-bundle-on-specified-app-server
 			zips-a-bundle-on-specified-app-server
+		)
+
+		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
+	}
+
+	ctHelpMessage(){
+		funcList=(
+		build
+		cleanUpJars
+		getGitId
+		release
+		update
+		)
+
+		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
+
+		helpList=(
+		builds-content-targeting-modules
+		removes-content-targeting-modules-from-bundle
+		returns-the-GIT-ID-of-the-specified-branch
+		generates-a-zip-of-the-content-targeting-jars
 		)
 
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
