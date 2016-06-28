@@ -9,28 +9,14 @@ source Message/Builder/MessageBuilder.sh
 source String/Util/StringUtil.sh
 source String/Validator/StringValidator.sh
 
-append(){
-	BaseFileIOUtil append $@
-}
-
-ASValidator(){
-	AppServerValidator $@
-}
-
-ASVersion(){
-	AppServerVersion $@
-}
-
-MB(){
-	MessageBuilder $@
-}
-
-replace(){
-	BaseFileIOUtil replace $@
-}
+append="BaseFileIOUtil append"
+ASValidator="AppServerValidator"
+ASVersion="AppServerVersion"
+MB="MessageBuilder"
+replace="BaseFileIOUtil replace"
 
 _build_log(){
-	local appServer=$(ASValidator returnAppServer ${1})
+	local appServer=$(${ASValidator} returnAppServer ${1})
 
 	local clock=$(BaseUtil timestamp clock)
 	local date=$(BaseUtil timestamp date)
@@ -51,7 +37,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	MB printProgressMessage deleting-all-content-in-the-bundles-directory
+	${MB} printProgressMessage deleting-all-content-in-the-bundles-directory
 	cd ${bundleDir}
 	rm -rf deploy osgi data logs
 
@@ -59,35 +45,35 @@ _clean_hard(){
 		rm -rf ${appServer}*
 	fi
 
-	MB printDone
+	${MB} printDone
 	cd ${baseDir}
 }
 
 _clean_bundle(){
-	local appServer=$(ASValidator returnAppServer $@)
+	local appServer=$(${ASValidator} returnAppServer $@)
 
 	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 		appServerVersion=7.0.62
 	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
 		appServerVersion=7.0.40
 	else
-		appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
+		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
 	fi
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	MB printProgressMessage deleting-liferay-home-folders
+	${MB} printProgressMessage deleting-liferay-home-folders
 	cd ${bundleDir}
 	rm -rf data logs
-	MB printDone
+	${MB} printDone
 	echo
 
 	cd ${baseDir}
 
-	MB printProgressMessage deleting-temp-files
+	${MB} printProgressMessage deleting-temp-files
 	cd ${appServerDir}
 	rm -rf temp work
-	MB printDone
+	${MB} printDone
 	echo
 
 	cd ${baseDir}
@@ -105,10 +91,10 @@ _clean_source(){
 
 _config(){
 	source(){
-		MB printProgressMessage building-properties
+		${MB} printProgressMessage building-properties
 
-		local appServer=$(ASValidator returnAppServer $@)
-		local appServerDir=${bundleDir}/${appServer}-$(ASVersion
+		local appServer=$(${ASValidator} returnAppServer $@)
+		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
 			returnAppServerVersion ${appServer})
 
 		cd ${buildDir}/../properties
@@ -118,44 +104,44 @@ _config(){
 		local buildProps="build.anthonychu.properties"
 
 		cd ${buildDir}
-		replace ${asProps} app.server.type= app.server.type=${appServer}
-		replace ${buildProps} app.server.type= app.server.type=${appServer}
-		append ${asProps} "app.server.parent.dir=${bundleDir}"
-		append ${buildProps} "app.server.parent.dir=${bundleDir}"
-		append ${buildProps} "jsp.precompile=on"
+		${replace} ${asProps} app.server.type= app.server.type=${appServer}
+		${replace} ${buildProps} app.server.type= app.server.type=${appServer}
+		${append} ${asProps} "app.server.parent.dir=${bundleDir}"
+		${append} ${buildProps} "app.server.parent.dir=${bundleDir}"
+		${append} ${buildProps} "jsp.precompile=on"
 
-		MB printDone
+		${MB} printDone
 	}
 
 	appServer(){
-		local appServer=$(ASValidator returnAppServer $@)
+		local appServer=$(${ASValidator} returnAppServer $@)
 
 		if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
 			appServerVersion=7.0.62
 		elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
 			appServerVersion=7.0.40
 		else
-			appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
+			appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
 		fi
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 		local d=[[:digit:]]
 
-		MB printProgressMessage increasing-memory-limit
+		${MB} printProgressMessage increasing-memory-limit
 		if [[ ${appServer} == tomcat ]]; then
-			replace ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
-			replace ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}${d}${d}m Xms1024m
+			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}${d}${d}${d}m Xmx2048m
+			${replace} ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}${d}${d}m Xms1024m
 		elif [[ ${appServer} == wildfly ]]; then
-			replace ${appServerDir}/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
-			replace ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
+			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}${d}${d}${d}m Xmx2048m
+			${replace} ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}${d}${d}m MaxMetaspaceSize=1024m
 		fi
-		MB printDone
+		${MB} printDone
 
 		if [[ ${branch} == ee-6.2.x ]]; then
-			MB printProgressMessage changing-port-for-${branch}
-			replace ${appServerDir}/conf/server.xml "\"8" "\"7"
-			MB printDone
+			${MB} printProgressMessage changing-port-for-${branch}
+			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
+			${MB} printDone
 		fi
 	}
 
@@ -163,7 +149,7 @@ _config(){
 }
 
 _disableCTCompile(){
-	MB printProgressMessage disabling-content-targeting-build-process
+	${MB} printProgressMessage disabling-content-targeting-build-process
 
 	projectDir=${buildDir}/modules/apps/content-targeting
 
@@ -179,7 +165,7 @@ _disableCTCompile(){
 
 	cd ${baseDir}
 
-	MB printDone
+	${MB} printDone
 }
 
 _gitlog(){
@@ -191,16 +177,16 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal${branch//[-.]/""}
 
-	MB printProgressMessage rebuilding-database
+	${MB} printProgressMessage rebuilding-database
 	mysql -e "drop database if exists ${database};
 		create database ${database} char set utf8;"
-	MB printDone
+	${MB} printDone
 	echo
 	cd ${baseDir}
 }
 
 build(){
-	local appServer=$(ASValidator returnAppServer $@)
+	local appServer=$(${ASValidator} returnAppServer $@)
 
 	_build_log ${appServer}
 
@@ -216,15 +202,15 @@ build(){
 
 	_config source ${appServer}
 
-	MB printProgressMessage unzipping-${appServer}
+	${MB} printProgressMessage unzipping-${appServer}
 	ant -f build-dist.xml unzip-${appServer}
-	MB printDone
+	${MB} printDone
 
 	_config appServer ${appServer}
 
-	MB printProgressMessage building-portal
+	${MB} printProgressMessage building-portal
 	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
-	MB printDone
+	${MB} printDone
 }
 
 clean(){
@@ -239,25 +225,25 @@ deploy(){
 
 	echo "Module: ${input}"
 
-	MB printProgressMessage searching-for-the-desired-module
+	${MB} printProgressMessage searching-for-the-desired-module
 
 	allModules=($(find * -type f -iname bnd.bnd))
 
 	for (( i=0; i<${#allModules[@]}; i++ )); do
 		if [[ ${allModules[i]} == *${input}* ]]; then
 			pathToModule=${allModules[i]/bnd.bnd/}
-			MB printDone
+			${MB} printDone
 			break
 		fi
 	done
 
 	if [[ ${pathToModule} != "" ]]; then
-		MB printProgressMessage deploying-module
+		${MB} printProgressMessage deploying-module
 		cd ${pathToModule}
 		${buildDir}/gradlew clean deploy
-		MB printDone
+		${MB} printDone
 	else
-		MB printErrorMessage a-module-with-that-name-could-not-be-found
+		${MB} printErrorMessage a-module-with-that-name-could-not-be-found
 	fi
 
 	cd ${baseDir}
@@ -273,9 +259,9 @@ pull(){
 
 	cd ${buildDir}
 
-	MB printProgressMessage pulling-changes-from-upstream
+	${MB} printProgressMessage pulling-changes-from-upstream
 	git pull upstream ${branch}
-	MB printDone
+	${MB} printDone
 	cd ${baseDir}
 }
 
@@ -283,19 +269,19 @@ push(){
 	cd ${buildDir}
 	local curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-	MB printProgressMessage pushing-changes-to-origin-branch-${curBranch}
+	${MB} printProgressMessage pushing-changes-to-origin-branch-${curBranch}
 
 	git push -f origin ${curBranch}
 
-	MB printDone
+	${MB} printDone
 
 	cd ${baseDir}
 }
 
 run(){
-	local appServer=$(ASValidator returnAppServer $@)
+	local appServer=$(${ASValidator} returnAppServer $@)
 
-	MB printProgressMessage starting-server
+	${MB} printProgressMessage starting-server
 	sleep 5s
 	clear
 
@@ -304,7 +290,7 @@ run(){
 	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
 		appServerVersion=7.0.40
 	else
-		appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
+		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
 	fi
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
@@ -312,16 +298,16 @@ run(){
 	#
 	# trap shutdown SIGINT
 
-	if [[ $(ASValidator isJboss ${appServer}) == true ]]; then
+	if [[ $(${ASValidator} isJboss ${appServer}) == true ]]; then
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(ASValidator isTomcat ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isTomcat ${appServer}) == true ]]; then
 		${appServerDir}/bin/catalina.sh run
-	elif [[ $(ASValidator isTCServer ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isTCServer ${appServer}) == true ]]; then
 		${appServerDir}/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
-	elif [[ $(ASValidator isWildfly ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isWildfly ${appServer}) == true ]]; then
 		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(ASValidator isWeblogic ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isWeblogic ${appServer}) == true ]]; then
 		${appServerDir}/domains/liferay/bin/startWebLogic.sh
 	fi
 }
@@ -331,7 +317,7 @@ shutdown(){
 	local asv=$(AppServerVersion returnAppServerVersion ${appServer})
 	local appServerDir=${bundleDir}/${as}-${asv}
 
-	MB printProgressMessage shutting-down-server
+	${MB} printProgressMessage shutting-down-server
 
 	if [[ ${appServer} == tomcat ]]; then
 		${appServerDir}/bin/catalina.sh stop
@@ -344,16 +330,16 @@ zip(){
 	zipFile=liferay-portal-${appServer}-${branch}.zip
 
 	if [[ $(BaseFileUtil getFileStatus ${zipFile}) == true ]]; then
-		MB printProgressMessage removing-old-zip-file
+		${MB} printProgressMessage removing-old-zip-file
 		rm -rf ${zipFile}
-		MB printDone
+		${MB} printDone
 	fi
 
-	appServer=$(ASValidator returnAppServer $@)
+	appServer=$(${ASValidator} returnAppServer $@)
 	shift
-	appServerVersion=$(ASVersion returnAppServerVersion ${appServer})
+	appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
 
-	MB printProgressMessage zipping-up-${appServer}-bundle
+	${MB} printProgressMessage zipping-up-${appServer}-bundle
 
 	content=(
 		data
@@ -366,7 +352,7 @@ zip(){
 	)
 
 	jar -cMf ${zipFile} ${content[@]}
-	MB printDone
+	${MB} printDone
 
 	cd ${baseDir}
 }
@@ -381,7 +367,7 @@ if [[ $# == 0 ]]; then
   HelpMessage buildHelpMessage
 else
 	until [[ $# == 0 ]]; do
-		appServer=$(ASValidator returnAppServer $@)
+		appServer=$(${ASValidator} returnAppServer $@)
 		if [[ ${1} == ${branch} ]]; then
 			shift
 		fi

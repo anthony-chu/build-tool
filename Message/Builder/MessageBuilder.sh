@@ -1,24 +1,22 @@
 source Message/Builder/Util/MessageBuilderUtil.sh
 
 MessageBuilder(){
-	MBUtil(){
-		MessageBuilderUtil $@
-	}
+	local MBUtil="MessageBuilderUtil"
 
 	printDone(){
 		printInfoMessage Done.
 	}
 
 	printErrorMessage(){
-		MBUtil buildMessage error ${1}
+		${MBUtil} buildMessage error ${1}
 	}
 
 	printInfoMessage(){
-		MBUtil buildMessage info ${1}
+		${MBUtil} buildMessage info ${1}
 	}
 
 	printProgressMessage(){
-		MBUtil printInfoMessage ${1}...
+		${MBUtil} printInfoMessage ${1}...
 	}
 
 	$@
