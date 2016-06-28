@@ -19,7 +19,7 @@ listMethodsFromSource(){
 	if [[ ${isVaildFile} == false ]]; then
 		MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
 	elif [[ ${isValidFile} == true ]]; then
-		cat ${filePath} | grep '[a-z]*()'
+		cat ${filePath} | grep '[a-z]*(){'
 	fi
 }
 
