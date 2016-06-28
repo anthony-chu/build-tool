@@ -1,4 +1,5 @@
 source Docs/Util/DocsUtil.sh
+source Help/Message/HelpMessage.sh
 source Message/Builder/MessageBuilder.sh
 source String/Validator/StringValidator.sh
 
@@ -54,6 +55,7 @@ listSources(){
 clear
 case ${1} in
 	-[gG]) listAllMethodsFromSource;;
+	-[hH]) HelpMessage docsHelpMessage;;
 	-[mM]) listMethodsFromSource ${2};;
 	-[sS]) listSources;;
 	*) echo "Not a valid option; please try again."
