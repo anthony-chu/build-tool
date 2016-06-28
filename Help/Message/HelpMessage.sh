@@ -108,10 +108,10 @@ HelpMessage(){
 
 	docsHelpMessage(){
 		optList=(
-			-g|-G
-			-h|-H
-			-m|-M
-			-s|-S
+			"-g|-G"
+			"-h|-H"
+			"-m|-M"
+			"-s|-S"
 		)
 
 		newOptList=$(ArrayUtil appendArrayEntry ${optList[@]})
