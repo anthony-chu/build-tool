@@ -100,7 +100,14 @@ sf(){
 	MB printProgressMessage running-source-formatter
 	echo
 	cd ${implDir}
-	ant format-source-local-changes
+
+	if [[ ${1} =~ a ]]; then
+		localChanges=""
+	elif [[ ${1} =~ l ]]; then
+		localChanges="-local-changes"
+	fi
+
+	ant format-source${localChanges}
 	MB printDone
 	echo
 	cd ${baseDir}
