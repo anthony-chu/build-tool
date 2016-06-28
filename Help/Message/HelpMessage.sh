@@ -97,10 +97,10 @@ HelpMessage(){
 		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
 		helpList=(
-		builds-content-targeting-modules
-		removes-content-targeting-modules-from-bundle
-		returns-the-GIT-ID-of-the-specified-branch
-		generates-a-zip-of-the-content-targeting-jars
+			builds-content-targeting-modules
+			removes-content-targeting-modules-from-bundle
+			returns-the-GIT-ID-of-the-specified-branch
+			generates-a-zip-of-the-content-targeting-jars
 		)
 
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
