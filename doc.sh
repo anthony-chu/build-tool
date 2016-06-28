@@ -51,6 +51,7 @@ listSources(){
 	done
 }
 
+clear
 case ${1} in
 	-[gG]) listAllMethodsFromSource;;
 	-[mM]) listMethodsFromSource ${2};;
