@@ -6,20 +6,18 @@ source Help/Message/HelpMessage.sh
 source Message/Builder/MessageBuilder.sh
 source String/Util/StringUtil.sh
 
-MB(){
-	MessageBuilder $@
-}
+MB=MessageBuilder
 
 mockmock(){
 	cd ${buildDir}
 
-	MB printProgressMessage building-MockMock-jar
+	${MB} printProgressMessage building-MockMock-jar
 
 	ant -f build-test.xml start-test-smtp-server
 
 	clear
 
-	MB printProgressMessage starting-MockMock-SMTP-server
+	${MB} printProgressMessage starting-MockMock-SMTP-server
 
 	sleep 5s
 
@@ -32,9 +30,9 @@ mockmock(){
 
 pr(){
 	if (( $# == 0 )); then
-		MB printErrorMessage missing-reviewer
+		${MB} printErrorMessage missing-reviewer
 	else
-		MB printProgressMessage submitting-pull-request
+		${MB} printProgressMessage submitting-pull-request
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -74,13 +72,13 @@ pr(){
 
 		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
 
-		MB printDone
+		${MB} printDone
 
-		MB printProgressMessage switching-branch-to-${branch}
+		${MB} printProgressMessage switching-branch-to-${branch}
 
 		git checkout ${branch}
 
-		MB printDone
+		${MB} printDone
 
 		cd ${baseDir}
 	fi
@@ -102,17 +100,17 @@ sf(){
 	if [[ ${1} =~ a ]] || [[ ${1} =~ A ]]; then
 		localChanges=""
 
-		MB printProgressMessage running-source-formatter-on-all-files
+		${MB} printProgressMessage running-source-formatter-on-all-files
 		echo
 	elif [[ ${1} =~ l ]] || [[ ${1} =~ L ]]; then
 		localChanges="-local-changes"
 
-		MB printProgressMessage running-source-formatter-on${localChanges}
+		${MB} printProgressMessage running-source-formatter-on${localChanges}
 		echo
 	fi
 
 	ant format-source${localChanges}
-	MB printDone
+	${MB} printDone
 	echo
 	cd ${baseDir}
 }
@@ -139,11 +137,11 @@ test(){
 	done
 
 	if (( !"$#" )); then
-		MB printErrorMessage missing-test-name
+		${MB} printErrorMessage missing-test-name
 	else
 		test=${1}
 		shift
-		MB printProgressMessage running-test-${test}
+		${MB} printProgressMessage running-test-${test}
 		echo
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
@@ -152,7 +150,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		MB printProgressMessage moving-test-results
+		${MB} printProgressMessage moving-test-results
 		echo
 
 		cd ${resultDir}
