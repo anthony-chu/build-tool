@@ -108,6 +108,7 @@ HelpMessage(){
 
 	docsHelpMessage(){
 		optList=(
+			"-d|-D"
 			"-g|-G"
 			"-h|-H"
 			"-m|-M"
@@ -117,6 +118,7 @@ HelpMessage(){
 		newOptList=$(ArrayUtil appendArrayEntry ${optList[@]})
 
 		helpList=(
+			lists-all-dependencies-for-a-given-file
 			lists-all-available-methods
 			prints-help-message
 			lists-all-methods-from-a-given-file
