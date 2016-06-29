@@ -12,6 +12,35 @@ listAllMethodsFromSource(){
 	done
 }
 
+listDependenciesFromSource(){
+	file=${1}
+
+	if [[ $(StringValidator isNull ${file}) == true ]]; then
+		MessageBuilder printErrorMessage please-provide-a-file-name-or-class
+		exit
+	else
+		sources=($(DocsUtil getSources))
+
+		for (( i=0; i<${#sources[@]}; i++ )); do
+			if [[ $(StringValidator isSubstring ${sources[i]} ${file}) == true ]]; then
+				isValidFile=true
+				filePath=${sources[i]}
+				break
+			else
+				isValidFile=false
+			fi
+		done
+
+		if [[ ${isVaildFile} == false ]]; then
+			MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
+		elif [[ ${isValidFile} == true ]]; then
+			MessageBuilder printInfoMessage dependencies-for-${file/[.]sh/}
+			echo
+			cat ${filePath} | grep 'source'
+		fi
+	fi
+}
+
 listMethodsFromSource(){
 	file=${1}
 
@@ -54,6 +83,7 @@ listSources(){
 
 clear
 case ${1} in
+	-[dD]) listDependenciesFromSource ${2};;
 	-[gG]) listAllMethodsFromSource;;
 	-[hH]) HelpMessage docsHelpMessage;;
 	-[mM]) listMethodsFromSource ${2};;
