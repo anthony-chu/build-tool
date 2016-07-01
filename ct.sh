@@ -6,6 +6,10 @@ baseDir=$(pwd)
 projectDir=d:/private/ee-7.0.x-portal/modules/apps/content-targeting
 
 CTBuilder(){
+
+	MB=MessageBuilder
+	SV=StringValidator
+
 	_branchChecker(){
 		if [[ $(${SV} isNull ${1}) == true ]]; then
 			branch=develop
