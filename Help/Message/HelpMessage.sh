@@ -87,11 +87,11 @@ HelpMessage(){
 
 	ctHelpMessage(){
 		funcList=(
-		build
-		cleanUpJars
-		getGitId
-		release
-		update
+			build
+			cleanUpJars
+			getGitId
+			release
+			update
 		)
 
 		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
