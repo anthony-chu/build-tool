@@ -101,6 +101,7 @@ HelpMessage(){
 			removes-content-targeting-modules-from-bundle
 			returns-the-GIT-ID-of-the-specified-branch
 			generates-a-zip-of-the-content-targeting-jars
+			updates-content-targeting-to-HEAD-on-current-branch
 		)
 
 		_printHelpMessage ${newFuncList[@]} ${helpList[@]}
