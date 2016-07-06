@@ -47,6 +47,8 @@ CTBuilder(){
 	}
 
 	build(){
+		clean
+
 		cd ${projectDir}
 
 		branch=$(_branchChecker ${1})
@@ -58,6 +60,14 @@ CTBuilder(){
 		d:/private/ee-7.0.x-portal/gradlew clean deploy
 
 		${MB} printDone
+
+		cd ${baseDir}
+	}
+
+	clean(){
+		cd ${distDir}
+
+		rm *content.targeting*
 
 		cd ${baseDir}
 	}
