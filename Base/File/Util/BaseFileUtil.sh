@@ -1,4 +1,8 @@
 BaseFileUtil(){
+	getFileExtension(){
+		file=${1}
+		echo ${file/*[.]/}
+	}
 
 	getFileStatus(){
 		if [[ $(ls | grep ${1}) == "" ]]; then
