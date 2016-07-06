@@ -4,6 +4,7 @@ source String/Validator/StringValidator.sh
 
 baseDir=$(pwd)
 projectDir=d:/private/ee-7.0.x-portal/modules/apps/content-targeting
+distDir=${projectDir}/../../../tools/sdk/dist
 
 CTBuilder(){
 
