@@ -1,4 +1,5 @@
 source Base/File/Util/BaseFileUtil.sh
+source String/Validator/StringValidator.sh
 source Message/Builder/MessageBuilder.sh
 
 PropsReader(){
@@ -13,6 +14,11 @@ PropsReader(){
 		MessageBuilder printProgressMessage reading-configuration-from-${file}
 
 		properties=($(cat ${file}))
+
+		if [[ $(StringValidator isNull ${properties[@]}) == true ]]; then
+			MessageBuilder printErrorMessage there-are-no-properties-in-${file}
+			exit
+		fi
 
 		for (( i=0; i<${#properties[@]}; i++ )); do
 			eval ${properties[i]]}
@@ -32,6 +38,11 @@ PropsReader(){
 		MessageBuilder printProgressMessage reading-properties-from-${file}
 
 		properties=($(cat ${file}))
+
+		if [[ $(StringValidator isNull ${properties[@]}) == true ]]; then
+			MessageBuilder printErrorMessage there-are-no-properties-in-${file}
+			exit
+		fi
 
 		for (( i=0; i<${#properties[@]}; i++ )); do
 			eval ${properties[i]]}
