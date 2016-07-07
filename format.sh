@@ -38,7 +38,7 @@ availableMethods=(
 )
 
 curFile=${0/\.\//}
-excludedFiles=(${curFile} Formatter md)
+excludedFiles=(${curFile} Formatter)
 includedFiles=()
 
 echo "[INFO] Determining files to format..."
