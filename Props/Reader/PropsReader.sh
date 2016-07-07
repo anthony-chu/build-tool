@@ -17,6 +17,8 @@ PropsReader(){
 		for (( i=0; i<${#properties[@]}; i++ )); do
 			eval ${properties[i]]}
 		done
+
+		MessageBuilder printDone
 	}
 
 	readPropsFile(){
@@ -34,6 +36,8 @@ PropsReader(){
 		for (( i=0; i<${#properties[@]}; i++ )); do
 			eval ${properties[i]]}
 		done
+
+		MessageBuilder printDone
 	}
 
 	$@
