@@ -1,5 +1,6 @@
 source Array/Util/ArrayUtil.sh
 source Array/Validator/ArrayValidator.sh
+source Finder/Finder.sh
 source String/Validator/StringValidator.sh
 
 Formatter(){
@@ -26,7 +27,7 @@ Formatter(){
 	$@
 }
 
-allFiles=($(find * -type f))
+allFiles=($(Finder findAllFiles))
 
 availableMethods=(
 	convertSpacesToTab
