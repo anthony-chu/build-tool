@@ -1,4 +1,8 @@
 Finder(){
+	findAllFiles(){
+		find * -type f
+	}
+
 	findByExt(){
 		ext=${1}
 
