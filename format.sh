@@ -27,7 +27,7 @@ Formatter(){
 	$@
 }
 
-allFiles=($(Finder findAllFiles))
+allFiles=($(Finder findByExt sh))
 
 availableMethods=(
 	convertSpacesToTab
