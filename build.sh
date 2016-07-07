@@ -1,7 +1,7 @@
 source App/Server/Validator/AppServerValidator.sh
 source App/Server/Version/AppServerVersion.sh
-source Base/File/IO/Util/BaseFileIOUtil.sh
-source Base/File/Util/BaseFileUtil.sh
+source File/IO/Util/FileIOUtil.sh
+source File/Util/FileUtil.sh
 source Base/Util/BaseUtil.sh
 source Base/Vars/BaseVars.sh
 source Help/Message/HelpMessage.sh
@@ -9,11 +9,11 @@ source Message/Builder/MessageBuilder.sh
 source String/Util/StringUtil.sh
 source String/Validator/StringValidator.sh
 
-append="BaseFileIOUtil append"
+append="FileIOUtil append"
 ASValidator="AppServerValidator"
 ASVersion="AppServerVersion"
 MB="MessageBuilder"
-replace="BaseFileIOUtil replace"
+replace="FileIOUtil replace"
 
 _build_log(){
 	local appServer=$(${ASValidator} returnAppServer ${1})
@@ -329,7 +329,7 @@ zip(){
 
 	zipFile=liferay-portal-${appServer}-${branch}.zip
 
-	if [[ $(BaseFileUtil getFileStatus ${zipFile}) == true ]]; then
+	if [[ $(FileUtil getFileStatus ${zipFile}) == true ]]; then
 		${MB} printProgressMessage removing-old-zip-file
 		rm -rf ${zipFile}
 		${MB} printDone

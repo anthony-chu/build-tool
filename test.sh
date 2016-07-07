@@ -1,5 +1,5 @@
 source Array/Util/ArrayUtil.sh
-source Base/File/Name/Util/BaseFileNameUtil.sh
+source File/Name/Util/FileNameUtil.sh
 source Base/Util/BaseUtil.sh
 source Base/Vars/BaseVars.sh
 source Help/Message/HelpMessage.sh

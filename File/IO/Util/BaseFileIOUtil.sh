@@ -1,4 +1,4 @@
-BaseFileIOUtil(){
+FileIOUtil(){
 	append(){
 		local toFile=${1}
 		shift

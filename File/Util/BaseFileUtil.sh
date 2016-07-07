@@ -1,4 +1,4 @@
-BaseFileUtil(){
+FileUtil(){
 	getFileExtension(){
 		file=${1}
 		echo ${file/*[.]/}

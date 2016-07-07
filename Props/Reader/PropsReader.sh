@@ -1,4 +1,4 @@
-source Base/File/Util/BaseFileUtil.sh
+source File/Util/FileUtil.sh
 source String/Validator/StringValidator.sh
 source Message/Builder/MessageBuilder.sh
 
@@ -6,7 +6,7 @@ PropsReader(){
 	readConfFile(){
 		file=${1}
 
-		if [[ $(BaseFileUtil getFileExtension ${file}) != conf ]]; then
+		if [[ $(FileUtil getFileExtension ${file}) != conf ]]; then
 			MessageBuilder printErrorMessage -${file}-is-not-a-conf-file.
 			exit
 		fi
@@ -30,7 +30,7 @@ PropsReader(){
 	readPropsFile(){
 		file=${1}
 
-		if [[ $(BaseFileUtil getFileExtension ${file}) != properties ]]; then
+		if [[ $(FileUtil getFileExtension ${file}) != properties ]]; then
 			MessageBuilder printErrorMessage -${file}-is-not-a-properties-file.
 			exit
 		fi

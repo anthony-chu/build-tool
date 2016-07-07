@@ -1,7 +1,7 @@
 source Base/Util/BaseUtil.sh
 source String/Util/StringUtil.sh
 
-BaseFileNameUtil(){
+FileNameUtil(){
 	getPath(){
 		path=${1}
 
