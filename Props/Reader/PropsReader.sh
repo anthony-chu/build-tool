@@ -10,7 +10,7 @@ PropsReader(){
 			exit
 		fi
 
-		MessageBuilder printInfoMessage reading-configuration-from-${file}.
+		MessageBuilder printProgressMessage reading-configuration-from-${file}
 
 		properties=($(cat ${file}))
 
@@ -27,7 +27,7 @@ PropsReader(){
 			exit
 		fi
 
-		MessageBuilder printInfoMessage reading-properties-from-${file}.
+		MessageBuilder printProgressMessage reading-properties-from-${file}
 
 		properties=($(cat ${file}))
 
