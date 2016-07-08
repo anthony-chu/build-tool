@@ -16,5 +16,18 @@ FileUtil(){
 		fi
 	}
 
+	matchFileContentSubstring(){
+		pattern=${1}
+		file=${2}
+
+		matchingContent=($(grep -o ${pattern} ${file}))
+
+		if [[ ${matchingContent[@]} == "" ]]; then
+			echo false
+		else
+			echo true
+		fi
+	}
+
 	$@
 }
