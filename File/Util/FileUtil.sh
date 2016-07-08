@@ -1,3 +1,5 @@
+source ${projectDir}String/Validator/StringValidator.sh
+
 FileUtil(){
 	getFileExtension(){
 		file=${1}
@@ -5,7 +7,7 @@ FileUtil(){
 	}
 
 	getFileStatus(){
-		if [[ $(ls | grep ${1}) == "" ]]; then
+		if [[ $(StringValidator isNull $(ls | grep ${1})) == true ]]; then
 			echo false
 		else
 			if [[ $(ls | grep ${1}) == ${1} ]]; then
@@ -22,7 +24,7 @@ FileUtil(){
 
 		matchingContent=($(grep -o ${pattern} ${file}))
 
-		if [[ ${matchingContent[@]} == "" ]]; then
+		if [[ $(StringValidator isNull ${matchingContent[@]}) == true ]]; then
 			echo false
 		else
 			echo true
