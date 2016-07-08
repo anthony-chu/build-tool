@@ -1,6 +1,6 @@
-source File/Util/FileUtil.sh
-source String/Validator/StringValidator.sh
-source Message/Builder/MessageBuilder.sh
+source ${projectDir}File/Util/FileUtil.sh
+source ${projectDir}String/Validator/StringValidator.sh
+source ${projectDir}Message/Builder/MessageBuilder.sh
 
 PropsReader(){
 	readConfFile(){

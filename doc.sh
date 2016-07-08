@@ -1,7 +1,7 @@
-source Docs/Util/DocsUtil.sh
-source Help/Message/HelpMessage.sh
-source Message/Builder/MessageBuilder.sh
-source String/Validator/StringValidator.sh
+source ${projectDir}Docs/Util/DocsUtil.sh
+source ${projectDir}Help/Message/HelpMessage.sh
+source ${projectDir}Message/Builder/MessageBuilder.sh
+source ${projectDir}String/Validator/StringValidator.sh
 
 listAllMethodsFromSource(){
 	sources=($(DocsUtil getSources))
@@ -83,10 +83,10 @@ listSources(){
 
 clear
 case ${1} in
-	-[dD]) listDependenciesFromSource ${2};;
+	-[dD]) listDependenciesFromSource ${projectDir}${2};;
 	-[gG]) listAllMethodsFromSource;;
 	-[hH]) HelpMessage docsHelpMessage;;
-	-[mM]) listMethodsFromSource ${2};;
+	-[mM]) listMethodsFromSource ${projectDir}${2};;
 	-[sS]) listSources;;
 	*) echo "Not a valid option; please try again."
 esac

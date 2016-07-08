@@ -1,10 +1,10 @@
-source Array/Util/ArrayUtil.sh
-source File/Name/Util/FileNameUtil.sh
-source Base/Util/BaseUtil.sh
-source Base/Vars/BaseVars.sh
-source Help/Message/HelpMessage.sh
-source Message/Builder/MessageBuilder.sh
-source String/Util/StringUtil.sh
+source ${projectDir}Array/Util/ArrayUtil.sh
+source ${projectDir}File/Name/Util/FileNameUtil.sh
+source ${projectDir}Base/Util/BaseUtil.sh
+source ${projectDir}Base/Vars/BaseVars.sh
+source ${projectDir}Help/Message/HelpMessage.sh
+source ${projectDir}Message/Builder/MessageBuilder.sh
+source ${projectDir}String/Util/StringUtil.sh
 
 MB=MessageBuilder
 

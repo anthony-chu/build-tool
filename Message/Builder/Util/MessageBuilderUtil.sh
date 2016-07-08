@@ -1,5 +1,5 @@
-source Base/Util/BaseUtil.sh
-source String/Util/StringUtil.sh
+source ${projectDir}Base/Util/BaseUtil.sh
+source ${projectDir}String/Util/StringUtil.sh
 
 MessageBuilderUtil(){
 	local time=$(BaseUtil timestamp)

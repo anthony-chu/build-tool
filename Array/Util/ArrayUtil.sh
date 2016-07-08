@@ -1,4 +1,4 @@
-source String/Util/StringUtil.sh
+source ${projectDir}String/Util/StringUtil.sh
 
 ArrayUtil(){
 	appendArrayEntry(){

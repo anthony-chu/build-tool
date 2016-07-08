@@ -1,4 +1,4 @@
-source App/Server/Version/Constants/AppServerVersionConstants.sh
+source ${projectDir}App/Server/Version/Constants/AppServerVersionConstants.sh
 
 AppServerVersion(){
 

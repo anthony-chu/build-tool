@@ -1,7 +1,7 @@
-source Array/Util/ArrayUtil.sh
-source Array/Validator/ArrayValidator.sh
-source Finder/Finder.sh
-source String/Validator/StringValidator.sh
+source ${projectDir}Array/Util/ArrayUtil.sh
+source ${projectDir}Array/Validator/ArrayValidator.sh
+source ${projectDir}Finder/Finder.sh
+source ${projectDir}String/Validator/StringValidator.sh
 
 Formatter(){
 	convertSpacesToTab(){

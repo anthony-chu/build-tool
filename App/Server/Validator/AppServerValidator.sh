@@ -1,4 +1,4 @@
-source String/Validator/StringValidator.sh
+source ${projectDir}String/Validator/StringValidator.sh
 
 AppServerValidator(){
 	local appServer=${2}

@@ -1,13 +1,13 @@
-source App/Server/Validator/AppServerValidator.sh
-source App/Server/Version/AppServerVersion.sh
-source File/IO/Util/FileIOUtil.sh
-source File/Util/FileUtil.sh
-source Base/Util/BaseUtil.sh
-source Base/Vars/BaseVars.sh
-source Help/Message/HelpMessage.sh
-source Message/Builder/MessageBuilder.sh
-source String/Util/StringUtil.sh
-source String/Validator/StringValidator.sh
+source ${projectDir}App/Server/Validator/AppServerValidator.sh
+source ${projectDir}App/Server/Version/AppServerVersion.sh
+source ${projectDir}File/IO/Util/FileIOUtil.sh
+source ${projectDir}File/Util/FileUtil.sh
+source ${projectDir}Base/Util/BaseUtil.sh
+source ${projectDir}Base/Vars/BaseVars.sh
+source ${projectDir}Help/Message/HelpMessage.sh
+source ${projectDir}Message/Builder/MessageBuilder.sh
+source ${projectDir}String/Util/StringUtil.sh
+source ${projectDir}String/Validator/StringValidator.sh
 
 append="FileIOUtil append"
 ASValidator="AppServerValidator"
@@ -200,7 +200,7 @@ build(){
 
 	cd ${buildDir}
 
-	_config source ${appServer}
+	_config source ${projectDir}${appServer}
 
 	${MB} printProgressMessage unzipping-${appServer}
 	ant -f build-dist.xml unzip-${appServer}

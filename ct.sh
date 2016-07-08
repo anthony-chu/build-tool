@@ -1,6 +1,6 @@
-source Help/Message/HelpMessage.sh
-source Message/Builder/MessageBuilder.sh
-source String/Validator/StringValidator.sh
+source ${projectDir}Help/Message/HelpMessage.sh
+source ${projectDir}Message/Builder/MessageBuilder.sh
+source ${projectDir}String/Validator/StringValidator.sh
 
 baseDir=$(pwd)
 projectDir=d:/private/ee-7.0.x-portal/modules/apps/content-targeting

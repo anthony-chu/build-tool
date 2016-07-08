@@ -1,8 +1,8 @@
 BaseUtil(){
 	gitpr(){
-		alias gitpr="source d:/git-tools/git-pull-request/git-pull-request.sh"
-		source "c:/users/liferay/.bashrc"
-		source "d:/git-tools/git-pull-request/git-pull-request.sh"
+		alias gitpr="source ${projectDir}d:/git-tools/git-pull-request/git-pull-request.sh"
+		source ${projectDir}"c:/users/liferay/.bashrc"
+		source ${projectDir}"d:/git-tools/git-pull-request/git-pull-request.sh"
 	}
 
 	getOS(){
