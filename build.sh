@@ -227,11 +227,11 @@ deploy(){
 
 	${MB} printProgressMessage searching-for-the-desired-module
 
-	allModules=($(find * -type f -iname bnd.bnd))
+	allModules=($(find * -type f -iname build.gradle))
 
 	for (( i=0; i<${#allModules[@]}; i++ )); do
 		if [[ ${allModules[i]} == *${input}* ]]; then
-			pathToModule=${allModules[i]/bnd.bnd/}
+			pathToModule=${allModules[i]/build.gradle/}
 			${MB} printDone
 			break
 		fi
