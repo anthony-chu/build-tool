@@ -99,7 +99,7 @@ AppServerValidator(){
 			if [[ $(validateAppServer ${appServer}) == true ]]; then
 				echo ${appServer}
 			else
-				echo null
+				echo tomcat
 				exit
 			fi
 		fi
