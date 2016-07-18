@@ -165,7 +165,7 @@ test(){
 
 		cd ${testDir}/${testname}
 		testcase=${testname//[_]/%23}
-		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
+		chromeDir="C:/Windows.old/Program Files (x86)/Google/Chrome/Application"
 
 		file="\/\/\/${testDir/\/d/D\:}/${testname}/${testcase}_index.html"
 
