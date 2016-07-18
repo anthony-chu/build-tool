@@ -94,7 +94,7 @@ AppServerValidator(){
 
 	returnAppServer(){
 		if [[ $(${SV} isNull ${appServer}) == true ]]; then
-			echo "tomcat"
+			echo tomcat
 		else
 			if [[ $(validateAppServer ${appServer}) == true ]]; then
 				echo ${appServer}
