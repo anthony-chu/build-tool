@@ -118,7 +118,7 @@ sf(){
 validate(){
 	cd ${buildDir}
 
-	ant -f build-test.xml run-poshi-validation
+	ant -f build-test.xml run-poshi-validation $@
 
 	cd ${baseDir}
 }
