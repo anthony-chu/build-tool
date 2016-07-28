@@ -121,7 +121,7 @@ HelpMessage(){
 		helpList=(
 			lists-all-dependencies-for-a-given-file
 			lists-all-available-methods
-			prints-help-message
+			prints-this-help-message
 			lists-all-methods-from-a-given-file
 			lists-all-sourceable-files
 		)
