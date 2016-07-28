@@ -24,7 +24,7 @@ AppServerVersionConstants(){
 	}
 
 	tcserverVersion(){
-		echo "2.9.11"
+		echo "3.1.3"
 	}
 
 	tomcatVersion(){
@@ -32,7 +32,7 @@ AppServerVersionConstants(){
 	}
 
 	weblogicVersion(){
-		echo "12.1.3"
+		echo "12.2.1"
 	}
 
 	websphereVersion(){
