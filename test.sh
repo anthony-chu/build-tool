@@ -183,7 +183,7 @@ bundleDir=$(BaseVars returnBundleDir $@)
 
 args=$@
 
-if [[ $@ == ${branch} ]]; then
+if [[ $@ =~ ${branch} ]]; then
 	args=${@/${branch}/}
 fi
 
