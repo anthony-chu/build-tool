@@ -164,7 +164,7 @@ test(){
 		mv index.html ${test}_index.html
 
 		cd ${testDir}/${testname}
-		testcase=${testname//[_]/%23}
+		testcase=$(StringUtil replace ${testname} [_] %23)
 		chromeDir="C:/Windows.old/Program Files (x86)/Google/Chrome/Application"
 
 		file="\/\/\/${testDir/\/d/D\:}/${testname}/${testcase}_index.html"
