@@ -200,7 +200,7 @@ build(){
 
 	cd ${buildDir}
 
-	_config source ${projectDir}${appServer}
+	_config source ${appServer}
 
 	${MB} printProgressMessage unzipping-${appServer}
 	ant -f build-dist.xml unzip-${appServer}
@@ -379,9 +379,5 @@ else
 		fi
 
 		shift
-
-		if [[ ${1} == ${appServer} ]]; then
-			shift
-		fi
 	done
 fi
