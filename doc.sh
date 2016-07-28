@@ -83,10 +83,10 @@ listSources(){
 
 clear
 case ${1} in
-	-[dD]) listDependenciesFromSource ${projectDir}${2};;
+	-[dD]) listDependenciesFromSource ${2};;
 	-[gG]) listAllMethodsFromSource;;
 	-[hH]) HelpMessage docsHelpMessage;;
-	-[mM]) listMethodsFromSource ${projectDir}${2};;
+	-[mM]) listMethodsFromSource ${2};;
 	-[sS]) listSources;;
 	*) echo "Not a valid option; please try again."
 esac
