@@ -2,6 +2,7 @@ source ${projectDir}Array/Util/ArrayUtil.sh
 source ${projectDir}File/Name/Util/FileNameUtil.sh
 source ${projectDir}Base/Util/BaseUtil.sh
 source ${projectDir}Base/Vars/BaseVars.sh
+source ${projectDir}File/Name/Util/FileNameUtil.sh
 source ${projectDir}Help/Message/HelpMessage.sh
 source ${projectDir}Message/Builder/MessageBuilder.sh
 source ${projectDir}String/Util/StringUtil.sh
@@ -167,7 +168,7 @@ test(){
 		testcase=$(StringUtil replace ${testname} [_] %23)
 		chromeDir="C:/Windows.old/Program Files (x86)/Google/Chrome/Application"
 
-		file="\/\/\/${testDir/\/d/D\:}/${testname}/${testcase}_index.html"
+		file="\/\/\/$(FileNameUtil getPath ${testDir})/${testname}/${testcase}_index.html"
 
 		"${chromeDir}/chrome.exe" "file:${file}"
 
