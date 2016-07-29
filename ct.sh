@@ -59,7 +59,7 @@ CTBuilder(){
 	}
 
 	build(){
-		clean
+		clean(source)
 
 		cd ${projectDir}
 
@@ -78,7 +78,7 @@ CTBuilder(){
 		cd ${baseDir}
 	}
 
-	cleanUpJars(){
+	clean(bundle)(){
 		${MB} printProgressMessage removing-content-targeting-jars-from-the-bundle
 
 		cd D:/private/ee-7.0.x-bundles/osgi/modules
@@ -88,6 +88,14 @@ CTBuilder(){
 		cd ${baseDir}
 
 		${MB} printDone
+	}
+
+	clean(source)(){
+		cd ${distDir}
+
+		_clean
+
+		cd ${baseDir}
 	}
 
 	getGitId(){
