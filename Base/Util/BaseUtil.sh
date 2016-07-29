@@ -9,6 +9,20 @@ BaseUtil(){
 		echo ${OS}
 	}
 
+	portListener(){
+		if [[ $# == 0 ]]; then
+			exit
+		fi
+
+		port=$1
+
+		if [[ $(netstat -an | grep ${port} | grep LISTENING) == "" ]]; then
+			echo false
+		else
+			echo true
+		fi
+	}
+
 	timestamp(){
 		if [[ ${1} == clock ]]; then
 			local t=$(date +%T%s)
