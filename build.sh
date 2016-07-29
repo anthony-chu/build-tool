@@ -53,13 +53,7 @@ _clean_hard(){
 _clean_bundle(){
 	local appServer=$(${ASValidator} returnAppServer $@)
 
-	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
-		appServerVersion=7.0.62
-	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
-		appServerVersion=7.0.40
-	else
-		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
-	fi
+	_overrideTomcatVersion
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
@@ -117,13 +111,7 @@ _config(){
 	appServer(){
 		local appServer=$(${ASValidator} returnAppServer $@)
 
-		if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
-			appServerVersion=7.0.62
-		elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
-			appServerVersion=7.0.40
-		else
-			appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
-		fi
+		_overrideTomcatVersion
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
@@ -184,6 +172,16 @@ _rebuild_db(){
 	${MB} printDone
 	echo
 	cd ${baseDir}
+}
+
+_overrideTomcatVersion(){
+	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
+		appServerVersion=7.0.62
+	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
+		appServerVersion=7.0.40
+	else
+		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
+	fi
 }
 
 build(){
@@ -286,13 +284,7 @@ run(){
 	sleep 5s
 	clear
 
-	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
-		appServerVersion=7.0.62
-	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
-		appServerVersion=7.0.40
-	else
-		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
-	fi
+	_overrideTomcatVersion
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
