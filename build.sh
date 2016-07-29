@@ -2,6 +2,7 @@ source ${projectDir}App/Server/Validator/AppServerValidator.sh
 source ${projectDir}App/Server/Version/AppServerVersion.sh
 source ${projectDir}File/IO/Util/FileIOUtil.sh
 source ${projectDir}File/Util/FileUtil.sh
+source ${projectDir}Finder/Util/FinderUtil.sh
 source ${projectDir}Base/Util/BaseUtil.sh
 source ${projectDir}Base/Vars/BaseVars.sh
 source ${projectDir}Help/Message/HelpMessage.sh
@@ -155,7 +156,7 @@ _disableCTCompile(){
 
 	cd ${projectDir}
 
-	submodulesDir=($(find * -type f -iname ".lfrbuild-portal"))
+	submodulesDir=($(FinderUtil findByExt lfrbuild-portal))
 
 	for (( i=0; i<${#submodulesDir[@]}; i++ )); do
 		rm -rf ${submodulesDir[i]}
