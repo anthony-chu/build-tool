@@ -50,6 +50,14 @@ CTBuilder(){
 		rm *content.targeting*
 	}
 
+	_generateSnapshot(){
+		cd ${projectDir}/content-targeting-api
+
+		${projectDir}/../../../../gradlew install -P snapshot
+
+		cd ${projectDir}
+	}
+
 	build(){
 		clean
 
@@ -60,6 +68,8 @@ CTBuilder(){
 		_branchSwitcher ${branch}
 
 		${MB} printProgressMessage building-content-targeting-modules
+
+		_generateSnapshot
 
 		d:/private/ee-7.0.x-portal/gradlew clean deploy
 
