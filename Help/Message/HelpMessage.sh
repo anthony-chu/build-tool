@@ -88,7 +88,8 @@ HelpMessage(){
 	ctHelpMessage(){
 		funcList=(
 			build
-			cleanUpJars
+			clean(bundle)
+			clean(source)
 			getGitId
 			release
 			update
@@ -99,6 +100,7 @@ HelpMessage(){
 		helpList=(
 			builds-content-targeting-modules
 			removes-content-targeting-modules-from-bundle
+			removes-content-targeting-modules-from-dist-directory
 			returns-the-GIT-ID-of-the-specified-branch
 			generates-a-zip-of-the-content-targeting-jars
 			updates-content-targeting-to-HEAD-on-current-branch
