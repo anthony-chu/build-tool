@@ -46,6 +46,10 @@ CTBuilder(){
 		fi
 	}
 
+	_clean(){
+		rm *content.targeting*
+	}
+
 	build(){
 		clean
 
@@ -64,20 +68,12 @@ CTBuilder(){
 		cd ${baseDir}
 	}
 
-	clean(){
-		cd ${distDir}
-
-		rm *content.targeting*
-
-		cd ${baseDir}
-	}
-
 	cleanUpJars(){
 		${MB} printProgressMessage removing-content-targeting-jars-from-the-bundle
 
 		cd D:/private/ee-7.0.x-bundles/osgi/modules
 
-		rm -rf *content.targeting*
+		_clean
 
 		cd ${baseDir}
 
