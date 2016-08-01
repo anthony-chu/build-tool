@@ -88,8 +88,8 @@ HelpMessage(){
 	ctHelpMessage(){
 		funcList=(
 			build
-			clean(bundle)
-			clean(source)
+			clean_bundle
+			clean_source
 			getGitId
 			release
 			update
