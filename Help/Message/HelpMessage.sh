@@ -66,6 +66,7 @@ HelpMessage(){
 			deploy
 			pull
 			push
+			rebuild
 			run
 			zip
 		)
@@ -78,6 +79,7 @@ HelpMessage(){
 			deploys-the-specified-module-to-bundle
 			pulls-from-upstream-master
 			pushes-current-branch-to-origin
+			rebuilds-app-server-based-on-clean-and-compiled-code
 			runs-a-bundle-on-specified-app-server
 			zips-a-bundle-on-specified-app-server
 		)
