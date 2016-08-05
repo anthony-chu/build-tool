@@ -305,6 +305,34 @@ run(){
 	fi
 }
 
+rebuild(){
+	local appServer=$(${ASValidator} returnAppServer $@)
+
+	_build_log ${appServer}
+
+	_clean_hard ${appServer}
+
+	_clean_source
+
+	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) == true ]]; then
+		_disableCTCompile
+	fi
+
+	cd ${buildDir}
+
+	_config source ${appServer}
+
+	${MB} printProgressMessage unzipping-${appServer}
+	ant -f build-dist.xml unzip-${appServer}
+	${MB} printDone
+
+	_config appServer ${appServer}
+
+	${MB} printProgressMessage building-portal
+	ant -f build-dist.xml build-dist-${appServer} >> ${logFile} | tail -f --pid=$$ ${logFile}
+	${MB} printDone
+}
+
 shutdown(){
 	local as=$(AppServerValidator returnAppServer ${1})
 	local asv=$(AppServerVersion returnAppServerVersion ${appServer})
