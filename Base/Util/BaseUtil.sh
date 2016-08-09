@@ -6,7 +6,7 @@ BaseUtil(){
 	}
 
 	getOS(){
-		echo ${OS}
+		echo $(uname)
 	}
 
 	portListener(){
