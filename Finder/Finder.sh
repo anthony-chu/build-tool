@@ -1,12 +1,16 @@
+source ${projectDir}Finder/Util/FinderUtil.sh
+
 Finder(){
 	findAllFiles(){
-		find * -type f
+		FinderUtil find
 	}
 
 	findByExt(){
-		ext=${1}
+		FinderUtil find -iname *.${1}
+	}
 
-		find * -type f -iname *.${ext}
+	findByName(){
+		FinderUtil find -iname ${1}
 	}
 
 	$@
