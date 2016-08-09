@@ -226,7 +226,7 @@ deploy(){
 
 	${MB} printProgressMessage searching-for-the-desired-module
 
-	allModules=($(find * -type f -iname build.gradle))
+	allModules=($(Finder findByName build.gradle))
 
 	for (( i=0; i<${#allModules[@]}; i++ )); do
 		if [[ ${allModules[i]} == *${input}* ]]; then
