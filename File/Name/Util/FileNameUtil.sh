@@ -5,7 +5,7 @@ FileNameUtil(){
 	getPath(){
 		path=${1}
 
-		if [[ $(BaseUtil getOS) =~ Windows ]]; then
+		if [[ $(BaseUtil getOS) =~ NT ]]; then
 			_drive=${path:1:1}
 			drive=${_drive^}
 			headlessPath=${path/\/[a-z]/}
