@@ -120,8 +120,8 @@ AppServerValidator(){
 			wildfly
 		)
 
-		for (( i=0; i<${#validAppServer[@]}; i++ )); do
-			local isValidAppServer=$(${SV} isEqual ${validAppServer[i]} ${1})
+		for v in ${validAppServer[@]}; do
+			local isValidAppServer=$(${SV} isEqual ${v} ${1})
 
 			if [[ ${isValidAppServer} ]]; then
 				break

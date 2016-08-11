@@ -44,8 +44,8 @@ PropsReader(){
 			exit
 		fi
 
-		for (( i=0; i<${#properties[@]}; i++ )); do
-			eval ${properties[i]]}
+		for p in ${properties[@]}; do
+			eval ${p}
 		done
 
 		MessageBuilder printDone

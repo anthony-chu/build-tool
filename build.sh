@@ -24,8 +24,8 @@ _build_log(){
 
 	logStructure=("d" "logs" "${branch}" "${appServer}" "${date}")
 
-	for (( i=0; i<${#logStructure[@]}; i++ )); do
-		logDir=${logDir}/${logStructure[i]}
+	for l in ${logStructure[@]}; do
+		logDir=${logDir}/${l}
 		if [ ! -e ${logDir} ]; then
 			mkdir ${logDir}
 			cd ${logDir}
@@ -228,9 +228,9 @@ deploy(){
 
 	allModules=($(Finder findByName build.gradle))
 
-	for (( i=0; i<${#allModules[@]}; i++ )); do
-		if [[ ${allModules[i]} == *${input}* ]]; then
-			pathToModule=${allModules[i]/build.gradle/}
+	for m in ${allModules[@]}; do
+		if [[ ${m} == *${input}* ]]; then
+			pathToModule=${m/build.gradle/}
 			${MB} printDone
 			break
 		fi

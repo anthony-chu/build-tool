@@ -43,16 +43,16 @@ includedFiles=()
 
 echo "[INFO] Determining files to format..."
 
-for (( i=0; i<${#allFiles[@]}; i++ )); do
-	for (( j=0; j<${#excludedFiles[@]}; j++ )); do
+for f in ${allFiles[@]}; do
+	for e in ${excludedFiles[@]}; do
 		isEmptyArray=$(StringValidator isNull "${includedFiles[@]}")
-		isUniqueFile=$(ArrayValidator hasUniqueEntry ${includedFiles[@]} ${allFiles[i]})
+		isUniqueFile=$(ArrayValidator hasUniqueEntry ${includedFiles[@]} ${f})
 
 		if [[ ${isEmptyArray} ]]; then
-			excludedStatus=$(StringValidator isSubstring ${allFiles[i]} ${excludedFiles[j]})
+			excludedStatus=$(StringValidator isSubstring ${f} ${e})
 		else
 			if [[ ${isUniqueFile} ]]; then
-				excludedStatus=$(StringValidator isSubstring ${allFiles[i]} ${excludedFiles[j]})
+				excludedStatus=$(StringValidator isSubstring ${f} ${e})
 			else
 				continue
 			fi
@@ -64,7 +64,7 @@ for (( i=0; i<${#allFiles[@]}; i++ )); do
 	done
 
 	if [[ ${excludedStatus} == false ]]; then
-		includedFiles+=(${allFiles[i]})
+		includedFiles+=(${f})
 	fi
 done
 
@@ -73,8 +73,9 @@ echo
 
 echo "[INFO] Applying formatting rules..."
 for (( i=0; i<${#includedFiles[@]}; i++ )); do
-	for (( j=0; j<${#availableMethods[@]}; j++ )); do
-		Formatter ${availableMethods[j]} ${includedFiles[i]}
+for f in ${includedFiles[@]}; do
+	for m in ${availableMethods[@]}; do
+		Formatter ${m} ${f}
 	done
 done
 echo "[INFO] Done."

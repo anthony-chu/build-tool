@@ -127,8 +127,8 @@ validate(){
 test(){
 	testStructure=("d" "test-results" "${branch}")
 
-	for (( i=0; i<${#testStructure[@]}; i++ )); do
-		testDir=${testDir}/${testStructure[i]}
+	for t in ${testStructure[@]}; do
+		testDir=${testDir}/${t}
 		if [ ! -e ${testDir} ]; then
 			mkdir ${testDir}
 			cd ${testDir}

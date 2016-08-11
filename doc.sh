@@ -21,8 +21,8 @@ listDependenciesFromSource(){
 	else
 		sources=($(DocsUtil getSources))
 
-		for (( i=0; i<${#sources[@]}; i++ )); do
-			if [[ $(StringValidator isSubstring ${sources[i]} ${file}) ]]; then
+		for s in ${sources[@]}; do
+			if [[ $(StringValidator isSubstring ${s} ${file}) ]]; then
 				isValidFile=true
 				filePath=${sources[i]}
 				break
@@ -54,8 +54,8 @@ listMethodsFromSource(){
 
 	sources=($(DocsUtil getSources))
 
-	for (( i=0; i<${#sources[@]}; i++ )); do
-		if [[ $(StringValidator isSubstring ${sources[i]} ${file}) ]]; then
+	for s in ${sources[@]}; do
+		if [[ $(StringValidator isSubstring ${s} ${file}) ]]; then
 			isValidFile=true
 			filePath=${sources[i]}
 			break
@@ -76,8 +76,8 @@ listSources(){
 
 	echo "The following files are available as sources:"
 
-	for (( i=0; i<${#sources[@]}; i++ )); do
-		echo "	${sources[i]}"
+	for s in ${sources[@]}
+		echo "	${s}"
 	done
 }
 

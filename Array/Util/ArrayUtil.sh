@@ -7,14 +7,12 @@ ArrayUtil(){
 		local newArray=()
 		local placeholder=.
 
-		for (( i=0; i<${#array[@]}; i++ )); do
-			arrayEntry=${array[i]}
-
-			while [ ${#arrayEntry} -lt ${maxLength} ]; do
-				arrayEntry=${arrayEntry}${placeholder}
+		for a in ${array[@]}; do
+			while [ ${#a} -lt ${maxLength} ]; do
+				a=${a}${placeholder}
 			done
 
-			newArray+=(${arrayEntry})
+			newArray+=(${a})
 		done
 
 		echo ${newArray[@]}
@@ -40,9 +38,9 @@ ArrayUtil(){
 		local array=($@)
 		local maxLength=0
 
-		for (( i=0; i<${#array[@]}; i++ )); do
-			if [[ ${#array[i]} > ${maxLength} ]]; then
-				maxLength=${#array[i]}
+		for a in ${array[@]}; do
+			if [[ ${#a} > ${maxLength} ]]; then
+				maxLength=${#a}
 			fi
 		done
 
