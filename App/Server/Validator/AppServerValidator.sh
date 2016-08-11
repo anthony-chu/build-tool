@@ -85,7 +85,7 @@ AppServerValidator(){
 	}
 
 	isWildfly(){
-		if [[ ${appServer} == wildfly ]]; then
+		if [[ $(${SV} isEqual ${appServer} wildfly) ]]; then
 			echo true
 		else
 			return;
