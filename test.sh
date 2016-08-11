@@ -166,7 +166,7 @@ test(){
 
 		cd ${testDir}/${testname}
 		testcase=$(StringUtil replace ${testname} [_] %23)
-		chromeDir="C:/Windows.old/Program Files (x86)/Google/Chrome/Application"
+		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 
 		file="\/\/\/$(FileNameUtil getPath ${testDir})/${testname}/${testcase}_index.html"
 
