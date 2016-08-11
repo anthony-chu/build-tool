@@ -7,7 +7,7 @@ FileUtil(){
 	}
 
 	getFileStatus(){
-		if [[ $(StringValidator isNull $(ls | grep ${1})) == true ]]; then
+		if [[ $(StringValidator isNull $(ls | grep ${1})) ]]; then
 			return;
 		else
 			if [[ $(ls | grep ${1}) == ${1} ]]; then
@@ -24,7 +24,7 @@ FileUtil(){
 
 		matchingContent=($(grep -o ${pattern} ${file}))
 
-		if [[ $(StringValidator isNull ${matchingContent[@]}) == true ]]; then
+		if [[ $(StringValidator isNull ${matchingContent[@]}) ]]; then
 			return;
 		else
 			echo true

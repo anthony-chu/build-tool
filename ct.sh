@@ -12,7 +12,7 @@ CTBuilder(){
 	SV=StringValidator
 
 	_branchChecker(){
-		if [[ $(${SV} isNull ${1}) == true ]]; then
+		if [[ $(${SV} isNull ${1}) ]]; then
 			branch=develop
 		else
 			branch=${1}
@@ -24,7 +24,7 @@ CTBuilder(){
 	_branchSwitcher(){
 		curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-		if [[ $(${SV} isEqual ${curBranch} ${1}) == true ]]; then
+		if [[ $(${SV} isEqual ${curBranch} ${1}) ]]; then
 			echo
 		else
 			allBranches=($(git branch -a | grep origin))
@@ -38,7 +38,7 @@ CTBuilder(){
 				fi
 			done
 
-			if [[ ${doSwitch} == true ]]; then
+			if [[ ${doSwitch} ]]; then
 				git checkout ${1}
 			else
 				exit

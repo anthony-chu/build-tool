@@ -23,7 +23,7 @@ StringUtil(){
 		local opt=${1}
 		local isValidOpt=$(StringValidator isAlphaNum ${opt//-/})
 
-		if [[ ${isValidOpt} == true ]]; then
+		if [[ ${isValidOpt} ]]; then
 			echo ${opt/-/ }
 		fi
 	}

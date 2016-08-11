@@ -13,17 +13,17 @@ DocsUtil(){
 				isEmptyArray=$(StringValidator isNull "${listableFiles[@]}")
 				isUniqueFile=$(ArrayValidator hasUniqueEntry ${listableFiles[@]} ${allFiles[i]})
 
-				if [[ ${isEmptyArray} == true ]]; then
+				if [[ ${isEmptyArray} ]]; then
 					excludedStatus=$(StringValidator isSubstring ${allFiles[i]} ${excludedFiles[j]})
 				else
-					if [[ ${isUniqueFile} == true ]]; then
+					if [[ ${isUniqueFile} ]]; then
 						excludedStatus=$(StringValidator isSubstring ${allFiles[i]} ${excludedFiles[j]})
 					else
 						continue
 					fi
 				fi
 
-				if [[ ${excludedStatus} == true ]]	; then
+				if [[ ${excludedStatus} ]]	; then
 					break
 				fi
 

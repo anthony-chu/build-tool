@@ -193,7 +193,7 @@ build(){
 
 	_clean_source
 
-	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) == true ]]; then
+	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) ]]; then
 		_disableCTCompile
 	fi
 
@@ -291,16 +291,16 @@ run(){
 	#
 	# trap shutdown SIGINT
 
-	if [[ $(${ASValidator} isJboss ${appServer}) == true ]]; then
+	if [[ $(${ASValidator} isJboss ${appServer}) ]]; then
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(${ASValidator} isTomcat ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isTomcat ${appServer}) ]]; then
 		${appServerDir}/bin/catalina.sh run
-	elif [[ $(${ASValidator} isTCServer ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isTCServer ${appServer}) ]]; then
 		${appServerDir}/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
-	elif [[ $(${ASValidator} isWildfly ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isWildfly ${appServer}) ]]; then
 		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(${ASValidator} isWeblogic ${appServer}) == true ]]; then
+	elif [[ $(${ASValidator} isWeblogic ${appServer}) ]]; then
 		${appServerDir}/domains/liferay/bin/startWebLogic.sh
 	fi
 }
@@ -314,7 +314,7 @@ rebuild(){
 
 	_clean_source
 
-	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) == true ]]; then
+	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) ]]; then
 		_disableCTCompile
 	fi
 
@@ -350,7 +350,7 @@ zip(){
 
 	zipFile=liferay-portal-${appServer}-${branch}.zip
 
-	if [[ $(FileUtil getFileStatus ${zipFile}) == true ]]; then
+	if [[ $(FileUtil getFileStatus ${zipFile}) ]]; then
 		${MB} printProgressMessage removing-old-zip-file
 		rm -rf ${zipFile}
 		${MB} printDone

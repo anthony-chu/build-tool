@@ -211,7 +211,7 @@ rebase(){
 		${MB} printDone
 	}
 
-	if [[ $(StringValidator isNull ${1}) == true ]]; then
+	if [[ $(StringValidator isNull ${1}) ]]; then
 		${MB} printErrorMessage please-provide-a-valid-rebase-option
 		exit
 	fi

@@ -15,14 +15,14 @@ listAllMethodsFromSource(){
 listDependenciesFromSource(){
 	file=${1}
 
-	if [[ $(StringValidator isNull ${file}) == true ]]; then
+	if [[ $(StringValidator isNull ${file}) ]]; then
 		MessageBuilder printErrorMessage please-provide-a-file-name-or-class
 		exit
 	else
 		sources=($(DocsUtil getSources))
 
 		for (( i=0; i<${#sources[@]}; i++ )); do
-			if [[ $(StringValidator isSubstring ${sources[i]} ${file}) == true ]]; then
+			if [[ $(StringValidator isSubstring ${sources[i]} ${file}) ]]; then
 				isValidFile=true
 				filePath=${sources[i]}
 				break
@@ -33,7 +33,7 @@ listDependenciesFromSource(){
 
 		if [[ ${isVaildFile} == false ]]; then
 			MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
-		elif [[ ${isValidFile} == true ]]; then
+		elif [[ ${isValidFile} ]]; then
 			MessageBuilder printInfoMessage dependencies-for-${file/[.]sh/}
 			echo
 			cat ${filePath} | grep 'source'
@@ -44,7 +44,7 @@ listDependenciesFromSource(){
 listMethodsFromSource(){
 	file=${1}
 
-	if [[ $(StringValidator isNull ${file}) == true ]]; then
+	if [[ $(StringValidator isNull ${file}) ]]; then
 		MessageBuilder printErrorMessage please-provide-a-file-name-or-class
 		exit
 	else
@@ -55,7 +55,7 @@ listMethodsFromSource(){
 	sources=($(DocsUtil getSources))
 
 	for (( i=0; i<${#sources[@]}; i++ )); do
-		if [[ $(StringValidator isSubstring ${sources[i]} ${file}) == true ]]; then
+		if [[ $(StringValidator isSubstring ${sources[i]} ${file}) ]]; then
 			isValidFile=true
 			filePath=${sources[i]}
 			break
@@ -66,7 +66,7 @@ listMethodsFromSource(){
 
 	if [[ ${isVaildFile} == false ]]; then
 		MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
-	elif [[ ${isValidFile} == true ]]; then
+	elif [[ ${isValidFile} ]]; then
 		cat ${filePath} | grep '[a-z]*(){'
 	fi
 }
