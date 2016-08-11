@@ -8,12 +8,12 @@ FileUtil(){
 
 	getFileStatus(){
 		if [[ $(StringValidator isNull $(ls | grep ${1})) == true ]]; then
-			echo false
+			return;
 		else
 			if [[ $(ls | grep ${1}) == ${1} ]]; then
 				echo true
 			else
-				echo false
+				return;
 			fi
 		fi
 	}
@@ -25,7 +25,7 @@ FileUtil(){
 		matchingContent=($(grep -o ${pattern} ${file}))
 
 		if [[ $(StringValidator isNull ${matchingContent[@]}) == true ]]; then
-			echo false
+			return;
 		else
 			echo true
 		fi

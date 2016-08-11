@@ -5,7 +5,7 @@ StringValidator(){
 		if [[ ${str//[a-zA-Z ]/} == "" ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -15,7 +15,7 @@ StringValidator(){
 		if [[ ${str//[0-9a-zA-Z\ ]} == "" ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -26,7 +26,7 @@ StringValidator(){
 		if [[ ${str1} == ${str2} ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -37,7 +37,7 @@ StringValidator(){
 		if [[ ${str1} =~ ${str2} ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -45,7 +45,7 @@ StringValidator(){
 		if [[ $@ == "" ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -55,7 +55,7 @@ StringValidator(){
 		if [[ ${str//[0-9]/} == "" ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 

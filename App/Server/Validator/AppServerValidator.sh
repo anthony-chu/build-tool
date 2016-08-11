@@ -8,7 +8,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} glassfish) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -16,7 +16,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} jboss) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -24,7 +24,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} jetty) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -32,7 +32,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} jonas) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -40,7 +40,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} resin) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -48,7 +48,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} resin) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -56,7 +56,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} tcserver) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -64,7 +64,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} tomcat) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -72,7 +72,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} weblogic) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -80,7 +80,7 @@ AppServerValidator(){
 		if [[ $(${SV} isEqual ${appServer} websphere) == true ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 
@@ -88,7 +88,7 @@ AppServerValidator(){
 		if [[ ${appServer} == wildfly ]]; then
 			echo true
 		else
-			echo false
+			return;
 		fi
 	}
 

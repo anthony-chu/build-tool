@@ -17,7 +17,7 @@ BaseUtil(){
 		port=$1
 
 		if [[ $(netstat -an | grep ${port} | grep LISTENING) == "" ]]; then
-			echo false
+			return;
 		else
 			echo true
 		fi

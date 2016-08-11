@@ -8,7 +8,7 @@ ArrayValidator(){
 		array=(${tempArray[@]/${entry}/})
 
 		if [[ "${array[@]}" == *${entry}* ]]; then
-			echo false
+			return;
 		else
 			echo true
 		fi
