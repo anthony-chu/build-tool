@@ -43,13 +43,21 @@ pr(){
 		title="$(git rev-parse --abbrev-ref HEAD)"
 		cd ${baseDir}
 
-		if [[ ${title} == *lps* ]]; then
-			project=LPS
-		elif [[ ${title} == *qa* ]]; then
-			project=LRQA
-		fi
 
-		key=${title//[a-zA-Z-]/}
+		branchArray=($(StringUtil replace ${branch} - space))
+
+		for (( i=0; i<${#branchArray[@]}; i++ )); do
+			if [[ $(StringValidator isEqual ${branchArray[i]} qa) ]]; then
+				project=LRQA
+				key=${branchArray[i+1]}
+				break
+			elif [[ $(StringValidator isEqual ${branchArray[i]} lps) ]]; then
+				project=LPS
+				key=${branchArray[i+1]}
+				break
+			fi
+		done
+
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
