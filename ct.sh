@@ -34,7 +34,6 @@ CTBuilder(){
 			for b in ${allBranches[@]}; do
 				if [[ $(${C_isEqual} ${b/remotes\/origin\//} ${1}) == false ]]; then
 					${MB} printErrorMessage the-branch-${1}-does-not-exist-in-origin
-					doSwitch=false
 				else
 					doSwitch=true
 				fi
