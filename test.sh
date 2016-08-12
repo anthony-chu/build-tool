@@ -49,7 +49,7 @@ pr(){
 			project=LRQA
 		fi
 
-		key=${title/${branch}-*-}
+		key=${title//[a-zA-Z-]/}
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
