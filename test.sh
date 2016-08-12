@@ -1,4 +1,5 @@
 source ${projectDir}Array/Util/ArrayUtil.sh
+source ${projectDir}Comparator/Comparator.sh
 source ${projectDir}File/Name/Util/FileNameUtil.sh
 source ${projectDir}Base/Util/BaseUtil.sh
 source ${projectDir}Base/Vars/BaseVars.sh
@@ -7,6 +8,7 @@ source ${projectDir}Help/Message/HelpMessage.sh
 source ${projectDir}Message/Builder/MessageBuilder.sh
 source ${projectDir}String/Util/StringUtil.sh
 
+C_isEqual="Comparator isEqual"
 MB=MessageBuilder
 
 mockmock(){
@@ -46,11 +48,11 @@ pr(){
 		branchArray=($(StringUtil replace ${branch} - space))
 
 		for (( i=0; i<${#branchArray[@]}; i++ )); do
-			if [[ $(StringValidator isEqual ${branchArray[i]} qa) ]]; then
+			if [[ $(${C_isEqual} ${branchArray[i]} qa) ]]; then
 				project=LRQA
 				key=${branchArray[i+1]}
 				break
-			elif [[ $(StringValidator isEqual ${branchArray[i]} lps) ]]; then
+			elif [[ $(${C_isEqual} ${branchArray[i]} lps) ]]; then
 				project=LPS
 				key=${branchArray[i+1]}
 				break

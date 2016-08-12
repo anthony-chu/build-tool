@@ -1,3 +1,4 @@
+source ${projectDir}Comparator/Comparator.sh
 source ${projectDir}Help/Message/HelpMessage.sh
 source ${projectDir}Message/Builder/MessageBuilder.sh
 source ${projectDir}String/Validator/StringValidator.sh
@@ -8,6 +9,7 @@ distDir=${projectDir}/../../../tools/sdk/dist
 
 CTBuilder(){
 
+	C_isEqual="Comparator isEqual"
 	MB=MessageBuilder
 	SV=StringValidator
 
@@ -24,13 +26,13 @@ CTBuilder(){
 	_branchSwitcher(){
 		curBranch=$(git rev-parse --abbrev-ref HEAD)
 
-		if [[ $(${SV} isEqual ${curBranch} ${1}) ]]; then
+		if [[ $(${C_isEqual} ${curBranch} ${1}) ]]; then
 			echo
 		else
 			allBranches=($(git branch -a | grep origin))
 
 			for b in ${allBranches[@]}; do
-				if [[ $(${SV} isEqual ${b/remotes\/origin\//} ${1}) == false ]]; then
+				if [[ $(${C_isEqual} ${b/remotes\/origin\//} ${1}) == false ]]; then
 					${MB} printErrorMessage the-branch-${1}-does-not-exist-in-origin
 					doSwitch=false
 				else

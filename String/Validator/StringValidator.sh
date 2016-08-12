@@ -19,17 +19,6 @@ StringValidator(){
 		fi
 	}
 
-	isEqual(){
-		local str1=${1}
-		local str2=${2}
-
-		if [[ ${str1} == ${str2} ]]; then
-			echo true
-		else
-			return;
-		fi
-	}
-
 	isSubstring(){
 		local str1=${1}
 		local str2=${2}

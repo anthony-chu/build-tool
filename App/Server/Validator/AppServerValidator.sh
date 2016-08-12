@@ -1,11 +1,13 @@
+source ${projectDir}Comparator/Comparator.sh
 source ${projectDir}String/Validator/StringValidator.sh
 
 AppServerValidator(){
 	local appServer=${2}
+	local C_isEqual="Comparator isEqual"
 	local SV=StringValidator
 
 	isGlassfish(){
-		if [[ $(${SV} isEqual ${appServer} glassfish) ]]; then
+		if [[ $(${C_isEqual} ${appServer} glassfish) ]]; then
 			echo true
 		else
 			return;
@@ -13,7 +15,7 @@ AppServerValidator(){
 	}
 
 	isJboss(){
-		if [[ $(${SV} isEqual ${appServer} jboss) ]]; then
+		if [[ $(${C_isEqual} ${appServer} jboss) ]]; then
 			echo true
 		else
 			return;
@@ -21,7 +23,7 @@ AppServerValidator(){
 	}
 
 	isJetty(){
-		if [[ $(${SV} isEqual ${appServer} jetty) ]]; then
+		if [[ $(${C_isEqual} ${appServer} jetty) ]]; then
 			echo true
 		else
 			return;
@@ -29,7 +31,7 @@ AppServerValidator(){
 	}
 
 	isJonas(){
-		if [[ $(${SV} isEqual ${appServer} jonas) ]]; then
+		if [[ $(${C_isEqual} ${appServer} jonas) ]]; then
 			echo true
 		else
 			return;
@@ -37,7 +39,7 @@ AppServerValidator(){
 	}
 
 	isResin(){
-		if [[ $(${SV} isEqual ${appServer} resin) ]]; then
+		if [[ $(${C_isEqual} ${appServer} resin) ]]; then
 			echo true
 		else
 			return;
@@ -45,7 +47,7 @@ AppServerValidator(){
 	}
 
 	isTcat(){
-		if [[ $(${SV} isEqual ${appServer} resin) ]]; then
+		if [[ $(${C_isEqual} ${appServer} resin) ]]; then
 			echo true
 		else
 			return;
@@ -53,7 +55,7 @@ AppServerValidator(){
 	}
 
 	isTCServer(){
-		if [[ $(${SV} isEqual ${appServer} tcserver) ]]; then
+		if [[ $(${C_isEqual} ${appServer} tcserver) ]]; then
 			echo true
 		else
 			return;
@@ -61,7 +63,7 @@ AppServerValidator(){
 	}
 
 	isTomcat(){
-		if [[ $(${SV} isEqual ${appServer} tomcat) ]]; then
+		if [[ $(${C_isEqual} ${appServer} tomcat) ]]; then
 			echo true
 		else
 			return;
@@ -69,7 +71,7 @@ AppServerValidator(){
 	}
 
 	isWeblogic(){
-		if [[ $(${SV} isEqual ${appServer} weblogic) ]]; then
+		if [[ $(${C_isEqual} ${appServer} weblogic) ]]; then
 			echo true
 		else
 			return;
@@ -77,7 +79,7 @@ AppServerValidator(){
 	}
 
 	isWebsphere(){
-		if [[ $(${SV} isEqual ${appServer} websphere) ]]; then
+		if [[ $(${C_isEqual} ${appServer} websphere) ]]; then
 			echo true
 		else
 			return;
@@ -85,7 +87,7 @@ AppServerValidator(){
 	}
 
 	isWildfly(){
-		if [[ $(${SV} isEqual ${appServer} wildfly) ]]; then
+		if [[ $(${C_isEqual} ${appServer} wildfly) ]]; then
 			echo true
 		else
 			return;
@@ -121,7 +123,7 @@ AppServerValidator(){
 		)
 
 		for v in ${validAppServer[@]}; do
-			local isValidAppServer=$(${SV} isEqual ${v} ${1})
+			local isValidAppServer=$(${C_isEqual} ${v} ${1})
 
 			if [[ ${isValidAppServer} ]]; then
 				break

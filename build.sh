@@ -1,5 +1,6 @@
 source ${projectDir}App/Server/Validator/AppServerValidator.sh
 source ${projectDir}App/Server/Version/AppServerVersion.sh
+source ${projectDir}Comparator/Comparator.sh
 source ${projectDir}File/IO/Util/FileIOUtil.sh
 source ${projectDir}File/Util/FileUtil.sh
 source ${projectDir}Finder/Finder.sh
@@ -13,6 +14,7 @@ source ${projectDir}String/Validator/StringValidator.sh
 append="FileIOUtil append"
 ASValidator="AppServerValidator"
 ASVersion="AppServerVersion"
+C_isEqual="Comparator isEqual"
 MB="MessageBuilder"
 replace="FileIOUtil replace"
 
@@ -193,7 +195,7 @@ build(){
 
 	_clean_source
 
-	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) ]]; then
+	if [[ $(${C_isEqual} ${branch} ee-7.0.x) ]]; then
 		_disableCTCompile
 	fi
 
@@ -314,7 +316,7 @@ rebuild(){
 
 	_clean_source
 
-	if [[ $(StringValidator isEqual ${branch} ee-7.0.x) ]]; then
+	if [[ $(${C_isEqual} ${branch} ee-7.0.x) ]]; then
 		_disableCTCompile
 	fi
 
