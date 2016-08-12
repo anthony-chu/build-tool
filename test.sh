@@ -90,7 +90,9 @@ sf(){
 
 	cd ${buildDir}/tools/
 
-	if [ ! -e ${buildDir}/tools/sdk/dependencies/com.liferay.source.formatter/lib ]; then
+	sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
+
+	if [ ! -e ${buildDir}/${sf_lib} ]; then
 		cd ${buildDir}
 
 		ant setup-sdk
@@ -167,8 +169,9 @@ test(){
 		cd ${testDir}/${testname}
 		testcase=$(StringUtil replace ${testname} [_] %23)
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
+		rawFile="${testDir})/${testname}/${testcase}_index.html"
 
-		file="\/\/\/$(FileNameUtil getPath ${testDir})/${testname}/${testcase}_index.html"
+		file="\/\/\/$(FileNameUtil getPath ${rawFile})"
 
 		"${chromeDir}/chrome.exe" "file:${file}"
 
