@@ -43,7 +43,6 @@ pr(){
 		title="$(git rev-parse --abbrev-ref HEAD)"
 		cd ${baseDir}
 
-
 		branchArray=($(StringUtil replace ${branch} - space))
 
 		for (( i=0; i<${#branchArray[@]}; i++ )); do
