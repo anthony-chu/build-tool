@@ -54,7 +54,7 @@ CTBuilder(){
 	_generateSnapshot(){
 		cd ${projectDir}/content-targeting-api
 
-		${projectDir}/../../../../gradlew install -P snapshot
+		${projectDir}/../../../gradlew install -P snapshot
 
 		cd ${projectDir}
 	}
