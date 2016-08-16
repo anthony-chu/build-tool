@@ -32,7 +32,7 @@ CTBuilder(){
 			allBranches=($(git branch -a | grep origin))
 
 			for b in ${allBranches[@]}; do
-				if [[ $(${C_isEqual} ${b/remotes\/origin\//} ${1}) == false ]]; then
+				if [[ $(${C_isEqual} ${b/remotes\/origin\//} ${1}) ]]; then
 					${MB} printErrorMessage the-branch-${1}-does-not-exist-in-origin
 				else
 					doSwitch=true
