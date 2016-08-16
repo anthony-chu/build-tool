@@ -21,7 +21,11 @@ StringUtil(){
 
 	returnOption(){
 		local opt=${1}
-		local isValidOpt=$(StringValidator isAlphaNum ${opt//-/})
+		declare isValidOpt
+
+		if [[ $(StringValidator isSubstring ${opt} -) ]]; then
+			isValidOpt=$(StringValidator isAlphaNum ${opt/-/ })
+		fi
 
 		if [[ ${isValidOpt} ]]; then
 			echo ${opt/-/ }
