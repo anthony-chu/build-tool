@@ -28,7 +28,7 @@ StringUtil(){
 		fi
 	}
 
-	toLowercase(){
+	toLowerCase(){
 		str=${1}
 
 		echo ${str,,}
