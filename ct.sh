@@ -48,7 +48,7 @@ CTBuilder(){
 	}
 
 	_clean(){
-		rm *content.targeting*
+		rm *content.targeting*.jar
 	}
 
 	_generateSnapshot(){
