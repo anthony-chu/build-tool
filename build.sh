@@ -1,3 +1,5 @@
+source ${projectDir}lib/include.sh
+
 include App/Server/Validator/AppServerValidator.sh
 include App/Server/Version/AppServerVersion.sh
 include Comparator/Comparator.sh

@@ -1,3 +1,5 @@
+source ${projectDir}lib/include.sh
+
 include Docs/Util/DocsUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh

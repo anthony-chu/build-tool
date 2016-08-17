@@ -1,3 +1,5 @@
+source ${projectDir}lib/include.sh
+
 include Array/Util/ArrayUtil.sh
 include Array/Validator/ArrayValidator.sh
 include Finder/Finder.sh

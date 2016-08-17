@@ -1,3 +1,5 @@
+source ${projectDir}lib/include.sh
+
 include Array/Util/ArrayUtil.sh
 include Comparator/Comparator.sh
 include File/Name/Util/FileNameUtil.sh
