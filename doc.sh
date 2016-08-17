@@ -22,23 +22,22 @@ listDependenciesFromSource(){
 		exit
 	else
 		sources=($(DocsUtil getSources))
+		declare isValidFile
 
 		for s in ${sources[@]}; do
 			if [[ $(StringValidator isSubstring ${s} ${file}) ]]; then
 				isValidFile=true
 				filePath=${sources[i]}
 				break
-			else
-				isValidFile=false
 			fi
 		done
 
-		if [[ ${isVaildFile} == false ]]; then
-			MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
-		elif [[ ${isValidFile} ]]; then
+		if [[ ${isValidFile} ]]; then
 			MessageBuilder printInfoMessage dependencies-for-${file/[.]sh/}
 			echo
 			cat ${filePath} | grep 'source'
+		else
+			MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
 		fi
 	fi
 }
@@ -55,21 +54,20 @@ listMethodsFromSource(){
 	fi
 
 	sources=($(DocsUtil getSources))
+	declare isValidFile
 
 	for s in ${sources[@]}; do
 		if [[ $(StringValidator isSubstring ${s} ${file}) ]]; then
 			isValidFile=true
 			filePath=${sources[i]}
 			break
-		else
-			isValidFile=false
 		fi
 	done
 
-	if [[ ${isVaildFile} == false ]]; then
-		MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
-	elif [[ ${isValidFile} ]]; then
+	if [[ ${isValidFile} ]]; then
 		cat ${filePath} | grep '[a-z]*(){'
+	else
+		MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
 	fi
 }
 
