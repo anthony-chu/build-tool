@@ -1,7 +1,7 @@
-source ${projectDir}Comparator/Comparator.sh
-source ${projectDir}Help/Message/HelpMessage.sh
-source ${projectDir}Message/Builder/MessageBuilder.sh
-source ${projectDir}String/Validator/StringValidator.sh
+include Comparator/Comparator.sh
+include Help/Message/HelpMessage.sh
+include Message/Builder/MessageBuilder.sh
+include String/Validator/StringValidator.sh
 
 baseDir=$(pwd)
 projectDir=d:/private/ee-7.0.x-portal/modules/apps/content-targeting

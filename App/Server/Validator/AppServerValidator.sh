@@ -1,5 +1,5 @@
-source ${projectDir}Comparator/Comparator.sh
-source ${projectDir}String/Validator/StringValidator.sh
+include Comparator/Comparator.sh
+include String/Validator/StringValidator.sh
 
 AppServerValidator(){
 	local appServer=${2}

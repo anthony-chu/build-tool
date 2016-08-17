@@ -1,4 +1,4 @@
-source ${projectDir}Array/Util/ArrayUtil.sh
+include Array/Util/ArrayUtil.sh
 
 ArrayValidator(){
 	hasUniqueEntry(){

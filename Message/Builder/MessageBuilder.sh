@@ -1,4 +1,4 @@
-source ${projectDir}Message/Builder/Util/MessageBuilderUtil.sh
+include Message/Builder/Util/MessageBuilderUtil.sh
 
 MessageBuilder(){
 	local MBUtil="MessageBuilderUtil"

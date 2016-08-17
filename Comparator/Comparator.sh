@@ -1,4 +1,4 @@
-source ${projectDir}String/Util/StringUtil.sh
+include String/Util/StringUtil.sh
 
 Comparator(){
 	isEqual(){

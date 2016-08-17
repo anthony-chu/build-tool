@@ -1,15 +1,15 @@
-source ${projectDir}App/Server/Validator/AppServerValidator.sh
-source ${projectDir}App/Server/Version/AppServerVersion.sh
-source ${projectDir}Comparator/Comparator.sh
-source ${projectDir}File/IO/Util/FileIOUtil.sh
-source ${projectDir}File/Util/FileUtil.sh
-source ${projectDir}Finder/Finder.sh
-source ${projectDir}Base/Util/BaseUtil.sh
-source ${projectDir}Base/Vars/BaseVars.sh
-source ${projectDir}Help/Message/HelpMessage.sh
-source ${projectDir}Message/Builder/MessageBuilder.sh
-source ${projectDir}String/Util/StringUtil.sh
-source ${projectDir}String/Validator/StringValidator.sh
+include App/Server/Validator/AppServerValidator.sh
+include App/Server/Version/AppServerVersion.sh
+include Comparator/Comparator.sh
+include File/IO/Util/FileIOUtil.sh
+include File/Util/FileUtil.sh
+include Finder/Finder.sh
+include Base/Util/BaseUtil.sh
+include Base/Vars/BaseVars.sh
+include Help/Message/HelpMessage.sh
+include Message/Builder/MessageBuilder.sh
+include String/Util/StringUtil.sh
+include String/Validator/StringValidator.sh
 
 append="FileIOUtil append"
 ASValidator="AppServerValidator"

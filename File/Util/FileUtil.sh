@@ -1,4 +1,4 @@
-source ${projectDir}String/Validator/StringValidator.sh
+include String/Validator/StringValidator.sh
 
 FileUtil(){
 	getFileExtension(){

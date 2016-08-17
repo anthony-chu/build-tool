@@ -1,5 +1,5 @@
-source ${projectDir}Array/Validator/ArrayValidator.sh
-source ${projectDir}String/Validator/StringValidator.sh
+include Array/Validator/ArrayValidator.sh
+include String/Validator/StringValidator.sh
 
 DocsUtil(){
 	getSources(){

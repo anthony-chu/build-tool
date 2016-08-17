@@ -1,12 +1,12 @@
-source ${projectDir}Array/Util/ArrayUtil.sh
-source ${projectDir}Comparator/Comparator.sh
-source ${projectDir}File/Name/Util/FileNameUtil.sh
-source ${projectDir}Base/Util/BaseUtil.sh
-source ${projectDir}Base/Vars/BaseVars.sh
-source ${projectDir}File/Name/Util/FileNameUtil.sh
-source ${projectDir}Help/Message/HelpMessage.sh
-source ${projectDir}Message/Builder/MessageBuilder.sh
-source ${projectDir}String/Util/StringUtil.sh
+include Array/Util/ArrayUtil.sh
+include Comparator/Comparator.sh
+include File/Name/Util/FileNameUtil.sh
+include Base/Util/BaseUtil.sh
+include Base/Vars/BaseVars.sh
+include File/Name/Util/FileNameUtil.sh
+include Help/Message/HelpMessage.sh
+include Message/Builder/MessageBuilder.sh
+include String/Util/StringUtil.sh
 
 C_isEqual="Comparator isEqual"
 MB=MessageBuilder

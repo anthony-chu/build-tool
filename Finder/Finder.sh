@@ -1,4 +1,4 @@
-source ${projectDir}Finder/Util/FinderUtil.sh
+include Finder/Util/FinderUtil.sh
 
 Finder(){
 	findAllFiles(){

@@ -1,10 +1,10 @@
-source ${projectDir}App/Server/Validator/AppServerValidator.sh
-source ${projectDir}App/Server/Version/AppServerVersion.sh
-source ${projectDir}Base/Util/BaseUtil.sh
-source ${projectDir}Base/Vars/BaseVars.sh
-source ${projectDir}Help/Message/HelpMessage.sh
-source ${projectDir}Message/Builder/MessageBuilder.sh
-source ${projectDir}String/Validator/StringValidator.sh
+include App/Server/Validator/AppServerValidator.sh
+include App/Server/Version/AppServerVersion.sh
+include Base/Util/BaseUtil.sh
+include Base/Vars/BaseVars.sh
+include Help/Message/HelpMessage.sh
+include Message/Builder/MessageBuilder.sh
+include String/Validator/StringValidator.sh
 
 MB=MessageBuilder
 

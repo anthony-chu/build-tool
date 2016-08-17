@@ -1,7 +1,7 @@
-source ${projectDir}Docs/Util/DocsUtil.sh
-source ${projectDir}Help/Message/HelpMessage.sh
-source ${projectDir}Message/Builder/MessageBuilder.sh
-source ${projectDir}String/Validator/StringValidator.sh
+include Docs/Util/DocsUtil.sh
+include Help/Message/HelpMessage.sh
+include Message/Builder/MessageBuilder.sh
+include String/Validator/StringValidator.sh
 
 listAllMethodsFromSource(){
 	sources=($(DocsUtil getSources))
