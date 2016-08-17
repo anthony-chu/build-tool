@@ -247,6 +247,20 @@ reset(){
   cd ${baseDir}
 }
 
+search(){
+	cd ${buildDir}
+
+	args=$@
+
+	if [[ $@ =~ ${branch} ]]; then
+		args=${args//${branch}/}
+	fi
+
+	git log -a --oneline | grep "${args}"
+
+	cd ${baseDir}
+}
+
 switch(){
   cd ${buildDir}
 
