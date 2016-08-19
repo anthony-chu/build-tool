@@ -30,7 +30,7 @@ Formatter(){
 	$@
 }
 
-allFiles=($(Finder findByExt sh))
+allFiles=($(Finder findBySubstring sh))
 
 availableMethods=(
 	convertSpacesToTab

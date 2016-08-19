@@ -2,10 +2,10 @@ include Finder/Util/FinderUtil.sh
 
 Finder(){
 	findAllFiles(){
-		FinderUtil find
+		FinderUtil _find
 	}
 
-	findByExt(){
+	findBySubstring(){
 		FinderUtil find -iname *.${1}
 	}
 

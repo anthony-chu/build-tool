@@ -1,5 +1,5 @@
 FinderUtil(){
-	find(){
+	_find(){
 		find * -type f $@
 	}
 
