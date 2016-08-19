@@ -2,13 +2,13 @@ AppServerVersionConstants(){
 	glassfishVersion(){
 		echo "3.1.2.2"
 	}
+	
+	jbossVersion(){
+		echo "eap-6.4.0"
+	}
 
 	jettyVersion(){
 		echo "8.1.10"
-	}
-
-	jbossVersion(){
-		echo "eap-6.4.0"
 	}
 
 	jonasVersion(){
