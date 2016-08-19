@@ -3,9 +3,13 @@ include App/Server/Version/Constants/AppServerVersionConstants.sh
 AppServerVersion(){
 
 	returnAppServerVersion(){
-		local appServer=${1}
+		if [[ $# == 0 ]]; then
+			return
+		else
+			local appServer=${1}
 
-		AppServerVersionConstants ${appServer}Version
+			AppServerVersionConstants ${appServer}Version
+		fi
 	}
 
 	$@
