@@ -1,14 +1,15 @@
 source ${projectDir}lib/include.sh
+source ${projectDir}lib/package.sh
 
 include Array/Util/ArrayUtil.sh
 include Comparator/Comparator.sh
 include File/Name/Util/FileNameUtil.sh
-include Base/Util/BaseUtil.sh
-include Base/Vars/BaseVars.sh
 include File/Name/Util/FileNameUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 include String/Util/StringUtil.sh
+
+package Base
 
 C_isEqual="Comparator isEqual"
 MB=MessageBuilder

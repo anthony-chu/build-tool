@@ -1,12 +1,12 @@
 source ${projectDir}lib/include.sh
+source ${projectDir}lib/package.sh
 
-include App/Server/Validator/AppServerValidator.sh
-include App/Server/Version/AppServerVersion.sh
-include Base/Util/BaseUtil.sh
-include Base/Vars/BaseVars.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 include String/Validator/StringValidator.sh
+
+package App
+package Base
 
 MB=MessageBuilder
 

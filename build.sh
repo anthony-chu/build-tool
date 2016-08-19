@@ -1,17 +1,16 @@
 source ${projectDir}lib/include.sh
+source ${projectDir}lib/package.sh
 
-include App/Server/Validator/AppServerValidator.sh
-include App/Server/Version/AppServerVersion.sh
 include Comparator/Comparator.sh
 include File/IO/Util/FileIOUtil.sh
 include File/Util/FileUtil.sh
 include Finder/Finder.sh
-include Base/Util/BaseUtil.sh
-include Base/Vars/BaseVars.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
-include String/Util/StringUtil.sh
-include String/Validator/StringValidator.sh
+
+package App
+package Base
+package String
 
 append="FileIOUtil append"
 ASValidator="AppServerValidator"

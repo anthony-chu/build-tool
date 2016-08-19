@@ -1,9 +1,10 @@
 source ${projectDir}lib/include.sh
+source ${projectDir}lib/package.sh
 
-include Array/Util/ArrayUtil.sh
-include Array/Validator/ArrayValidator.sh
 include Finder/Finder.sh
 include String/Validator/StringValidator.sh
+
+package Array
 
 Formatter(){
 	convertSpacesToTab(){
