@@ -8,6 +8,6 @@ package(){
 	done
 }
 
-if [[ $1 == package ]]; then
-	$@
+if [[ ${1} == package ]]; then
+	${@}
 fi
