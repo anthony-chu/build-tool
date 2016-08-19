@@ -75,7 +75,7 @@ echo "[INFO] Done."
 echo
 
 echo "[INFO] Applying formatting rules..."
-for (( i=0; i<${#includedFiles[@]}; i++ )); do
+
 for f in ${includedFiles[@]}; do
 	for m in ${availableMethods[@]}; do
 		Formatter ${m} ${f}
