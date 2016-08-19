@@ -6,11 +6,7 @@ Finder(){
 	}
 
 	findBySubstring(){
-		FinderUtil find -iname *.${1}
-	}
-
-	findByName(){
-		FinderUtil find -iname ${1}
+		FinderUtil _find | grep sh
 	}
 
 	$@
