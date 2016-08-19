@@ -47,7 +47,7 @@ AppServerValidator(){
 	}
 
 	isTcat(){
-		if [[ $(${C_isEqual} ${appServer} resin) ]]; then
+		if [[ $(${C_isEqual} ${appServer} tcat) ]]; then
 			echo true
 		else
 			return;
