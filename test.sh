@@ -45,7 +45,7 @@ pr(){
 		newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
 
 		cd ${buildDir}
-		title="$(git rev-parse --abbrev-ref HEAD)"
+		title=$(git rev-parse --abbrev-ref HEAD)
 		cd ${baseDir}
 
 		branchArray=($(StringUtil replace ${branch} - space))
