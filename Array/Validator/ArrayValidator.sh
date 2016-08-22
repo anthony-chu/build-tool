@@ -17,15 +17,27 @@ ArrayValidator(){
 	}
 
 	hasUniqueEntry(){
-		local tempArray=($(ArrayUtil flipArray $@))
+		local flip=($(ArrayUtil flipArray $@))
 
-		entry=${tempArray[0]}
-		array=(${tempArray[@]/${entry}/})
+		entry=${flip[0]}
+		array=(${flip[@]:1})
 
-		if [[ "${array[@]}" == *${entry}* ]]; then
-			return;
+		if [[ $(hasEntry ${array[@]} ${entry}) ]]; then
+			count=0
+
+			for a in ${array[@]}; do
+				if [[ $(Comparator isEqual ${a} ${entry}) ]]; then
+					count=$((count+1))
+				fi
+			done
+
+			if [[ $(Comparator isGreaterThan ${count} 1) ]]; then
+				return
+			else
+				echo true
+			fi
 		else
-			echo true
+			return
 		fi
 	}
 
