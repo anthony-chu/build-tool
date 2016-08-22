@@ -48,7 +48,7 @@ pr(){
 		title=$(git rev-parse --abbrev-ref HEAD)
 		cd ${baseDir}
 
-		branchArray=($(StringUtil replace ${branch} - space))
+		branchArray=($(StringUtil replace ${title} - space))
 
 		for (( i=0; i<${#branchArray[@]}; i++ )); do
 			if [[ $(${C_isEqual} ${branchArray[i]} qa) ]]; then
