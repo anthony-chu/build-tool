@@ -2,7 +2,7 @@ include String/Util/StringUtil.sh
 
 Comparator(){
 	isEqual(){
-		if [[ $1 == $2 ]]; then
+		if [[ ${1} == ${2} ]]; then
 			echo true
 		else
 			return;
@@ -10,11 +10,11 @@ Comparator(){
 	}
 
 	isEqualIgnoreCase(){
-		isEqual $(StringUtil toLowerCase $1) $(StringUtil toLowerCase $2)
+		isEqual $(StringUtil toLowerCase ${1}) $(StringUtil toLowerCase ${2})
 	}
 
 	isLessThan(){
-		if [[ $1 < $2 ]]; then
+		if [[ ${1} < ${2} ]]; then
 			echo true
 		else
 			return;
@@ -22,7 +22,7 @@ Comparator(){
 	}
 
 	isGreaterThan(){
-		if [[ $1 > $2 ]]; then
+		if [[ ${1} > ${2} ]]; then
 			echo true
 		else
 			return;
