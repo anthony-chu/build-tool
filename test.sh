@@ -67,9 +67,14 @@ pr(){
 		if [[ $# == 1 ]]; then
 			branch=${branch}
 			user=${1}
-		else
+		elif [[ $# == 2 ]]; then
 			branch=${1}
 			user=${2}
+		elif [[ $# == 4 ]]; then
+			branch=${1}
+			user=${2}
+			comment=${3}
+			title=${4}
 		fi
 
 		detailText=("${branch}" "${user}" "${comment}" "${title}")
