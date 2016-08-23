@@ -4,7 +4,6 @@ source ${projectDir}lib/package.sh
 include Array/Util/ArrayUtil.sh
 include Comparator/Comparator.sh
 include File/Name/Util/FileNameUtil.sh
-include File/Name/Util/FileNameUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 include String/Util/StringUtil.sh
