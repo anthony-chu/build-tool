@@ -117,12 +117,12 @@ sf(){
 
 	cd ${implDir}
 
-	if [[ $(Comparator isEqualIgnoreCase ${1} a) ]]; then
-		localChanges=""
+	opt=$(StringUtil returnOption ${1})
 
+	if [[ $(Comparator isEqualIgnoreCase ${opt} a) ]]; then
 		${MB} printProgressMessage running-source-formatter-on-all-files
 		echo
-	elif [[ $(Comparator isEqualIgnoreCase ${1} l) ]]; then
+	elif [[ $(Comparator isEqualIgnoreCase ${opt} l) ]]; then
 		localChanges="-local-changes"
 
 		${MB} printProgressMessage running-source-formatter-on${localChanges}
