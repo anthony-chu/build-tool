@@ -6,7 +6,7 @@ Finder(){
 	}
 
 	findBySubstring(){
-		FinderUtil _find | grep sh
+		FinderUtil _find | grep ${1}
 	}
 
 	$@
