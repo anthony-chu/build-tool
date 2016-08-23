@@ -28,7 +28,7 @@ StringUtil(){
 		fi
 
 		if [[ ${isValidOpt} ]]; then
-			echo ${opt/-/ }
+			$(replace ${opt} -)
 		fi
 	}
 
