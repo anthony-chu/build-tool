@@ -117,12 +117,12 @@ sf(){
 
 	cd ${implDir}
 
-	if [[ ${1} =~ a ]] || [[ ${1} =~ A ]]; then
+	if [[ $(Comparator isEqualIgnoreCase ${1} a) ]]; then
 		localChanges=""
 
 		${MB} printProgressMessage running-source-formatter-on-all-files
 		echo
-	elif [[ ${1} =~ l ]] || [[ ${1} =~ L ]]; then
+	elif [[ $(Comparator isEqualIgnoreCase ${1} l) ]]; then
 		localChanges="-local-changes"
 
 		${MB} printProgressMessage running-source-formatter-on${localChanges}
