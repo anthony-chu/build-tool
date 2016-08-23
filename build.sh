@@ -20,7 +20,7 @@ MB="MessageBuilder"
 replace="FileIOUtil replace"
 
 _build_log(){
-	local appServer=$(${ASValidator} returnAppServer ${1})
+	local appServer=${appServer}
 
 	local clock=$(BaseUtil timestamp clock)
 	local date=$(BaseUtil timestamp date)
@@ -54,7 +54,7 @@ _clean_hard(){
 }
 
 _clean_bundle(){
-	local appServer=$(${ASValidator} returnAppServer $@)
+	local appServer=${appServer}
 
 	_overrideTomcatVersion
 
@@ -91,7 +91,7 @@ _config(){
 	source(){
 		${MB} printProgressMessage building-properties
 
-		local appServer=$(${ASValidator} returnAppServer $@)
+		local appServer=${appServer}
 		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
 			returnAppServerVersion ${appServer})
 
@@ -112,7 +112,7 @@ _config(){
 	}
 
 	appServer(){
-		local appServer=$(${ASValidator} returnAppServer $@)
+		local appServer=${appServer}
 
 		_overrideTomcatVersion
 
@@ -188,7 +188,7 @@ _overrideTomcatVersion(){
 }
 
 build(){
-	local appServer=$(${ASValidator} returnAppServer $@)
+	local appServer=${appServer}
 
 	_build_log ${appServer}
 
@@ -281,7 +281,7 @@ push(){
 }
 
 run(){
-	local appServer=$(${ASValidator} returnAppServer $@)
+	local appServer=${appServer}
 
 	${MB} printProgressMessage starting-server
 	sleep 5s
@@ -309,7 +309,7 @@ run(){
 }
 
 rebuild(){
-	local appServer=$(${ASValidator} returnAppServer $@)
+	local appServer=${appServer}
 
 	_build_log ${appServer}
 
@@ -337,8 +337,8 @@ rebuild(){
 }
 
 shutdown(){
-	local as=$(AppServerValidator returnAppServer ${1})
-	local asv=$(AppServerVersion returnAppServerVersion ${appServer})
+	local as=${appServer}
+	local asv=$(AppServerVersion returnAppServerVersion ${as})
 	local appServerDir=${bundleDir}/${as}-${asv}
 
 	${MB} printProgressMessage shutting-down-server
@@ -359,8 +359,7 @@ zip(){
 		${MB} printDone
 	fi
 
-	appServer=$(${ASValidator} returnAppServer $@)
-	shift
+	appServer=${appServer}
 	appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
 
 	${MB} printProgressMessage zipping-up-${appServer}-bundle
@@ -382,6 +381,7 @@ zip(){
 }
 
 clear
+appServer=$(AppServerValidator returnAppServer $@)
 baseDir=$(BaseVars returnBaseDir)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
