@@ -21,7 +21,6 @@ StringUtil(){
 
 	returnOption(){
 		local opt=${1}
-		declare isValidOpt
 
 		if [[ $(StringValidator isSubstring ${opt} -) ]]; then
 			isValidOpt=$(StringValidator isAlphaNum ${opt/-/ })
