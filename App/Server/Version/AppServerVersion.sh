@@ -1,7 +1,6 @@
 include App/Server/Version/Constants/AppServerVersionConstants.sh
 
 AppServerVersion(){
-
 	returnAppServerVersion(){
 		if [[ $# == 0 ]]; then
 			return
