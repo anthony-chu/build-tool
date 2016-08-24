@@ -1,6 +1,6 @@
 include File/Util/FileUtil.sh
-include String/Validator/StringValidator.sh
 include Message/Builder/MessageBuilder.sh
+include String/Validator/StringValidator.sh
 
 PropsReader(){
 	readConfFile(){
