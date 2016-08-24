@@ -12,7 +12,7 @@ StringValidator(){
 	isAlphaNum(){
 		local str=${@}
 
-		if [[ ${str//[0-9a-zA-Z\ ]} == "" ]]; then
+		if [[ ${str//[0-9a-zA-Z ]} == "" ]]; then
 			echo true
 		else
 			return;
