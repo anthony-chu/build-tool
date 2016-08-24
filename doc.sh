@@ -9,7 +9,7 @@ include String/Validator/StringValidator.sh
 listAllMethodsFromSource(){
 	sources=($(DocsUtil getSources))
 
-	for (( i=0; i<${#sources[@]}; i++ )); do
+	for s in ${sources[@]}; do
 		FileUtil getContent ${sources[i]} | grep '[a-z]*(){'
 		echo
 	done
