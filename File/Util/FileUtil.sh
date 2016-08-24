@@ -1,12 +1,12 @@
 include String/Validator/StringValidator.sh
 
 FileUtil(){
-	getFileExtension(){
+	getExtension(){
 		file=${1}
 		echo ${file/*[.]/}
 	}
 
-	getFileStatus(){
+	getStatus(){
 		if [[ $(StringValidator isNull $(ls | grep ${1})) ]]; then
 			return;
 		else

@@ -353,7 +353,7 @@ zip(){
 
 	zipFile=liferay-portal-${appServer}-${branch}.zip
 
-	if [[ $(FileUtil getFileStatus ${zipFile}) ]]; then
+	if [[ $(FileUtil getStatus ${zipFile}) ]]; then
 		${MB} printProgressMessage removing-old-zip-file
 		rm -rf ${zipFile}
 		${MB} printDone

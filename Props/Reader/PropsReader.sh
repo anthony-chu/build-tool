@@ -6,7 +6,7 @@ PropsReader(){
 	readConfFile(){
 		file=${1}
 
-		if [[ $(FileUtil getFileExtension ${file}) != conf ]]; then
+		if [[ $(FileUtil getExtension ${file}) != conf ]]; then
 			MessageBuilder printErrorMessage -${file}-is-not-a-conf-file.
 			exit
 		fi
@@ -30,7 +30,7 @@ PropsReader(){
 	readPropsFile(){
 		file=${1}
 
-		if [[ $(FileUtil getFileExtension ${file}) != properties ]]; then
+		if [[ $(FileUtil getExtension ${file}) != properties ]]; then
 			MessageBuilder printErrorMessage -${file}-is-not-a-properties-file.
 			exit
 		fi
