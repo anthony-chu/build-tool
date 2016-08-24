@@ -46,10 +46,10 @@ listMethodsFromSource(){
 	file=${1}
 
 	if [[ $(StringValidator isNull ${file}) ]]; then
-		MessageBuilder printErrorMessage please-provide-a-file-name-or-class
+		MessageBuilder printErrorMessage please-provide-a-file-name-or-function-group
 		exit
 	else
-		MessageBuilder printInfoMessage available-methods-for-class-${file}
+		MessageBuilder printInfoMessage available-methods-for-${file}
 		echo
 	fi
 
