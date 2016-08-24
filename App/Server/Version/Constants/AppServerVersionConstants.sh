@@ -2,7 +2,7 @@ AppServerVersionConstants(){
 	glassfishVersion(){
 		echo "3.1.2.2"
 	}
-	
+
 	jbossVersion(){
 		echo "eap-6.4.0"
 	}
