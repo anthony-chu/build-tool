@@ -10,7 +10,7 @@ listAllMethodsFromSource(){
 	sources=($(DocsUtil getSources))
 
 	for s in ${sources[@]}; do
-		FileUtil getContent ${sources[i]} | grep '[a-z]*(){'
+		FileUtil getContent ${s} | grep '[a-z]*(){'
 		echo
 	done
 }
@@ -28,7 +28,7 @@ listDependenciesFromSource(){
 		for s in ${sources[@]}; do
 			if [[ $(StringValidator isSubstring ${s} ${file}) ]]; then
 				isValidFile=true
-				filePath=${sources[i]}
+				filePath=${s}
 				break
 			fi
 		done
@@ -60,7 +60,7 @@ listMethodsFromSource(){
 	for s in ${sources[@]}; do
 		if [[ $(StringValidator isSubstring ${s} ${file}) ]]; then
 			isValidFile=true
-			filePath=${sources[i]}
+			filePath=${s}
 			break
 		fi
 	done
