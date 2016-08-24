@@ -9,7 +9,7 @@ ArrayUtil(){
 
 		for a in ${array[@]}; do
 			while [ ${#a} -lt ${maxLength} ]; do
-				a=${a}${placeholder}
+				a+=${placeholder}
 			done
 
 			newArray+=(${a})
