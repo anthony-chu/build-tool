@@ -2,7 +2,7 @@ StringValidator(){
 	isAlpha(){
 		local str=${@}
 
-		if [[ ${str//[a-zA-Z ]/} == "" ]]; then
+		if [[ $(isNull ${str//[a-zA-Z ]/}) ]]; then
 			echo true
 		else
 			return;
@@ -12,7 +12,7 @@ StringValidator(){
 	isAlphaNum(){
 		local str=${@}
 
-		if [[ ${str//[0-9a-zA-Z ]} == "" ]]; then
+		if [[ $(isNull ${str//[0-9a-zA-Z ]}) ]]; then
 			echo true
 		else
 			return;
@@ -31,7 +31,7 @@ StringValidator(){
 	}
 
 	isNull(){
-		if [[ $@ == "" ]]; then
+		if [[ ${@} == "" ]]; then
 			echo true
 		else
 			return;
@@ -41,7 +41,7 @@ StringValidator(){
 	isNum(){
 		local str=${@}
 
-		if [[ ${str//[0-9]/} == "" ]]; then
+		if [[ $(isNull ${str//[0-9]/}) ]]; then
 			echo true
 		else
 			return;
