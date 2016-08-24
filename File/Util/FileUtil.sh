@@ -1,6 +1,12 @@
 include String/Validator/StringValidator.sh
 
 FileUtil(){
+	getContent(){
+		file=${1}
+
+		cat ${file}
+	}
+
 	getExtension(){
 		file=${1}
 		echo ${file/*[.]/}

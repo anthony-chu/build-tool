@@ -13,7 +13,7 @@ PropsReader(){
 
 		MessageBuilder printProgressMessage reading-configuration-from-${file}
 
-		properties=($(cat ${file}))
+		properties=($(FileUtil getContent ${file}))
 
 		if [[ $(StringValidator isNull ${properties[@]}) ]]; then
 			MessageBuilder printErrorMessage there-are-no-properties-in-${file}
@@ -37,7 +37,7 @@ PropsReader(){
 
 		MessageBuilder printProgressMessage reading-properties-from-${file}
 
-		properties=($(cat ${file}))
+		properties=($(FileUtil getContent ${file}))
 
 		if [[ $(StringValidator isNull ${properties[@]}) ]]; then
 			MessageBuilder printErrorMessage there-are-no-properties-in-${file}

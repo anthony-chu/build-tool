@@ -1,6 +1,7 @@
 source ${projectDir}lib/include.sh
 
 include Docs/Util/DocsUtil.sh
+include File/Util/FileUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 include String/Validator/StringValidator.sh
@@ -9,7 +10,7 @@ listAllMethodsFromSource(){
 	sources=($(DocsUtil getSources))
 
 	for (( i=0; i<${#sources[@]}; i++ )); do
-		cat ${sources[i]} | grep '[a-z]*(){'
+		FileUtil getContent ${sources[i]} | grep '[a-z]*(){'
 		echo
 	done
 }
@@ -35,7 +36,7 @@ listDependenciesFromSource(){
 		if [[ ${isValidFile} ]]; then
 			MessageBuilder printInfoMessage dependencies-for-${file/[.]sh/}
 			echo
-			cat ${filePath} | grep 'source'
+			FileUtil getContent ${filePath} | grep 'source'
 		else
 			MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
 		fi
@@ -65,7 +66,7 @@ listMethodsFromSource(){
 	done
 
 	if [[ ${isValidFile} ]]; then
-		cat ${filePath} | grep '[a-zA-Z]*(){'
+		FileUtil getContent ${filePath} | grep '[a-zA-Z]*(){'
 	else
 		MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
 	fi
