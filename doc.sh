@@ -65,7 +65,7 @@ listMethodsFromSource(){
 	done
 
 	if [[ ${isValidFile} ]]; then
-		cat ${filePath} | grep '[a-z]*(){'
+		cat ${filePath} | grep '[a-zA-Z]*(){'
 	else
 		MessageBuilder printErrorMessage ${file}-does-not-exist.-please-check-your-spelling-or-try-another-file
 	fi
