@@ -17,7 +17,7 @@ HelpMessage(){
 
 			helpListEntry=$(StringUtil replace ${helpMessage} "-" space)
 
-			echo "	${funcListEntry}................${helpListEntry}"
+			echo -e "\t${funcListEntry}................${helpListEntry}"
 		done
 	}
 
