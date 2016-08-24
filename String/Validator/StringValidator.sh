@@ -2,21 +2,13 @@ StringValidator(){
 	isAlpha(){
 		local str=${@}
 
-		if [[ $(isNull ${str//[a-zA-Z ]/}) ]]; then
-			echo true
-		else
-			return;
-		fi
+		isNull ${str//[a-zA-Z ]/}
 	}
 
 	isAlphaNum(){
 		local str=${@}
 
-		if [[ $(isNull ${str//[0-9a-zA-Z ]}) ]]; then
-			echo true
-		else
-			return;
-		fi
+		isNull ${str//[0-9a-zA-Z ]}
 	}
 
 	isSubstring(){
@@ -41,11 +33,7 @@ StringValidator(){
 	isNum(){
 		local str=${@}
 
-		if [[ $(isNull ${str//[0-9]/}) ]]; then
-			echo true
-		else
-			return;
-		fi
+		isNull ${str//[0-9]/}
 	}
 
 	$@
