@@ -64,16 +64,16 @@ pr(){
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
-			branch=${branch}
+			branch=${title//-*/}
 			user=${1}
 		elif [[ $# == 2 ]]; then
 			branch=${1}
 			user=${2}
 		elif [[ $# == 4 ]]; then
-			branch=${1}
 			user=${2}
 			comment=${3}
 			title=${4}
+			branch=${title//-*/}
 		fi
 
 		detailText=("${branch}" "${user}" "${comment}" "${title}")
