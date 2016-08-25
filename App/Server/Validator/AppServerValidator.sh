@@ -126,11 +126,10 @@ AppServerValidator(){
 			local isValidAppServer=$(${C_isEqual} ${v} ${1})
 
 			if [[ ${isValidAppServer} ]]; then
+				echo ${v}
 				break
 			fi
 		done
-
-		echo ${isValidAppServer}
 	}
 
 	$@
