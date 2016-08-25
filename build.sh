@@ -43,11 +43,7 @@ _build_log(){
 _clean_hard(){
 	${MB} printProgressMessage deleting-all-content-in-the-bundles-directory
 	cd ${bundleDir}
-	rm -rf deploy osgi data logs
-
-	if [[ $(StringValidator isNull ${appServer}) == false ]]; then
-		rm -rf ${appServer}*
-	fi
+	rm -rf deploy osgi data logs ${appServer}*
 
 	${MB} printDone
 	cd ${baseDir}
