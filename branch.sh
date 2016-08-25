@@ -98,7 +98,6 @@ jira(){
 	}
 
 	_env(){
-		local appServer=$(AppServerValidator returnAppServer ${1})
 		local appServerVersion=$(AppServerVersion
 			returnAppServerVersion ${appServer})
 
@@ -294,6 +293,7 @@ tunnel(){
 }
 
 clear
+appServer=$(AppServerValidator returnAppServer $@)
 baseDir=$(BaseVars returnBaseDir)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
