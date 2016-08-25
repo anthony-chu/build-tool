@@ -121,9 +121,7 @@ AppServerValidator(){
 		)
 
 		for v in ${validAppServer[@]}; do
-			local isValidAppServer=$(ArrayValidator hasEntry ${@} ${v})
-
-			if [[ ${isValidAppServer} ]]; then
+			if [[ $(ArrayValidator hasEntry ${@} ${v}) ]]; then
 				echo ${v}
 				break
 			fi
