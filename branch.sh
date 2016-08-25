@@ -219,10 +219,10 @@ rebase(){
 
 	case $(StringUtil returnOption ${1}) in
 		[0-9]*) start ${1};;
-		q) abort;;
-		c) cont;;
 		a) amend;;
+		c) cont;;
 		d) default;;
+		q) abort;;
 	esac
 }
 
