@@ -101,7 +101,7 @@ jira(){
 		local appServerVersion=$(AppServerVersion
 			returnAppServerVersion ${appServer})
 
-		echo ${appServer^} ${appServerVersion} + MySQL 5.7
+		echo $(StringUtil capitalize ${appServer}) ${appServerVersion} + MySQL 5.7
 	}
 
 	case ${1} in
