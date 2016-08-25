@@ -21,7 +21,6 @@ replace="FileIOUtil replace"
 
 _build_log(){
 	local appServer=${appServer}
-
 	local clock=$(BaseUtil timestamp clock)
 
 	logStructure=(d log ${branch} ${appServer} $(BaseUtil timestamp date))
