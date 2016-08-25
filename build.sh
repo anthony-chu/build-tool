@@ -163,7 +163,7 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal$(StringUtil replace ${branch} [-.])
 
-	${MB} printProgressMessage rebuilding-database
+	${MB} printProgressMessage rebuilding-database-${database}
 	mysql -e "drop database if exists ${database};
 		create database ${database} char set utf8;"
 	${MB} printDone
