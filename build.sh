@@ -391,7 +391,6 @@ if [[ $# == 0 ]]; then
   HelpMessage buildHelpMessage
 else
 	until [[ $# == 0 ]]; do
-		appServer=$(${ASValidator} returnAppServer $@)
 		if [[ ${1} == ${branch} ]]; then
 			shift
 		fi
