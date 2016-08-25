@@ -147,7 +147,7 @@ _disableCTCompile(){
 
 	cd ${projectDir}
 
-	submodulesDir=($(Finder findByExt lfrbuild-portal))
+	submodulesDir=($(Finder findBySubstring lfrbuild-portal))
 
 	for (( i=0; i<${#submodulesDir[@]}; i++ )); do
 		rm -rf ${submodulesDir[i]}
