@@ -289,9 +289,6 @@ run(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	#
-	# trap shutdown SIGINT
-
 	if [[ $(${ASValidator} isJboss ${appServer}) ]]; then
 		${appServerDir}/bin/standalone.sh
 	elif [[ $(${ASValidator} isTomcat ${appServer}) ]]; then
@@ -332,18 +329,6 @@ rebuild(){
 	${MB} printProgressMessage building-portal
 	ant -f build-dist.xml build-dist-${appServer} >> ${logFile} | tail -f --pid=$$ ${logFile}
 	${MB} printDone
-}
-
-shutdown(){
-	local as=${appServer}
-	local asv=$(AppServerVersion returnAppServerVersion ${as})
-	local appServerDir=${bundleDir}/${as}-${asv}
-
-	${MB} printProgressMessage shutting-down-server
-
-	if [[ ${appServer} == tomcat ]]; then
-		${appServerDir}/bin/catalina.sh stop
-	fi
 }
 
 zip(){
