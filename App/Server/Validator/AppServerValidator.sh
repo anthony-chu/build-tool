@@ -98,8 +98,8 @@ AppServerValidator(){
 		if [[ $(${SV} isNull ${appServer}) ]]; then
 			echo tomcat
 		else
-			if [[ $(validateAppServer ${appServer}) ]]; then
-				echo ${appServer}
+			if [[ $(validateAppServer $@) ]]; then
+				validateAppServer ${@}
 			else
 				echo tomcat
 				exit
