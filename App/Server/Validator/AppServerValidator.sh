@@ -1,9 +1,7 @@
 include Array/Validator/ArrayValidator.sh
-include Comparator/Comparator.sh
 include String/Validator/StringValidator.sh
 
 AppServerValidator(){
-	local C_isEqual="Comparator isEqual"
 	local SV=StringValidator
 
 	isGlassfish(){
