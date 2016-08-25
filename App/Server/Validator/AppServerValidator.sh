@@ -1,13 +1,13 @@
+include Array/Validator/ArrayValidator.sh
 include Comparator/Comparator.sh
 include String/Validator/StringValidator.sh
 
 AppServerValidator(){
-	local appServer=${2}
 	local C_isEqual="Comparator isEqual"
 	local SV=StringValidator
 
 	isGlassfish(){
-		if [[ $(${C_isEqual} ${appServer} glassfish) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} glassfish) ]]; then
 			echo true
 		else
 			return;
@@ -15,7 +15,7 @@ AppServerValidator(){
 	}
 
 	isJboss(){
-		if [[ $(${C_isEqual} ${appServer} jboss) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} jboss) ]]; then
 			echo true
 		else
 			return;
@@ -23,7 +23,7 @@ AppServerValidator(){
 	}
 
 	isJetty(){
-		if [[ $(${C_isEqual} ${appServer} jetty) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} jetty) ]]; then
 			echo true
 		else
 			return;
@@ -31,7 +31,7 @@ AppServerValidator(){
 	}
 
 	isJonas(){
-		if [[ $(${C_isEqual} ${appServer} jonas) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} jonas) ]]; then
 			echo true
 		else
 			return;
@@ -39,7 +39,7 @@ AppServerValidator(){
 	}
 
 	isResin(){
-		if [[ $(${C_isEqual} ${appServer} resin) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} resin) ]]; then
 			echo true
 		else
 			return;
@@ -47,7 +47,7 @@ AppServerValidator(){
 	}
 
 	isTcat(){
-		if [[ $(${C_isEqual} ${appServer} tcat) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} tcat) ]]; then
 			echo true
 		else
 			return;
@@ -55,7 +55,7 @@ AppServerValidator(){
 	}
 
 	isTCServer(){
-		if [[ $(${C_isEqual} ${appServer} tcserver) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} tcserver) ]]; then
 			echo true
 		else
 			return;
@@ -63,7 +63,7 @@ AppServerValidator(){
 	}
 
 	isTomcat(){
-		if [[ $(${C_isEqual} ${appServer} tomcat) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} tomcat) ]]; then
 			echo true
 		else
 			return;
@@ -71,7 +71,7 @@ AppServerValidator(){
 	}
 
 	isWeblogic(){
-		if [[ $(${C_isEqual} ${appServer} weblogic) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} weblogic) ]]; then
 			echo true
 		else
 			return;
@@ -79,7 +79,7 @@ AppServerValidator(){
 	}
 
 	isWebsphere(){
-		if [[ $(${C_isEqual} ${appServer} websphere) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} websphere) ]]; then
 			echo true
 		else
 			return;
@@ -87,7 +87,7 @@ AppServerValidator(){
 	}
 
 	isWildfly(){
-		if [[ $(${C_isEqual} ${appServer} wildfly) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} wildfly) ]]; then
 			echo true
 		else
 			return;
@@ -95,7 +95,7 @@ AppServerValidator(){
 	}
 
 	returnAppServer(){
-		if [[ $(${SV} isNull ${appServer}) ]]; then
+		if [[ $(${SV} isNull $@) ]]; then
 			echo tomcat
 		else
 			if [[ $(validateAppServer $@) ]]; then
@@ -123,7 +123,7 @@ AppServerValidator(){
 		)
 
 		for v in ${validAppServer[@]}; do
-			local isValidAppServer=$(${C_isEqual} ${v} ${1})
+			local isValidAppServer=$(ArrayValidator hasEntry ${@} ${v})
 
 			if [[ ${isValidAppServer} ]]; then
 				echo ${v}
