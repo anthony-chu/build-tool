@@ -115,16 +115,16 @@ _config(){
 		local d=[[:digit:]]
 
 		${MB} printProgressMessage increasing-memory-limit
-		if [[ ${appServer} == tomcat ]]; then
+		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}\+m Xmx2048m
 			${replace} ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}\+m Xms1024m
-		elif [[ ${appServer} == wildfly ]]; then
+		elif [[ $(AppServerValidator isWildfly ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}\+m Xmx2048m
 			${replace} ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}\+m MaxMetaspaceSize=1024m
 		fi
 		${MB} printDone
 
-		if [[ ${branch} == ee-6.2.x ]]; then
+		if [[ $(${C_isEqual} ${branch} ee-6.2.x) ]]; then
 			${MB} printProgressMessage changing-port-for-${branch}
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
 			${MB} printDone
