@@ -174,12 +174,14 @@ _rebuild_db(){
 }
 
 _overrideTomcatVersion(){
-	if [[ ${branch} == *6.2.x* ]] && [[ ${appServer} == tomcat ]]; then
-		appServerVersion=7.0.62
-	elif [[ ${branch} == *6.1.x* ]] && [[ ${appServer} == tomcat ]]; then
-		appServerVersion=7.0.40
+	if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
+		if [[ $(StringValidator isSubstring ${branch} 6.2.x) ]]; then
+			appServerVersion=7.0.62
+		elif [[ $(StringValidator isSubstring ${branch} 6.1.x) ]]; then
+			appServerVersion=7.0.40
+		fi
 	else
-		appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer})
+		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 	fi
 }
 
