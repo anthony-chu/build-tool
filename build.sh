@@ -298,7 +298,6 @@ run(){
 	elif [[ $(${ASValidator} isTCServer ${appServer}) ]]; then
 		${appServerDir}/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
 	elif [[ $(${ASValidator} isWildfly ${appServer}) ]]; then
-		export JAVA_HOME="C:\Program Files\Java\jdk1.8.0_71"
 		${appServerDir}/bin/standalone.sh
 	elif [[ $(${ASValidator} isWeblogic ${appServer}) ]]; then
 		${appServerDir}/domains/liferay/bin/startWebLogic.sh
