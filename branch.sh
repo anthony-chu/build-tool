@@ -67,7 +67,13 @@ dev(){
 	local dev=${1}
 	local branch=${2}
 
-	git pull git@github.com:${dev}/liferay-portal.git ${branch}
+	if [[ $(StringValidator isSubstring ${branch} ee-) ]]; then
+		repo=liferay-portal-ee
+	else
+		repo=liferay-portal
+	fi
+
+	git pull git@github.com:${dev}/${repo}.git ${branch}
 
 	cd ${baseDir}
 
