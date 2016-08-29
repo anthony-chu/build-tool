@@ -50,6 +50,8 @@ _clean_hard(){
 _clean_bundle(){
 	local appServer=${appServer}
 
+	appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+
 	_overrideTomcatVersion
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
@@ -107,6 +109,8 @@ _config(){
 
 	appServer(){
 		local appServer=${appServer}
+
+		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 
 		_overrideTomcatVersion
 
@@ -178,8 +182,6 @@ _overrideTomcatVersion(){
 		elif [[ $(StringValidator isSubstring ${branch} 6.1.x) ]]; then
 			appServerVersion=7.0.40
 		fi
-	else
-		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 	fi
 }
 
@@ -282,6 +284,8 @@ run(){
 	${MB} printProgressMessage starting-server
 	sleep 5s
 	clear
+
+	appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 
 	_overrideTomcatVersion
 
