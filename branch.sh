@@ -1,12 +1,13 @@
 source ${projectDir}lib/include.sh
 source ${projectDir}lib/package.sh
 
+include Comparator/Comparator.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
-include String/Validator/StringValidator.sh
 
 package App
 package Base
+package String
 
 MB=MessageBuilder
 
@@ -51,7 +52,9 @@ current(){
 delete(){
 	cd ${buildDir}
 
-	if [[ ${1} == $(git rev-parse --abbrev-ref HEAD) ]]; then
+	curBranch=$(git rev-parse --abbrev-ref HEAD)
+
+	if [[ $(Comparator isEqual ${1} ${curBranch}) ]]; then
 		${MB} printErrorMessage cannot-delete-the-current-branch
 	else
 		git branch -q -D ${1}
@@ -83,8 +86,8 @@ dev(){
 jira(){
 	local _gitid=$(_longLog)
 
-	if [[ ${branch} == master ]]; then
-		branch=${branch^}
+	if [[ $(Comparator isEqual ${branch} master) ]]; then
+		branch=$(StringUtil capitalize ${branch})
 	else
 		branch=${branch}
 	fi
