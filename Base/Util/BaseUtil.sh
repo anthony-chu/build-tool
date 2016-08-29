@@ -1,3 +1,4 @@
+include Comparator/Comparator.sh
 include String/Validator/StringValidator.sh
 
 BaseUtil(){
@@ -12,11 +13,11 @@ BaseUtil(){
 	}
 
 	portListener(){
-		if [[ $# == 0 ]]; then
+		if [[ $(StringValidator isNull $1) ]]; then
 			exit
+		else
+			port=${1}
 		fi
-
-		port=$1
 
 		if [[ $(netstat -an | grep ${port} | grep LISTENING) == "" ]]; then
 			return;
@@ -32,10 +33,10 @@ BaseUtil(){
 	}
 
 	timestamp(){
-		if [[ ${1} == clock ]]; then
+		if [[ $(Comparator isEqual ${1} clock) ]]; then
 			local t=$(date +%T%s)
 			echo ${t//[:]/}
-		elif [[ ${1} == date ]]; then
+		elif [[ $(Comparator isEqual ${1} date) ]]; then
 			date +%Y%m%d
 		else
 			ms=$(date +%S%N)
