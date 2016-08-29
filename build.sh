@@ -237,13 +237,13 @@ deploy(){
 		fi
 	done
 
-	if [[ ${pathToModule} != "" ]]; then
+	if [[ $(StringValidator isNull ${pathToModule}) ]]; then
+		${MB} printErrorMessage a-module-with-that-name-could-not-be-found
+	else
 		${MB} printProgressMessage deploying-module
 		cd ${pathToModule}
 		${buildDir}/gradlew clean deploy
 		${MB} printDone
-	else
-		${MB} printErrorMessage a-module-with-that-name-could-not-be-found
 	fi
 
 	cd ${baseDir}
