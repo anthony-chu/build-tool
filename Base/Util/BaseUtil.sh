@@ -1,3 +1,5 @@
+include String/Validator/StringValidator.sh
+
 BaseUtil(){
 	gitpr(){
 		alias gitpr="source d:/git-tools/git-pull-request/git-pull-request.sh"
@@ -20,6 +22,12 @@ BaseUtil(){
 			return;
 		else
 			echo true
+		fi
+	}
+
+	setJavaHome(){
+		if [[ $(StringValidator isSubstring ${1} 6.) ]]; then
+			export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
 		fi
 	}
 

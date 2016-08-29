@@ -201,6 +201,8 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
+BaseUtil setJavaHome ${branch}
+
 args=$@
 
 if [[ $@ =~ ${branch} ]]; then
