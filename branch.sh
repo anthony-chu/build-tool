@@ -40,13 +40,13 @@ changes(){
 }
 
 current(){
-  cd ${buildDir}
+	cd ${buildDir}
 
-  name=$(git rev-parse --abbrev-ref HEAD)
+	name=$(git rev-parse --abbrev-ref HEAD)
 
-  ${MB} printInfoMessage current-${branch}-branch:-${name}
+	${MB} printInfoMessage current-${branch}-branch:-${name}
 
-  cd ${baseDir}
+	cd ${baseDir}
 }
 
 delete(){
@@ -123,11 +123,11 @@ jira(){
 }
 
 list(){
-  cd ${buildDir}
+	cd ${buildDir}
 
-  git branch
+	git branch
 
-  cd ${baseDir}
+	cd ${baseDir}
 }
 
 log(){
@@ -143,13 +143,13 @@ log(){
 }
 
 new(){
-  cd ${buildDir}
+	cd ${buildDir}
 
-  git checkout -q -b ${1}
+	git checkout -q -b ${1}
 
-  current
+	current
 
-  cd ${baseDir}
+	cd ${baseDir}
 }
 
 rebase(){
@@ -248,11 +248,11 @@ rename(){
 }
 
 reset(){
-  cd ${buildDir}
+	cd ${buildDir}
 
-  git reset --hard ${1}
+	git reset --hard ${1}
 
-  cd ${baseDir}
+	cd ${baseDir}
 }
 
 search(){
@@ -270,19 +270,19 @@ search(){
 }
 
 switch(){
-  cd ${buildDir}
+	cd ${buildDir}
 
-  if [[ $# == 0 ]]; then
-	b=master
-  else
-	b=${1}
-  fi
+	if [[ $# == 0 ]]; then
+		b=master
+	else
+		b=${1}
+	fi
 
-  git checkout -q ${b}
+	git checkout -q ${b}
 
-  current
+	current
 
-  cd ${baseDir}
+	cd ${baseDir}
 }
 
 tunnel(){
@@ -309,7 +309,7 @@ buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
 if [[ $# == 0 ]]; then
-  HelpMessage branchHelpMessage
+	HelpMessage branchHelpMessage
 else
 	if [[ ${1} == ${branch} ]]; then
 		shift
