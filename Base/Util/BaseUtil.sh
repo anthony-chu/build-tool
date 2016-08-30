@@ -8,10 +8,6 @@ BaseUtil(){
 		source "d:/git-tools/git-pull-request/git-pull-request.sh"
 	}
 
-	getOS(){
-		echo $(uname)
-	}
-
 	portListener(){
 		if [[ $(StringValidator isNull $1) ]]; then
 			exit
