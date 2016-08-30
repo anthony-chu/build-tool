@@ -133,7 +133,7 @@ list(){
 log(){
 	cd ${buildDir}
 
-	if [[ $# == 0 ]]; then
+	if [[ $(StringValidator isNull ${1}) ]]; then
 		git log -1 --oneline
 	else
 		git log -${1} --oneline
@@ -272,7 +272,7 @@ search(){
 switch(){
 	cd ${buildDir}
 
-	if [[ $# == 0 ]]; then
+	if [[ $(StringValidator isNull ${1}) ]]; then
 		b=master
 	else
 		b=${1}
@@ -308,7 +308,7 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
-if [[ $# == 0 ]]; then
+if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
 else
 	if [[ ${1} == ${branch} ]]; then
