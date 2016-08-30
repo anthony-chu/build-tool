@@ -1,5 +1,3 @@
-include String/Util/StringUtil.sh
-
 Comparator(){
 	isEqual(){
 		if [[ ${1} == ${2} ]]; then
@@ -10,7 +8,9 @@ Comparator(){
 	}
 
 	isEqualIgnoreCase(){
-		isEqual $(StringUtil toLowerCase ${1}) $(StringUtil toLowerCase ${2})
+		x=${1}
+		y=${2}
+		isEqual ${x,,} ${y,,}
 	}
 
 	isLessThan(){
