@@ -69,7 +69,7 @@ AppServerVersionConstantsTest(){
 	}
 
 	test.tcserverVersion(){
-		if [[ $(AppServerVersionConstants tcserverVersion) == 3.1.3 ]]; then
+		if [[ $(AppServerVersionConstants tcserverVersion) == 3.1.2 ]]; then
 			echo PASS
 		else
 			echo FAIL
