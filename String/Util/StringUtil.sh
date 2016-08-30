@@ -1,3 +1,4 @@
+include Comparator/Comparator.sh
 include String/Validator/StringValidator.sh
 
 StringUtil(){
@@ -12,7 +13,11 @@ StringUtil(){
 		local orig=${2}
 		local new=${3}
 
-		if [[ ${new} == space ]]; then
+		if [[ $(Comparator isEqual ${orig} space) ]]; then
+			orig=" "
+		fi
+
+		if [[ $(Comparator isEqual ${new} space) ]]; then
 			new=" "
 		fi
 
