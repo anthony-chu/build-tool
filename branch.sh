@@ -118,7 +118,7 @@ jira(){
 		*) echo "" ;;
 	esac
 
-	echo $(_env ${2})
+	echo $(_env ${appServer})
 	echo ${gitinfo}
 }
 
