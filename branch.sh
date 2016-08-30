@@ -135,8 +135,8 @@ log(){
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		git log -1 --oneline
-	else
-		git log -${1} --oneline
+	elif [[ $(StringValidator isOption ${1}) ]]; then
+		git log ${1} --oneline
 	fi
 
 	cd ${baseDir}
