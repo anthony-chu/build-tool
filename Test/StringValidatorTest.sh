@@ -15,6 +15,9 @@ StringValidatorTest(){
 			isNull[true]
 			isNum[false]
 			isNum[true]
+			isOption[alpha]
+			isOption[alphaNum]
+			isOption[num]
 		)
 
 		TestExecutor executeTest StringValidatorTest ${tests[@]}
@@ -115,6 +118,30 @@ StringValidatorTest(){
 			echo FAIL
 		fi
 	}
+
+	test.isOption[alpha](){
+		if [[ $(StringValidator isOption -foo) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.isOption[alphaNum](){
+		if [[ $(StringValidator isOption -foo123) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.isOption[num](){
+		if [[ $(StringValidator isOption -123) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		}
+		fi
 
 	${@}
 }
