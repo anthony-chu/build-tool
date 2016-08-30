@@ -308,8 +308,6 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
-BaseUtil setJavaHome ${branch}
-
 if [[ $# == 0 ]]; then
   HelpMessage branchHelpMessage
 else
