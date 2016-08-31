@@ -8,18 +8,16 @@ DocsUtil(){
 
 		listableFiles=()
 
-		for (( i=0; i<${#allFiles[@]}; i++ )); do
 		for a in ${allFiles[@]}; do
-			for (( j=0; j<${#excludedFiles[@]}; j++ )); do
 			for e in ${excludedFiles[@]}; do
 				isEmptyArray=$(StringValidator isNull "${listableFiles[@]}")
 				isUniqueFile=$(ArrayValidator hasUniqueEntry ${listableFiles[@]} ${a})
 
 				if [[ ${isEmptyArray} ]]; then
-					excludedStatus=$(StringValidator isSubstring ${a} ${j})
+					excludedStatus=$(StringValidator isSubstring ${a} ${e})
 				else
 					if [[ ${isUniqueFile} ]]; then
-						excludedStatus=$(StringValidator isSubstring ${a} ${j})
+						excludedStatus=$(StringValidator isSubstring ${a} ${e})
 					else
 						continue
 					fi
