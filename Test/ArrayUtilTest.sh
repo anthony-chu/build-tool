@@ -3,7 +3,7 @@ include Test/Executor/TestExecutor.sh
 
 ArrayUtilTest(){
 	run(){
-		tests=(appendArrayEntry convertStringToArray flipArray returnMaxLength)
+		local tests=(appendArrayEntry convertStringToArray flipArray returnMaxLength)
 
 		TestExecutor executeTest ArrayUtilTest ${tests[@]}
 	}

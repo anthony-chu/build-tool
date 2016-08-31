@@ -3,7 +3,7 @@ include String/Util/StringUtil.sh
 
 FileNameUtil(){
 	getPath(){
-		path=${1}
+		local path=${1}
 
 		if [[ $(OSValidator isWindows) ]]; then
 			_drive=${path:1:1}

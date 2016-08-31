@@ -9,7 +9,7 @@ BaseUtil(){
 		if [[ $(StringValidator isNull $1) ]]; then
 			exit
 		else
-			port=${1}
+			local port=${1}
 		fi
 
 		if [[ $(netstat -an | grep ${port} | grep LISTENING) == "" ]]; then

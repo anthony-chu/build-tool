@@ -8,8 +8,8 @@ Comparator(){
 	}
 
 	isEqualIgnoreCase(){
-		x=${1}
-		y=${2}
+		local x=${1}
+		local y=${2}
 		isEqual ${x,,} ${y,,}
 	}
 

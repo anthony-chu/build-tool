@@ -11,18 +11,18 @@ HelpMessage(){
 
 		echo "Commands:"
 		for (( i=0; i<${everythingSize}/2; i++ )); do
-			funcListEntry=${funcList[i]}
+			local funcListEntry=${funcList[i]}
 
-			helpMessage=$(StringUtil capitalize ${helpList[i]})
+			local helpMessage=$(StringUtil capitalize ${helpList[i]})
 
-			helpListEntry=$(StringUtil replace ${helpMessage} "-" space)
+			local helpListEntry=$(StringUtil replace ${helpMessage} "-" space)
 
 			echo -e "\t${funcListEntry}................${helpListEntry}"
 		done
 	}
 
 	branchHelpMessage(){
-		funcList=(
+		local funcList=(
 			changes
 			current
 			delete
@@ -38,9 +38,9 @@ HelpMessage(){
 			tunnel
 		)
 
-		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
+		local newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
-		helpList=(
+		local helpList=(
 			displays-all-changes-made-to-the-current-branch
 			displays-the-current-branch
 			deletes-the-branch
@@ -60,7 +60,7 @@ HelpMessage(){
 	}
 
 	buildHelpMessage(){
-		funcList=(
+		local funcList=(
 			build
 			clean
 			deploy
@@ -71,9 +71,9 @@ HelpMessage(){
 			zip
 		)
 
-		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
+		local newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
-		helpList=(
+		local helpList=(
 			builds-bundle-on-specified-app-server
 			rebuilds-database-and-prepares-bundle
 			deploys-the-specified-module-to-bundle
@@ -88,7 +88,7 @@ HelpMessage(){
 	}
 
 	ctHelpMessage(){
-		funcList=(
+		local funcList=(
 			build
 			clean_bundle
 			clean_source
@@ -97,9 +97,9 @@ HelpMessage(){
 			update
 		)
 
-		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
+		local newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
-		helpList=(
+		local helpList=(
 			builds-content-targeting-modules
 			removes-content-targeting-modules-from-bundle
 			removes-content-targeting-modules-from-dist-directory
@@ -112,7 +112,7 @@ HelpMessage(){
 	}
 
 	docsHelpMessage(){
-		optList=(
+		local optList=(
 			"-d|-D"
 			"-g|-G"
 			"-h|-H"
@@ -120,9 +120,9 @@ HelpMessage(){
 			"-s|-S"
 		)
 
-		newOptList=$(ArrayUtil appendArrayEntry ${optList[@]})
+		local newOptList=$(ArrayUtil appendArrayEntry ${optList[@]})
 
-		helpList=(
+		local helpList=(
 			lists-all-dependencies-for-a-given-file
 			lists-all-available-methods
 			prints-this-help-message
@@ -134,16 +134,16 @@ HelpMessage(){
 	}
 
 	testHelpMessage(){
-		funcList=(
+		local funcList=(
 			pr
 			sf
 			validate
 			test
 		)
 
-		newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
+		local newFuncList=($(ArrayUtil appendArrayEntry ${funcList[@]}))
 
-		helpList=(
+		local helpList=(
 			submits-a-pull-request
 			formats-source-files
 			runs-poshi-validation

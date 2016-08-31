@@ -3,7 +3,7 @@ include Test/Executor/TestExecutor.sh
 
 AppServerValidatorTest(){
 	run(){
-		tests=(
+		local tests=(
 			isGlassfish
 			isJboss
 			isJetty

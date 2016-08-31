@@ -35,9 +35,9 @@ StringValidator(){
 
 		isNull ${str//[0-9]/}
 	}
-	
+
 	isOption(){
-		opt=${1}
+		local opt=${1}
 
 		if [[ ${opt/-/} =~ [a-zA-Z0-9]+ ]]; then
 			echo true

@@ -3,10 +3,10 @@ include Comparator/Comparator.sh
 
 ArrayValidator(){
 	hasEntry(){
-		local flip=($(ArrayUtil flipArray $@))
+		local _flip=($(ArrayUtil flipArray $@))
 
-		entry=${flip[0]}
-		array=(${flip[@]:1})
+		local entry=${_flip[0]}
+		local array=(${_flip[@]:1})
 
 		for a in ${array[@]}; do
 			if [[ $(Comparator isEqual ${a} ${entry}) ]]; then
@@ -17,13 +17,13 @@ ArrayValidator(){
 	}
 
 	hasUniqueEntry(){
-		local flip=($(ArrayUtil flipArray $@))
+		local _flip=($(ArrayUtil flipArray $@))
 
-		entry=${flip[0]}
-		array=(${flip[@]:1})
+		local entry=${_flip[0]}
+		local array=(${_flip[@]:1})
 
 		if [[ $(hasEntry ${array[@]} ${entry}) ]]; then
-			count=0
+			local count=0
 
 			for a in ${array[@]}; do
 				if [[ $(Comparator isEqual ${a} ${entry}) ]]; then

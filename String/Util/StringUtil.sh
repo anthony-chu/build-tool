@@ -28,7 +28,7 @@ StringUtil(){
 		local opt=${1}
 
 		if [[ $(StringValidator isSubstring ${opt} -) ]]; then
-			isValidOpt=$(StringValidator isAlphaNum ${opt/-/ })
+			local isValidOpt=$(StringValidator isAlphaNum ${opt/-/ })
 		fi
 
 		if [[ ${isValidOpt} ]]; then
@@ -37,13 +37,13 @@ StringUtil(){
 	}
 
 	toLowerCase(){
-		str=${1}
+		local str=${1}
 
 		echo ${str,,}
 	}
 
 	toUpperCase(){
-		str=${1}
+		local str=${1}
 
 		echo ${str^^}
 	}

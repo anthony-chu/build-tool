@@ -3,7 +3,7 @@ include Test/Executor/TestExecutor.sh
 
 ComparatorTest(){
 	run(){
-		tests=(
+		local tests=(
 			isEqual[Number]
 			isEqual[String]
 			isEqualIgnoreCase

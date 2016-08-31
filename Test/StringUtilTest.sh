@@ -3,7 +3,7 @@ include Test/Executor/TestExecutor.sh
 
 StringUtilTest(){
 	run(){
-		tests=(
+		local tests=(
 			capitalize
 			replace[space]
 			replace
@@ -31,7 +31,7 @@ StringUtilTest(){
 			echo FAIL
 		fi
 	}
-	
+
 	test.replace[space](){
 		if [[ $(StringUtil replace foo-bar - space) == "foo bar" ]]; then
 			echo PASS

@@ -1,8 +1,8 @@
 TestExecutor(){
 	executeTest(){
-		group=${1}
+		local group=${1}
 		shift
-		tests=(${@})
+		local tests=(${@})
 
 		for test in ${tests[@]}; do
 			if [[ $(${group} test.${test}) == FAIL ]]; then

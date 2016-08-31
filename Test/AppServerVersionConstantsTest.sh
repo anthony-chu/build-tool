@@ -3,7 +3,7 @@ include Test/Executor/TestExecutor.sh
 
 AppServerVersionConstantsTest(){
 	run(){
-		tests=(
+		local tests=(
 			glassfishVersion
 			jettyVersion
 			jbossVersion

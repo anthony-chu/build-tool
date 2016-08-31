@@ -1,7 +1,7 @@
 package(){
-	dir=${1}
+	local dir=${1}
 
-	files=($(find * -type f -iname '*.sh' | grep ${dir}))
+	local files=($(find * -type f -iname '*.sh' | grep ${dir}))
 
 	for file in ${files[@]}; do
 		source ${file}

@@ -2,13 +2,13 @@ include String/Validator/StringValidator.sh
 
 FileUtil(){
 	getContent(){
-		file=${1}
+		local file=${1}
 
 		cat ${file}
 	}
 
 	getExtension(){
-		file=${1}
+		local file=${1}
 		echo ${file/*[.]/}
 	}
 
@@ -25,10 +25,10 @@ FileUtil(){
 	}
 
 	matchFileContentSubstring(){
-		pattern=${1}
-		file=${2}
+		local pattern=${1}
+		local file=${2}
 
-		matchingContent=($(grep -o ${pattern} ${file}))
+		local matchingContent=($(grep -o ${pattern} ${file}))
 
 		if [[ $(StringValidator isNull ${matchingContent[@]}) ]]; then
 			return;

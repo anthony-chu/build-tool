@@ -4,7 +4,7 @@ include String/Validator/StringValidator.sh
 
 PropsReader(){
 	readConfFile(){
-		file=${1}
+		local file=${1}
 
 		if [[ $(FileUtil getExtension ${file}) != conf ]]; then
 			MessageBuilder printErrorMessage -${file}-is-not-a-conf-file.
@@ -13,7 +13,7 @@ PropsReader(){
 
 		MessageBuilder printProgressMessage reading-configuration-from-${file}
 
-		properties=($(FileUtil getContent ${file}))
+		local properties=($(FileUtil getContent ${file}))
 
 		if [[ $(StringValidator isNull ${properties[@]}) ]]; then
 			MessageBuilder printErrorMessage there-are-no-properties-in-${file}
@@ -28,7 +28,7 @@ PropsReader(){
 	}
 
 	readPropsFile(){
-		file=${1}
+		local file=${1}
 
 		if [[ $(FileUtil getExtension ${file}) != properties ]]; then
 			MessageBuilder printErrorMessage -${file}-is-not-a-properties-file.
@@ -37,7 +37,7 @@ PropsReader(){
 
 		MessageBuilder printProgressMessage reading-properties-from-${file}
 
-		properties=($(FileUtil getContent ${file}))
+		local properties=($(FileUtil getContent ${file}))
 
 		if [[ $(StringValidator isNull ${properties[@]}) ]]; then
 			MessageBuilder printErrorMessage there-are-no-properties-in-${file}

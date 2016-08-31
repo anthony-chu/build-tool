@@ -3,7 +3,7 @@ include Test/Executor/TestExecutor.sh
 
 ArrayValidatorTest(){
 	run(){
-		tests=(
+		local tests=(
 			hasEntry[false]
 			hasEntry[true]
 			hasUniqueEntry[false]

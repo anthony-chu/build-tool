@@ -2,7 +2,7 @@ include String/Validator/StringValidator.sh
 
 StringValidatorTest(){
 	run(){
-		tests=(
+		local tests=(
 			isAlpha[false]
 			isAlpha[space]
 			isAlpha[true]
