@@ -3,7 +3,8 @@ source ${projectDir}lib/include.sh
 include Comparator/Comparator.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
-include String/Validator/StringValidator.sh
+
+package String
 
 baseDir=$(pwd)
 projectDir=d:/private/ee-7.0.x-portal/modules/apps/content-targeting
@@ -34,7 +35,7 @@ CTBuilder(){
 			allBranches=($(git branch -a | grep origin))
 
 			for b in ${allBranches[@]}; do
-				if [[ $(${C_isEqual} ${b/remotes\/origin\//} ${1}) ]]; then
+				if [[ $(${C_isEqual} $(StringUtil replace ${b} remotes\/origin\/) ${1}) ]]; then
 					${MB} printErrorMessage the-branch-${1}-does-not-exist-in-origin
 				else
 					doSwitch=true
@@ -150,7 +151,7 @@ CTBuilder(){
 }
 
 if [[ $@ != CTBuilder* ]]; then
-	if [[ $# == 0 ]]; then
+	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage ctHelpMessage
 	else
 		CTBuilder $@
