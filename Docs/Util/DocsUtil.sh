@@ -11,7 +11,8 @@ DocsUtil(){
 		for a in ${allFiles[@]}; do
 			for e in ${excludedFiles[@]}; do
 				isEmptyArray=$(StringValidator isNull "${listableFiles[@]}")
-				isUniqueFile=$(ArrayValidator hasUniqueEntry ${listableFiles[@]} ${a})
+				isUniqueFile=$(ArrayValidator
+					hasUniqueEntry ${listableFiles[@]} ${a})
 
 				if [[ ${isEmptyArray} ]]; then
 					excludedStatus=$(StringValidator isSubstring ${a} ${e})

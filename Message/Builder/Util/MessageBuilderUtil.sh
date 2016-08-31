@@ -7,7 +7,8 @@ MessageBuilderUtil(){
 	buildMessage(){
 		_message=$(StringUtil capitalize ${2})
 
-		echo "${time} [$(StringUtil toUpperCase ${1})] $(StringUtil replace ${_message} - space)"
+		echo "${time} [$(StringUtil toUpperCase ${1})] $(StringUtil
+			replace ${_message} - space)"
 	}
 
 	$@
