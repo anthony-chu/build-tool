@@ -77,7 +77,7 @@ listSources(){
 
 	echo "The following files are available as sources:"
 
-	for s in ${sources[@]}
+	for s in ${sources[@]}; do
 		echo "	${s}"
 	done
 }
