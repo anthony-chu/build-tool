@@ -375,21 +375,21 @@ bundleDir=$(BaseVars returnBundleDir $@)
 
 BaseUtil setJavaHome ${branch}
 
-if [[ $# == 0 ]]; then
+if [[ $(StringValidator isNull ${1}) ]]; then
   HelpMessage buildHelpMessage
 else
-	until [[ $# == 0 ]]; do
-		if [[ ${1} == ${branch} ]]; then
+	until [[ $(StringValidator isNull ${1}) ]]; do
+		if [[ $(Comparator isEqual ${1} ${branch}) ]]; then
 			shift
 		fi
 
-		if [[ ${1} == ${appServer} ]]; then
+		if [[ $(Comparator isEqual ${1} ${appServer}) ]]; then
 			shift
 		fi
 
 		${1}
 
-		if [[ ${1} == deploy ]]; then
+		if [[ $(Comparator isEqual ${1} deploy) ]]; then
 			shift
 		fi
 
