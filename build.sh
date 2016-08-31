@@ -23,7 +23,7 @@ _build_log(){
 	local appServer=${appServer}
 	local clock=$(BaseUtil timestamp clock)
 
-	logStructure=(d log ${branch} ${appServer} $(BaseUtil timestamp date))
+	logStructure=(d logs ${branch} ${appServer} $(BaseUtil timestamp date))
 
 	for l in ${logStructure[@]}; do
 		logDir=${logDir}/${l}
