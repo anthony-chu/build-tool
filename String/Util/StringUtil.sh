@@ -36,6 +36,10 @@ StringUtil(){
 		fi
 	}
 
+	strip(){
+		replace ${1} ${2}
+	}
+
 	toLowerCase(){
 		local str=${1}
 
