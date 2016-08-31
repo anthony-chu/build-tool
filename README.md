@@ -7,13 +7,12 @@
 	- [branch.sh](#branchsh)
 	- [test.sh](#testsh)
 3. [Additional Tools](#additional-tools)
-	- [doc.sh](#docsh)
 	- [format.sh](#formatsh)
 3. [Help!](#help)
 
 ## About
 
-The build-tool project began as a simple automation exercise but has evolved to become a tool that is used daily for the purpose of expediting repetitive tasks such as building portal or running a functional test against a portal bundle. There are three main scripts - [build.sh](#buildsh), [branch.sh](#branchsh), and [test.sh](#testsh) - that do much of the work of automating tasks related to building and/or testing portal. Additionally, there are two other scripts - [doc.sh](#docsh) and [format.sh](#formatsh) - that aid in improving the existing main scripts.
+The build-tool project began as a simple automation exercise but has evolved to become a tool that is used daily for the purpose of expediting repetitive tasks such as building portal or running a functional test against a portal bundle. There are three main scripts - [build.sh](#buildsh), [branch.sh](#branchsh), and [test.sh](#testsh) - that do much of the work of automating tasks related to building and/or testing portal. Additionally, there is another script - [format.sh](#formatsh) - that aids in improving the existing main scripts.
 
 ## The Main Toolkit
 
@@ -48,11 +47,7 @@ The goal of this script is to automate automation testing and test-writing tools
 
 ## Additional Tools
 
-When the original three scripts were written, they were written in a monolithic, non-modular convention. However, the need to reuse elements across different scripts led to the modularization of the monolithic scripts through the use of functions. To this end, two new scripts were added in order to aid in adding new functionality to the main scripts. To learn more about these two new scripts, continue reading below.
-
-### doc.sh
-
-The purpose of this script is to provide users with visibility into the different files available to source as well as the individual functions that can be used from each source file.
+When the original three scripts were written, they were written in a monolithic, non-modular convention. However, the need to reuse elements across different scripts led to the modularization of the monolithic scripts through the use of functions. To this end, a new script were added in order to aid in adding new functionality to the main scripts. To learn more about these the new script, continue reading below.
 
 ### format.sh
 
