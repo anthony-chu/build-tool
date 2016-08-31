@@ -140,8 +140,8 @@ StringValidatorTest(){
 			echo PASS
 		else
 			echo FAIL
-		}
 		fi
+	}
 
 	${@}
 }
