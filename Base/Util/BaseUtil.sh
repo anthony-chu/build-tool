@@ -1,6 +1,3 @@
-include Comparator/Comparator.sh
-include String/Validator/StringValidator.sh
-
 BaseUtil(){
 	gitpr(){
 		alias gitpr="source d:/git-tools/git-pull-request/git-pull-request.sh"
@@ -23,7 +20,7 @@ BaseUtil(){
 	}
 
 	setJavaHome(){
-		if [[ $(StringValidator isSubstring ${1} 6.) ]]; then
+		if [[ ${1} =~ 6. ]]; then
 			echo "$(timestamp) [INFO] Configuring Liferay to use JDK7..."
 			export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
 			echo "$(timestamp) [INFO] Done."
@@ -31,10 +28,10 @@ BaseUtil(){
 	}
 
 	timestamp(){
-		if [[ $(Comparator isEqual ${1} clock) ]]; then
+		if [[ ${1} == clock ]]; then
 			local t=$(date +%T%s)
 			echo ${t//[:]/}
-		elif [[ $(Comparator isEqual ${1} date) ]]; then
+		elif [[ ${1} == date ]]; then
 			date +%Y%m%d
 		else
 			ms=$(date +%S%N)
