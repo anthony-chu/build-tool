@@ -46,9 +46,9 @@ changes(){
 }
 
 current(){
-	cd ${buildDir}
+	name=$(_curBranch)
 
-	name=$(git rev-parse --abbrev-ref HEAD)
+	cd ${buildDir}
 
 	${MB} printInfoMessage current-${branch}-branch:-${name}
 
@@ -56,9 +56,9 @@ current(){
 }
 
 delete(){
-	cd ${buildDir}
+	curBranch=$(_curBranch)
 
-	curBranch=$(git rev-parse --abbrev-ref HEAD)
+	cd ${buildDir}
 
 	if [[ $(Comparator isEqual ${1} ${curBranch}) ]]; then
 		${MB} printErrorMessage cannot-delete-the-current-branch
@@ -196,9 +196,9 @@ rebase(){
 	}
 
 	default(){
-		cd ${buildDir}
+		curBranch=$(_curBranch)
 
-		curBranch=$(git rev-parse --abbrev-ref HEAD)
+		cd ${buildDir}
 
 		${MB} printProgressMessage rebasing-${curBranch}-against-${branch}
 
@@ -244,9 +244,9 @@ rebase(){
 }
 
 rename(){
-	cd ${buildDir}
+	local originalBranch=$(_curBranch)
 
-	local originalBranch=$(git rev-parse --abbrev-ref HEAD)
+	cd ${buildDir}
 
 	git branch -q -m ${1}
 
