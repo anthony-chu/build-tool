@@ -74,6 +74,8 @@ _clean_bundle(){
 }
 
 _clean_source(){
+	${MB} printProgressMessage resetting-the-source-directory
+
 	cd ${buildDir}
 
 	git reset --hard -q
@@ -81,6 +83,8 @@ _clean_source(){
 	git clean -fdqx -e "*.anthonychu.properties"
 
 	cd ${baseDir}
+
+	${MB} printDone
 }
 
 _config(){
