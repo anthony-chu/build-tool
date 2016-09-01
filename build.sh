@@ -333,7 +333,7 @@ rebuild(){
 
 	_config appServer ${appServer}
 
-	${MB} printProgressMessage building-portal
+	${MB} printProgressMessage rebuilding-portal
 	ant -f build-dist.xml build-dist-${appServer} >> ${logFile} | tail -f --pid=$$ ${logFile}
 	${MB} printDone
 }
