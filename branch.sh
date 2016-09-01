@@ -190,9 +190,11 @@ rebase(){
 	}
 
 	default(){
-		${MB} printProgressMessage rebasing-current-branch-to-head
-
 		cd ${buildDir}
+
+		curBranch=$(git rev-parse --abbrev-ref HEAD)
+
+		${MB} printProgressMessage rebasing-${curBranch}-against-${branch}
 
 		git pull --rebase upstream ${branch}
 
