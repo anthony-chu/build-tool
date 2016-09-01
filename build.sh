@@ -317,8 +317,6 @@ rebuild(){
 
 	_clean_hard ${appServer}
 
-	_clean_source
-
 	if [[ $(${C_isEqual} ${branch} ee-7.0.x) ]]; then
 		_disableCTCompile
 	fi
