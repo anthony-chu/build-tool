@@ -11,6 +11,12 @@ package String
 
 MB=MessageBuilder
 
+_curBranch(){
+	cd ${buildDir}
+	git rev-parse --abbrev-ref HEAD
+	cd ${baseDir}
+}
+
 _hardReset(){
 	cd ${buildDir}
 
