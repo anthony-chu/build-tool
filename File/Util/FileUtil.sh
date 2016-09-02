@@ -28,9 +28,9 @@ FileUtil(){
 		local pattern=${1}
 		local file=${2}
 
-		local matchingContent=($(grep -o ${pattern} ${file}))
+		local matchingContent=($(grep -o '${pattern}' ${file}))
 
-		if [[ $(StringValidator isNull ${matchingContent[@]}) ]]; then
+		if [[ $(ArrayValidator hasEntry ${matchingContent[@]} ${pattern}) ]]; then
 			return;
 		else
 			echo true
