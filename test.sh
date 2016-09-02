@@ -32,7 +32,7 @@ mockmock(){
 }
 
 pr(){
-	if (( $# == 0 )); then
+	if [[ $(StringValidator isNull ${1}) ]]; then
 		${MB} printErrorMessage missing-reviewer
 	else
 		${MB} printProgressMessage submitting-pull-request
@@ -205,7 +205,7 @@ if [[ $@ =~ ${branch} ]]; then
 	args=${@/${branch}/}
 fi
 
-if [[ $# == 0 ]]; then
+if [[ $(StringValidator isNull ${args}) ]]; then
 	HelpMessage testHelpMessage
 elif [[ ${args} == *#* ]]; then
 	test ${args}
