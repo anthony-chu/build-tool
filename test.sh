@@ -151,7 +151,7 @@ test(){
 		fi
 	done
 
-	if (( !"$#" )); then
+	if [[ $(StringValidator isNull ${1}) ]]; then
 		${MB} printErrorMessage missing-test-name
 	else
 		test=${1}
