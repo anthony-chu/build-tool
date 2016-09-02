@@ -49,17 +49,15 @@ pr(){
 
 		branchArray=($(StringUtil replace ${title} - space))
 
-		for (( i=0; i<${#branchArray[@]}; i++ )); do
-			if [[ $(${C_isEqual} ${branchArray[i]} qa) ]]; then
-				project=LRQA
-				key=${branchArray[i+1]}
-				break
-			elif [[ $(${C_isEqual} ${branchArray[i]} lps) ]]; then
-				project=LPS
-				key=${branchArray[i+1]}
-				break
-			fi
-		done
+		if [[ $(ArrayValidator hasEntry ${branchArray[@]} qa) ]]; then
+			project=LRQA
+			key=${branchArray[i+1]}
+			break
+		elif [[ $(ArrayValidator hasEntry ${branchArray[@]} lps) ]]; then
+			project=LPS
+			key=${branchArray[i+1]}
+			break
+		fi
 
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
