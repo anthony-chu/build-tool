@@ -58,7 +58,7 @@ pr(){
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
-			branch=$(StringUtil strip -\*)
+			branch=$(StringUtil strip ${branch} -\*)
 			user=${1}
 		elif [[ $# == 2 ]]; then
 			branch=${1}
