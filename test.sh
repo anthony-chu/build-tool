@@ -58,7 +58,7 @@ pr(){
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
-			branch=$(StringUtil strip ${branch} -\*)
+			branch=$(StringUtil strip ${title} -\*)
 			user=${1}
 		elif [[ $# == 2 ]]; then
 			branch=${1}
@@ -67,7 +67,7 @@ pr(){
 			user=${2}
 			comment=${3}
 			title=${4}
-			branch=$(StringUtil strip -\*)
+			branch=$(StringUtil strip ${title} -\*)
 		fi
 
 		detailText=("${branch}" "${user}" "${comment}" "${title}")
