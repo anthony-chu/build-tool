@@ -11,6 +11,7 @@ AppServerValidatorTest(){
 			isResin
 			isTcat
 			isTCserver
+			isTCServer[-]
 			isTomcat
 			isWeblogic
 			isWebsphere
@@ -70,6 +71,14 @@ AppServerValidatorTest(){
 
 	test.isTCserver(){
 		if [[ $(AppServerValidator isTCServer tcserver) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.isTCServer[-](){
+		if [[ $(AppServerValidator isTCServer tc-server) ]]; then
 			echo PASS
 		else
 			echo FAIL
