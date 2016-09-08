@@ -200,7 +200,7 @@ rebase(){
 
 		cd ${buildDir}
 
-		${MB} printProgressMessage rebasing-${curBranch}-against-${branch}
+		${MB} printProgressMessage rebasing-${curBranch}-against-${branch}-HEAD
 
 		git pull --rebase upstream ${branch}
 
