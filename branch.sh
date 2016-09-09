@@ -114,7 +114,7 @@ jira(){
 
 	_env(){
 		local appServerVersion=$(AppServerVersion
-			returnAppServerVersion ${1})
+			returnAppServerVersion ${1} ${branch})
 
 		echo $(StringUtil capitalize ${1}) ${appServerVersion} + MySQL 5.7
 	}
