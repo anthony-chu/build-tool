@@ -4,12 +4,12 @@ AppServerVersion(){
 	overrideTomcatVersion(){
 		branch=${1}
 
-			if [[ $(StringValidator isSubstring ${branch} 6.2.x) ]]; then
-				appServerVersion=7.0.62
-			elif [[ $(StringValidator isSubstring ${branch} 6.2.10) ]]; then
-				appServerVersion=7.0.42
-			elif [[ $(StringValidator isSubstring ${branch} 6.1.x) ]]; then
-				appServerVersion=7.0.40
+		if [[ $(StringValidator isSubstring ${branch} 6.2.x) ]]; then
+			echo 7.0.62
+		elif [[ $(StringValidator isSubstring ${branch} 6.2.10) ]]; then
+			echo 7.0.42
+		elif [[ $(StringValidator isSubstring ${branch} 6.1.x) ]]; then
+			echo 7.0.40
 		else
 			AppServerVersionConstants tomcatVersion
 		fi
