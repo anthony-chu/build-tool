@@ -1,7 +1,7 @@
 include App/Server/Version/Constants/AppServerVersionConstants.sh
 
 AppServerVersion(){
-	overrideTomcatVersion(){
+	_overrideTomcatVersion(){
 		branch=${1}
 
 		if [[ $(StringValidator isSubstring ${branch} 6.2.x) ]]; then
@@ -20,8 +20,13 @@ AppServerVersion(){
 			return
 		else
 			local appServer=${1}
+			local branch=${2}
 
-			AppServerVersionConstants ${appServer}Version
+			if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
+				_overrideTomcatVersion ${branch}
+			else
+				AppServerVersionConstants ${appServer}Version
+			fi
 		fi
 	}
 
