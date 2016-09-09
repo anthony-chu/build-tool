@@ -92,8 +92,7 @@ _config(){
 		${MB} printProgressMessage building-properties
 
 		local appServer=${appServer}
-		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
-			returnAppServerVersion ${appServer})
+		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion} returnAppServerVersion ${appServer})
 
 		cd ${buildDir}/../properties
 		cp *.anthonychu.properties ${buildDir}
