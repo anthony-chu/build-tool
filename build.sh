@@ -52,7 +52,7 @@ _clean_bundle(){
 
 	appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 
-	_overrideTomcatVersion
+	AppServerVersion overrideTomcatVersion ${branch} ${appServer}
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
@@ -115,7 +115,7 @@ _config(){
 
 		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 
-		_overrideTomcatVersion
+		AppServerVersion overrideTomcatVersion ${branch} ${appServer}
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
@@ -280,7 +280,7 @@ run(){
 
 	appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 
-	_overrideTomcatVersion
+	AppServerVersion overrideTomcatVersion ${branch} ${appServer}
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
