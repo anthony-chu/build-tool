@@ -178,18 +178,6 @@ _rebuild_db(){
 	cd ${baseDir}
 }
 
-_overrideTomcatVersion(){
-	if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
-		if [[ $(StringValidator isSubstring ${branch} 6.2.x) ]]; then
-			appServerVersion=7.0.62
-		elif [[ $(StringValidator isSubstring ${branch} 6.2.10) ]]; then
-			appServerVersion=7.0.42
-		elif [[ $(StringValidator isSubstring ${branch} 6.1.x) ]]; then
-			appServerVersion=7.0.40
-		fi
-	fi
-}
-
 build(){
 	local appServer=${appServer}
 
