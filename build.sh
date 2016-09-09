@@ -52,8 +52,6 @@ _clean_bundle(){
 
 	appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
 
-	AppServerVersion overrideTomcatVersion ${branch} ${appServer}
-
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 	${MB} printProgressMessage deleting-liferay-home-folders
@@ -114,8 +112,6 @@ _config(){
 		local appServer=${appServer}
 
 		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
-
-		AppServerVersion overrideTomcatVersion ${branch} ${appServer}
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
@@ -279,8 +275,6 @@ run(){
 	clear
 
 	appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
-
-	AppServerVersion overrideTomcatVersion ${branch} ${appServer}
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
