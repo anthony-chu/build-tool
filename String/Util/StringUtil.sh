@@ -28,11 +28,11 @@ StringUtil(){
 		local opt=${1}
 
 		if [[ $(StringValidator isSubstring ${opt} -) ]]; then
-			local isValidOpt=$(StringValidator isAlphaNum ${opt/-/ })
+			local isValidOpt=$(StringValidator isAlphaNum $(strip ${opt} -))
 		fi
 
 		if [[ ${isValidOpt} ]]; then
-			replace ${opt} -
+			strip ${opt} -
 		fi
 	}
 
