@@ -200,7 +200,7 @@ BaseUtil setJavaHome ${branch}
 args=$@
 
 if [[ $@ =~ ${branch} ]]; then
-	args=${@/${branch}/}
+	args=$(StringUtil strip ${@} ${branch})
 fi
 
 if [[ $(StringValidator isNull ${args}) ]]; then
