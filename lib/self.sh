@@ -4,7 +4,7 @@ self(){
 		thisFile=${thisFile//*\//}
 
 		if [[ ${1} == ${thisFile} ]]; then
-			${1}
+			${@}
 		fi
 	}
 
