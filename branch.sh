@@ -2,12 +2,12 @@ source ${projectDir}lib/include.sh
 source ${projectDir}lib/package.sh
 
 include Comparator/Comparator.sh
-include Git/Util/GitUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 
 package App
 package Base
+package Git
 package String
 
 MB=MessageBuilder
