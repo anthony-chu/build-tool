@@ -1,3 +1,5 @@
+source ${projectDir}lib/self.sh
+
 package(){
 	local dir=${1}
 
@@ -8,6 +10,4 @@ package(){
 	done
 }
 
-if [[ ${1} == package ]]; then
-	${@}
-fi
+self call package
