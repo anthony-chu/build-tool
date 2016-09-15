@@ -146,7 +146,11 @@ log(){
 new(){
 	cd ${buildDir}
 
-	git checkout -q -b ${1}
+	if [[ $(ArrayValidator hasEntry $(GitUtil listBranches) ${1}) ]]; then
+		MessageBuilder printErrorMessage cannot-create-branch-${1}-because-it-already-exists.
+	else
+		git checkout -q -b ${1}
+	fi
 
 	current
 
