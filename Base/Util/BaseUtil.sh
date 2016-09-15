@@ -36,9 +36,8 @@ BaseUtil(){
 		elif [[ ${1} == log ]]; then
 			d=$(date +%Y-%y-%d)
 			t=$(date +%H:%M:%S)
-			offset="-8:00"
 
-			echo ${d} ${t} ${offset}
+			echo ${d} ${t}
 		else
 			ms=$(date +%S%N)
 			date +%H:%M:${ms:0:3}
