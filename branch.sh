@@ -56,7 +56,7 @@ delete(){
 	cd ${buildDir}
 
 	if [[ $(Comparator isEqual ${1} ${curBranch}) ]]; then
-		${MB} printErrorMessage cannot-delete-the-current-branch
+		GitException curBranchException delete ${1}
 	else
 		git branch -q -D ${1}
 		${MB} printInfoMessage deleted-local-branch:-${1}
@@ -147,7 +147,7 @@ new(){
 	cd ${buildDir}
 
 	if [[ $(ArrayValidator hasEntry $(GitUtil listBranches) ${1}) ]]; then
-		MessageBuilder printErrorMessage cannot-create-branch-${1}-because-it-already-exists.
+		GitException existingBranchException create ${1}
 	else
 		git checkout -q -b ${1}
 	fi
