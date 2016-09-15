@@ -126,7 +126,7 @@ jira(){
 list(){
 	cd ${buildDir}
 
-	git branch
+	GitUtil listBranches
 
 	cd ${baseDir}
 }
