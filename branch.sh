@@ -2,6 +2,7 @@ source ${projectDir}lib/include.sh
 source ${projectDir}lib/package.sh
 
 include Comparator/Comparator.sh
+include Git/Util/GitUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 
@@ -10,12 +11,6 @@ package Base
 package String
 
 MB=MessageBuilder
-
-_curBranch(){
-	cd ${buildDir}
-	git rev-parse --abbrev-ref HEAD
-	cd ${baseDir}
-}
 
 _hardReset(){
 	cd ${buildDir}
@@ -46,7 +41,7 @@ changes(){
 }
 
 current(){
-	name=$(_curBranch)
+	name=$(GitUtil getCurBranch)
 
 	cd ${buildDir}
 
@@ -56,7 +51,7 @@ current(){
 }
 
 delete(){
-	curBranch=$(_curBranch)
+	curBranch=$(GitUtil getCurBranch)
 
 	cd ${buildDir}
 
@@ -196,7 +191,7 @@ rebase(){
 	}
 
 	default(){
-		curBranch=$(_curBranch)
+		curBranch=$(GitUtil getCurBranch)
 
 		cd ${buildDir}
 
@@ -244,7 +239,7 @@ rebase(){
 }
 
 rename(){
-	local originalBranch=$(_curBranch)
+	local originalBranch=$(GitUtil getCurBranch)
 
 	cd ${buildDir}
 

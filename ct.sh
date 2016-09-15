@@ -1,6 +1,7 @@
 source ${projectDir}lib/include.sh
 
 include Comparator/Comparator.sh
+include Git/Util/GitUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 
@@ -27,14 +28,12 @@ CTBuilder(){
 	}
 
 	_branchSwitcher(){
-		curBranch=$(git rev-parse --abbrev-ref HEAD)
+		curBranch=$(GitUtil getCurBranch)
 
 		if [[ $(${C_isEqual} ${curBranch} ${1}) ]]; then
 			echo
 		else
-			allBranches=($(git branch -a | grep origin))
-
-			for b in ${allBranches[@]}; do
+			for b in $(GitUtil listBranches); do
 				if [[ $(${C_isEqual} $(StringUtil replace ${b} remotes\/origin\/) ${1}) ]]; then
 					${MB} printErrorMessage the-branch-${1}-does-not-exist-in-origin
 				else
