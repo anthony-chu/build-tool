@@ -6,10 +6,7 @@ GitUtil(){
 	}
 
 	listBranches(){
-		_gitBranch=($(git branch -a))
-		_curFile=$(BaseUtil getCurFile true)
-		_gitBranch=(${_gitBranch[@]//remotes*/})
-		echo ${_gitBranch[@]//*.sh/}
+		git branch | sed s/\*//g
 	}
 
 	$@
