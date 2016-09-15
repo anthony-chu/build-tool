@@ -1,4 +1,14 @@
 BaseUtil(){
+	getCurFile(){
+		thisFile=${0//*\//}
+
+		if [[ ${1} == true ]]; then
+			echo ${thisFile}
+		elif [[ ${1} == false ]]; then
+			echo ${thisFile/.sh/}
+		fi
+	}
+
 	gitpr(){
 		alias gitpr="source d:/git-tools/git-pull-request/git-pull-request.sh"
 		source "c:/users/liferay/.bashrc"
