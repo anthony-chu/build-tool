@@ -1,5 +1,3 @@
-include Base/Util/BaseUtil.sh
-
 GitUtil(){
 	getCurBranch(){
 		git rev-parse --abbrev-ref HEAD
