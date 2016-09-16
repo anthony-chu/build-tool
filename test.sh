@@ -1,5 +1,4 @@
-source ${projectDir}lib/include.sh
-source ${projectDir}lib/package.sh
+source ${projectDir}init.sh
 
 include Comparator/Comparator.sh
 include File/Name/Util/FileNameUtil.sh

@@ -1,4 +1,4 @@
-source ${projectDir}lib/include.sh
+source ${projectDir}init.sh
 
 include Comparator/Comparator.sh
 include Git/Util/GitUtil.sh
