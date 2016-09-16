@@ -98,8 +98,6 @@ pr(){
 }
 
 sf(){
-	implDir=${buildDir}/portal-impl
-
 	if [[ $(Comparator isEqual ${branch} master) ]] || [[ $(StringValidator isSubstring ${branch} 7.0.x) ]]; then
 		cd ${buildDir}/tools/
 
@@ -111,6 +109,8 @@ sf(){
 			ant setup-sdk
 		fi
 	fi
+
+	implDir=${buildDir}/portal-impl
 
 	cd ${implDir}
 
