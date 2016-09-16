@@ -1,6 +1,7 @@
 source ${projectDir}init.sh
 
 include Comparator/Comparator.sh
+include Git/Util/GitUtil.sh
 include File/IO/Util/FileIOUtil.sh
 include File/Util/FileUtil.sh
 include Finder/Finder.sh
@@ -256,7 +257,7 @@ pull(){
 
 push(){
 	cd ${buildDir}
-	local curBranch=$(git rev-parse --abbrev-ref HEAD)
+	local curBranch=$(GitUtil getCurBranch)
 
 	${MB} printProgressMessage pushing-changes-to-origin-branch-${curBranch}
 
