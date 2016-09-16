@@ -66,9 +66,7 @@ CTBuilder(){
 
 		cd ${projectDir}
 
-		branch=$(_branchChecker ${1})
-
-		_branchSwitcher ${branch}
+		_branchSwitcher $(_branchChecker ${1})
 
 		${MB} printProgressMessage building-content-targeting-modules
 
@@ -104,9 +102,7 @@ CTBuilder(){
 	getGitId(){
 		cd ${projectDir}
 
-		branch=$(_branchChecker ${1})
-
-		_branchSwitcher ${branch}
+		_branchSwitcher $(_branchChecker ${1})
 
 		gitId=$(git --git-dir=${projectDir}/.git rev-parse origin/${branch})
 
@@ -116,9 +112,7 @@ CTBuilder(){
 	release(){
 		cd ${projectDir}
 
-		branch=$(_branchChecker ${1})
-
-		_branchSwitcher ${branch}
+		_branchSwitcher $(_branchChecker ${1})
 
 		${MB} printProgressMessage generating-a-release-zip-for-${branch}
 
@@ -132,9 +126,7 @@ CTBuilder(){
 	update(){
 		cd ${projectDir}
 
-		branch=$(_branchChecker ${1})
-
-		_branchSwitcher ${branch}
+		_branchSwitcher $(_branchChecker ${1})
 
 		${MB} printProgressMessage updating-content-targeting-on-branch-${branch}
 
