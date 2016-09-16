@@ -1,9 +1,9 @@
 source ${projectDir}.init.sh
 
-include Finder/Finder.sh
-include String/Validator/StringValidator.sh
+include finder/Finder.sh
+include string/validator/StringValidator.sh
 
-package Array
+package array
 
 Formatter(){
 	convertSpacesToTab(){

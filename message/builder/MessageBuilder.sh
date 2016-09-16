@@ -1,4 +1,4 @@
-include Message/Builder/Util/MessageBuilderUtil.sh
+include message/builder/util/MessageBuilderUtil.sh
 
 MessageBuilder(){
 	local MBUtil="MessageBuilderUtil"

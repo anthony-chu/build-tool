@@ -1,4 +1,4 @@
-include Finder/Util/FinderUtil.sh
+include finder/util/FinderUtil.sh
 
 Finder(){
 	findAllFiles(){

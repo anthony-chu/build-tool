@@ -1,5 +1,5 @@
-include String/Util/StringUtil.sh
-include Test/Executor/TestExecutor.sh
+include string/util/StringUtil.sh
+include test/executor/TestExecutor.sh
 
 StringUtilTest(){
 	run(){

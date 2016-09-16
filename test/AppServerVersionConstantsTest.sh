@@ -1,5 +1,5 @@
-include App/Server/Version/Constants/AppServerVersionConstants.sh
-include Test/Executor/TestExecutor.sh
+include app/server/version/constants/AppServerVersionConstants.sh
+include test/executor/Testexecutor.sh
 
 AppServerVersionConstantsTest(){
 	run(){

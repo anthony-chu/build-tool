@@ -1,11 +1,11 @@
 source ${projectDir}.init.sh
 
-include Comparator/Comparator.sh
-include Git/Util/GitUtil.sh
-include Help/Message/HelpMessage.sh
-include Message/Builder/MessageBuilder.sh
+include comparator/Comparator.sh
+include git/util/GitUtil.sh
+include help/message/HelpMessage.sh
+include message/builder/MessageBuilder.sh
 
-package String
+package string
 
 baseDir=$(pwd)
 projectDir=d:/private/ee-7.0.x-portal/modules/apps/content-targeting

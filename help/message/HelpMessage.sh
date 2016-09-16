@@ -1,5 +1,5 @@
-include Array/Util/ArrayUtil.sh
-include String/Util/StringUtil.sh
+include array/util/ArrayUtil.sh
+include string/util/StringUtil.sh
 
 HelpMessage(){
 	_printHelpMessage(){

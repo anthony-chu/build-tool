@@ -1,5 +1,5 @@
-include OS/Validator/OSValidator.sh
-include String/Util/StringUtil.sh
+include os/validator/OSValidator.sh
+include string/util/StringUtil.sh
 
 FileNameUtil(){
 	getPath(){

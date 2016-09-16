@@ -1,5 +1,5 @@
-include Base/Util/BaseUtil.sh
-include String/Util/StringUtil.sh
+include base/util/BaseUtil.sh
+include string/util/StringUtil.sh
 
 MessageBuilderUtil(){
 	local time=$(BaseUtil timestamp log)

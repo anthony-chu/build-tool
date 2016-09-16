@@ -1,5 +1,5 @@
-include Comparator/Comparator.sh
-include String/Validator/StringValidator.sh
+include comparator/Comparator.sh
+include string/validator/Stringvalidator.sh
 
 StringUtil(){
 	capitalize(){

@@ -1,5 +1,5 @@
-include Comparator/Comparator.sh
-include Test/Executor/TestExecutor.sh
+include comparator/Comparator.sh
+include test/executor/TestExecutor.sh
 
 ComparatorTest(){
 	run(){

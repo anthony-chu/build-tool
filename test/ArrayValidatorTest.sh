@@ -1,5 +1,5 @@
-include Array/Validator/ArrayValidator.sh
-include Test/Executor/TestExecutor.sh
+include array/validator/ArrayValidator.sh
+include test/executor/TestExecutor.sh
 
 ArrayValidatorTest(){
 	run(){

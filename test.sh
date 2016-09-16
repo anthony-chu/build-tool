@@ -1,14 +1,14 @@
 source ${projectDir}.init.sh
 
-include Comparator/Comparator.sh
-include File/Name/Util/FileNameUtil.sh
-include Git/Util/GitUtil.sh
-include Help/Message/HelpMessage.sh
-include Message/Builder/MessageBuilder.sh
+include comparator/Comparator.sh
+include file/name/util/FileNameUtil.sh
+include git/util/GitUtil.sh
+include help/message/HelpMessage.sh
+include message/builder/MessageBuilder.sh
 
-package Array
-package Base
-package String
+package array
+package base
+package string
 
 MB=MessageBuilder
 

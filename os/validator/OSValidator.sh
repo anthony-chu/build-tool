@@ -1,4 +1,4 @@
-include OS/Util/OSUtil.sh
+include os/util/OSUtil.sh
 
 OSValidator(){
 	isLinux(){

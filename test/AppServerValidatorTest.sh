@@ -1,5 +1,5 @@
-include App/Server/Validator/AppServerValidator.sh
-include Test/Executor/TestExecutor.sh
+include app/server/validator/AppServerValidator.sh
+include test/executor/TestExecutor.sh
 
 AppServerValidatorTest(){
 	run(){

@@ -1,5 +1,5 @@
-include Array/Validator/ArrayValidator.sh
-include String/Validator/StringValidator.sh
+include array/validator/ArrayValidator.sh
+include string/validator/StringValidator.sh
 
 AppServerValidator(){
 	local SV=StringValidator

@@ -1,16 +1,16 @@
 source ${projectDir}.init.sh
 
-include Comparator/Comparator.sh
-include Git/Util/GitUtil.sh
-include File/IO/Util/FileIOUtil.sh
-include File/Util/FileUtil.sh
-include Finder/Finder.sh
-include Help/Message/HelpMessage.sh
-include Message/Builder/MessageBuilder.sh
+include comparator/Comparator.sh
+include git/util/GitUtil.sh
+include file/io/util/FileIOUtil.sh
+include file/util/FileUtil.sh
+include finder/Finder.sh
+include help/message/HelpMessage.sh
+include message/builder/MessageBuilder.sh
 
-package App
-package Base
-package String
+package app
+package base
+package string
 
 append="FileIOUtil append"
 ASValidator="AppServerValidator"

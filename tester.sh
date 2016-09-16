@@ -1,6 +1,6 @@
 source ${projectDir}.init.sh
 
-package Test
+package test
 
 run-unit-tests(){
 	tests=(

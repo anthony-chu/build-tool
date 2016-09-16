@@ -1,4 +1,4 @@
-include Message/Builder/MessageBuilder.sh
+include message/builder/MessageBuilder.sh
 
 GitException(){
 	curBranchException(){

@@ -1,4 +1,4 @@
-include String/Util/StringUtil.sh
+include string/util/StringUtil.sh
 
 ArrayUtil(){
 	appendArrayEntry(){

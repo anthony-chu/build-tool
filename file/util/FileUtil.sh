@@ -1,4 +1,4 @@
-include String/Validator/StringValidator.sh
+include string/validator/StringValidator.sh
 
 FileUtil(){
 	getContent(){

@@ -1,5 +1,5 @@
-include Array/Util/ArrayUtil.sh
-include Comparator/Comparator.sh
+include array/util/ArrayUtil.sh
+include comparator/Comparator.sh
 
 ArrayValidator(){
 	hasEntry(){
