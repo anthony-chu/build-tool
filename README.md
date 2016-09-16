@@ -3,7 +3,7 @@
 ### Table of Contents
 1. [About](#about)
 2. [The Main Toolkit](#the-main-toolkit)
-	- [.init.sh](initsh)
+	- [.init.sh](#initsh)
 	- [build.sh](#buildsh)
 	- [branch.sh](#branchsh)
 	- [test.sh](#testsh)
