@@ -34,7 +34,7 @@ mockmock(){
 }
 
 pr(){
-	if [[ $(StringValidator isNull ${1}) ]]; then
+	if [[ $(StringValidator isNull ${@}) ]]; then
 		${MB} printErrorMessage missing-reviewer
 	else
 		${MB} printProgressMessage submitting-pull-request
