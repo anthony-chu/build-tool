@@ -1,6 +1,7 @@
 source ${projectDir}lib/include.sh
 source ${projectDir}lib/package.sh
 
+include Comparator/Comparator.sh
 include File/Name/Util/FileNameUtil.sh
 include Git/Util/GitUtil.sh
 include Help/Message/HelpMessage.sh
@@ -99,14 +100,16 @@ pr(){
 sf(){
 	implDir=${buildDir}/portal-impl
 
-	cd ${buildDir}/tools/
+	if [[ $(Comparator isEqual ${branch} master) ]] || [[ $(StringValidator isSubstring ${branch} 7.0.x) ]]; then
+		cd ${buildDir}/tools/
 
-	sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
+		sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
 
-	if [ ! -e ${buildDir}/${sf_lib} ]; then
-		cd ${buildDir}
+		if [ ! -e ${buildDir}/${sf_lib} ]; then
+			cd ${buildDir}
 
-		ant setup-sdk
+			ant setup-sdk
+		fi
 	fi
 
 	cd ${implDir}
