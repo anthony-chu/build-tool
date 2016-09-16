@@ -91,7 +91,8 @@ _config(){
 		${MB} printProgressMessage building-properties
 
 		local appServer=${appServer}
-		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion} returnAppServerVersion ${appServer} ${branch})
+		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
+			returnAppServerVersion ${appServer} ${branch})
 
 		cd ${buildDir}/../properties
 		cp *.anthonychu.properties ${buildDir}
@@ -275,7 +276,8 @@ run(){
 	sleep 5s
 	clear
 
-	appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer} ${branch})
+	appServerVersion=$(AppServerVersion
+		returnAppServerVersion ${appServer} ${branch})
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
@@ -330,7 +332,8 @@ zip(){
 	fi
 
 	appServer=${appServer}
-	appServerVersion=$(${ASVersion} returnAppServerVersion ${appServer} ${branch})
+	appServerVersion=$(${ASVersion}
+		returnAppServerVersion ${appServer} ${branch})
 
 	${MB} printProgressMessage zipping-up-${appServer}-bundle
 
