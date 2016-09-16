@@ -41,9 +41,9 @@ changes(){
 }
 
 current(){
-	name=$(GitUtil getCurBranch)
-
 	cd ${buildDir}
+
+	name=$(GitUtil getCurBranch)
 
 	${MB} printInfoMessage current-${branch}-branch:-${name}
 
@@ -51,9 +51,9 @@ current(){
 }
 
 delete(){
-	curBranch=$(GitUtil getCurBranch)
-
 	cd ${buildDir}
+
+	curBranch=$(GitUtil getCurBranch)
 
 	if [[ $(Comparator isEqual ${1} ${curBranch}) ]]; then
 		GitException curBranchException delete ${1}
@@ -195,9 +195,9 @@ rebase(){
 	}
 
 	default(){
-		curBranch=$(GitUtil getCurBranch)
-
 		cd ${buildDir}
+
+		curBranch=$(GitUtil getCurBranch)
 
 		${MB} printProgressMessage rebasing-${curBranch}-against-${branch}-HEAD
 
@@ -243,9 +243,9 @@ rebase(){
 }
 
 rename(){
-	local originalBranch=$(GitUtil getCurBranch)
-
 	cd ${buildDir}
+
+	local originalBranch=$(GitUtil getCurBranch)
 
 	git branch -q -m ${1}
 
