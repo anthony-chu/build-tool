@@ -7,4 +7,4 @@ reflect(){
 	fi
 }
 
-$@
+reflect reflect
