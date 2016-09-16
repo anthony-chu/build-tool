@@ -1,4 +1,4 @@
-source ${projectDir}init.sh
+source ${projectDir}.init.sh
 
 include Finder/Finder.sh
 include String/Validator/StringValidator.sh

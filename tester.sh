@@ -1,4 +1,4 @@
-source ${projectDir}init.sh
+source ${projectDir}.init.sh
 
 package Test
 

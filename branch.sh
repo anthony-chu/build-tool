@@ -1,4 +1,4 @@
-source ${projectDir}init.sh
+source ${projectDir}.init.sh
 
 include Comparator/Comparator.sh
 include Help/Message/HelpMessage.sh
