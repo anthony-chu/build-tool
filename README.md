@@ -3,11 +3,13 @@
 ### Table of Contents
 1. [About](#about)
 2. [The Main Toolkit](#the-main-toolkit)
+	- [.init.sh](initsh)
 	- [build.sh](#buildsh)
 	- [branch.sh](#branchsh)
 	- [test.sh](#testsh)
 3. [Additional Tools](#additional-tools)
 	- [format.sh](#formatsh)
+	- [tester.sh](#testersh)
 3. [Help!](#help)
 
 ## About
@@ -16,7 +18,9 @@ The build-tool project began as a simple automation exercise but has evolved to 
 
 ## The Main Toolkit
 
-As mentioned previously, the build tool consists of three main tools - [build.sh](#buildsh), [branch.sh](#branchsh), and [test.sh](#testsh). The functionality of these three scripts will be covered below. Also available for use are two additional scripts - [doc.sh](#docsh) and [format.sh](#formatsh) - which serve as helps to add features to or improve the existing scripts. Take a look below as the function and purpose of each script is explored:
+### .init.sh
+
+The purpose of this script is to source all the necessary library files in a single location. Instead of having to uniquely source each library file through the main functional scripts (e.g., build.sh, branch.sh, etc...), the functional scripts can source `.init.sh`, thereby making available all the files in the `lib` directory.
 
 ### build.sh
 
@@ -52,6 +56,10 @@ When the original three scripts were written, they were written in a monolithic,
 ### format.sh
 
 The purpose of this script is to format all bash scripts to match selected formatting standards (more are being added) before they are committed to this repository.
+
+### tester.sh
+
+As the number of functions grew, there arose a need to maintain some level of testing across the source scripts. Tester.sh (along with the `Test` directory) were created in order to do just that. You will find in the `Test/` directory `TestExecutor.sh` along with an assortment of unit tests for many of the functions.
 
 ## Help!
 
