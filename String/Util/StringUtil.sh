@@ -3,7 +3,7 @@ include String/Validator/StringValidator.sh
 
 StringUtil(){
 	capitalize(){
-		local str=${1}
+		local str=${@}
 
 		echo ${str^}
 	}
@@ -41,13 +41,13 @@ StringUtil(){
 	}
 
 	toLowerCase(){
-		local str=${1}
+		local str=${@}
 
 		echo ${str,,}
 	}
 
 	toUpperCase(){
-		local str=${1}
+		local str=${@}
 
 		echo ${str^^}
 	}
