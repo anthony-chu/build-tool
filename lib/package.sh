@@ -1,4 +1,4 @@
-source ${projectDir}lib/self.sh
+source ${projectDir}lib/reflect.sh
 
 package(){
 	local dir=${1}
@@ -10,4 +10,4 @@ package(){
 	done
 }
 
-self call package
+reflect package

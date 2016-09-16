@@ -1,7 +1,7 @@
-source ${projectDir}lib/self.sh
+source ${projectDir}lib/reflect.sh
 
 include(){
 	source ${projectDir}${1}
 }
 
-self call include
+reflect include
