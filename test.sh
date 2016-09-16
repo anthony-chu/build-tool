@@ -2,6 +2,7 @@ source ${projectDir}lib/include.sh
 source ${projectDir}lib/package.sh
 
 include File/Name/Util/FileNameUtil.sh
+include Git/Util/GitUtil.sh
 include Help/Message/HelpMessage.sh
 include Message/Builder/MessageBuilder.sh
 
@@ -42,7 +43,7 @@ pr(){
 		newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
 
 		cd ${buildDir}
-		title=$(git rev-parse --abbrev-ref HEAD)
+		title=$(GitUtil getCurBranch)
 		cd ${baseDir}
 
 		branchArray=($(StringUtil replace ${title} - space))
