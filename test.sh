@@ -46,11 +46,9 @@ pr(){
 		title=$(GitUtil getCurBranch)
 		cd ${baseDir}
 
-		branchArray=($(StringUtil replace ${title} - space))
-
-		if [[ $(ArrayValidator hasEntry ${branchArray[@]} qa) ]]; then
+		if [[ $(StringValidator isSubstring ${title} qa) ]]; then
 			project=LRQA
-		elif [[ $(ArrayValidator hasEntry ${branchArray[@]} lps) ]]; then
+		elif [[ $(StringValidator isSubstring ${title} lps) ]]; then
 			project=LPS
 		fi
 
