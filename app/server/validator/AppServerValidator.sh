@@ -2,8 +2,6 @@ include array/validator/ArrayValidator.sh
 include string/validator/StringValidator.sh
 
 AppServerValidator(){
-	local SV=StringValidator
-
 	isGlassfish(){
 		if [[ $(ArrayValidator hasEntry ${@} glassfish) ]]; then
 			echo true
@@ -93,6 +91,8 @@ AppServerValidator(){
 	}
 
 	returnAppServer(){
+		local SV=StringValidator
+
 		if [[ $(${SV} isNull $@) ]]; then
 			echo tomcat
 		else
