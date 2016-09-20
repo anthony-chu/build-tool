@@ -54,7 +54,7 @@ pr(){
 			project=LPS
 		fi
 
-		key=${branchArray[-1]}
+		key=$(StringUtil strip ${title} [a-zA-Z\-])
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
