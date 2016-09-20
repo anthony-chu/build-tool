@@ -31,9 +31,9 @@ BaseUtil(){
 
 	setJavaHome(){
 		if [[ ${1} =~ 6. ]]; then
-			echo "$(timestamp) [INFO] Configuring Liferay to use JDK7..."
+			echo "[$(timestamp log)] [INFO] Configuring Liferay to use JDK7..."
 			export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
-			echo "$(timestamp) [INFO] Done."
+			echo "[$(timestamp log)] [INFO] Done."
 		fi
 	}
 
