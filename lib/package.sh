@@ -1,5 +1,3 @@
-source ${projectDir}lib/reflect.sh
-
 package(){
 	local dir=${1}
 
@@ -9,5 +7,3 @@ package(){
 		source ${file}
 	done
 }
-
-reflect package
