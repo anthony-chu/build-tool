@@ -50,12 +50,11 @@ pr(){
 
 		if [[ $(ArrayValidator hasEntry ${branchArray[@]} qa) ]]; then
 			project=LRQA
-			key=${branchArray[-1]}
 		elif [[ $(ArrayValidator hasEntry ${branchArray[@]} lps) ]]; then
 			project=LPS
-			key=${branchArray[-1]}
 		fi
 
+		key=${branchArray[-1]}
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
