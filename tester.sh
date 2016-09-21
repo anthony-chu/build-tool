@@ -8,7 +8,7 @@ run-unit-tests(){
 		AppServerVersionConstantsTest
 		ArrayUtilTest
 		ArrayValidatorTest
-		ComparatorTest
+		BaseComparatorTest
 		StringUtilTest
 		StringValidatorTest
 	)

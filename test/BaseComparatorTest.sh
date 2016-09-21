@@ -1,7 +1,7 @@
 include base.comparator.BaseComparator
 include test.executor.TestExecutor
 
-ComparatorTest(){
+BaseComparatorTest(){
 	run(){
 		local tests=(
 			isEqual[Number]
