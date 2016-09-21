@@ -1,4 +1,4 @@
-include comparator.Comparator
+include base.comparator.BaseComparator
 include string.validator.Stringvalidator
 
 StringUtil(){
@@ -13,11 +13,11 @@ StringUtil(){
 		local orig=${2}
 		local new=${3}
 
-		if [[ $(Comparator isEqual ${orig} space) ]]; then
+		if [[ $(BaseComparator isEqual ${orig} space) ]]; then
 			orig=" "
 		fi
 
-		if [[ $(Comparator isEqual ${new} space) ]]; then
+		if [[ $(BaseComparator isEqual ${new} space) ]]; then
 			new=" "
 		fi
 

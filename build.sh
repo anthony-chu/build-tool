@@ -1,6 +1,6 @@
 source ${projectDir}.init.sh
 
-include comparator.Comparator
+include base.comparator.BaseComparator
 include git.util.GitUtil
 include file.io.util.FileIOUtil
 include file.util.FileUtil
@@ -15,7 +15,7 @@ package string
 append="FileIOUtil append"
 ASValidator="AppServerValidator"
 ASVersion="AppServerVersion"
-C_isEqual="Comparator isEqual"
+C_isEqual="BaseComparator isEqual"
 MB="MessageBuilder"
 replace="FileIOUtil replace"
 
@@ -366,17 +366,17 @@ if [[ $(StringValidator isNull ${1}) ]]; then
   HelpMessage buildHelpMessage
 else
 	until [[ $(StringValidator isNull ${1}) ]]; do
-		if [[ $(Comparator isEqual ${1} ${branch}) ]]; then
+		if [[ $(BaseComparator isEqual ${1} ${branch}) ]]; then
 			shift
 		fi
 
-		if [[ $(Comparator isEqual ${1} ${appServer}) ]]; then
+		if [[ $(BaseComparator isEqual ${1} ${appServer}) ]]; then
 			shift
 		fi
 
 		${1}
 
-		if [[ $(Comparator isEqual ${1} deploy) ]]; then
+		if [[ $(BaseComparator isEqual ${1} deploy) ]]; then
 			shift
 		fi
 

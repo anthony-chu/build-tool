@@ -1,6 +1,6 @@
 source ${projectDir}.init.sh
 
-include comparator.Comparator
+include base.comparator.BaseComparator
 include help.message.Helpmessage
 include message.builder.Messagebuilder
 
@@ -54,7 +54,7 @@ delete(){
 
 	curBranch=$(GitUtil getCurBranch)
 
-	if [[ $(Comparator isEqual ${1} ${curBranch}) ]]; then
+	if [[ $(BaseComparator isEqual ${1} ${curBranch}) ]]; then
 		GitException curBranchException delete ${1}
 	else
 		git branch -q -D ${1}
@@ -86,7 +86,7 @@ dev(){
 jira(){
 	local _gitid=$(_longLog)
 
-	if [[ $(Comparator isEqual ${branch} master) ]]; then
+	if [[ $(BaseComparator isEqual ${branch} master) ]]; then
 		branch=$(StringUtil capitalize ${branch})
 	else
 		branch=${branch}

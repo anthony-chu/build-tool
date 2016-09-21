@@ -1,6 +1,6 @@
 source ${projectDir}.init.sh
 
-include comparator.Comparator
+include base.comparator.BaseComparator
 include file.name.util.FileNameUtil
 include git.util.GitUtil
 include help.message.HelpMessage
@@ -94,7 +94,7 @@ pr(){
 }
 
 sf(){
-	if [[ $(Comparator isEqual ${branch} master) ]] || [[ $(StringValidator isSubstring ${branch} 7.0.x) ]]; then
+	if [[ $(BaseComparator isEqual ${branch} master) ]] || [[ $(StringValidator isSubstring ${branch} 7.0.x) ]]; then
 		cd ${buildDir}/tools/
 
 		sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
@@ -112,10 +112,10 @@ sf(){
 
 	opt=$(StringUtil returnOption ${1})
 
-	if [[ $(Comparator isEqualIgnoreCase ${opt} a) ]]; then
+	if [[ $(BaseComparator isEqualIgnoreCase ${opt} a) ]]; then
 		${MB} printProgressMessage running-source-formatter-on-all-files
 		echo
-	elif [[ $(Comparator isEqualIgnoreCase ${opt} l) ]]; then
+	elif [[ $(BaseComparator isEqualIgnoreCase ${opt} l) ]]; then
 		localChanges="-local-changes"
 
 		${MB} printProgressMessage running-source-formatter-on${localChanges}

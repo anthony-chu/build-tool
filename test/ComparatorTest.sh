@@ -1,4 +1,4 @@
-include comparator.Comparator
+include base.comparator.BaseComparator
 include test.executor.TestExecutor
 
 ComparatorTest(){
@@ -19,7 +19,7 @@ ComparatorTest(){
 	}
 
 	test.isEqual[Number](){
-		if [[ $(Comparator isEqual 123 123) ]]; then
+		if [[ $(BaseComparator isEqual 123 123) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -27,7 +27,7 @@ ComparatorTest(){
 	}
 
 	test.isEqual[String](){
-		if [[ $(Comparator isEqual foo foo) ]]; then
+		if [[ $(BaseComparator isEqual foo foo) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -35,7 +35,7 @@ ComparatorTest(){
 	}
 
 	test.isEqualIgnoreCase(){
-		if [[ $(Comparator isEqualIgnoreCase FOO foo) ]]; then
+		if [[ $(BaseComparator isEqualIgnoreCase FOO foo) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -43,7 +43,7 @@ ComparatorTest(){
 	}
 
 	test.isLessThan[Case](){
-		if [[ $(Comparator isLessThan foo FOO) ]]; then
+		if [[ $(BaseComparator isLessThan foo FOO) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -51,7 +51,7 @@ ComparatorTest(){
 	}
 
 	test.isLessThan[Number](){
-		if [[ $(Comparator isLessThan 1 2) ]]; then
+		if [[ $(BaseComparator isLessThan 1 2) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -59,7 +59,7 @@ ComparatorTest(){
 	}
 
 	test.isLessThan[String](){
-		if [[ $(Comparator isLessThan bar foo) ]]; then
+		if [[ $(BaseComparator isLessThan bar foo) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -67,7 +67,7 @@ ComparatorTest(){
 	}
 
 	test.isGreaterThan[Case](){
-		if [[ $(Comparator isGreaterThan FOO foo) ]]; then
+		if [[ $(BaseComparator isGreaterThan FOO foo) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -75,7 +75,7 @@ ComparatorTest(){
 	}
 
 	test.isGreaterThan[Number](){
-		if [[ $(Comparator isGreaterThan 2 1) ]]; then
+		if [[ $(BaseComparator isGreaterThan 2 1) ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -83,7 +83,7 @@ ComparatorTest(){
 	}
 
 	test.isGreaterThan[String](){
-		if [[ $(Comparator isGreaterThan foo bar) ]]; then
+		if [[ $(BaseComparator isGreaterThan foo bar) ]]; then
 			echo PASS
 		else
 			echo FAIL

@@ -1,6 +1,6 @@
 source ${projectDir}.init.sh
 
-include comparator.Comparator
+include base.comparator.BaseComparator
 include git.util.GitUtil
 include help.message.HelpMessage
 include message.builder.MessageBuilder
@@ -13,7 +13,7 @@ distDir=${projectDir}/../../../tools/sdk/dist
 
 CTBuilder(){
 
-	C_isEqual="Comparator isEqual"
+	C_isEqual="BaseComparator isEqual"
 	MB=MessageBuilder
 	SV=StringValidator
 

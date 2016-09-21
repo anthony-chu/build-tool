@@ -1,5 +1,5 @@
 include array.util.ArrayUtil
-include comparator.Comparator
+include base.comparator.BaseComparator
 
 ArrayValidator(){
 	hasEntry(){
@@ -9,7 +9,7 @@ ArrayValidator(){
 		local array=(${_flip[@]:1})
 
 		for a in ${array[@]}; do
-			if [[ $(Comparator isEqual ${a} ${entry}) ]]; then
+			if [[ $(BaseComparator isEqual ${a} ${entry}) ]]; then
 				echo true
 				break
 			fi
@@ -26,12 +26,12 @@ ArrayValidator(){
 			local count=0
 
 			for a in ${array[@]}; do
-				if [[ $(Comparator isEqual ${a} ${entry}) ]]; then
+				if [[ $(BaseComparator isEqual ${a} ${entry}) ]]; then
 					count=$((count+1))
 				fi
 			done
 
-			if [[ $(Comparator isGreaterThan ${count} 1) ]]; then
+			if [[ $(BaseComparator isGreaterThan ${count} 1) ]]; then
 				return
 			else
 				echo true
