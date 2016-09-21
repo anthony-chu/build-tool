@@ -23,14 +23,6 @@ _hardReset(){
 	cd ${baseDir}
 }
 
-_longLog(){
-	cd ${buildDir}
-
-	git --git-dir=${buildDir}/.git rev-parse origin/${branch}
-
-	cd ${baseDir}
-}
-
 changes(){
 	cd ${buildDir}
 
@@ -84,7 +76,13 @@ dev(){
 }
 
 jira(){
-	local _gitid=$(_longLog)
+	_longLog(){
+		cd ${buildDir}
+
+		git --git-dir=${buildDir}/.git rev-parse origin/${branch}
+
+		cd ${baseDir}
+	}
 
 	if [[ $(BaseComparator isEqual ${branch} master) ]]; then
 		branch=$(StringUtil capitalize ${branch})
@@ -92,7 +90,7 @@ jira(){
 		branch=${branch}
 	fi
 
-	local gitinfo="Portal ${branch} GIT ID: ${_gitid}"
+	local gitinfo="Portal ${branch} GIT ID: $(_longLog)"
 
 	fixed(){
 		echo Fixed on:
