@@ -1,22 +1,22 @@
 include message.builder.util.MessageBuilderHelper
 
 MessageBuilder(){
-	local MBUtil="MessageBuilderHelper"
+	local MBHelper="MessageBuilderHelper"
 
 	printDone(){
 		printInfoMessage Done.
 	}
 
 	printErrorMessage(){
-		${MBUtil} buildMessage error ${1}
+		${MBHelper} buildMessage error ${1}
 	}
 
 	printInfoMessage(){
-		${MBUtil} buildMessage info ${1}
+		${MBHelper} buildMessage info ${1}
 	}
 
 	printProgressMessage(){
-		${MBUtil} printInfoMessage ${1}...
+		${MBHelper} printInfoMessage ${1}...
 	}
 
 	$@
