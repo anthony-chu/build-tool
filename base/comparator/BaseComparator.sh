@@ -1,4 +1,4 @@
-Comparator(){
+BaseComparator(){
 	isEqual(){
 		if [[ ${1} == ${2} ]]; then
 			echo true
