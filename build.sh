@@ -279,7 +279,7 @@ run(){
 	if [[ $(${ASValidator} isJboss ${appServer}) ]]; then
 		${appServerDir}/bin/standalone.sh
 	elif [[ $(${ASValidator} isTCServer ${appServer}) ]]; then
-		${appServerDir}/tc-server-3.1.3/liferay/bin/tcruntime-ctl.sh liferay run
+		${appServerDir}/liferay/bin/tcruntime-ctl.sh liferay run
 	elif [[ $(${ASValidator} isTomcat ${appServer}) ]]; then
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(${ASValidator} isWeblogic ${appServer}) ]]; then
