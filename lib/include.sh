@@ -1,3 +1,3 @@
 include(){
-	source ${projectDir}${1}
+	source ${projectDir}${1//\./\/}.sh
 }
