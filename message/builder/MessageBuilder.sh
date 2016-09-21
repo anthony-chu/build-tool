@@ -1,4 +1,4 @@
-include message.builder.util.MessageBuilderHelper
+include message.builder.helper.MessageBuilderHelper
 
 MessageBuilder(){
 	local MBHelper="MessageBuilderHelper"
