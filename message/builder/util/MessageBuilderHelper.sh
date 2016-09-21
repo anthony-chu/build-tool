@@ -1,7 +1,7 @@
 include base.util.BaseUtil
 include string.util.StringUtil
 
-MessageBuilderUtil(){
+MessageBuilderHelper(){
 	local time=$(BaseUtil timestamp log)
 
 	buildMessage(){

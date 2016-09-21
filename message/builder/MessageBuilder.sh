@@ -1,7 +1,7 @@
-include message.builder.util.MessageBuilderUtil
+include message.builder.util.MessageBuilderHelper
 
 MessageBuilder(){
-	local MBUtil="MessageBuilderUtil"
+	local MBUtil="MessageBuilderHelper"
 
 	printDone(){
 		printInfoMessage Done.
