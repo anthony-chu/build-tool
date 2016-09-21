@@ -12,26 +12,6 @@ package string
 
 MB=MessageBuilder
 
-mockmock(){
-	cd ${buildDir}
-
-	${MB} printProgressMessage building-MockMock-jar
-
-	ant -f build-test.xml start-test-smtp-server
-
-	clear
-
-	${MB} printProgressMessage starting-MockMock-SMTP-server
-
-	sleep 5s
-
-	clear
-
-	cd lib/development
-
-	java -jar MockMock.jar
-}
-
 pr(){
 	if [[ $(StringValidator isNull ${@}) ]]; then
 		${MB} printErrorMessage missing-reviewer

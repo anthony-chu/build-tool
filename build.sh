@@ -240,11 +240,6 @@ deploy(){
 	cd ${baseDir}
 }
 
-logger(){
-	cd ${bundleDir}/logs
-	tail -f liferay*.log
-}
-
 pull(){
 	_clean_source
 
@@ -292,65 +287,6 @@ run(){
 	elif [[ $(${ASValidator} isWildfly ${appServer}) ]]; then
 		${appServerDir}/bin/standalone.sh
 	fi
-}
-
-rebuild(){
-	local appServer=${appServer}
-
-	_build_log ${appServer}
-
-	_clean_hard ${appServer}
-
-	if [[ $(${C_isEqual} ${branch} ee-7.0.x) ]]; then
-		_disableCTCompile
-	fi
-
-	cd ${buildDir}
-
-	_config source ${appServer}
-
-	${MB} printProgressMessage unzipping-${appServer}
-	ant -f build-dist.xml unzip-${appServer}
-	${MB} printDone
-
-	_config appServer ${appServer}
-
-	${MB} printProgressMessage rebuilding-portal
-	ant -f build-dist.xml build-dist-${appServer} >> ${logFile} | tail -f --pid=$$ ${logFile}
-	${MB} printDone
-}
-
-zip(){
-	cd ${bundleDir}
-
-	zipFile=liferay-portal-${appServer}-${branch}.zip
-
-	if [[ $(FileUtil getStatus ${zipFile}) ]]; then
-		${MB} printProgressMessage removing-old-zip-file
-		rm -rf ${zipFile}
-		${MB} printDone
-	fi
-
-	appServer=${appServer}
-	appServerVersion=$(${ASVersion}
-		returnAppServerVersion ${appServer} ${branch})
-
-	${MB} printProgressMessage zipping-up-${appServer}-bundle
-
-	content=(
-		data
-		deploy
-		${appServer}-${appServerVersion}
-		osgi
-		tools
-		work
-		.liferay-home
-	)
-
-	jar -cMf ${zipFile} ${content[@]}
-	${MB} printDone
-
-	cd ${baseDir}
 }
 
 clear
