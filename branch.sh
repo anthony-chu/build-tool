@@ -115,7 +115,7 @@ jira(){
 
 	case ${1} in
 		fixed|nlr|repro) ${1};;
-		*) echo "" ;;
+		*) ;;
 	esac
 
 	echo $(_env ${appServer})
