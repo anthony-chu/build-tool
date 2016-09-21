@@ -1,5 +1,5 @@
-include array/util/ArrayUtil.sh
-include test/executor/TestExecutor.sh
+include array.util.ArrayUtil
+include test.executor.TestExecutor
 
 ArrayUtilTest(){
 	run(){

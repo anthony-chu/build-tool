@@ -1,10 +1,10 @@
 source ${projectDir}.init.sh
 
-include comparator/Comparator.sh
-include file/name/util/FileNameUtil.sh
-include git/util/GitUtil.sh
-include help/message/HelpMessage.sh
-include message/builder/MessageBuilder.sh
+include comparator.Comparator
+include file.name.util.FileNameUtil
+include git.util.GitUtil
+include help.message.HelpMessage
+include message.builder.MessageBuilder
 
 package array
 package base

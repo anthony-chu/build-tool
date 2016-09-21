@@ -1,5 +1,5 @@
-include array/validator/ArrayValidator.sh
-include string/validator/StringValidator.sh
+include array.validator.ArrayValidator
+include string.validator.StringValidator
 
 AppServerValidator(){
 	isGlassfish(){

@@ -1,7 +1,7 @@
 source ${projectDir}.init.sh
 
-include finder/Finder.sh
-include string/validator/StringValidator.sh
+include finder.Finder
+include string.validator.StringValidator
 
 package array
 

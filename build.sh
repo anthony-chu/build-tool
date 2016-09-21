@@ -1,12 +1,12 @@
 source ${projectDir}.init.sh
 
-include comparator/Comparator.sh
-include git/util/GitUtil.sh
-include file/io/util/FileIOUtil.sh
-include file/util/FileUtil.sh
-include finder/Finder.sh
-include help/message/HelpMessage.sh
-include message/builder/MessageBuilder.sh
+include comparator.Comparator
+include git.util.GitUtil
+include file.io.util.FileIOUtil
+include file.util.FileUtil
+include finder.Finder
+include help.message.HelpMessage
+include message.builder.MessageBuilder
 
 package app
 package base

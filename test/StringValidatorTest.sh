@@ -1,4 +1,4 @@
-include string/validator/stringvalidator.sh
+include string.validator.stringvalidator
 
 StringValidatorTest(){
 	run(){

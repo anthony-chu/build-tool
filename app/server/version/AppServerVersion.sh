@@ -1,4 +1,4 @@
-include app/server/version/constants/AppServerVersionConstants.sh
+include app.server.version.constants.AppServerVersionConstants
 
 AppServerVersion(){
 	_overrideTomcatVersion(){

@@ -1,6 +1,6 @@
-include file/util/FileUtil.sh
-include message/builder/MessageBuilder.sh
-include string/validator/StringValidator.sh
+include file.util.FileUtil
+include message.builder.MessageBuilder
+include string.validator.StringValidator
 
 PropsReader(){
 	readConfFile(){

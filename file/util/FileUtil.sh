@@ -1,4 +1,4 @@
-include string/validator/StringValidator.sh
+include string.validator.StringValidator
 
 FileUtil(){
 	getContent(){
@@ -9,7 +9,7 @@ FileUtil(){
 
 	getExtension(){
 		local file=${1}
-		echo ${file/*[.]/}
+		echo ${file.*[.].}
 	}
 
 	getStatus(){

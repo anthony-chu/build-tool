@@ -1,8 +1,8 @@
 source ${projectDir}.init.sh
 
-include comparator/Comparator.sh
-include help/message/Helpmessage.sh
-include message/builder/Messagebuilder.sh
+include comparator.Comparator
+include help.message.Helpmessage
+include message.builder.Messagebuilder
 
 package app
 package base
