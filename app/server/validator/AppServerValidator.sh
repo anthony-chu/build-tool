@@ -113,7 +113,7 @@ AppServerValidator(){
 			jonas
 			resin
 			tcat
-			tcserver
+			tc-server
 			tomcat
 			weblogic
 			websphere
