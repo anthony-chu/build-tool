@@ -44,7 +44,7 @@ BaseUtil(){
 		elif [[ ${1} == date ]]; then
 			date +%Y%m%d
 		elif [[ ${1} == log ]]; then
-			d=$(date +%Y-%y-%d)
+			d=$(date +%Y-%m-%d)
 			t=$(date +%H:%M:%S)
 
 			echo ${d} ${t}
