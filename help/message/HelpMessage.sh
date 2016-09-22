@@ -15,7 +15,7 @@ HelpMessage(){
 
 			local helpMessage=$(StringUtil capitalize ${helpList[i]})
 
-			local helpListEntry=$(StringUtil replace ${helpMessage} "-" space)
+			local helpListEntry=$(StringUtil replace ${helpMessage} - space)
 
 			echo -e "\t${funcListEntry}................${helpListEntry}"
 		done
