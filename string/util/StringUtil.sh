@@ -1,5 +1,5 @@
 include base.comparator.BaseComparator
-include string.validator.Stringvalidator
+include string.validator.StringValidator
 
 StringUtil(){
 	capitalize(){
