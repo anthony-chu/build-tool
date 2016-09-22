@@ -9,7 +9,7 @@ FileUtil(){
 
 	getExtension(){
 		local file=${1}
-		echo ${file.*[.].}
+		echo ${file/*[.]/}
 	}
 
 	getStatus(){
