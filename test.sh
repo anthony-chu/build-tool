@@ -185,7 +185,7 @@ fi
 
 if [[ $(StringValidator isNull ${args}) ]]; then
 	HelpMessage testHelpMessage
-elif [[ $(StringValidator isSubstring "${args}" \#) ]]; then
+elif [[ ${args} == *#* ]]; then
 	test ${args}
 else
 	${args}
