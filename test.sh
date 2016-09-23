@@ -10,13 +10,11 @@ package array
 package base
 package string
 
-MB=MessageBuilder
-
 pr(){
 	if [[ $(StringValidator isNull ${@}) ]]; then
-		${MB} logErrorMsg missing-reviewer
+		Logger logErrorMsg missing-reviewer
 	else
-		${MB} logProgressMsg submitting-pull-request
+		Logger logProgressMsg submitting-pull-request
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -61,13 +59,13 @@ pr(){
 
 		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
 
-		${MB} logCompletedMsg
+		Logger logCompletedMsg
 
-		${MB} logProgressMsg switching-branch-to-${branch}
+		Logger logProgressMsg switching-branch-to-${branch}
 
 		git checkout ${branch}
 
-		${MB} logCompletedMsg
+		Logger logCompletedMsg
 
 		cd ${baseDir}
 	fi
@@ -93,17 +91,17 @@ sf(){
 	opt=$(StringUtil returnOption ${1})
 
 	if [[ $(BaseComparator isEqualIgnoreCase ${opt} a) ]]; then
-		${MB} logProgressMsg running-source-formatter-on-all-files
+		Logger logProgressMsg running-source-formatter-on-all-files
 		echo
 	elif [[ $(BaseComparator isEqualIgnoreCase ${opt} l) ]]; then
 		localChanges="-local-changes"
 
-		${MB} logProgressMsg running-source-formatter-on${localChanges}
+		Logger logProgressMsg running-source-formatter-on${localChanges}
 		echo
 	fi
 
 	ant format-source${localChanges}
-	${MB} logCompletedMsg
+	Logger logCompletedMsg
 	echo
 	cd ${baseDir}
 }
@@ -130,11 +128,11 @@ test(){
 	done
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		${MB} logErrorMsg missing-test-name
+		Logger logErrorMsg missing-test-name
 	else
 		test=${1}
 		shift
-		${MB} logProgressMsg running-test-${test}
+		Logger logProgressMsg running-test-${test}
 		echo
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
@@ -143,7 +141,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		${MB} logProgressMsg moving-test-results
+		Logger logProgressMsg moving-test-results
 		echo
 
 		cd ${resultDir}

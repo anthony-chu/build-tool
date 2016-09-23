@@ -9,8 +9,6 @@ package base
 package git
 package string
 
-MB=MessageBuilder
-
 _hardReset(){
 	cd ${buildDir}
 
@@ -36,7 +34,7 @@ current(){
 
 	name=$(GitUtil getCurBranch)
 
-	${MB} logInfoMsg current-${branch}-branch:-${name}
+	Logger logInfoMsg current-${branch}-branch:-${name}
 
 	cd ${baseDir}
 }
@@ -50,7 +48,7 @@ delete(){
 		GitException curBranchException delete ${1}
 	else
 		git branch -q -D ${1}
-		${MB} logInfoMsg deleted-local-branch:-${1}
+		Logger logInfoMsg deleted-local-branch:-${1}
 	fi
 
 	cd ${baseDir}
@@ -156,7 +154,7 @@ new(){
 
 rebase(){
 	abort(){
-		${MB} logProgressMsg terminating-previous-rebase-process
+		Logger logProgressMsg terminating-previous-rebase-process
 
 		cd ${buildDir}
 
@@ -164,11 +162,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} logCompletedMsg
+		Logger logCompletedMsg
 	}
 
 	amend(){
-		${MB} logProgressMsg amending-the-previous-commit
+		Logger logProgressMsg amending-the-previous-commit
 
 		cd ${buildDir}
 
@@ -176,11 +174,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} logCompletedMsg
+		Logger logCompletedMsg
 	}
 
 	cont(){
-		${MB} logProgressMsg continuing-the-current-rebase-process
+		Logger logProgressMsg continuing-the-current-rebase-process
 
 		cd ${buildDir}
 
@@ -188,7 +186,7 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} logCompletedMsg
+		Logger logCompletedMsg
 	}
 
 	default(){
@@ -196,13 +194,13 @@ rebase(){
 
 		curBranch=$(GitUtil getCurBranch)
 
-		${MB} logProgressMsg rebasing-${curBranch}-against-${branch}-HEAD
+		Logger logProgressMsg rebasing-${curBranch}-against-${branch}-HEAD
 
 		git pull --rebase upstream ${branch}
 
 		cd ${baseDir}
 
-		${MB} logCompletedMsg
+		Logger logCompletedMsg
 	}
 
 	start(){
@@ -214,7 +212,7 @@ rebase(){
 			isPlural=""
 		fi
 
-		${MB} logProgressMsg rebasing-the-last-${value}-commit${isPlural}
+		Logger logProgressMsg rebasing-the-last-${value}-commit${isPlural}
 
 		cd ${buildDir}
 
@@ -222,11 +220,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} logCompletedMsg
+		Logger logCompletedMsg
 	}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		${MB} logErrorMsg please-provide-a-valid-rebase-option
+		Logger logErrorMsg please-provide-a-valid-rebase-option
 		exit
 	fi
 
@@ -246,7 +244,7 @@ rename(){
 
 	git branch -q -m ${1}
 
-	${MB} logInfoMsg renamed-branch-from-${originalBranch}-to-${1}
+	Logger logInfoMsg renamed-branch-from-${originalBranch}-to-${1}
 
 	cd ${baseDir}
 }
