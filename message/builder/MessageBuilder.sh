@@ -3,20 +3,20 @@ include message.builder.helper.MessageBuilderHelper
 MessageBuilder(){
 	local MBHelper="MessageBuilderHelper"
 
-	printDone(){
-		printInfoMessage Done.
+	logCompletedMsg(){
+		logInfoMsg Completed.
 	}
 
-	printErrorMessage(){
+	logErrorMsg(){
 		${MBHelper} buildMessage error ${1}
 	}
 
-	printInfoMessage(){
+	logInfoMsg(){
 		${MBHelper} buildMessage info ${1}
 	}
 
-	printProgressMessage(){
-		${MBHelper} printInfoMessage ${1}...
+	logProgressMsg(){
+		${MBHelper} logInfoMsg ${1}...
 	}
 
 	$@

@@ -5,14 +5,14 @@ GitException(){
 		action=${1}
 		branch=${2}
 
-		MessageBuilder printErrorMessage cannot-${action}-${branch}-because-${branch}-is-the-current-branch.
+		MessageBuilder logErrorMsg cannot-${action}-${branch}-because-${branch}-is-the-current-branch.
 	}
 
 	existingBranchException(){
 		action=${1}
 		branch=${2}
 
-		MessageBuilder printErrorMessage cannot-${action}-${branch}-because-${branch}-already-exists.
+		MessageBuilder logErrorMsg cannot-${action}-${branch}-because-${branch}-already-exists.
 	}
 
 	$@

@@ -39,11 +39,11 @@ _build_log(){
 }
 
 _clean_hard(){
-	${MB} printProgressMessage deleting-all-content-in-the-bundles-directory
+	${MB} logProgressMsg deleting-all-content-in-the-bundles-directory
 	cd ${bundleDir}
 	rm -rf deploy osgi data logs ${appServer}*
 
-	${MB} printDone
+	${MB} logCompletedMsg
 	cd ${baseDir}
 }
 
@@ -55,25 +55,25 @@ _clean_bundle(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	${MB} printProgressMessage deleting-liferay-home-folders
+	${MB} logProgressMsg deleting-liferay-home-folders
 	cd ${bundleDir}
 	rm -rf data logs
-	${MB} printDone
+	${MB} logCompletedMsg
 	echo
 
 	cd ${baseDir}
 
-	${MB} printProgressMessage deleting-temp-files
+	${MB} logProgressMsg deleting-temp-files
 	cd ${appServerDir}
 	rm -rf temp work
-	${MB} printDone
+	${MB} logCompletedMsg
 	echo
 
 	cd ${baseDir}
 }
 
 _clean_source(){
-	${MB} printProgressMessage resetting-the-source-directory
+	${MB} logProgressMsg resetting-the-source-directory
 
 	cd ${buildDir}
 
@@ -83,12 +83,12 @@ _clean_source(){
 
 	cd ${baseDir}
 
-	${MB} printDone
+	${MB} logCompletedMsg
 }
 
 _config(){
 	source(){
-		${MB} printProgressMessage building-properties
+		${MB} logProgressMsg building-properties
 
 		local appServer=${appServer}
 		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
@@ -107,7 +107,7 @@ _config(){
 		${append} ${buildProps} "app.server.parent.dir=${bundleDir}"
 		${append} ${buildProps} "jsp.precompile=on"
 
-		${MB} printDone
+		${MB} logCompletedMsg
 	}
 
 	appServer(){
@@ -119,7 +119,7 @@ _config(){
 
 		local d=[[:digit:]]
 
-		${MB} printProgressMessage increasing-memory-limit
+		${MB} logProgressMsg increasing-memory-limit
 		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}\+m Xmx2048m
 			${replace} ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}\+m Xms1024m
@@ -127,12 +127,12 @@ _config(){
 			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}\+m Xmx2048m
 			${replace} ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}\+m MaxMetaspaceSize=1024m
 		fi
-		${MB} printDone
+		${MB} logCompletedMsg
 
 		if [[ $(${C_isEqual} ${branch} ee-6.2.x) ]]; then
-			${MB} printProgressMessage changing-port-for-${branch}
+			${MB} logProgressMsg changing-port-for-${branch}
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
-			${MB} printDone
+			${MB} logCompletedMsg
 		fi
 	}
 
@@ -140,7 +140,7 @@ _config(){
 }
 
 _disableCTCompile(){
-	${MB} printProgressMessage disabling-content-targeting-build-process
+	${MB} logProgressMsg disabling-content-targeting-build-process
 
 	projectDir=${buildDir}/modules/apps/content-targeting
 
@@ -156,7 +156,7 @@ _disableCTCompile(){
 
 	cd ${baseDir}
 
-	${MB} printDone
+	${MB} logCompletedMsg
 }
 
 _gitlog(){
@@ -168,10 +168,10 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal$(StringUtil strip ${branch} [-.])
 
-	${MB} printProgressMessage rebuilding-database-${database}
+	${MB} logProgressMsg rebuilding-database-${database}
 	mysql -e "drop database if exists ${database};
 		create database ${database} char set utf8;"
-	${MB} printDone
+	${MB} logCompletedMsg
 	echo
 	cd ${baseDir}
 }
@@ -193,15 +193,15 @@ build(){
 
 	_config source ${appServer}
 
-	${MB} printProgressMessage unzipping-${appServer}
+	${MB} logProgressMsg unzipping-${appServer}
 	ant -f build-dist.xml unzip-${appServer}
-	${MB} printDone
+	${MB} logCompletedMsg
 
 	_config appServer ${appServer}
 
-	${MB} printProgressMessage building-portal
+	${MB} logProgressMsg building-portal
 	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
-	${MB} printDone
+	${MB} logCompletedMsg
 }
 
 clean(){
@@ -216,25 +216,25 @@ deploy(){
 
 	echo "Module: ${input}"
 
-	${MB} printProgressMessage searching-for-the-desired-module
+	${MB} logProgressMsg searching-for-the-desired-module
 
 	allModules=($(Finder findByName build.gradle))
 
 	for m in ${allModules[@]}; do
 		if [[ ${m} == *${input}* ]]; then
 			pathToModule=${m/build.gradle/}
-			${MB} printDone
+			${MB} logCompletedMsg
 			break
 		fi
 	done
 
 	if [[ $(StringValidator isNull ${pathToModule}) ]]; then
-		${MB} printErrorMessage a-module-with-that-name-could-not-be-found
+		${MB} logErrorMsg a-module-with-that-name-could-not-be-found
 	else
-		${MB} printProgressMessage deploying-module
+		${MB} logProgressMsg deploying-module
 		cd ${pathToModule}
 		${buildDir}/gradlew clean deploy
-		${MB} printDone
+		${MB} logCompletedMsg
 	fi
 
 	cd ${baseDir}
@@ -245,9 +245,9 @@ pull(){
 
 	cd ${buildDir}
 
-	${MB} printProgressMessage pulling-changes-from-upstream
+	${MB} logProgressMsg pulling-changes-from-upstream
 	git pull upstream ${branch}
-	${MB} printDone
+	${MB} logCompletedMsg
 	cd ${baseDir}
 }
 
@@ -255,11 +255,11 @@ push(){
 	cd ${buildDir}
 	local curBranch=$(GitUtil getCurBranch)
 
-	${MB} printProgressMessage pushing-changes-to-origin-branch-${curBranch}
+	${MB} logProgressMsg pushing-changes-to-origin-branch-${curBranch}
 
 	git push -f origin ${curBranch}
 
-	${MB} printDone
+	${MB} logCompletedMsg
 
 	cd ${baseDir}
 }
@@ -267,7 +267,7 @@ push(){
 run(){
 	local appServer=${appServer}
 
-	${MB} printProgressMessage starting-server
+	${MB} logProgressMsg starting-server
 	sleep 5s
 	clear
 

@@ -35,7 +35,7 @@ CTBuilder(){
 		else
 			for b in $(GitUtil listBranches); do
 				if [[ $(${C_isEqual} $(StringUtil replace ${b} remotes\/origin\/) ${1}) ]]; then
-					${MB} printErrorMessage the-branch-${1}-does-not-exist-in-origin
+					${MB} logErrorMsg the-branch-${1}-does-not-exist-in-origin
 				else
 					doSwitch=true
 				fi
@@ -68,19 +68,19 @@ CTBuilder(){
 
 		_branchSwitcher $(_branchChecker ${1})
 
-		${MB} printProgressMessage building-content-targeting-modules
+		${MB} logProgressMsg building-content-targeting-modules
 
 		_generateSnapshot
 
 		d:/private/ee-7.0.x-portal/gradlew clean deploy
 
-		${MB} printDone
+		${MB} logCompletedMsg
 
 		cd ${baseDir}
 	}
 
 	clean_bundle(){
-		${MB} printProgressMessage removing-content-targeting-jars-from-the-bundle
+		${MB} logProgressMsg removing-content-targeting-jars-from-the-bundle
 
 		cd D:/private/ee-7.0.x-bundles/osgi/modules
 
@@ -88,7 +88,7 @@ CTBuilder(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		${MB} logCompletedMsg
 	}
 
 	clean_source(){
@@ -114,11 +114,11 @@ CTBuilder(){
 
 		_branchSwitcher $(_branchChecker ${1})
 
-		${MB} printProgressMessage generating-a-release-zip-for-${branch}
+		${MB} logProgressMsg generating-a-release-zip-for-${branch}
 
 		d:/private/ee-7.0.x-portal/gradlew release
 
-		${MB} printDone
+		${MB} logCompletedMsg
 
 		cd ${baseDir}
 	}
@@ -128,12 +128,12 @@ CTBuilder(){
 
 		_branchSwitcher $(_branchChecker ${1})
 
-		${MB} printProgressMessage updating-content-targeting-on-branch-${branch}
+		${MB} logProgressMsg updating-content-targeting-on-branch-${branch}
 
 		git pull upstream ${branch}
 		git push origin ${branch}
 
-		${MB} printDone
+		${MB} logCompletedMsg
 
 		cd ${baseDir}
 	}

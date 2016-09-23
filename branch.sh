@@ -36,7 +36,7 @@ current(){
 
 	name=$(GitUtil getCurBranch)
 
-	${MB} printInfoMessage current-${branch}-branch:-${name}
+	${MB} logInfoMsg current-${branch}-branch:-${name}
 
 	cd ${baseDir}
 }
@@ -50,7 +50,7 @@ delete(){
 		GitException curBranchException delete ${1}
 	else
 		git branch -q -D ${1}
-		${MB} printInfoMessage deleted-local-branch:-${1}
+		${MB} logInfoMsg deleted-local-branch:-${1}
 	fi
 
 	cd ${baseDir}
@@ -156,7 +156,7 @@ new(){
 
 rebase(){
 	abort(){
-		${MB} printProgressMessage terminating-previous-rebase-process
+		${MB} logProgressMsg terminating-previous-rebase-process
 
 		cd ${buildDir}
 
@@ -164,11 +164,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		${MB} logCompletedMsg
 	}
 
 	amend(){
-		${MB} printProgressMessage amending-the-previous-commit
+		${MB} logProgressMsg amending-the-previous-commit
 
 		cd ${buildDir}
 
@@ -176,11 +176,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		${MB} logCompletedMsg
 	}
 
 	cont(){
-		${MB} printProgressMessage continuing-the-current-rebase-process
+		${MB} logProgressMsg continuing-the-current-rebase-process
 
 		cd ${buildDir}
 
@@ -188,7 +188,7 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		${MB} logCompletedMsg
 	}
 
 	default(){
@@ -196,13 +196,13 @@ rebase(){
 
 		curBranch=$(GitUtil getCurBranch)
 
-		${MB} printProgressMessage rebasing-${curBranch}-against-${branch}-HEAD
+		${MB} logProgressMsg rebasing-${curBranch}-against-${branch}-HEAD
 
 		git pull --rebase upstream ${branch}
 
 		cd ${baseDir}
 
-		${MB} printDone
+		${MB} logCompletedMsg
 	}
 
 	start(){
@@ -214,7 +214,7 @@ rebase(){
 			isPlural=""
 		fi
 
-		${MB} printProgressMessage rebasing-the-last-${value}-commit${isPlural}
+		${MB} logProgressMsg rebasing-the-last-${value}-commit${isPlural}
 
 		cd ${buildDir}
 
@@ -222,11 +222,11 @@ rebase(){
 
 		cd ${baseDir}
 
-		${MB} printDone
+		${MB} logCompletedMsg
 	}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		${MB} printErrorMessage please-provide-a-valid-rebase-option
+		${MB} logErrorMsg please-provide-a-valid-rebase-option
 		exit
 	fi
 
@@ -246,7 +246,7 @@ rename(){
 
 	git branch -q -m ${1}
 
-	${MB} printInfoMessage renamed-branch-from-${originalBranch}-to-${1}
+	${MB} logInfoMsg renamed-branch-from-${originalBranch}-to-${1}
 
 	cd ${baseDir}
 }
