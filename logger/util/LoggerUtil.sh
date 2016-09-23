@@ -1,10 +1,10 @@
 include base.util.BaseUtil
 include string.util.StringUtil
 
-MessageBuilderHelper(){
+LoggerUtil(){
 	local time=$(BaseUtil timestamp log)
 
-	buildMessage(){
+	getLogMsg(){
 		echo "[${time}] [ $(StringUtil toUpperCase ${1}) ] $(StringUtil
 			replace $(StringUtil capitalize ${2}) - space)"
 	}
