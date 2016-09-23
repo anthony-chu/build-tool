@@ -2,7 +2,7 @@ source ${projectDir}.init.sh
 
 include base.comparator.BaseComparator
 include help.message.Helpmessage
-include message.builder.Messagebuilder
+include logger.Logger
 
 package app
 package base

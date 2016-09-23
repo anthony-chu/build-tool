@@ -3,7 +3,7 @@ source ${projectDir}.init.sh
 include base.comparator.BaseComparator
 include git.util.GitUtil
 include help.message.HelpMessage
-include message.builder.MessageBuilder
+include logger.Logger
 
 package string
 

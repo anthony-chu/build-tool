@@ -6,7 +6,7 @@ include file.io.util.FileIOUtil
 include file.util.FileUtil
 include finder.Finder
 include help.message.HelpMessage
-include message.builder.MessageBuilder
+include logger.Logger
 
 package app
 package base
