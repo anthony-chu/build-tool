@@ -12,9 +12,9 @@ package string
 
 pr(){
 	if [[ $(StringValidator isNull ${@}) ]]; then
-		Logger logErrorMsg missing-reviewer
+		Logger logErrorMsg missing_reviewer
 	else
-		Logger logProgressMsg submitting-pull-request
+		Logger logProgressMsg submitting_pull_request
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -61,7 +61,7 @@ pr(){
 
 		Logger logCompletedMsg
 
-		Logger logProgressMsg switching-branch-to-${branch}
+		Logger logProgressMsg switching_branch_to_${branch}
 
 		git checkout ${branch}
 
@@ -91,12 +91,12 @@ sf(){
 	opt=$(StringUtil returnOption ${1})
 
 	if [[ $(BaseComparator isEqualIgnoreCase ${opt} a) ]]; then
-		Logger logProgressMsg running-source-formatter-on-all-files
+		Logger logProgressMsg running_source_formatter_on_all_files
 		echo
 	elif [[ $(BaseComparator isEqualIgnoreCase ${opt} l) ]]; then
 		localChanges="-local-changes"
 
-		Logger logProgressMsg running-source-formatter-on${localChanges}
+		Logger logProgressMsg running_source_formatter_on${localChanges}
 		echo
 	fi
 
@@ -128,11 +128,11 @@ test(){
 	done
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		Logger logErrorMsg missing-test-name
+		Logger logErrorMsg missing_test_name
 	else
 		test=${1}
 		shift
-		Logger logProgressMsg running-test-${test}
+		Logger logProgressMsg running_test_${test}
 		echo
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
@@ -141,7 +141,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		Logger logProgressMsg moving-test-results
+		Logger logProgressMsg moving_test_results
 		echo
 
 		cd ${resultDir}

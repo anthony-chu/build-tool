@@ -34,7 +34,7 @@ CTBuilder(){
 		else
 			for b in $(GitUtil listBranches); do
 				if [[ $(${C_isEqual} $(StringUtil replace ${b} remotes\/origin\/) ${1}) ]]; then
-					Logger logErrorMsg the-branch-${1}-does-not-exist-in-origin
+					Logger logErrorMsg the_branch_${1}_does_not_exist_in_origin
 				else
 					doSwitch=true
 				fi
@@ -67,7 +67,7 @@ CTBuilder(){
 
 		_branchSwitcher $(_branchChecker ${1})
 
-		Logger logProgressMsg building-content-targeting-modules
+		Logger logProgressMsg building_content_targeting_modules
 
 		_generateSnapshot
 
@@ -79,7 +79,7 @@ CTBuilder(){
 	}
 
 	clean_bundle(){
-		Logger logProgressMsg removing-content-targeting-jars-from-the-bundle
+		Logger logProgressMsg removing_content_targeting_jars_from_the_bundle
 
 		cd D:/private/ee-7.0.x-bundles/osgi/modules
 
@@ -113,7 +113,7 @@ CTBuilder(){
 
 		_branchSwitcher $(_branchChecker ${1})
 
-		Logger logProgressMsg generating-a-release-zip-for-${branch}
+		Logger logProgressMsg generating_a_release_zip_for_${branch}
 
 		d:/private/ee-7.0.x-portal/gradlew release
 
@@ -127,7 +127,7 @@ CTBuilder(){
 
 		_branchSwitcher $(_branchChecker ${1})
 
-		Logger logProgressMsg updating-content-targeting-on-branch-${branch}
+		Logger logProgressMsg updating_content_targeting_on_branch_${branch}
 
 		git pull upstream ${branch}
 		git push origin ${branch}

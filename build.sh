@@ -38,7 +38,7 @@ _build_log(){
 }
 
 _clean_hard(){
-	Logger logProgressMsg deleting-all-content-in-the-bundles-directory
+	Logger logProgressMsg deleting_all_content_in_the_bundles_directory
 	cd ${bundleDir}
 	rm -rf deploy osgi data logs ${appServer}*
 
@@ -54,7 +54,7 @@ _clean_bundle(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	Logger logProgressMsg deleting-liferay-home-folders
+	Logger logProgressMsg deleting_liferay_home_folders
 	cd ${bundleDir}
 	rm -rf data logs
 	Logger logCompletedMsg
@@ -62,7 +62,7 @@ _clean_bundle(){
 
 	cd ${baseDir}
 
-	Logger logProgressMsg deleting-temp-files
+	Logger logProgressMsg deleting_temp_files
 	cd ${appServerDir}
 	rm -rf temp work
 	Logger logCompletedMsg
@@ -72,7 +72,7 @@ _clean_bundle(){
 }
 
 _clean_source(){
-	Logger logProgressMsg resetting-the-source-directory
+	Logger logProgressMsg resetting_the_source_directory
 
 	cd ${buildDir}
 
@@ -87,7 +87,7 @@ _clean_source(){
 
 _config(){
 	source(){
-		Logger logProgressMsg building-properties
+		Logger logProgressMsg building_properties
 
 		local appServer=${appServer}
 		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
@@ -118,7 +118,7 @@ _config(){
 
 		local d=[[:digit:]]
 
-		Logger logProgressMsg increasing-memory-limit
+		Logger logProgressMsg increasing_memory_limit
 		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}\+m Xmx2048m
 			${replace} ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}\+m Xms1024m
@@ -129,7 +129,7 @@ _config(){
 		Logger logCompletedMsg
 
 		if [[ $(${C_isEqual} ${branch} ee-6.2.x) ]]; then
-			Logger logProgressMsg changing-port-for-${branch}
+			Logger logProgressMsg changing_port_for_${branch}
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
 			Logger logCompletedMsg
 		fi
@@ -139,7 +139,7 @@ _config(){
 }
 
 _disableCTCompile(){
-	Logger logProgressMsg disabling-content-targeting-build-process
+	Logger logProgressMsg disabling_content_targeting_build_process
 
 	projectDir=${buildDir}/modules/apps/content-targeting
 
@@ -167,7 +167,7 @@ _gitlog(){
 _rebuild_db(){
 	local database=lportal$(StringUtil strip ${branch} [-.])
 
-	Logger logProgressMsg rebuilding-database-${database}
+	Logger logProgressMsg rebuilding_database_${database}
 	mysql -e "drop database if exists ${database};
 		create database ${database} char set utf8;"
 	Logger logCompletedMsg
@@ -192,13 +192,13 @@ build(){
 
 	_config source ${appServer}
 
-	Logger logProgressMsg unzipping-${appServer}
+	Logger logProgressMsg unzipping_${appServer}
 	ant -f build-dist.xml unzip-${appServer}
 	Logger logCompletedMsg
 
 	_config appServer ${appServer}
 
-	Logger logProgressMsg building-portal
+	Logger logProgressMsg building_portal
 	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
 	Logger logCompletedMsg
 }
@@ -215,7 +215,7 @@ deploy(){
 
 	echo "Module: ${input}"
 
-	Logger logProgressMsg searching-for-the-desired-module
+	Logger logProgressMsg searching_for_the_desired_module
 
 	allModules=($(Finder findByName build.gradle))
 
@@ -228,9 +228,9 @@ deploy(){
 	done
 
 	if [[ $(StringValidator isNull ${pathToModule}) ]]; then
-		Logger logErrorMsg a-module-with-that-name-could-not-be-found
+		Logger logErrorMsg a_module_with_that_name_could_not_be_found
 	else
-		Logger logProgressMsg deploying-module
+		Logger logProgressMsg deploying_module
 		cd ${pathToModule}
 		${buildDir}/gradlew clean deploy
 		Logger logCompletedMsg
@@ -244,7 +244,7 @@ pull(){
 
 	cd ${buildDir}
 
-	Logger logProgressMsg pulling-changes-from-upstream
+	Logger logProgressMsg pulling_changes_from_upstream
 	git pull upstream ${branch}
 	Logger logCompletedMsg
 	cd ${baseDir}
@@ -254,7 +254,7 @@ push(){
 	cd ${buildDir}
 	local curBranch=$(GitUtil getCurBranch)
 
-	Logger logProgressMsg pushing-changes-to-origin-branch-${curBranch}
+	Logger logProgressMsg pushing_changes_to_origin_branch_${curBranch}
 
 	git push -f origin ${curBranch}
 
@@ -266,7 +266,7 @@ push(){
 run(){
 	local appServer=${appServer}
 
-	Logger logProgressMsg starting-server
+	Logger logProgressMsg starting_server
 	sleep 5s
 	clear
 

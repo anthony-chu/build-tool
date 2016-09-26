@@ -20,7 +20,7 @@ LoggerUtil(){
 		local time=$(BaseUtil timestamp log)
 
 		echo "[${time}] [ $(_formatLogLevel ${1}) ] $(StringUtil
-			replace $(StringUtil capitalize ${2}) - space)"
+			replace $(StringUtil capitalize ${2}) _ space)"
 	}
 
 	$@
