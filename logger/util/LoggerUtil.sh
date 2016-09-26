@@ -19,7 +19,7 @@ LoggerUtil(){
 	getLogMsg(){
 		local time=$(BaseUtil timestamp log)
 
-		echo "[${time}] [ $(StringUtil toUpperCase ${1}) ] $(StringUtil
+		echo "[${time}] [ $(_formatLogLevel ${1}) ] $(StringUtil
 			replace $(StringUtil capitalize ${2}) - space)"
 	}
 
