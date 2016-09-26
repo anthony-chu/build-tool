@@ -8,6 +8,12 @@ StringUtil(){
 		echo ${str^}
 	}
 
+	length(){
+		str=${@}
+
+		echo ${#str}
+	}
+
 	replace(){
 		local str=${1}
 		local orig=${2}
