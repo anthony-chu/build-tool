@@ -2,7 +2,7 @@ include logger.util.LoggerUtil
 
 Logger(){
 	logCompletedMsg(){
-		logInfoMsg completed.
+		logInfoMsg completed
 	}
 
 	logErrorMsg(){
@@ -14,7 +14,7 @@ Logger(){
 	}
 
 	logProgressMsg(){
-		logInfoMsg ${1}...
+		logInfoMsg ${1}..
 	}
 
 	${@}
