@@ -40,7 +40,7 @@ ArrayUtil(){
 
 		for a in ${array[@]}; do
 			if [[ ${#a} > ${maxLength} ]]; then
-				maxLength=${#a}
+				maxLength=$(StringUtil length ${a})
 			fi
 		done
 
