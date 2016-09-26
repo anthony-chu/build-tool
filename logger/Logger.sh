@@ -14,7 +14,7 @@ Logger(){
 	}
 
 	logProgressMsg(){
-		logInfoMessage ${1}...
+		logInfoMsg ${1}...
 	}
 
 	${@}
