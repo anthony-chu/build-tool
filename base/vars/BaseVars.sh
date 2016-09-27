@@ -26,17 +26,11 @@ BaseVars(){
 	}
 
 	returnBuildDir(){
-		local branch=$(returnBranch $@)
-		local privacy=$(_returnPrivacy $@)
-
-		echo "d:/${privacy}/${branch}-portal"
+		echo "d:/$(_returnPrivacy $@)/$(_returnBranch $@)-portal"
 	}
 
 	returnBundleDir(){
-		local branch=$(returnBranch $@)
-		local privacy=$(_returnPrivacy $@)
-
-		echo "d:/${privacy}/${branch}-bundles"
+		echo "d:/$(_returnPrivacy $@)/$(_returnBranch $@)-bundles"
 	}
 
 	$@
