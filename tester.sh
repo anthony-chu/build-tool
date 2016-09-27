@@ -9,6 +9,7 @@ run-unit-tests(){
 		ArrayUtilTest
 		ArrayValidatorTest
 		BaseComparatorTest
+		LoggerUtilTest
 		StringUtilTest
 		StringValidatorTest
 	)
