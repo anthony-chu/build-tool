@@ -121,10 +121,18 @@ _config(){
 		Logger logProgressMsg increasing_memory_limit
 		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}\+m Xmx2048m
-			${replace} ${appServerDir}/bin/setenv.sh XX:MaxPermSize=${d}\+m Xms1024m
+
+			string1=XX:MaxPermSize=${d}\+m
+			string2=Xmx1024m
+
+			${replace} ${appServerDir}/bin/setenv.sh ${string1} ${string2}
 		elif [[ $(AppServerValidator isWildfly ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}\+m Xmx2048m
-			${replace} ${appServerDir}/bin/standalone.conf MaxMetaspaceSize=${d}\+m MaxMetaspaceSize=1024m
+
+			string1=MaxMetaspaceSize=${d}\+m
+			string2=MaxMetaspaceSize=1024m
+
+			${replace} ${appServerDir}/bin/standalone.conf ${string1} ${string2}
 		fi
 		Logger logCompletedMsg
 
