@@ -14,7 +14,6 @@ package string
 
 append="FileIOUtil append"
 ASValidator="AppServerValidator"
-ASVersion="AppServerVersion"
 C_isEqual="BaseComparator isEqual"
 replace="FileIOUtil replace"
 
@@ -90,7 +89,7 @@ _config(){
 		Logger logProgressMsg building_properties
 
 		local appServer=${appServer}
-		local appServerDir=${bundleDir}/${appServer}-$(${ASVersion}
+		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
 			returnAppServerVersion ${appServer} ${branch})
 
 		cd ${buildDir}/../properties
