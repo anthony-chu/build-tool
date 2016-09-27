@@ -5,6 +5,7 @@ StringUtilTest(){
 	run(){
 		local tests=(
 			capitalize
+			length
 			replace[space]
 			replace
 			returnOption[false]
@@ -18,6 +19,14 @@ StringUtilTest(){
 
 	test.capitalize(){
 		if [[ $(StringUtil capitalize foo) == Foo ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.length(){
+		if [[ $(StringUtil length foo) == 3 ]]; then
 			echo PASS
 		else
 			echo FAIL
