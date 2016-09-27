@@ -33,7 +33,9 @@ CTBuilder(){
 			echo
 		else
 			for b in $(GitUtil listBranches); do
-				if [[ $(${C_isEqual} $(StringUtil replace ${b} remotes\/origin\/) ${1}) ]]; then
+				if [[ $(${C_isEqual} $(StringUtil
+					replace ${b} remotes\/origin\/) ${1}) ]]; then
+
 					Logger logErrorMsg the_branch_${1}_does_not_exist_in_origin
 				else
 					doSwitch=true

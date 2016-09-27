@@ -96,7 +96,9 @@ sf(){
 	elif [[ $(BaseComparator isEqualIgnoreCase ${opt} l) ]]; then
 		localChanges="-local-changes"
 
-		Logger logProgressMsg running_source_formatter_on$(StringUtil replace ${localChanges} - _)
+		Logger logProgressMsg running_source_formatter_on$(StringUtil
+			replace ${localChanges} - _)
+
 		echo
 	fi
 
