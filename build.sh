@@ -99,8 +99,8 @@ _config(){
 		local buildProps="build.anthonychu.properties"
 
 		cd ${buildDir}
-		${replace} ${asProps} app.server.type= app.server.type=${appServer}
-		${replace} ${buildProps} app.server.type= app.server.type=${appServer}
+		${replace} ${asProps} app.server.type=.* app.server.type=${appServer}
+		${replace} ${buildProps} app.server.type=.* app.server.type=${appServer}
 		${append} ${asProps} "app.server.parent.dir=${bundleDir}"
 		${append} ${buildProps} "app.server.parent.dir=${bundleDir}"
 		${append} ${buildProps} "jsp.precompile=on"
