@@ -112,7 +112,8 @@ _config(){
 	appServer(){
 		local appServer=${appServer}
 
-		appServerVersion=$(AppServerVersion returnAppServerVersion ${appServer})
+		appServerVersion=$(AppServerVersion
+			returnAppServerVersion ${appServer} ${branch})
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
