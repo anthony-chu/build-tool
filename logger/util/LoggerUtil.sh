@@ -9,7 +9,8 @@ LoggerUtil(){
 
 		maxLength=$(ArrayUtil returnMaxLength ${validLogLevels[@]})
 
-		while [[ $(BaseComparator isLessThan $(StringUtil length ${logLevel}) ${maxLength}) ]]; do
+		while [[ $(BaseComparator isLessThan $(StringUtil
+			length ${logLevel}) ${maxLength}) ]]; do
 			logLevel+=_
 		done
 
