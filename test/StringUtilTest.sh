@@ -50,10 +50,10 @@ StringUtilTest(){
 	}
 
 	test.returnOption[false](){
-		if [[ $(StringUtil returnOption foo) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(StringUtil returnOption foo) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 

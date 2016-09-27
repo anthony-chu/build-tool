@@ -24,10 +24,10 @@ StringValidatorTest(){
 	}
 
 	test.isAlpha[false](){
-		if [[ $(StringValidator isAlpha 123) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(StringValidator isAlpha 123) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 
@@ -48,10 +48,10 @@ StringValidatorTest(){
 	}
 
 	test.isAlphaNum[false](){
-		if [[ $(StringValidator isAlphaNum abc_) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(StringValidator isAlphaNum abc_) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 
@@ -72,10 +72,10 @@ StringValidatorTest(){
 	}
 
 	test.isSubstring[false](){
-		if [[ $(StringValidator isSubstring foobar this) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(StringValidator isSubstring foobar this) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 
@@ -88,10 +88,10 @@ StringValidatorTest(){
 	}
 
 	test.isNull[false](){
-		if [[ $(StringValidator isNull foo) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(StringValidator isNull foo) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 
@@ -104,10 +104,10 @@ StringValidatorTest(){
 	}
 
 	test.isNum[false](){
-		if [[ $(StringValidator isNum abc) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(StringValidator isNum abc) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 

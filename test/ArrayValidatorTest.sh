@@ -16,10 +16,10 @@ ArrayValidatorTest(){
 	test.hasEntry[false](){
 		local inputArray=(foo foo)
 
-		if [[ $(ArrayValidator hasEntry ${inputArray[@]} bar) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(ArrayValidator hasEntry ${inputArray[@]} bar) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 
@@ -36,10 +36,10 @@ ArrayValidatorTest(){
 	test.hasUniqueEntry[false](){
 		local inputArray=(foo foo bar)
 
-		if [[ $(ArrayValidator hasUniqueEntry ${inputArray[@]} foo) ]]; then
-			echo FAIL
-		else
+		if [[ ! $(ArrayValidator hasUniqueEntry ${inputArray[@]} foo) ]]; then
 			echo PASS
+		else
+			echo FAIL
 		fi
 	}
 
