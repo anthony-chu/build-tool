@@ -51,7 +51,9 @@ AppServerValidator(){
 	}
 
 	isTCServer(){
-		if [[ $(ArrayValidator hasEntry ${@} tcserver) ]] || [[ $(ArrayValidator hasEntry ${@} tc-server) ]]; then
+		if [[ $(ArrayValidator hasEntry ${@} tcserver) ]] || [[ $(ArrayValidator
+		 	hasEntry ${@} tc-server) ]]; then
+
 			echo true
 		else
 			return;
