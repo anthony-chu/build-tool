@@ -22,7 +22,7 @@ BaseUtil(){
 			local port=${1}
 		fi
 
-		if [[ $(netstat -an | grep ${port} | grep LISTENING) == "" ]]; then
+		if [[ $(netstat -an | grep ${port}) == "" ]]; then
 			return;
 		else
 			echo true
