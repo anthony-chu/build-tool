@@ -12,11 +12,6 @@ package app
 package base
 package string
 
-append="FileIOUtil append"
-ASValidator="AppServerValidator"
-C_isEqual="BaseComparator isEqual"
-replace="FileIOUtil replace"
-
 _build_log(){
 	local appServer=${appServer}
 	local clock=$(BaseUtil timestamp clock)
@@ -302,6 +297,11 @@ baseDir=$(BaseVars returnBaseDir)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
+
+append="FileIOUtil append"
+ASValidator="AppServerValidator"
+C_isEqual="BaseComparator isEqual"
+replace="FileIOUtil replace"
 
 BaseUtil setJavaHome ${branch}
 
