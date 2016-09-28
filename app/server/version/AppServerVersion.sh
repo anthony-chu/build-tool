@@ -19,7 +19,7 @@ AppServerVersion(){
 	}
 
 	returnAppServerVersion(){
-		if [[ $# == 0 ]]; then
+		if [[ $(StringValidator isNull ${@}) ]]; then
 			return
 		else
 			local appServer=${1}
