@@ -6,6 +6,7 @@ run-unit-tests(){
 	tests=(
 		AppServerValidatorTest
 		AppServerVersionConstantsTest
+		AppServerVersionTest
 		ArrayUtilTest
 		ArrayValidatorTest
 		BaseComparatorTest
