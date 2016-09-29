@@ -269,7 +269,11 @@ push(){
 run(){
 	local appServer=${appServer}
 
-	Logger logProgressMsg starting_server
+	if [[ $(StringValidator beginsWithVowel ${appServer}) ]]; then
+		n=n
+	fi
+
+	Logger logProgressMsg starting_a_Liferay_bundle_on_a${n}_${appServer}_server
 	sleep 5s
 	clear
 
