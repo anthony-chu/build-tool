@@ -273,7 +273,7 @@ run(){
 		n=n
 	fi
 
-	Logger logProgressMsg starting_a_Liferay_bundle_on_a${n}_${appServer}_server
+	Logger logProgressMsg starting_a${n}_${branch}_Liferay_bundle_on_a${n}_${appServer}_server
 	sleep 5s
 	clear
 
