@@ -6,7 +6,7 @@ TestExecutor(){
 
 		for test in ${tests[@]}; do
 			if [[ $(${group} test.${test}) == FAIL ]]; then
-				echo ${group}_test.${test}
+				echo ${group}#test.${test}
 			fi
 		done
 	}
