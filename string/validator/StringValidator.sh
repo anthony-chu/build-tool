@@ -1,4 +1,13 @@
 StringValidator(){
+	beginsWithVowel(){
+		string=${@}
+
+		case ${string} in
+			a*|e*|i*|o*|u*|A*|E*|I*|O*|U*) echo true;;
+			*) return
+		esac
+	}
+
 	isAlpha(){
 		local str=${@}
 
