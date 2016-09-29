@@ -270,10 +270,10 @@ run(){
 	local appServer=${appServer}
 
 	if [[ $(StringValidator beginsWithVowel ${appServer}) ]]; then
-		n=n
+		appServerSuffix=n
 	fi
 
-	Logger logProgressMsg starting_a${n}_${branch}_Liferay_bundle_on_a${n}_${appServer}_server
+	Logger logProgressMsg starting_a${n}_${branch}_Liferay_bundle_on_a${appServerSuffix}_${appServer}_server
 	sleep 5s
 	clear
 
