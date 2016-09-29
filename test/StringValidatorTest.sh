@@ -3,6 +3,18 @@ include string.validator.stringvalidator
 StringValidatorTest(){
 	run(){
 		local tests=(
+			beginsWithVowel[a]
+			beginsWithVowel[A]
+			beginsWithVowel[e]
+			beginsWithVowel[E]
+			beginsWithVowel[false]
+			beginsWithVowel[i]
+			beginsWithVowel[I]
+			beginsWithVowel[null]
+			beginsWithVowel[o]
+			beginsWithVowel[O]
+			beginsWithVowel[u]
+			beginsWithVowel[U]
 			isAlpha[false]
 			isAlpha[space]
 			isAlpha[true]
@@ -21,6 +33,102 @@ StringValidatorTest(){
 		)
 
 		TestExecutor executeTest StringValidatorTest ${tests[@]}
+	}
+
+	test.beginsWithVowel[a](){
+		if [[ $(StringValidator beginsWithVowel alpha) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[A](){
+		if [[ $(StringValidator beginsWithVowel Alpha) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[e](){
+		if [[ $(StringValidator beginsWithVowel epsilon) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[E](){
+		if [[ $(StringValidator beginsWithVowel Epsilon) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[false](){
+		if [[ ! $(StringValidator beginsWithVowel beta) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[i](){
+		if [[ $(StringValidator beginsWithVowel iota) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[I](){
+		if [[ $(StringValidator beginsWithVowel Iota) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[null](){
+		if [[ ! $(StringValidator beginsWithVowel) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[o](){
+		if [[ $(StringValidator beginsWithVowel omega) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[O](){
+		if [[ $(StringValidator beginsWithVowel Omega) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[u](){
+		if [[ $(StringValidator beginsWithVowel upsilon) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWithVowel[U](){
+		if [[ $(StringValidator beginsWithVowel Upsilon) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
 	}
 
 	test.isAlpha[false](){
