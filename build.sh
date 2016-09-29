@@ -273,7 +273,11 @@ run(){
 		appServerSuffix=n
 	fi
 
-	Logger logProgressMsg starting_a${n}_${branch}_Liferay_bundle_on_a${appServerSuffix}_${appServer}_server
+	if [[ $(StringValidator beginsWithVowel ${branch}) ]]; then
+		branchSuffix=n
+	fi
+
+	Logger logProgressMsg starting_a${branchSuffix}_${branch}_Liferay_bundle_on_a${appServerSuffix}_${appServer}_server
 	sleep 5s
 	clear
 
