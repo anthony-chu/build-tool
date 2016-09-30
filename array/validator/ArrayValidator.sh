@@ -27,7 +27,7 @@ ArrayValidator(){
 
 			for a in ${array[@]}; do
 				if [[ $(BaseComparator isEqual ${a} ${entry}) ]]; then
-					count=$((count+1))
+					((count++))
 				fi
 			done
 
