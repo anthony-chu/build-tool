@@ -1,6 +1,5 @@
 source ${projectDir}.init.sh
 
-include base.comparator.BaseComparator
 include help.message.Helpmessage
 include logger.Logger
 
