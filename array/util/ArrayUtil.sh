@@ -1,3 +1,4 @@
+include base.comparator.BaseComparator
 include string.util.StringUtil
 
 ArrayUtil(){
@@ -45,6 +46,21 @@ ArrayUtil(){
 		done
 
 		echo ${maxLength}
+	}
+
+	strip(){
+		array=(${@})
+		entry=${array[-1]}
+
+		newArray=()
+
+		for arrayEntry in ${array[@]}; do
+			if [[ ! $(BaseComparator isEqual ${entry} ${arrayEntry}) ]]; then
+				newArray+=(${arrayEntry})
+			fi
+		done
+
+		echo ${newArray[@]}
 	}
 
 	$@
