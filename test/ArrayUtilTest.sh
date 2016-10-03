@@ -3,7 +3,13 @@ include test.executor.TestExecutor
 
 ArrayUtilTest(){
 	run(){
-		local tests=(appendArrayEntry convertStringToArray flipArray returnMaxLength)
+		local tests=(
+			appendArrayEntry
+			convertStringToArray
+			flipArray
+			returnMaxLength
+			strip
+		)
 
 		TestExecutor executeTest ArrayUtilTest ${tests[@]}
 	}
@@ -46,6 +52,16 @@ ArrayUtilTest(){
 		local maxLength=6
 
 		if [[ $(ArrayUtil returnMaxLength ${inputArray[@]}) == ${maxLength} ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.strip(){
+		local inputArray=(foo foo bar bar)
+
+		if [[ $(ArrayUtil strip ${inputArray[@]} foo) == "bar bar" ]]; then
 			echo PASS
 		else
 			echo FAIL
