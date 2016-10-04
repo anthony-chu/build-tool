@@ -17,7 +17,7 @@ StringValidator(){
 	isAlphaNum(){
 		local str=${@}
 
-		isNull ${str//[0-9a-zA-Z ]}
+		isNull ${str//[0-9a-zA-Z ]/}
 	}
 
 	isSubstring(){
