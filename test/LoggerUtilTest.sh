@@ -1,4 +1,3 @@
-include base.comparator.BaseComparator
 include logger.util.LoggerUtil
 include test.executor.TestExecutor
 
@@ -13,7 +12,7 @@ LoggerUtilTest(){
 	}
 
 	test._formatLogLevel[error](){
-		if [[ $(BaseComparator isEqual $(LoggerUtil _formatLogLevel error) ERROR) ]]; then
+		if [[ $(LoggerUtil _formatLogLevel error) == ERROR ]]; then
 			echo PASS
 		else
 			echo FAIL
@@ -21,7 +20,7 @@ LoggerUtilTest(){
 	}
 
 	test._formatLogLevel[info](){
-		if [[ $(BaseComparator isEqual $(LoggerUtil _formatLogLevel info) INFO_) ]]; then
+		if [[ $(LoggerUtil _formatLogLevel info) == INFO_ ]]; then
 			echo PASS
 		else
 			echo FAIL
