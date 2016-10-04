@@ -20,8 +20,7 @@ ArrayUtil(){
 	}
 
 	convertStringToArray(){
-		local string=${1}
-		StringUtil replace ${string} , space
+		StringUtil replace ${1} , space
 	}
 
 	flipArray(){
