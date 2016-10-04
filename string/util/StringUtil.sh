@@ -34,7 +34,7 @@ StringUtil(){
 		local isValidOpt=$(StringValidator isOption ${1})
 
 		if [[ ${isValidOpt} ]]; then
-			strip ${opt} -
+			strip ${1} -
 		fi
 	}
 
