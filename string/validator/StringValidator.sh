@@ -48,7 +48,7 @@ StringValidator(){
 	isOption(){
 		local opt=${1}
 
-		if [[ ${opt/-/} =~ [a-zA-Z0-9]+ ]]; then
+		if [[ $(isSubstring ${opt} -) ]] && [[ $(isAlphaNum ${opt//-/}) ]]; then
 			echo true
 		else
 			return
