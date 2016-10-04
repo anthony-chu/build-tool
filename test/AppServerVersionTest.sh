@@ -1,6 +1,6 @@
-include app.server.version.AppServerVersion
-include app.server.version.constants.AppServerVersionConstants
 include test.executor.TestExecutor
+
+package app.server.version
 
 AppServerVersionTest(){
 	run(){
