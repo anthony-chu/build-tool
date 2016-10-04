@@ -1,6 +1,5 @@
 source ${projectDir}.init.sh
 
-include base.comparator.BaseComparator
 include git.util.GitUtil
 include file.io.util.FileIOUtil
 include file.util.FileUtil
