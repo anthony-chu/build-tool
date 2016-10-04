@@ -9,7 +9,7 @@ ArrayUtil(){
 		local placeholder=.
 
 		for a in ${array[@]}; do
-			while [ ${#a} -lt ${maxLength} ]; do
+			while [ $(StringUtil length ${a}) -lt ${maxLength} ]; do
 				a+=${placeholder}
 			done
 
@@ -40,7 +40,7 @@ ArrayUtil(){
 		local maxLength=0
 
 		for a in ${array[@]}; do
-			if [[ ${#a} > ${maxLength} ]]; then
+			if [[ $(StringUtil length ${a}) > ${maxLength} ]]; then
 				maxLength=$(StringUtil length ${a})
 			fi
 		done
