@@ -210,37 +210,6 @@ clean(){
 	_clean_bundle
 }
 
-deploy(){
-	local input=${1}
-
-	cd ${buildDir}/modules
-
-	echo "Module: ${input}"
-
-	Logger logProgressMsg searching_for_the_desired_module
-
-	allModules=($(Finder findByName build.gradle))
-
-	for m in ${allModules[@]}; do
-		if [[ ${m} == *${input}* ]]; then
-			pathToModule=${m/build.gradle/}
-			Logger logCompletedMsg
-			break
-		fi
-	done
-
-	if [[ $(StringValidator isNull ${pathToModule}) ]]; then
-		Logger logErrorMsg a_module_with_that_name_could_not_be_found
-	else
-		Logger logProgressMsg deploying_module
-		cd ${pathToModule}
-		${buildDir}/gradlew clean deploy
-		Logger logCompletedMsg
-	fi
-
-	cd ${baseDir}
-}
-
 pull(){
 	_clean_source
 
