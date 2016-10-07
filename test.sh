@@ -29,7 +29,7 @@ pr(){
 			project=LPS
 		fi
 
-		key=$(StringUtil strip ${title} [a-zA-Z\-])
+		key=$(StringUtil strip ${title} \*-)
 		comment=https://issues.liferay.com/browse/${project}-${key}
 
 		if [[ $# == 1 ]]; then
