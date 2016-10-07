@@ -90,15 +90,15 @@ jira(){
 	local gitinfo="Portal ${branch} GIT ID: $(_longLog)"
 
 	fixed(){
-		echo Fixed on:
+		echo \*Fixed on:\*
 	}
 
 	nlr(){
-		echo No Longer Reproducible on:
+		echo \*No Longer Reproducible on:\*
 	}
 
 	repro(){
-		echo Reproduced on:
+		echo \*Reproduced on:\*
 	}
 
 	_env(){
