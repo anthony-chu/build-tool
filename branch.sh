@@ -33,7 +33,7 @@ current(){
 
 	name=$(GitUtil getCurBranch)
 
-	Logger logInfoMsg current_$(StringUtil strip ${branch} -*)_branch:_${name}
+	Logger logInfoMsg current_${branch}_branch:_${name}
 
 	cd ${baseDir}
 }
