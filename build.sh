@@ -140,26 +140,6 @@ _config(){
 	$@
 }
 
-_disableCTCompile(){
-	Logger logProgressMsg disabling_content_targeting_build_process
-
-	projectDir=${buildDir}/modules/apps/content-targeting
-
-	cd ${projectDir}
-
-	submodulesDir=($(Finder findBySubstring lfrbuild-portal))
-
-	for s in ${submodulesDir[@]}; do
-		rm -rf ${s}
-
-		cd ${projectDir}
-	done
-
-	cd ${baseDir}
-
-	Logger logCompletedMsg
-}
-
 _gitlog(){
 	cd ${buildDir}
 	git log --oneline --pretty=format:%h -1
@@ -185,10 +165,6 @@ build(){
 	_clean_hard ${appServer}
 
 	_clean_source
-
-	if [[ $(${C_isEqual} ${branch} ee-7.0.x) ]]; then
-		_disableCTCompile
-	fi
 
 	cd ${buildDir}
 
