@@ -1,4 +1,12 @@
 BaseUtil(){
+	extendAntOpts(){
+		if [[ ${1} =~ 6. ]]; then
+			echo [$(timestamp log)] [ INFO_ ] Configuring max perm gen size...
+			export ANT_OPTS="${ANT_OPTS} -XX:MaxPermSize=1024m"
+			echo [$(timestamp log)] [ INFO_ ] Done.
+		fi
+	}
+
 	getCurFile(){
 		thisFile=${0//*\//}
 
@@ -33,9 +41,6 @@ BaseUtil(){
 		if [[ ${1} =~ 6. ]]; then
 			echo [$(timestamp log)] [ INFO_ ] Configuring Liferay to use JDK7...
 			export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_80"
-			echo [$(timestamp log)] [ INFO_ ] Done.
-			echo [$(timestamp log)] [ INFO_ ] Configuring max perm gen size...
-			export ANT_OPTS="${ANT_OPTS} -XX:MaxPermSize=1024m"
 			echo [$(timestamp log)] [ INFO_ ] Done.
 		fi
 	}
