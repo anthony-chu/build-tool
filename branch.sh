@@ -1,6 +1,6 @@
 source ${projectDir}.init.sh
 
-include help.message.Helpmessage
+include help.message.HelpMessage
 include logger.Logger
 
 package app
