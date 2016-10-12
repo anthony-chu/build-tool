@@ -279,6 +279,7 @@ ASValidator="AppServerValidator"
 C_isEqual="BaseComparator isEqual"
 replace="FileIOUtil replace"
 
+BaseUtil extendAntOpts ${branch}
 BaseUtil setJavaHome ${branch}
 
 if [[ $(StringValidator isNull ${1}) ]]; then

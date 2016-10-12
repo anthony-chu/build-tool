@@ -174,6 +174,7 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
+BaseUtil extendAntOpts ${branch}
 BaseUtil setJavaHome ${branch}
 
 args=$@
