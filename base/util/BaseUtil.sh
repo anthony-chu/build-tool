@@ -16,7 +16,7 @@ BaseUtil(){
 	}
 
 	portListener(){
-		if [[ $(StringValidator isNull $1) ]]; then
+		if [[ $# == 0 ]]; then
 			exit
 		else
 			local port=${1}
