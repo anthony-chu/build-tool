@@ -1,4 +1,16 @@
 StringValidator(){
+	beginsWith(){
+		char=${1}
+		shift
+		string=${@}
+
+		if [[ ${string} == ${char}* ]]; then
+			echo true
+		else
+			return;
+		fi
+	}
+
 	beginsWithVowel(){
 		string=${@}
 
