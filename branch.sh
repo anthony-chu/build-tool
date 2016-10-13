@@ -207,8 +207,6 @@ rebase(){
 
 		if [[ ${value} > 1 ]]; then
 			isPlural=s
-		else
-			isPlural=""
 		fi
 
 		Logger logProgressMsg rebasing_the_last_${value}_commit${isPlural}
