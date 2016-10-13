@@ -14,10 +14,14 @@ StringValidator(){
 	beginsWithVowel(){
 		string=${@}
 
-		case ${string} in
-			a*|e*|i*|o*|u*|A*|E*|I*|O*|U*) echo true;;
-			*) return
-		esac
+		vowels=(a e i o u A E I O U)
+
+		for vowel in ${vowels[@]}; do
+			if [[ $(beginsWith ${vowel} ${string}) ]]; then
+				echo true
+				break
+			fi
+		done
 	}
 
 	isAlpha(){
