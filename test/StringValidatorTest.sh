@@ -4,6 +4,8 @@ include test.executor.TestExecutor
 StringValidatorTest(){
 	run(){
 		local tests=(
+			beginsWith[false]
+			beginsWith[true]
 			beginsWithVowel[a]
 			beginsWithVowel[A]
 			beginsWithVowel[e]
@@ -34,6 +36,22 @@ StringValidatorTest(){
 		)
 
 		TestExecutor executeTest StringValidatorTest ${tests[@]}
+	}
+
+	test.beginsWith[false](){
+		if [[ ! $(StringValidator beginsWith - a) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
+	}
+
+	test.beginsWith[true](){
+		if [[ $(StringValidator beginsWith - -a) ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
 	}
 
 	test.beginsWithVowel[a](){
