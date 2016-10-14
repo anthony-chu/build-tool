@@ -12,25 +12,6 @@ package app
 package base
 package string
 
-_build_log(){
-	local appServer=${appServer}
-	local clock=$(BaseUtil timestamp clock)
-
-	logStructure=(d logs ${branch} ${appServer} $(BaseUtil timestamp date))
-
-	for l in ${logStructure[@]}; do
-		logDir=${logDir}/${l}
-		if [ ! -e ${logDir} ]; then
-			mkdir ${logDir}
-			cd ${logDir}
-		else
-			cd ${logDir}
-		fi
-	done
-
-	export logFile=${logDir}/${branch}-build-$(_gitlog)-${clock}.log
-}
-
 _clean_hard(){
 	Logger logProgressMsg deleting_all_content_in_the_bundles_directory
 	cd ${bundleDir}
@@ -139,6 +120,38 @@ _config(){
 	}
 
 	$@
+}
+
+_generateBuildLog(){
+	local appServer=${1}
+	local branch=${2}
+
+	logStructure=(d logs ${branch} ${appServer} $(BaseUtil timestamp date))
+
+	for l in ${logStructure[@]}; do
+		logDir=${logDir}/${l}
+		if [ ! -e ${logDir} ]; then
+			mkdir ${logDir}
+			cd ${logDir}
+		else
+			cd ${logDir}
+		fi
+	done
+
+	touch ${logDir}/${branch}-build-$(_gitlog)-${clock}.log
+}
+
+_getLogFile(){
+	local appServer=${1}
+	local branch=${2}
+
+	local logDir=d:/logs/${branch}/${appServer}/$(BaseUtil timestamp date)
+
+	cd ${logDir}
+
+	echo ${logDir}/$(ls -t)
+
+	cd ${baseDir}
 }
 
 _gitlog(){
