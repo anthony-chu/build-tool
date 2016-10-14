@@ -7,7 +7,7 @@ Database(){
 		if [[ $(StringValidator isNull ${2}) ]]; then
 			cmd="create database ${1};"
 		elif [[ $(BaseComparator isEqual ${2} utf8) ]]; then
-			cmd="create database ${1} utf ${2};"
+			cmd="create database ${1} char set ${2};"
 		fi
 
 		DatabaseUtil getMysqlCmd ${cmd}
