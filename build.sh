@@ -152,7 +152,7 @@ _getLogFile(){
 
 	local logs=($(ls -t))
 
-	echo ${logDir}${logs[0]}
+	echo ${logDir}/${logs[0]}
 
 	cd ${baseDir}
 }
