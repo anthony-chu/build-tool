@@ -150,7 +150,9 @@ _getLogFile(){
 
 	cd ${logDir}
 
-	echo ${logDir}/$(ls -t)
+	local logs=($(ls -t))
+
+	echo ${logDir}${logs[0]}
 
 	cd ${baseDir}
 }
