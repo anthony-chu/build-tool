@@ -1,10 +1,10 @@
 source ${projectDir}.init.sh
 
 include database.Database
-include git.util.GitUtil
 include file.io.util.FileIOUtil
 include file.util.FileUtil
 include finder.Finder
+include git.util.GitUtil
 include help.message.HelpMessage
 include logger.Logger
 
