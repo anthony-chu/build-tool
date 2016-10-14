@@ -1,7 +1,7 @@
 BaseUtil(){
 	extendAntOpts(){
 		if [[ ${1} =~ 6. ]]; then
-			echo [$(timestamp log)] [ INFO_ ] Configuring max perm gen size...
+			echo [$(timestamp log)] [ INFO_ ] Configuring ANT_OPTS JVM...
 			export ANT_OPTS="${ANT_OPTS} -XX:MaxPermSize=1024m"
 			echo [$(timestamp log)] [ INFO_ ] Done.
 		fi
