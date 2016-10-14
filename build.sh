@@ -175,7 +175,7 @@ _rebuild_db(){
 build(){
 	local appServer=${appServer}
 
-	_build_log ${appServer}
+	_generateBuildLog ${appServer} ${branch}
 
 	_clean_hard ${appServer}
 
@@ -192,7 +192,7 @@ build(){
 	_config appServer ${appServer}
 
 	Logger logProgressMsg building_portal
-	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
+	ant all >> $(_getLogFile ${appServer} ${branch}) | tail -f --pid=$$ $(_getLogFile ${appServer} ${branch})
 	Logger logCompletedMsg
 }
 
