@@ -125,6 +125,7 @@ _config(){
 _generateBuildLog(){
 	local appServer=${1}
 	local branch=${2}
+	local clock=$(BaseUtil timestamp clock)
 
 	logStructure=(d logs ${branch} ${appServer} $(BaseUtil timestamp date))
 
