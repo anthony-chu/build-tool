@@ -1,5 +1,6 @@
 source ${projectDir}.init.sh
 
+include database.Database
 include git.util.GitUtil
 include file.io.util.FileIOUtil
 include file.util.FileUtil
@@ -150,8 +151,9 @@ _rebuild_db(){
 	local database=lportal$(StringUtil strip ${branch} [-.])
 
 	Logger logProgressMsg rebuilding_database_${database}
-	mysql -e "drop database if exists ${database};
-		create database ${database} char set utf8;"
+
+	Database rebuild ${database} utf8
+
 	Logger logCompletedMsg
 	echo
 	cd ${baseDir}
