@@ -118,7 +118,7 @@ _config(){
 			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}\+m Xmx2048m
 
 			string1=XX:MaxPermSize=${d}\+m
-			string2=Xmx1024m
+			string2=Xms1024m
 
 			${replace} ${appServerDir}/bin/setenv.sh ${string1} ${string2}
 		elif [[ $(AppServerValidator isWildfly ${appServer}) ]]; then
