@@ -195,7 +195,10 @@ build(){
 	_config appServer ${appServer}
 
 	Logger logProgressMsg building_portal
-	ant all >> $(_getLogFile ${appServer} ${branch}) | tail -f --pid=$$ $(_getLogFile ${appServer} ${branch})
+
+	logFile=$(_getLogFile ${appServer} ${branch})
+
+	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
 	Logger logCompletedMsg
 }
 
