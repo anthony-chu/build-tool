@@ -112,7 +112,7 @@ _config(){
 		fi
 		Logger logCompletedMsg
 
-		if [[ $(${C_isEqual} ${branch} ee-6.2.x) ]]; then
+		if [[ $(BaseComparator isEqual ${branch} ee-6.2.x) ]]; then
 			Logger logProgressMsg changing_port_for_${branch}
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
 			Logger logCompletedMsg
@@ -273,7 +273,6 @@ bundleDir=$(BaseVars returnBundleDir $@)
 
 append="FileIOUtil append"
 ASValidator="AppServerValidator"
-C_isEqual="BaseComparator isEqual"
 replace="FileIOUtil replace"
 
 BaseUtil extendAntOpts ${branch}
