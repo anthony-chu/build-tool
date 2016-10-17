@@ -26,6 +26,16 @@ run-unit-tests(){
 			${group} run
 		done
 	}
+
+	failures=($(execute-tests))
+
+	if [[ ${failures} ]]; then
+		for failure in ${failures[@]}; do
+			echo ${failure}
+		done
+	else
+		Logger logInfoMsg ALL_TESTS_PASSED
+	fi
 }
 
 if [[ $(StringValidator isNull ${1}) ]]; then
