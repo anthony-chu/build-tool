@@ -163,16 +163,6 @@ _gitlog(){
 	cd ${baseDir}
 }
 
-_rebuild_db(){
-	local database=lportal$(StringUtil strip ${branch} [-.])
-
-	Logger logProgressMsg rebuilding_database_${database}
-
-	Database rebuild ${database} utf8
-
-	Logger logCompletedMsg
-}
-
 build(){
 	local appServer=${appServer}
 
@@ -201,7 +191,14 @@ build(){
 }
 
 clean(){
-	_rebuild_db
+	local database=lportal$(StringUtil strip ${branch} [-.])
+
+	Logger logProgressMsg rebuilding_database_${database}
+
+	Database rebuild ${database} utf8
+
+	Logger logCompletedMsg
+
 	_clean_bundle
 }
 
