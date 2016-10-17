@@ -29,7 +29,7 @@ The goal of this script is to update and build portal based on two key parameter
 - **Examples of use:**
 	- `$ build.sh pull master` - This will update the current master branch to HEAD; replacing `pull` with `push` will update your remote origin branch to your local HEAD.
 	- `$ build.sh build tomcat master` - This will build a Tomcat bundle using the master branch; replacing `tomcat` with another valid app server will build a bundle using that app server.
-	- `$ build.sh run tomcat master` - This will start up an instance of portal on the master branch using the Tomcat application server; as previously mentioned, replacing `tomcat` with any a subset of valid application servers will start up portal on that application server as well.
+	- `$ build.sh run tomcat master` - This will start up an instance of portal on the master branch using the Tomcat application server; as previously mentioned, replacing `tomcat` with a subset of valid application servers will start up portal on that application server as well.
 
 	<sup>\* Replacing <code>master</code> with another branch will execute the same function on the specified branch.</sup>
 
