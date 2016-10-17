@@ -171,8 +171,6 @@ _rebuild_db(){
 	Database rebuild ${database} utf8
 
 	Logger logCompletedMsg
-	echo
-	cd ${baseDir}
 }
 
 build(){
