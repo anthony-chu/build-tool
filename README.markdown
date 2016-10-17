@@ -8,8 +8,8 @@
 	- [branch.sh](#branchsh)
 	- [test.sh](#testsh)
 3. [Additional Tools](#additional-tools)
-	- [format.sh](#formatsh)
 	- [build-test.sh](#build-testsh)
+	- [format.sh](#formatsh)
 3. [Help!](#help)
 
 ## About
@@ -53,13 +53,13 @@ The goal of this script is to automate automation testing and test-writing tools
 
 When the original three scripts were written, they were written in a monolithic, non-modular convention. However, the need to reuse elements across different scripts led to the modularization of the monolithic scripts through the use of functions. To this end, a new script were added in order to aid in adding new functionality to the main scripts. To learn more about these the new script, continue reading below.
 
-### format.sh
-
-The purpose of this script is to format all bash scripts to match selected formatting standards (more are being added) before they are committed to this repository.
-
 ### build-test.sh
 
 As the number of functions grew, there arose a need to maintain some level of testing across the source scripts. Tester.sh (along with the `Test` directory) were created in order to do just that. You will find in the `Test/` directory `TestExecutor.sh` along with an assortment of unit tests for many of the functions.
+
+### format.sh
+
+The purpose of this script is to format all bash scripts to match selected formatting standards (more are being added) before they are committed to this repository.
 
 ## Help!
 
