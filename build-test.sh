@@ -7,7 +7,9 @@ include string.validator.StringValidator
 package test
 
 run-unit-tests(){
-	tests=(
+
+	execute-tests(){
+		tests=(
 		AppServerValidatorTest
 		AppServerVersionConstantsTest
 		AppServerVersionTest
@@ -18,11 +20,12 @@ run-unit-tests(){
 		LoggerUtilTest
 		StringUtilTest
 		StringValidatorTest
-	)
+		)
 
-	for group in ${tests[@]}; do
-		${group} run
-	done
+		for group in ${tests[@]}; do
+			${group} run
+		done
+	}
 }
 
 if [[ $(StringValidator isNull ${1}) ]]; then
