@@ -2,8 +2,8 @@ source ${projectDir}.init.sh
 
 include base.comparator.BaseComparator
 include logger.Logger
-include string.validator.StringValidator
 
+package string
 package test
 
 run-unit-tests(){
