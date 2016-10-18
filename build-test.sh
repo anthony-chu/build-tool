@@ -10,16 +10,16 @@ run-unit-tests(){
 
 	execute-tests(){
 		tests=(
-		AppServerValidatorTest
-		AppServerVersionConstantsTest
-		AppServerVersionTest
-		ArrayUtilTest
-		ArrayValidatorTest
-		BaseComparatorTest
-		BaseVarsTest
-		LoggerUtilTest
-		StringUtilTest
-		StringValidatorTest
+			AppServerValidatorTest
+			AppServerVersionConstantsTest
+			AppServerVersionTest
+			ArrayUtilTest
+			ArrayValidatorTest
+			BaseComparatorTest
+			BaseVarsTest
+			LoggerUtilTest
+			StringUtilTest
+			StringValidatorTest
 		)
 
 		for group in ${tests[@]}; do
