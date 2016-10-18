@@ -35,7 +35,7 @@ run-unit-tests(){
 			echo ${failure}
 		done
 	else
-		Logger logInfoMsg ALL_TESTS_PASSED
+		Logger logInfoMsg $(StringUtil toUpperCase all_tests_passed)
 	fi
 }
 
