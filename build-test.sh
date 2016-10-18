@@ -30,6 +30,7 @@ run-unit-tests(){
 	failures=($(execute-tests))
 
 	if [[ ${failures} ]]; then
+		Logger logErrorMsg $(StringUtil toUpperCase some_tests_failed)
 		for failure in ${failures[@]}; do
 			echo ${failure}
 		done
