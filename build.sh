@@ -230,15 +230,7 @@ push(){
 run(){
 	local appServer=${appServer}
 
-	if [[ $(StringValidator beginsWithVowel ${appServer}) ]]; then
-		appServerSuffix=n
-	fi
-
-	if [[ $(StringValidator beginsWithVowel ${branch}) ]]; then
-		branchSuffix=n
-	fi
-
-	Logger logProgressMsg starting_a${branchSuffix}_${branch}_Liferay_bundle_on_a${appServerSuffix}_$(StringUtil capitalize ${appServer})_server
+	Logger logProgressMsg starting_${branch}_Liferay_bundle_on_$(StringUtil capitalize ${appServer})_server
 	sleep 5s
 	clear
 
