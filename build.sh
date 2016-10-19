@@ -230,7 +230,7 @@ push(){
 run(){
 	local appServer=$(StringUtil capitalize ${appServer})
 
-	Logger logProgressMsg starting_${branch}_Liferay_bundle_on_${appServer}_server
+	Logger logProgressMsg starting_${branch}_Liferay_bundle_on_${appServer}
 	sleep 5s
 	clear
 
