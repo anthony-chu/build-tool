@@ -38,7 +38,7 @@ StringValidatorTest(){
 		TestExecutor executeTest StringValidatorTest ${tests[@]}
 	}
 
-	test.beginsWith[false](){
+	testBeginsWith[false](){
 		if [[ ! $(StringValidator beginsWith - a) ]]; then
 			echo PASS
 		else
@@ -46,7 +46,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWith[true](){
+	testBeginsWith[true](){
 		if [[ $(StringValidator beginsWith - -a) ]]; then
 			echo PASS
 		else
@@ -54,7 +54,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[a](){
+	testBeginsWithVowel[a](){
 		if [[ $(StringValidator beginsWithVowel alpha) ]]; then
 			echo PASS
 		else
@@ -62,7 +62,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[A](){
+	testBeginsWithVowel[A](){
 		if [[ $(StringValidator beginsWithVowel Alpha) ]]; then
 			echo PASS
 		else
@@ -70,7 +70,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[e](){
+	testBeginsWithVowel[e](){
 		if [[ $(StringValidator beginsWithVowel epsilon) ]]; then
 			echo PASS
 		else
@@ -78,7 +78,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[E](){
+	testBeginsWithVowel[E](){
 		if [[ $(StringValidator beginsWithVowel Epsilon) ]]; then
 			echo PASS
 		else
@@ -86,7 +86,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[false](){
+	testBeginsWithVowel[false](){
 		if [[ ! $(StringValidator beginsWithVowel beta) ]]; then
 			echo PASS
 		else
@@ -94,7 +94,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[i](){
+	testBeginsWithVowel[i](){
 		if [[ $(StringValidator beginsWithVowel iota) ]]; then
 			echo PASS
 		else
@@ -102,7 +102,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[I](){
+	testBeginsWithVowel[I](){
 		if [[ $(StringValidator beginsWithVowel Iota) ]]; then
 			echo PASS
 		else
@@ -110,7 +110,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[null](){
+	testBeginsWithVowel[null](){
 		if [[ ! $(StringValidator beginsWithVowel) ]]; then
 			echo PASS
 		else
@@ -118,7 +118,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[o](){
+	testBeginsWithVowel[o](){
 		if [[ $(StringValidator beginsWithVowel omega) ]]; then
 			echo PASS
 		else
@@ -126,7 +126,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[O](){
+	testBeginsWithVowel[O](){
 		if [[ $(StringValidator beginsWithVowel Omega) ]]; then
 			echo PASS
 		else
@@ -134,7 +134,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[u](){
+	testBeginsWithVowel[u](){
 		if [[ $(StringValidator beginsWithVowel upsilon) ]]; then
 			echo PASS
 		else
@@ -142,7 +142,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.beginsWithVowel[U](){
+	testBeginsWithVowel[U](){
 		if [[ $(StringValidator beginsWithVowel Upsilon) ]]; then
 			echo PASS
 		else
@@ -150,7 +150,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isAlpha[false](){
+	testIsAlpha[false](){
 		if [[ ! $(StringValidator isAlpha 123) ]]; then
 			echo PASS
 		else
@@ -158,7 +158,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isAlpha[space](){
+	testIsAlpha[space](){
 		if [[ $(StringValidator isAlpha abc def) ]]; then
 			echo PASS
 		else
@@ -166,7 +166,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isAlpha[true](){
+	testIsAlpha[true](){
 		if [[ $(StringValidator isAlpha abc) ]]; then
 			echo PASS
 		else
@@ -174,7 +174,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isAlphaNum[false](){
+	testIsAlphaNum[false](){
 		if [[ ! $(StringValidator isAlphaNum abc_) ]]; then
 			echo PASS
 		else
@@ -182,7 +182,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isAlphaNum[space](){
+	testIsAlphaNum[space](){
 		if [[ $(StringValidator isAlphaNum abc 123) ]]; then
 			echo PASS
 		else
@@ -190,7 +190,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isAlphaNum[true](){
+	testIsAlphaNum[true](){
 		if [[ $(StringValidator isAlphaNum abc123) ]]; then
 			echo PASS
 		else
@@ -198,7 +198,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isSubstring[false](){
+	testIsSubstring[false](){
 		if [[ ! $(StringValidator isSubstring foobar this) ]]; then
 			echo PASS
 		else
@@ -206,7 +206,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isSubstring[true](){
+	testIsSubstring[true](){
 		if [[ $(StringValidator isSubstring foobar foo) ]]; then
 			echo PASS
 		else
@@ -214,7 +214,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isNull[false](){
+	testIsNull[false](){
 		if [[ ! $(StringValidator isNull foo) ]]; then
 			echo PASS
 		else
@@ -222,7 +222,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isNull[true](){
+	testIsNull[true](){
 		if [[ $(StringValidator isNull) ]]; then
 			echo PASS
 		else
@@ -230,7 +230,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isNum[false](){
+	testIsNum[false](){
 		if [[ ! $(StringValidator isNum abc) ]]; then
 			echo PASS
 		else
@@ -238,7 +238,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isNum[true](){
+	testIsNum[true](){
 		if [[ $(StringValidator isNum 123) ]]; then
 			echo PASS
 		else
@@ -246,7 +246,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isOption[alpha](){
+	testIsOption[alpha](){
 		if [[ $(StringValidator isOption -foo) ]]; then
 			echo PASS
 		else
@@ -254,7 +254,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isOption[alphaNum](){
+	testIsOption[alphaNum](){
 		if [[ $(StringValidator isOption -foo123) ]]; then
 			echo PASS
 		else
@@ -262,7 +262,7 @@ StringValidatorTest(){
 		fi
 	}
 
-	test.isOption[num](){
+	testIsOption[num](){
 		if [[ $(StringValidator isOption -123) ]]; then
 			echo PASS
 		else

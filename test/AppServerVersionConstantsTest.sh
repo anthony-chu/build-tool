@@ -20,7 +20,7 @@ AppServerVersionConstantsTest(){
 		TestExecutor executeTest AppServerVersionConstantsTest ${tests[@]}
 	}
 
-	test.glassfishVersion(){
+	testGlassfishVersion(){
 		if [[ $(AppServerVersionConstants glassfishVersion) == 3.1.2.2 ]]; then
 			echo PASS
 		else
@@ -28,7 +28,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.jbossVersion(){
+	testJbossVersion(){
 		if [[ $(AppServerVersionConstants jbossVersion) == eap-6.4.0 ]]; then
 			echo PASS
 		else
@@ -36,7 +36,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.jettyVersion(){
+	testJettyVersion(){
 		if [[ $(AppServerVersionConstants jettyVersion) == 8.1.10 ]]; then
 			echo PASS
 		else
@@ -44,7 +44,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.jonasVersion(){
+	testJonasVersion(){
 		if [[ $(AppServerVersionConstants jonasVersion) == 5.2.3 ]]; then
 			echo PASS
 		else
@@ -52,7 +52,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.resinVersion(){
+	testResinVersion(){
 		if [[ $(AppServerVersionConstants resinVersion) == 4.0.44 ]]; then
 			echo PASS
 		else
@@ -60,7 +60,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.tcatVersion(){
+	testTcatVersion(){
 		if [[ $(AppServerVersionConstants tcatVersion) == 7.0.2 ]]; then
 			echo PASS
 		else
@@ -68,7 +68,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.tcserverVersion(){
+	testTcserverVersion(){
 		if [[ $(AppServerVersionConstants tcserverVersion) == 3.1.2 ]]; then
 			echo PASS
 		else
@@ -76,7 +76,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.tomcatVersion(){
+	testTomcatVersion(){
 		if [[ $(AppServerVersionConstants tomcatVersion) == 8.0.32 ]]; then
 			echo PASS
 		else
@@ -84,7 +84,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.weblogicVersion(){
+	testWeblogicVersion(){
 		if [[ $(AppServerVersionConstants weblogicVersion) == 12.2.1 ]]; then
 			echo PASS
 		else
@@ -92,7 +92,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.websphereVersion(){
+	testWebsphereVersion(){
 		if [[ $(AppServerVersionConstants websphereVersion) == 8.5.5.0 ]]; then
 			echo PASS
 		else
@@ -100,7 +100,7 @@ AppServerVersionConstantsTest(){
 		fi
 	}
 
-	test.wildflyVersion(){
+	testWildflyVersion(){
 		if [[ $(AppServerVersionConstants wildflyVersion) == 10.0.0 ]]; then
 			echo PASS
 		else

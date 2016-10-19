@@ -17,7 +17,7 @@ StringUtilTest(){
 		TestExecutor executeTest StringUtilTest ${tests[@]}
 	}
 
-	test.capitalize(){
+	testCapitalize(){
 		if [[ $(StringUtil capitalize foo) == Foo ]]; then
 			echo PASS
 		else
@@ -25,7 +25,7 @@ StringUtilTest(){
 		fi
 	}
 
-	test.length(){
+	testLength(){
 		if [[ $(StringUtil length foo) == 3 ]]; then
 			echo PASS
 		else
@@ -33,7 +33,7 @@ StringUtilTest(){
 		fi
 	}
 
-	test.replace(){
+	testReplace(){
 		if [[ $(StringUtil replace foo-bar - .) == foo.bar ]]; then
 			echo PASS
 		else
@@ -41,7 +41,7 @@ StringUtilTest(){
 		fi
 	}
 
-	test.replace[space](){
+	testReplace[space](){
 		if [[ $(StringUtil replace foo-bar - space) == "foo bar" ]]; then
 			echo PASS
 		else
@@ -49,7 +49,7 @@ StringUtilTest(){
 		fi
 	}
 
-	test.returnOption[false](){
+	testReturnOption[false](){
 		if [[ ! $(StringUtil returnOption foo) ]]; then
 			echo PASS
 		else
@@ -57,7 +57,7 @@ StringUtilTest(){
 		fi
 	}
 
-	test.returnOption[true](){
+	testReturnOption[true](){
 		if [[ $(StringUtil returnOption -foo) == foo ]]; then
 			echo PASS
 		else
@@ -65,7 +65,7 @@ StringUtilTest(){
 		fi
 	}
 
-	test.toLowerCase(){
+	testToLowerCase(){
 		if [[ $(StringUtil toLowerCase FOO) == foo ]]; then
 			echo PASS
 		else
@@ -73,7 +73,7 @@ StringUtilTest(){
 		fi
 	}
 
-	test.toUpperCase(){
+	testToUpperCase(){
 		if [[ $(StringUtil toUpperCase foo) == FOO ]]; then
 			echo PASS
 		else

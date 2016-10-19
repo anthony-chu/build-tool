@@ -33,7 +33,7 @@ AppServerVersionTest(){
 		TestExecutor executeTest AppServerVersionTest ${tests[@]}
 	}
 
-	test._overrideTomcatVersion[6.1.x](){
+	test_overrideTomcatVersion[6.1.x](){
 		if [[ $(AppServerVersion
 			_overrideTomcatVersion 6.1.x) == 7.0.40 ]]; then
 
@@ -43,9 +43,9 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test._overrideTomcatVersion[6.2.x](){
+	test_overrideTomcatVersion[6.2.x](){
 		if [[ $(AppServerVersion
-			_overrideTomcatVersion 6.2.x) == 7.0.62 ]]; then
+			_overrideTomcatVersion 6.2.x) == 7.0.12 ]]; then
 
 			echo PASS
 		else
@@ -53,7 +53,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test._overrideTomcatVersion[ee-6.2.10](){
+	test_overrideTomcatVersion[ee-6.2.10](){
 		if [[ $(AppServerVersion
 		_overrideTomcatVersion ee-6.2.10) == 7.0.42 ]]; then
 
@@ -63,7 +63,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test._overrideTomcatVersion[null](){
+	test_overrideTomcatVersion[null](){
 		if [[ $(AppServerVersion
 			_overrideTomcatVersion) == 8.0.32 ]]; then
 
@@ -73,7 +73,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[glassfish](){
+	testReturnAppServerVersion[glassfish](){
 		if [[ $(AppServerVersion returnAppServerVersion glassfish) == $(
 			AppServerVersionConstants
 				glassfishVersion) ]]; then
@@ -84,7 +84,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[jboss](){
+	testReturnAppServerVersion[jboss](){
 		if [[ $(AppServerVersion returnAppServerVersion jboss) == $(
 			AppServerVersionConstants
 				jbossVersion) ]]; then
@@ -95,7 +95,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[jetty](){
+	testReturnAppServerVersion[jetty](){
 		if [[ $(AppServerVersion returnAppServerVersion jetty) == $(
 			AppServerVersionConstants
 				jettyVersion) ]]; then
@@ -106,7 +106,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[jonas](){
+	testReturnAppServerVersion[jonas](){
 		if [[ $(AppServerVersion returnAppServerVersion jonas) == $(
 			AppServerVersionConstants
 				jonasVersion) ]]; then
@@ -117,7 +117,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[null](){
+	testReturnAppServerVersion[null](){
 		if [[ ! $(AppServerVersion returnAppServerVersion) ]]; then
 			echo PASS
 		else
@@ -125,7 +125,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[resin](){
+	testReturnAppServerVersion[resin](){
 		if [[ $(AppServerVersion returnAppServerVersion resin) == $(
 			AppServerVersionConstants
 				resinVersion) ]]; then
@@ -136,7 +136,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tcat](){
+	testReturnAppServerVersion[tcat](){
 		if [[ $(AppServerVersion returnAppServerVersion tcat) == $(
 			AppServerVersionConstants
 				tcatVersion) ]]; then
@@ -147,7 +147,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tcserver](){
+	testReturnAppServerVersion[tcserver](){
 		if [[ $(AppServerVersion returnAppServerVersion tcserver) == $(
 			AppServerVersionConstants
 				tcserverVersion) ]]; then
@@ -158,7 +158,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,6.1.x](){
+	testReturnAppServerVersion[tomcat,6.1.x](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat 6.1.x) == 7.0.40 ]]; then
 
@@ -168,7 +168,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,6.2.x](){
+	testReturnAppServerVersion[tomcat,6.2.x](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat 6.2.x) == 7.0.62 ]]; then
 
@@ -178,7 +178,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,7.0.x](){
+	testReturnAppServerVersion[tomcat,7.0.x](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat 7.0.x) == $(AppServerVersionConstants
 				tomcatVersion) ]]; then
@@ -189,7 +189,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,ee-6.1.x](){
+	testReturnAppServerVersion[tomcat,ee-6.1.x](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat ee-6.1.x) == 7.0.40 ]]; then
 
@@ -199,7 +199,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,ee-6.2.10](){
+	testReturnAppServerVersion[tomcat,ee-6.2.10](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat ee-6.2.10) == 7.0.42 ]]; then
 
@@ -209,7 +209,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,ee-6.2.x](){
+	testReturnAppServerVersion[tomcat,ee-6.2.x](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat ee-6.2.x) == 7.0.62 ]]; then
 
@@ -219,7 +219,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,ee-7.0.x](){
+	testReturnAppServerVersion[tomcat,ee-7.0.x](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat ee-7.0.x) == $(
 				AppServerVersionConstants
@@ -231,7 +231,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[tomcat,master](){
+	testReturnAppServerVersion[tomcat,master](){
 		if [[ $(AppServerVersion
 			returnAppServerVersion tomcat master) == $(
 				AppServerVersionConstants
@@ -243,7 +243,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[weblogic](){
+	testReturnAppServerVersion[weblogic](){
 		if [[ $(AppServerVersion returnAppServerVersion weblogic) == $(
 			AppServerVersionConstants
 				weblogicVersion) ]]; then
@@ -254,7 +254,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[websphere](){
+	testReturnAppServerVersion[websphere](){
 		if [[ $(AppServerVersion returnAppServerVersion websphere) == $(
 			AppServerVersionConstants
 				websphereVersion) ]]; then
@@ -265,7 +265,7 @@ AppServerVersionTest(){
 		fi
 	}
 
-	test.returnAppServerVersion[wildfly](){
+	testReturnAppServerVersion[wildfly](){
 		if [[ $(AppServerVersion returnAppServerVersion wildfly) == $(
 			AppServerVersionConstants
 				wildflyVersion) ]]; then

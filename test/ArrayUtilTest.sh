@@ -14,7 +14,7 @@ ArrayUtilTest(){
 		TestExecutor executeTest ArrayUtilTest ${tests[@]}
 	}
 
-	test.appendArrayEntry(){
+	testAppendArrayEntry(){
 		local inputArray=(foo foobar)
 		local outputArray=(foo... foobar)
 
@@ -25,7 +25,7 @@ ArrayUtilTest(){
 		fi
 	}
 
-	test.convertStringToArray(){
+	testConvertStringToArray(){
 		local input="foo,bar"
 		local output="foo bar"
 
@@ -36,7 +36,7 @@ ArrayUtilTest(){
 		fi
 	}
 
-	test.flipArray(){
+	testFlipArray(){
 		local inputArray=(foo bar)
 		local outputArray=(bar foo)
 
@@ -47,7 +47,7 @@ ArrayUtilTest(){
 		fi
 	}
 
-	test.returnMaxLength(){
+	testReturnMaxLength(){
 		local inputArray=(foo foobar)
 		local maxLength=6
 
@@ -58,7 +58,7 @@ ArrayUtilTest(){
 		fi
 	}
 
-	test.strip(){
+	testStrip(){
 		local inputArray=(foo foo bar bar)
 
 		if [[ $(ArrayUtil strip ${inputArray[@]} foo) == "bar bar" ]]; then

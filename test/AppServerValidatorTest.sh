@@ -20,7 +20,7 @@ AppServerValidatorTest(){
 		TestExecutor executeTest AppServerValidatorTest ${tests[@]}
 	}
 
-	test.isGlassfish(){
+	testIsGlassfish(){
 		if [[ $(AppServerValidator isGlassfish glassfish) ]]; then
 			echo PASS
 		else
@@ -28,7 +28,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isJboss(){
+	testIsJboss(){
 		if [[ $(AppServerValidator isJboss jboss) ]]; then
 			echo PASS
 		else
@@ -36,7 +36,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isJetty(){
+	testIsJetty(){
 		if [[ $(AppServerValidator isJetty jetty) ]]; then
 			echo PASS
 		else
@@ -44,7 +44,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isJonas(){
+	testIsJonas(){
 		if [[ $(AppServerValidator isJonas jonas) ]]; then
 			echo PASS
 		else
@@ -52,7 +52,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isResin(){
+	testIsResin(){
 		if [[ $(AppServerValidator isResin resin) ]]; then
 			echo PASS
 		else
@@ -60,7 +60,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isTcat(){
+	testIsTcat(){
 		if [[ $(AppServerValidator isTcat tcat) ]]; then
 			echo PASS
 		else
@@ -68,7 +68,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isTCserver(){
+	testIsTCserver(){
 		if [[ $(AppServerValidator isTCServer tc-server) ]]; then
 			echo PASS
 		else
@@ -76,7 +76,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isTomcat(){
+	testIsTomcat(){
 		if [[ $(AppServerValidator isTomcat tomcat) ]]; then
 			echo PASS
 		else
@@ -84,7 +84,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isWeblogic(){
+	testIsWeblogic(){
 		if [[ $(AppServerValidator isWeblogic weblogic) ]]; then
 			echo PASS
 		else
@@ -92,7 +92,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isWebsphere(){
+	testIsWebsphere(){
 		if [[ $(AppServerValidator isWebsphere websphere) ]]; then
 			echo PASS
 		else
@@ -100,7 +100,7 @@ AppServerValidatorTest(){
 		fi
 	}
 
-	test.isWildfly(){
+	testIsWildfly(){
 		if [[ $(AppServerValidator isWildfly wildfly) ]]; then
 			echo PASS
 		else

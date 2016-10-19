@@ -11,7 +11,7 @@ LoggerUtilTest(){
 		TestExecutor executeTest LoggerUtilTest ${tests[@]}
 	}
 
-	test._formatLogLevel[error](){
+	test_formatLogLevel[error](){
 		if [[ $(LoggerUtil _formatLogLevel error) == ERROR ]]; then
 			echo PASS
 		else
@@ -19,7 +19,7 @@ LoggerUtilTest(){
 		fi
 	}
 
-	test._formatLogLevel[info](){
+	test_formatLogLevel[info](){
 		if [[ $(LoggerUtil _formatLogLevel info) == INFO_ ]]; then
 			echo PASS
 		else

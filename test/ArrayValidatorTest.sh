@@ -13,7 +13,7 @@ ArrayValidatorTest(){
 		TestExecutor executeTest ArrayValidatorTest ${tests[@]}
 	}
 
-	test.hasEntry[false](){
+	testHasEntry[false](){
 		local inputArray=(foo foo)
 
 		if [[ ! $(ArrayValidator hasEntry ${inputArray[@]} bar) ]]; then
@@ -23,7 +23,7 @@ ArrayValidatorTest(){
 		fi
 	}
 
-	test.hasEntry[true](){
+	testHasEntry[true](){
 		local inputArray=(foo bar)
 
 		if [[ $(ArrayValidator hasEntry ${inputArray[@]} foo) ]]; then
@@ -33,7 +33,7 @@ ArrayValidatorTest(){
 		fi
 	}
 
-	test.hasUniqueEntry[false](){
+	testHasUniqueEntry[false](){
 		local inputArray=(foo foo bar)
 
 		if [[ ! $(ArrayValidator hasUniqueEntry ${inputArray[@]} foo) ]]; then
@@ -43,7 +43,7 @@ ArrayValidatorTest(){
 		fi
 	}
 
-	test.hasUniqueEntry[true](){
+	testHasUniqueEntry[true](){
 		local inputArray=(foo foo bar)
 
 		if [[ $(ArrayValidator hasUniqueEntry ${inputArray[@]} bar) ]]; then
