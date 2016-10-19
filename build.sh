@@ -215,6 +215,7 @@ pull(){
 
 push(){
 	cd ${buildDir}
+
 	local curBranch=$(GitUtil getCurBranch)
 
 	Logger logProgressMsg pushing_changes_to_origin_branch_${curBranch}
