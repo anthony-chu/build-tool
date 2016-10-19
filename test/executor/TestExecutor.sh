@@ -1,3 +1,5 @@
+include string.util.StringUtil
+
 TestExecutor(){
 	executeTest(){
 		local group=${1}
@@ -5,8 +7,8 @@ TestExecutor(){
 		local tests=(${@})
 
 		for test in ${tests[@]}; do
-			if [[ $(${group} test.${test}) == FAIL ]]; then
-				echo ${group}#test.${test}
+			if [[ $(${group} test$(StringUtil capitalize ${test})) == FAIL ]]; then
+				echo ${group}#test${test}
 			fi
 		done
 	}
