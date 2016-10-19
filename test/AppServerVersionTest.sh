@@ -64,8 +64,7 @@ AppServerVersionTest(){
 	}
 
 	test_overrideTomcatVersion[null](){
-		if [[ $(AppServerVersion
-			_overrideTomcatVersion) == 8.0.32 ]]; then
+		if [[ $(AppServerVersion _overrideTomcatVersion) == 8.0.32 ]]; then
 
 			echo PASS
 		else
@@ -75,8 +74,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[glassfish](){
 		if [[ $(AppServerVersion returnAppServerVersion glassfish) == $(
-			AppServerVersionConstants
-				glassfishVersion) ]]; then
+			AppServerVersionConstants glassfishVersion) ]]; then
 
 			echo PASS
 		else
@@ -86,8 +84,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[jboss](){
 		if [[ $(AppServerVersion returnAppServerVersion jboss) == $(
-			AppServerVersionConstants
-				jbossVersion) ]]; then
+			AppServerVersionConstants jbossVersion) ]]; then
 
 			echo PASS
 		else
@@ -97,8 +94,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[jetty](){
 		if [[ $(AppServerVersion returnAppServerVersion jetty) == $(
-			AppServerVersionConstants
-				jettyVersion) ]]; then
+			AppServerVersionConstants jettyVersion) ]]; then
 
 			echo PASS
 		else
@@ -108,8 +104,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[jonas](){
 		if [[ $(AppServerVersion returnAppServerVersion jonas) == $(
-			AppServerVersionConstants
-				jonasVersion) ]]; then
+			AppServerVersionConstants jonasVersion) ]]; then
 
 			echo PASS
 		else
@@ -127,8 +122,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[resin](){
 		if [[ $(AppServerVersion returnAppServerVersion resin) == $(
-			AppServerVersionConstants
-				resinVersion) ]]; then
+			AppServerVersionConstants resinVersion) ]]; then
 
 			echo PASS
 		else
@@ -138,8 +132,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[tcat](){
 		if [[ $(AppServerVersion returnAppServerVersion tcat) == $(
-			AppServerVersionConstants
-				tcatVersion) ]]; then
+			AppServerVersionConstants tcatVersion) ]]; then
 
 			echo PASS
 		else
@@ -149,8 +142,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[tcserver](){
 		if [[ $(AppServerVersion returnAppServerVersion tcserver) == $(
-			AppServerVersionConstants
-				tcserverVersion) ]]; then
+			AppServerVersionConstants tcserverVersion) ]]; then
 
 			echo PASS
 		else
@@ -179,9 +171,8 @@ AppServerVersionTest(){
 	}
 
 	testReturnAppServerVersion[tomcat,7.0.x](){
-		if [[ $(AppServerVersion
-			returnAppServerVersion tomcat 7.0.x) == $(AppServerVersionConstants
-				tomcatVersion) ]]; then
+		if [[ $(AppServerVersion returnAppServerVersion tomcat 7.0.x) == $(
+			AppServerVersionConstants tomcatVersion) ]]; then
 
 			echo PASS
 		else
@@ -220,10 +211,8 @@ AppServerVersionTest(){
 	}
 
 	testReturnAppServerVersion[tomcat,ee-7.0.x](){
-		if [[ $(AppServerVersion
-			returnAppServerVersion tomcat ee-7.0.x) == $(
-				AppServerVersionConstants
-					tomcatVersion) ]]; then
+		if [[ $(AppServerVersion returnAppServerVersion tomcat ee-7.0.x) == $(
+			AppServerVersionConstants tomcatVersion) ]]; then
 
 			echo PASS
 		else
@@ -232,10 +221,8 @@ AppServerVersionTest(){
 	}
 
 	testReturnAppServerVersion[tomcat,master](){
-		if [[ $(AppServerVersion
-			returnAppServerVersion tomcat master) == $(
-				AppServerVersionConstants
-					tomcatVersion) ]]; then
+		if [[ $(AppServerVersion returnAppServerVersion tomcat master) == $(
+			AppServerVersionConstants tomcatVersion) ]]; then
 
 			echo PASS
 		else
@@ -245,8 +232,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[weblogic](){
 		if [[ $(AppServerVersion returnAppServerVersion weblogic) == $(
-			AppServerVersionConstants
-				weblogicVersion) ]]; then
+			AppServerVersionConstants weblogicVersion) ]]; then
 
 			echo PASS
 		else
@@ -256,8 +242,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[websphere](){
 		if [[ $(AppServerVersion returnAppServerVersion websphere) == $(
-			AppServerVersionConstants
-				websphereVersion) ]]; then
+			AppServerVersionConstants websphereVersion) ]]; then
 
 			echo PASS
 		else
@@ -267,8 +252,7 @@ AppServerVersionTest(){
 
 	testReturnAppServerVersion[wildfly](){
 		if [[ $(AppServerVersion returnAppServerVersion wildfly) == $(
-			AppServerVersionConstants
-				wildflyVersion) ]]; then
+			AppServerVersionConstants wildflyVersion) ]]; then
 
 			echo PASS
 		else
