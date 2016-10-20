@@ -7,10 +7,6 @@ BaseVars(){
 		fi
 	}
 
-	returnBaseDir(){
-		pwd
-	}
-
 	returnBranch(){
 		case $@ in
 			*ee-6.1.x*) echo ee-6.1.x;;
