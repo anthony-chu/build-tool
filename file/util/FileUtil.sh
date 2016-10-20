@@ -1,5 +1,6 @@
 include array.validator.ArrayValidator
-include string.validator.StringValidator
+
+package string
 
 FileUtil(){
 	getContent(){
