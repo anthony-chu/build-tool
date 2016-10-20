@@ -26,7 +26,7 @@ FileUtil(){
 
 	getExtension(){
 		local file=${1}
-		echo ${file/*[.]/}
+		StringUtil strip ${file} *[.]
 	}
 
 	getStatus(){
