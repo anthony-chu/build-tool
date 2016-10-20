@@ -80,9 +80,7 @@ sf(){
 		fi
 	fi
 
-	implDir=${buildDir}/portal-impl
-
-	cd ${implDir}
+	cd ${buildDir}/portal-impl
 
 	opt=$(StringUtil returnOption ${1})
 
