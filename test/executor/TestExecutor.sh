@@ -10,7 +10,7 @@ TestExecutor(){
 			testName=$(StringUtil capitalize ${test})
 
 			if [[ $(${group} test${testName}) == FAIL ]]; then
-				echo ${group}#test${test}
+				echo ${group}#test${testName}
 			fi
 		done
 	}
