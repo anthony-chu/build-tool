@@ -1,6 +1,7 @@
 source ${projectDir}.init.sh
 
 include file.name.util.FileNameUtil
+include file.util.FileUtil
 include git.util.GitUtil
 include help.message.HelpMessage
 include logger.Logger
