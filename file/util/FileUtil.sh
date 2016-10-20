@@ -3,6 +3,21 @@ include array.validator.ArrayValidator
 package string
 
 FileUtil(){
+	construct(){
+		directories=($(StringUtil replace ${1} [/] space))
+
+		for directory in ${directories[@]}; do
+			dir=${dir}/${directory}
+
+			if [ ! -e ${dir} ]; then
+				mkdir ${dir}
+				cd ${dir}
+			else
+				cd ${dir}
+			fi
+		done
+	}
+
 	getContent(){
 		local file=${1}
 
