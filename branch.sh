@@ -16,16 +16,12 @@ _hardReset(){
 	git reset --hard
 
 	git clean -fdqx -e "*.anthonychu.properties"
-
-	cd ${baseDir}
 }
 
 changes(){
 	cd ${buildDir}
 
 	git status
-
-	cd ${baseDir}
 }
 
 current(){
@@ -34,8 +30,6 @@ current(){
 	name=$(GitUtil getCurBranch)
 
 	Logger logInfoMsg current_${branch}_branch:_${name}
-
-	cd ${baseDir}
 }
 
 delete(){
@@ -49,8 +43,6 @@ delete(){
 		git branch -q -D ${1}
 		Logger logInfoMsg deleted_local_branch:_${1}
 	fi
-
-	cd ${baseDir}
 }
 
 dev(){
@@ -67,8 +59,6 @@ dev(){
 
 	git pull git@github.com:${dev}/${repo}.git ${branch}
 
-	cd ${baseDir}
-
 	log
 }
 
@@ -77,8 +67,6 @@ jira(){
 		cd ${buildDir}
 
 		git --git-dir=${buildDir}/.git rev-parse origin/${branch}
-
-		cd ${baseDir}
 	}
 
 	if [[ $(BaseComparator isEqual ${branch} master) ]]; then
@@ -121,8 +109,6 @@ list(){
 	cd ${buildDir}
 
 	GitUtil listBranches
-
-	cd ${baseDir}
 }
 
 log(){
@@ -133,8 +119,6 @@ log(){
 	elif [[ $(StringValidator isOption ${1}) ]]; then
 		git log ${1} --oneline
 	fi
-
-	cd ${baseDir}
 }
 
 new(){
@@ -147,8 +131,6 @@ new(){
 	fi
 
 	current
-
-	cd ${baseDir}
 }
 
 rebase(){
@@ -158,8 +140,6 @@ rebase(){
 		cd ${buildDir}
 
 		git rebase --abort
-
-		cd ${baseDir}
 
 		Logger logCompletedMsg
 	}
@@ -171,8 +151,6 @@ rebase(){
 
 		git commit --amend
 
-		cd ${baseDir}
-
 		Logger logCompletedMsg
 	}
 
@@ -182,8 +160,6 @@ rebase(){
 		cd ${buildDir}
 
 		git rebase --continue
-
-		cd ${baseDir}
 
 		Logger logCompletedMsg
 	}
@@ -196,8 +172,6 @@ rebase(){
 		Logger logProgressMsg rebasing_${curBranch}_against_${branch}_HEAD
 
 		git pull --rebase upstream ${branch}
-
-		cd ${baseDir}
 
 		Logger logCompletedMsg
 	}
@@ -214,8 +188,6 @@ rebase(){
 		cd ${buildDir}
 
 		git rebase -i head~${value}
-
-		cd ${baseDir}
 
 		Logger logCompletedMsg
 	}
@@ -242,16 +214,12 @@ rename(){
 	git branch -q -m ${1}
 
 	Logger logInfoMsg renamed_branch_from_${originalBranch}_to_${1}
-
-	cd ${baseDir}
 }
 
 reset(){
 	cd ${buildDir}
 
 	git reset --hard ${1}
-
-	cd ${baseDir}
 }
 
 switch(){
@@ -266,8 +234,6 @@ switch(){
 	git checkout -q ${b}
 
 	current
-
-	cd ${baseDir}
 }
 
 clear

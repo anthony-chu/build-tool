@@ -22,7 +22,6 @@ pr(){
 
 		cd ${buildDir}
 		title=$(GitUtil getCurBranch)
-		cd ${baseDir}
 
 		if [[ $(StringValidator isSubstring ${title} qa) ]]; then
 			project=LRQA
@@ -52,9 +51,6 @@ pr(){
 			echo "	${newDetailHeading[i]}................${detailText[i]}"
 		done
 
-		echo
-		cd ${buildDir}
-
 		git push -f origin ${title}
 
 		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
@@ -66,8 +62,6 @@ pr(){
 		git checkout ${branch}
 
 		Logger logCompletedMsg
-
-		cd ${baseDir}
 	fi
 }
 
@@ -106,16 +100,12 @@ sf(){
 
 	ant format-source${localChanges}
 	Logger logCompletedMsg
-	echo
-	cd ${baseDir}
 }
 
 validate(){
 	cd ${buildDir}
 
 	ant -f build-test.xml run-poshi-validation $@
-
-	cd ${baseDir}
 }
 
 test(){
@@ -154,8 +144,6 @@ test(){
 		file="\/\/\/$(FileNameUtil getPath ${rawFile})"
 
 		"${chromeDir}/chrome.exe" "file:${file}"
-
-		cd ${baseDir}
 	fi
 }
 

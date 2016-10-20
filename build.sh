@@ -18,7 +18,6 @@ _clean_hard(){
 	rm -rf deploy osgi data logs ${appServer}*
 
 	Logger logCompletedMsg
-	cd ${baseDir}
 }
 
 _clean_bundle(){
@@ -35,15 +34,11 @@ _clean_bundle(){
 	Logger logCompletedMsg
 	echo
 
-	cd ${baseDir}
-
 	Logger logProgressMsg deleting_temp_files
 	cd ${appServerDir}
 	rm -rf temp work
 	Logger logCompletedMsg
 	echo
-
-	cd ${baseDir}
 }
 
 _clean_source(){
@@ -54,8 +49,6 @@ _clean_source(){
 	git reset --hard -q
 
 	git clean -fdqx -e "*.anthonychu.properties"
-
-	cd ${baseDir}
 
 	Logger logCompletedMsg
 }
@@ -145,14 +138,11 @@ _getLogFile(){
 	local logs=($(ls -t))
 
 	echo ${logDir}/${logs[0]}
-
-	cd ${baseDir}
 }
 
 _gitlog(){
 	cd ${buildDir}
 	git log --oneline --pretty=format:%h -1
-	cd ${baseDir}
 }
 
 build(){
@@ -202,7 +192,6 @@ pull(){
 	Logger logProgressMsg pulling_changes_from_upstream
 	git pull upstream ${branch}
 	Logger logCompletedMsg
-	cd ${baseDir}
 }
 
 push(){
@@ -215,8 +204,6 @@ push(){
 	git push -f origin ${curBranch}
 
 	Logger logCompletedMsg
-
-	cd ${baseDir}
 }
 
 run(){
