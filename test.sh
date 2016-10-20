@@ -146,7 +146,6 @@ test(){
 }
 
 clear
-baseDir=$(BaseVars returnBaseDir)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)

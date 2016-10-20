@@ -233,7 +233,6 @@ run(){
 
 clear
 appServer=$(AppServerValidator returnAppServer $@)
-baseDir=$(BaseVars returnBaseDir)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
