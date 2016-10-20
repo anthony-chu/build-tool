@@ -7,7 +7,9 @@ TestExecutor(){
 		local tests=(${@})
 
 		for test in ${tests[@]}; do
-			if [[ $(${group} test$(StringUtil capitalize ${test})) == FAIL ]]; then
+			testName=$(StringUtil capitalize ${test})
+
+			if [[ $(${group} test${testName}) == FAIL ]]; then
 				echo ${group}#test${test}
 			fi
 		done
