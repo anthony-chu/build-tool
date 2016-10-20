@@ -147,10 +147,6 @@ test(){
 		Logger logProgressMsg moving_test_results
 		echo
 
-		cd ${resultDir}
-
-		cd ..
-
 		cp -r ${resultDir} ${testDir}
 
 		cd ${testDir}/${testname}
