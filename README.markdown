@@ -10,7 +10,7 @@
 3. [Additional Tools](#additional-tools)
 	- [build-test.sh](#build-testsh)
 	- [format.sh](#formatsh)
-3. [Help!](#help)
+4. [Help!](#help)
 
 ## About
 
