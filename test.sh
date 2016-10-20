@@ -119,17 +119,9 @@ validate(){
 }
 
 test(){
-	testStructure=("d" "test-results" "${branch}")
+	testDir=/d/test-results/${branch}
 
-	for t in ${testStructure[@]}; do
-		testDir=${testDir}/${t}
-		if [ ! -e ${testDir} ]; then
-			mkdir ${testDir}
-			cd ${testDir}
-		else
-			cd ${testDir}
-		fi
-	done
+	FileUtil construct ${testDir}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg missing_test_name

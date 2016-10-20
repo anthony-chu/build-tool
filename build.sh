@@ -127,17 +127,9 @@ _generateBuildLog(){
 	local branch=${2}
 	local clock=$(BaseUtil timestamp clock)
 
-	logStructure=(d logs ${branch} ${appServer} $(BaseUtil timestamp date))
+	logDir=/d/logs/${branch}/${appServer}/$(BaseUtil timestamp date)
 
-	for l in ${logStructure[@]}; do
-		logDir=${logDir}/${l}
-		if [ ! -e ${logDir} ]; then
-			mkdir ${logDir}
-			cd ${logDir}
-		else
-			cd ${logDir}
-		fi
-	done
+	FileUtil construct ${logDir}
 
 	touch ${logDir}/${branch}-build-$(_gitlog)-${clock}.log
 }
