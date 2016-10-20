@@ -11,6 +11,7 @@
 	- [build-test.sh](#build-testsh)
 	- [format.sh](#formatsh)
 4. [Help!](#help)
+5. [Roadmap](#roadmap)
 
 ## About
 
@@ -67,3 +68,7 @@ Finally, if what you are looking for is beyond the scope of this README document
 
 - **Example:**
 	- `$ build.sh` - This will bring up the help message for the `build.sh` script, listing out all of the available standalone functions.
+
+## Roadmap
+
+- One major feature in the works is the extraction of the core functions (not top-level scripts) in order to make them more accessible and reusable across multiple projects.
