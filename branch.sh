@@ -96,10 +96,11 @@ jira(){
 		echo $(StringUtil capitalize ${1}) ${appServerVersion} + MySQL 5.7
 	}
 
-	case ${1} in
-		fixed|nlr|repro) ${1};;
-		*) ;;
-	esac
+	if [[ $(BaseComparator isEqual ${1} fixed) ]] || [[ $(BaseComparator
+		isEqual ${1} nlr) ]] || [[ $(BaseComparator isEqual ${1} repro) ]]; then
+
+		${1}
+	fi
 
 	echo $(_env ${appServer})
 	echo ${gitinfo}
