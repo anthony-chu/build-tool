@@ -256,10 +256,6 @@ else
 
 		${1}
 
-		if [[ $(BaseComparator isEqual ${1} deploy) ]]; then
-			shift
-		fi
-
 		shift
 	done
 fi
