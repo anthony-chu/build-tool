@@ -69,8 +69,6 @@ sf(){
 	if [[ $(BaseComparator isEqual ${branch} master) ]] || [[ $(StringValidator
 		isSubstring ${branch} 7.0.x) ]]; then
 
-		cd ${buildDir}/tools/
-
 		sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
 
 		if [ ! -e ${buildDir}/${sf_lib} ]; then
