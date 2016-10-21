@@ -126,7 +126,6 @@ test(){
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
 		Logger logProgressMsg moving_test_results
-		echo
 
 		cp -r ${resultDir} ${testDir}
 
