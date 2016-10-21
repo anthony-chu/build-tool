@@ -246,15 +246,11 @@ if [[ $(StringValidator isNull ${1}) ]]; then
   HelpMessage buildHelpMessage
 else
 	until [[ $(StringValidator isNull ${1}) ]]; do
-		if [[ $(BaseComparator isEqual ${1} ${branch}) ]]; then
-			shift
-		fi
+		if [[ ! $(BaseComparator isEqual ${1} ${appServer}) ]] || [[ ! $(
+			BaseComparator isEqual ${1} ${branch}) ]]; then
 
-		if [[ $(BaseComparator isEqual ${1} ${appServer}) ]]; then
-			shift
+			${1}
 		fi
-
-		${1}
 
 		shift
 	done
