@@ -29,14 +29,12 @@ _clean_bundle(){
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 	Logger logProgressMsg deleting_liferay_home_folders
-	cd ${bundleDir}
-	rm -rf data logs
+	rm -rf ${bundleDir}/data ${bundleDir}/logs
 	Logger logCompletedMsg
 	echo
 
 	Logger logProgressMsg deleting_temp_files
-	cd ${appServerDir}
-	rm -rf temp work
+	rm -rf ${appServerDir}/temp ${appServerDir}/work
 	Logger logCompletedMsg
 	echo
 }
