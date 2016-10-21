@@ -141,6 +141,8 @@ test(){
 		file="\/\/\/$(FileNameUtil getPath ${rawFile})"
 
 		"${chromeDir}/chrome.exe" "file:${file}"
+
+		Logger logCompletedMsg
 	fi
 }
 
