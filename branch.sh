@@ -179,7 +179,7 @@ rebase(){
 	start(){
 		local value=$(StringUtil returnOption ${1})
 
-		if [[ ${value} > 1 ]]; then
+		if [[ $(BaseComparator isGreaterThan ${value} 1) ]]; then
 			isPlural=s
 		fi
 
