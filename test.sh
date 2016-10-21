@@ -157,7 +157,7 @@ BaseUtil setJavaHome ${branch}
 args=$@
 
 if [[ $@ =~ ${branch} ]]; then
-	args=$(ArrayUtil strip ${args[@]} ${branch})
+	args=$(ArrayUtil strip ${args} ${branch})
 fi
 
 if [[ $(StringValidator isNull ${args}) ]]; then
