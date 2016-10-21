@@ -48,7 +48,7 @@ pr(){
 		detailText=("${branch}" "${user}" "${comment}" "${title}")
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
-			echo "	${newDetailHeading[i]}................${detailText[i]}"
+			echo -e "\t${newDetailHeading[i]}................${detailText[i]}"
 		done
 
 		git push -f origin ${title}
