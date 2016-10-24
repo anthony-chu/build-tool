@@ -14,8 +14,10 @@ package string
 
 _clean_hard(){
 	Logger logProgressMsg deleting_all_content_in_the_bundles_directory
-	cd ${bundleDir}
-	rm -rf deploy osgi data logs ${appServer}*
+
+	for dir in ${appServer}* data deploy logs osgi; do
+		rm -rf ${dir}
+	done
 
 	Logger logCompletedMsg
 }
@@ -59,13 +61,11 @@ _config(){
 		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
 			returnAppServerVersion ${appServer} ${branch})
 
-		cd ${buildDir}/../properties
-		cp *.anthonychu.properties ${buildDir}
+		cp ${buildDir}/../properties/*.anthonychu.properties -d ${buildDir}
 
-		local asProps="app.server.anthonychu.properties"
-		local buildProps="build.anthonychu.properties"
+		local asProps=${buildDir}/app.server.anthonychu.properties
+		local buildProps=${buildDir}/build.anthonychu.properties
 
-		cd ${buildDir}
 		${replace} ${asProps} app.server.type=.* app.server.type=${appServer}
 		${replace} ${buildProps} app.server.type=.* app.server.type=${appServer}
 		${append} ${asProps} "app.server.parent.dir=${bundleDir}"
@@ -130,10 +130,7 @@ _getLogFile(){
 	local branch=${2}
 
 	local logDir=d:/logs/${branch}/${appServer}/$(BaseUtil timestamp date)
-
-	cd ${logDir}
-
-	local logs=($(ls -t))
+	local logs=($(ls ${logDir} -t))
 
 	echo ${logDir}/${logs[0]}
 }
