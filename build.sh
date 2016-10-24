@@ -83,8 +83,6 @@ _config(){
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-		local d=[[:digit:]]
-
 		Logger logProgressMsg increasing_memory_limit
 		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx1024m Xmx2048m
@@ -94,6 +92,8 @@ _config(){
 
 			${replace} ${appServerDir}/bin/setenv.sh ${string1} ${string2}
 		elif [[ $(AppServerValidator isWildfly ${appServer}) ]]; then
+			d=[[:digit:]]
+
 			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}\+m Xmx2048m
 
 			string1=MaxMetaspaceSize=${d}\+m
