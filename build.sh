@@ -87,9 +87,9 @@ _config(){
 
 		Logger logProgressMsg increasing_memory_limit
 		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
-			${replace} ${appServerDir}/bin/setenv.sh Xmx${d}\+m Xmx2048m
+			${replace} ${appServerDir}/bin/setenv.sh Xmx1024m Xmx2048m
 
-			string1=XX:MaxPermSize=${d}\+m
+			string1=XX:MaxPermSize=384m
 			string2=Xms1024m
 
 			${replace} ${appServerDir}/bin/setenv.sh ${string1} ${string2}
