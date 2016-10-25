@@ -51,6 +51,8 @@ pr(){
 			echo -e "\t${newDetailHeading[i]}................${detailText[i]}"
 		done
 
+		echo
+
 		git push -f origin ${title}
 
 		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
