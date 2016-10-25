@@ -27,6 +27,8 @@ run-unit-tests(){
 		done
 	}
 
+	Logger logProgressMsg running_all_unit_tests
+
 	failures=($(execute-tests))
 
 	if [[ ${failures} ]]; then
