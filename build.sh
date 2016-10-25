@@ -243,9 +243,11 @@ if [[ $(StringValidator isNull ${1}) ]]; then
   HelpMessage buildHelpMessage
 else
 	until [[ $(StringValidator isNull ${1}) ]]; do
-		if [[ ! $(BaseComparator isEqual ${1} ${appServer}) ]] || [[ ! $(
+		if [[ $(BaseComparator isEqual ${1} ${appServer}) ]] || [[ $(
 			BaseComparator isEqual ${1} ${branch}) ]]; then
 
+			shift
+		else
 			${1}
 		fi
 
