@@ -29,9 +29,7 @@ run-unit-tests(){
 
 	Logger logProgressMsg running_all_unit_tests
 
-	failures=($(execute-tests))
-
-	if [[ ${failures} ]]; then
+	if [[ $(execute-tests) ]]; then
 		Logger logErrorMsg $(StringUtil toUpperCase some_tests_failed)
 
 		for failure in ${failures[@]}; do
