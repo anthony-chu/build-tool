@@ -31,14 +31,7 @@ pr(){
 		cd ${buildDir}
 		title=$(GitUtil getCurBranch)
 
-		if [[ $(StringValidator isSubstring ${title} qa) ]]; then
-			project=LRQA
-		elif [[ $(StringValidator isSubstring ${title} lps) ]]; then
-			project=LPS
-		fi
-
-		key=$(StringUtil strip ${title} *-)
-		comment=https://issues.liferay.com/browse/${project}-${key}
+		comment=https://issues.liferay.com/browse/$(_getIssueKey)
 
 		if [[ $# == 1 ]]; then
 			branch=$(StringUtil strip ${title} -[a-zA-Z]\*-[0-9]\*)
