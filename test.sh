@@ -36,14 +36,6 @@ pr(){
 		if [[ $# == 1 ]]; then
 			branch=$(StringUtil strip ${title} -[a-zA-Z]\*-[0-9]\*)
 			user=${1}
-		elif [[ $# == 2 ]]; then
-			branch=${1}
-			user=${2}
-		elif [[ $# == 4 ]]; then
-			user=${2}
-			comment=${3}
-			title=${4}
-			branch=$(StringUtil strip ${title} -[a-zA-Z]\*-[0-9]\*)
 		fi
 
 		detailText=("${branch}" "${user}" "${comment}" "${title}")
