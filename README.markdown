@@ -19,8 +19,7 @@ become a tool that is used daily for the purpose of expediting repetitive tasks
 such as building portal or running a functional test against a portal bundle.
 There are three main scripts - [build.sh](#buildsh), [branch.sh](#branchsh), and
 [test.sh](#testsh) - that do much of the work of automating tasks related to
-building and/or testing portal. Additionally, there is another script -
-[format.sh](#formatsh) - that aids in improving the existing main scripts.
+building and/or testing portal.
 
 ## The Main Toolkit
 
