@@ -61,7 +61,7 @@ pr(){
 }
 
 sf(){
-	if [[ $(BaseComparator isEqual ${branch} master) ]] || [[ $(StringValidator
+	if [[ $(BaseComparator isEqual ${branch} master) || $(StringValidator
 		isSubstring ${branch} 7.0.x) ]]; then
 
 		sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
