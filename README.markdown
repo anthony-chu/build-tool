@@ -51,7 +51,7 @@ The goal of this script is to automate automation testing and test-writing tools
 
 ## Additional Tools
 
-When the original three scripts were written, they were written in a monolithic, non-modular convention. However, the need to reuse elements across different scripts led to the modularization of the monolithic scripts through the use of functions. To this end, a new script were added in order to aid in adding new functionality to the main scripts. To learn more about these the new script, continue reading below.
+When the original three scripts were written, they were written in a monolithic, non-modular convention. However, the need to reuse elements across different scripts led to the modularization of the monolithic scripts through the use of functions. To this end, a new script was added in order to aid in adding new functionality to the main scripts. To learn more about these the new script, continue reading below.
 
 ### build-test.sh
 
