@@ -160,5 +160,3 @@ elif [[ ${args} == *#* ]]; then
 else
 	${args}
 fi
-
-exit
