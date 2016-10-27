@@ -9,7 +9,6 @@
 	- [test.sh](#testsh)
 3. [Additional Tools](#additional-tools)
 	- [build-test.sh](#build-testsh)
-	- [format.sh](#formatsh)
 4. [Help!](#help)
 5. [Roadmap](#roadmap)
 
@@ -57,10 +56,6 @@ When the original three scripts were written, they were written in a monolithic,
 ### build-test.sh
 
 As the number of functions grew, there arose a need to maintain some level of testing across the source scripts. Tester.sh (along with the `Test` directory) were created in order to do just that. You will find in the `Test/` directory `TestExecutor.sh` along with an assortment of unit tests for many of the functions.
-
-### format.sh
-
-The purpose of this script is to format all bash scripts to match selected formatting standards (more are being added) before they are committed to this repository.
 
 ## Help!
 
