@@ -10,6 +10,14 @@ package array
 package base
 package string
 
+_getIssueKey(){
+	cd ${buildDir}
+
+	gitLogOutput=($(git log --oneline --pretty=format:%s -1))
+
+	echo ${gitLogOutput[0]}
+}
+
 pr(){
 	if [[ $(StringValidator isNull ${@}) ]]; then
 		Logger logErrorMsg missing_reviewer
