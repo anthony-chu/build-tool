@@ -29,7 +29,7 @@ AppServerVersionConstantsTest(){
 	}
 
 	testJbossVersion(){
-		if [[ $(AppServerVersionConstants jbossVersion) == eap-6.4.0 ]]; then
+		if [[ $(AppServerVersionConstants jbossVersion) == eap-7.0.0 ]]; then
 			echo PASS
 		else
 			echo FAIL

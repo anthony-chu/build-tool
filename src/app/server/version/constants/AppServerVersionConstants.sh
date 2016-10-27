@@ -4,7 +4,7 @@ AppServerVersionConstants(){
 	}
 
 	jbossVersion(){
-		echo "eap-6.4.0"
+		echo "eap-7.0.0"
 	}
 
 	jettyVersion(){
