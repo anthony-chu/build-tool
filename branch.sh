@@ -63,6 +63,8 @@ dev(){
 }
 
 jira(){
+	appServer=$(AppServerValidator returnAppServer $@)
+
 	_longLog(){
 		cd ${buildDir}
 
@@ -238,7 +240,6 @@ switch(){
 }
 
 clear
-appServer=$(AppServerValidator returnAppServer $@)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
