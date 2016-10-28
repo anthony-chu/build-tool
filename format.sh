@@ -7,6 +7,21 @@ include logger.Logger
 include string.validator.StringValidator
 
 Format(){
+	convertSpacesToTabs(){
+		file=${1}
+
+		originalFile=$(FileUtil getContent ${file})
+
+		sed -i "s/[ ][ ]/\t/g" ${file}
+		sed -i "s/[ ][ ][ ][ ]/\t/g" ${file}
+
+		newFile=$(FileUtil getContent ${file})
+
+		if [[ ${originalFile} == ${newFile} ]]; then
+			Logger logInfoMsg formatted_tabs:_${file}
+		fi
+	}
+
 	verifyNoIncludesInBase(){
 		file=${1}
 
@@ -37,7 +52,7 @@ Format(){
 Logger logProgressMsg validating_formatting_rules
 
 files=($(Finder findBySubstring sh))
-tasks=(verifyNoIncludesInBase verifyNoPackagesInBase)
+tasks=(convertSpacesToTabs verifyNoIncludesInBase verifyNoPackagesInBase)
 
 for file in ${files[@]}; do
 	for task in ${tasks[@]}; do
