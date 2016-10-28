@@ -250,7 +250,7 @@ BaseUtil extendAntOpts ${branch}
 BaseUtil setJavaHome ${branch}
 
 if [[ $(StringValidator isNull ${1}) ]]; then
-  HelpMessage buildHelpMessage
+	HelpMessage buildHelpMessage
 else
 	until [[ $(StringValidator isNull ${1}) ]]; do
 		if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(BaseComparator
