@@ -2,6 +2,7 @@ source ${projectDir}.init.sh
 
 include array.validator.ArrayValidator
 include file.util.FileUtil
+include file.io.util.FileIOUtil
 include finder.Finder
 include logger.Logger
 include string.validator.StringValidator
@@ -10,7 +11,7 @@ Format(){
 	applyUnixLineEndings(){
 		file=${1}
 
-		sed -i "s/\r\n/\n/g" ${file}
+		FileIOUtil replace ${file} "\r\n" "\n"
 	}
 
 	convertSpacesToTabs(){
