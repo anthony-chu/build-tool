@@ -23,8 +23,8 @@ LoggerUtil(){
 		local time=$(BaseUtil timestamp log)
 
 		if [[ $(BaseComparator isEqualIgnoreCase ${1} error) ]]; then
-			message="\033[0;31m$(StringUtil replace $(StringUtil
-				capitalize ${2}) _ space)\033[0m"
+			message=$(colorme red $(StringUtil replace $(StringUtil
+				capitalize ${2}) _ space))
 		else
 			message=$(StringUtil replace $(StringUtil capitalize ${2}) _ space)
 		fi
