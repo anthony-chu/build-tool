@@ -34,6 +34,8 @@ Format(){
 	$@
 }
 
+Logger logProgressMsg validating_formatting_rules
+
 files=($(Finder findBySubstring sh))
 tasks=(verifyNoIncludesInBase verifyNoPackagesInBase)
 
@@ -42,3 +44,5 @@ for file in ${files[@]}; do
 		Format ${task} ${file}
 	done
 done
+
+Logger logCompletedMsg
