@@ -7,6 +7,12 @@ include logger.Logger
 include string.validator.StringValidator
 
 Format(){
+	applyUnixLineEndings(){
+		file=${1}
+
+		sed -i "s/\r\n/\n/g" ${file}
+	}
+
 	convertSpacesToTabs(){
 		file=${1}
 
