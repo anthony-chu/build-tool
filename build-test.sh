@@ -2,6 +2,7 @@ source ${projectDir}.init.sh
 
 include base.comparator.BaseComparator
 include logger.Logger
+include test.util.TestUtil
 
 package string
 package test
@@ -36,7 +37,7 @@ run-unit-tests(){
 			echo ${failure}
 		done
 	else
-		Logger logInfoMsg $(StringUtil toUpperCase all_tests_passed)
+		TestUtil logSuccessMsg $(StringUtil toUpperCase all_tests_passed)
 	fi
 }
 
