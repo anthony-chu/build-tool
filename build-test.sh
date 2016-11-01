@@ -2,7 +2,6 @@ source ${projectDir}.init.sh
 
 include base.comparator.BaseComparator
 include logger.Logger
-include test.util.TestUtil
 
 package string
 package test
