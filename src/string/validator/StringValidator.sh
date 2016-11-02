@@ -64,7 +64,7 @@ StringValidator(){
 	isOption(){
 		local opt=${1}
 
-		if [[ $(beginsWith - ${opt}) ]] && [[ $(isAlphaNum ${opt//-/}) ]]; then
+		if [[ $(beginsWith - ${opt}) && $(isAlphaNum ${opt//-/}) ]]; then
 			echo true
 		else
 			return
