@@ -29,7 +29,7 @@ LoggerUtil(){
 			message=$(StringUtil replace $(StringUtil capitalize ${2}) _ space)
 		fi
 
-		echo -e "[${time}] [ $(_formatLogLevel ${1}) ] ${message}"
+		echo -e "${time} [ $(_formatLogLevel ${1}) ] ${message}"
 	}
 
 	$@

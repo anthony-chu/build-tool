@@ -15,7 +15,7 @@ TestUtil(){
 			message=$(StringUtil replace $(StringUtil capitalize ${2}) _ space)
 		fi
 
-		echo -e "[${time}] [ $(LoggerUtil _formatLogLevel ${1}) ] ${message}"
+		echo -e "${time} [ $(LoggerUtil _formatLogLevel ${1}) ] ${message}"
 	}
 
 	logSuccessMsg(){
