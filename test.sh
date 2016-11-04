@@ -31,7 +31,25 @@ pr(){
 		cd ${buildDir}
 		title=$(GitUtil getCurBranch)
 
-		comment=https://issues.liferay.com/browse/$(_getIssueKey)
+		_issueKey=$(_getIssueKey)
+
+		if [[ $(StringValidator isSubstring _${issueKey} (LRQA|LPS)) ]]; then
+			issueKey=${_issueKey}
+		else
+			titleArray=($(StringUtil replace ${title} - space))
+
+			if [[ $(BaseComparator isEqual ${titleArray[1]} qa) ]]; then
+				_project=LRQA
+			elif [[ $(BaseComparator isEqual ${titleArray[1]} lps) ]]; then
+				_project=LPS
+			fi
+
+			_key=$(StringUtil strip ${title} *-)
+
+			issueKey=$(StringUtil toUpperCase ${_project})-${_key}
+		fi
+
+		comment=https://issues.liferay.com/browse/${issueKey}
 
 		if [[ $# == 1 ]]; then
 			branch=$(StringUtil strip ${title} -[a-zA-Z]\*-[0-9]\*)
