@@ -33,7 +33,9 @@ pr(){
 
 		_issueKey=$(_getIssueKey)
 
-		if [[ $(StringValidator isSubstring _${issueKey} (LRQA|LPS)) ]]; then
+		if [[ $(StringValidator isSubstring ${_issueKey} LRQA) || $(
+			StringValidator isSubstring ${_issueKey} LPS) ]]; then
+
 			issueKey=${_issueKey}
 		else
 			titleArray=($(StringUtil replace ${title} - space))
