@@ -51,7 +51,12 @@ Format(){
 Logger logProgressMsg validating_formatting_rules
 
 files=($(Finder findBySubstring sh))
-tasks=(convertSpacesToTabs verifyNoIncludesInBase verifyNoPackagesInBase)
+tasks=(
+	applyUnixLineEndings
+	convertSpacesToTabs
+	verifyNoIncludesInBase
+	verifyNoPackagesInBase
+)
 
 for file in ${files[@]}; do
 	for task in ${tasks[@]}; do
