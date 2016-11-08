@@ -28,7 +28,8 @@ Format(){
 			isSubstring ${file} Test) ]]; then
 
 			if [[ $(FileUtil getContent ${file}) =~ include ]]; then
-				Logger logErrorMsg "illegal_include:_base_scripts_cannot_include_other_scripts:_${file}"
+				Logger logErrorMsg "illegal_include:_base_scripts_cannot_
+					include_other_scripts:_${file}"
 			fi
 		fi
 	}
@@ -40,7 +41,8 @@ Format(){
 			isSubstring ${file} Test) ]]; then
 
 			if [[ $(FileUtil getContent ${file}) =~ package ]]; then
-				Logger logErrorMsg "illegal_include:_base_scripts_cannot_use_other_script_packages:_${file}"
+				Logger logErrorMsg "illegal_include:_base_scripts_cannot_use_
+					other_script_packages:_${file}"
 			fi
 		fi
 	}
