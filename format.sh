@@ -21,6 +21,22 @@ Format(){
 		sed -i "s/[ ][ ][ ][ ]/\t/g" ${file}
 	}
 
+	enforceLoggerMessageQuotes(){
+		file=${1}
+
+		lineNumber=1
+
+		while read line; do
+			if [[ ${line} =~ Logger && ${line} == *log*Msg* && ${line} != *Completed* ]]; then
+				if [[ ${line} != *\"* ]]; then
+					Logger logErrorMsg "unquoted_logging_message:_${file}:${lineNumber}"
+				fi
+			fi
+
+			lineNumber=$((${lineNumber}+1))
+		done < ${file}
+	}
+
 	verifyNoIncludesInBase(){
 		file=${1}
 
@@ -57,6 +73,7 @@ files=($(Finder findBySubstring sh))
 tasks=(
 	applyUnixLineEndings
 	convertSpacesToTabs
+	enforceLoggerMessageQuotes
 	verifyNoIncludesInBase
 	verifyNoPackagesInBase
 )
