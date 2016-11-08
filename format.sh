@@ -31,7 +31,7 @@ Format(){
 				if [[ ${line} != *\"* ]]; then
 					n=${lineNumber}
 
-					Logger logErrorMsg "unquoted_logging_message:_${file}:${n}"
+					Logger logErrorMsg "unquoted_log_message:_${file}:${n}"
 				fi
 			fi
 
