@@ -29,7 +29,9 @@ Format(){
 		while read line; do
 			if [[ ${line} =~ Logger && ${line} == *log*Msg* && ${line} != *Completed* ]]; then
 				if [[ ${line} != *\"* ]]; then
-					Logger logErrorMsg "unquoted_logging_message:_${file}:${lineNumber}"
+					n=${lineNumber}
+
+					Logger logErrorMsg "unquoted_logging_message:_${file}:${n}"
 				fi
 			fi
 
