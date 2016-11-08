@@ -11,7 +11,7 @@ Database(){
 			cmd="create database ${1} char set ${2};"
 		fi
 
-		Logger logProgressMsg creating_database_${1}
+		Logger logProgressMsg "creating_database_${1}"
 
 		DatabaseUtil getMysqlCmd ${cmd}
 
@@ -21,7 +21,7 @@ Database(){
 	drop(){
 		cmd="drop database if exists ${1};"
 
-		Logger logProgressMsg deleting_database_${1}
+		Logger logProgressMsg "deleting_database_${1}"
 
 		DatabaseUtil getMysqlCmd ${cmd}
 

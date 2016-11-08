@@ -20,9 +20,9 @@ pr(){
 	}
 
 	if [[ $(StringValidator isNull ${@}) ]]; then
-		Logger logErrorMsg missing_reviewer
+		Logger logErrorMsg "missing_reviewer"
 	else
-		Logger logProgressMsg submitting_pull_request
+		Logger logProgressMsg "submitting_pull_request"
 
 		detailHeading=(branch: reviewer: comment: title:)
 
@@ -72,7 +72,7 @@ pr(){
 
 		Logger logCompletedMsg
 
-		Logger logProgressMsg switching_branch_to_${branch}
+		Logger logProgressMsg "switching_branch_to_${branch}"
 
 		git checkout ${branch}
 
@@ -98,12 +98,12 @@ sf(){
 	opt=$(StringUtil returnOption ${1})
 
 	if [[ $(BaseComparator isEqualIgnoreCase ${opt} a) ]]; then
-		Logger logProgressMsg running_source_formatter_on_all_files
+		Logger logProgressMsg "running_source_formatter_on_all_files"
 		echo
 	elif [[ $(BaseComparator isEqualIgnoreCase ${opt} l) ]]; then
 		localChanges="-local-changes"
 
-		Logger logProgressMsg running_source_formatter_on$(StringUtil
+		Logger logProgressMsg "running_source_formatter_on$(StringUtil"
 			replace ${localChanges} - _)
 
 		echo
@@ -125,11 +125,11 @@ test(){
 	FileUtil construct ${testDir}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		Logger logErrorMsg missing_test_name
+		Logger logErrorMsg "missing_test_name"
 	else
 		test=${1}
 		shift
-		Logger logProgressMsg running_test_${test}
+		Logger logProgressMsg "running_test_${test}"
 		echo
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
@@ -138,7 +138,7 @@ test(){
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
-		Logger logProgressMsg moving_test_results
+		Logger logProgressMsg "moving_test_results"
 
 		cp -r ${resultDir} ${testDir}
 

@@ -13,7 +13,7 @@ package base
 package string
 
 _clean_hard(){
-	Logger logProgressMsg deleting_all_content_in_the_bundles_directory
+	Logger logProgressMsg "deleting_all_content_in_the_bundles_directory"
 
 	for dir in ${appServer}* data deploy logs osgi; do
 		rm -rf ${dir}
@@ -30,19 +30,19 @@ _clean_bundle(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	Logger logProgressMsg deleting_liferay_home_folders
+	Logger logProgressMsg "deleting_liferay_home_folders"
 	rm -rf ${bundleDir}/data ${bundleDir}/logs
 	Logger logCompletedMsg
 	echo
 
-	Logger logProgressMsg deleting_temp_files
+	Logger logProgressMsg "deleting_temp_files"
 	rm -rf ${appServerDir}/temp ${appServerDir}/work
 	Logger logCompletedMsg
 	echo
 }
 
 _clean_source(){
-	Logger logProgressMsg resetting_the_source_directory
+	Logger logProgressMsg "resetting_the_source_directory"
 
 	cd ${buildDir}
 
@@ -55,7 +55,7 @@ _clean_source(){
 
 _config(){
 	source(){
-		Logger logProgressMsg building_properties
+		Logger logProgressMsg "building_properties"
 
 		local appServer=${appServer}
 		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
@@ -93,7 +93,7 @@ _config(){
 
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-		Logger logProgressMsg increasing_memory_limit
+		Logger logProgressMsg "increasing_memory_limit"
 		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx1024m Xmx2048m
 
@@ -114,7 +114,7 @@ _config(){
 		Logger logCompletedMsg
 
 		if [[ $(BaseComparator isEqual ${branch} ee-6.2.x) ]]; then
-			Logger logProgressMsg changing_port_for_${branch}
+			Logger logProgressMsg "changing_port_for_${branch}"
 			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
 			Logger logCompletedMsg
 		fi
@@ -167,13 +167,13 @@ build(){
 
 	_config source ${appServer}
 
-	Logger logProgressMsg unzipping_${appServer}
+	Logger logProgressMsg "unzipping_${appServer}"
 	ant -f build-dist.xml unzip-${appServer}
 	Logger logCompletedMsg
 
 	_config appServer ${appServer}
 
-	Logger logProgressMsg building_portal
+	Logger logProgressMsg "building_portal"
 
 	logFile=$(_getLogFile ${appServer} ${branch})
 
@@ -195,7 +195,7 @@ pull(){
 
 	cd ${buildDir}
 
-	Logger logProgressMsg pulling_changes_from_upstream
+	Logger logProgressMsg "pulling_changes_from_upstream"
 	git pull upstream ${branch}
 	Logger logCompletedMsg
 }
@@ -205,7 +205,7 @@ push(){
 
 	local curBranch=$(GitUtil getCurBranch)
 
-	Logger logProgressMsg pushing_changes_to_origin_branch_${curBranch}
+	Logger logProgressMsg "pushing_changes_to_origin_branch_${curBranch}"
 
 	git push -f origin ${curBranch}
 
@@ -215,7 +215,7 @@ push(){
 run(){
 	local _appServer=$(StringUtil capitalize ${appServer})
 
-	Logger logProgressMsg starting_${branch}_Liferay_bundle_on_${_appServer}
+	Logger logProgressMsg "starting_${branch}_Liferay_bundle_on_${_appServer}"
 	sleep 5s
 	clear
 

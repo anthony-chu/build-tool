@@ -29,7 +29,7 @@ current(){
 
 	name=$(GitUtil getCurBranch)
 
-	Logger logInfoMsg current_${branch}_branch:_${name}
+	Logger logInfoMsg "current_${branch}_branch:_${name}"
 }
 
 delete(){
@@ -41,7 +41,7 @@ delete(){
 		GitException curBranchException delete ${1}
 	else
 		git branch -q -D ${1}
-		Logger logInfoMsg deleted_local_branch:_${1}
+		Logger logInfoMsg "deleted_local_branch:_${1}"
 	fi
 }
 
@@ -138,7 +138,7 @@ new(){
 
 rebase(){
 	abort(){
-		Logger logProgressMsg terminating_previous_rebase_process
+		Logger logProgressMsg "terminating_previous_rebase_process"
 
 		cd ${buildDir}
 
@@ -148,7 +148,7 @@ rebase(){
 	}
 
 	amend(){
-		Logger logProgressMsg amending_the_previous_commit
+		Logger logProgressMsg "amending_the_previous_commit"
 
 		cd ${buildDir}
 
@@ -158,7 +158,7 @@ rebase(){
 	}
 
 	cont(){
-		Logger logProgressMsg continuing_the_current_rebase_process
+		Logger logProgressMsg "continuing_the_current_rebase_process"
 
 		cd ${buildDir}
 
@@ -172,7 +172,7 @@ rebase(){
 
 		curBranch=$(GitUtil getCurBranch)
 
-		Logger logProgressMsg rebasing_${curBranch}_against_${branch}_HEAD
+		Logger logProgressMsg "rebasing_${curBranch}_against_${branch}_HEAD"
 
 		git pull --rebase upstream ${branch}
 
@@ -186,7 +186,7 @@ rebase(){
 			isPlural=s
 		fi
 
-		Logger logProgressMsg rebasing_the_last_${value}_commit${isPlural}
+		Logger logProgressMsg "rebasing_the_last_${value}_commit${isPlural}"
 
 		cd ${buildDir}
 
@@ -196,7 +196,7 @@ rebase(){
 	}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		Logger logErrorMsg please_provide_a_valid_rebase_option
+		Logger logErrorMsg "please_provide_a_valid_rebase_option"
 		exit
 	fi
 
@@ -216,7 +216,7 @@ rename(){
 
 	git branch -q -m ${1}
 
-	Logger logInfoMsg renamed_branch_from_${originalBranch}_to_${1}
+	Logger logInfoMsg "renamed_branch_from_${originalBranch}_to_${1}"
 }
 
 reset(){
