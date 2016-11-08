@@ -51,6 +51,7 @@ Format(){
 Logger logProgressMsg validating_formatting_rules
 
 files=($(Finder findBySubstring sh))
+
 tasks=(
 	applyUnixLineEndings
 	convertSpacesToTabs
