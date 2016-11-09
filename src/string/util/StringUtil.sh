@@ -2,6 +2,10 @@ include base.comparator.BaseComparator
 include string.validator.StringValidator
 
 StringUtil(){
+	append(){
+		echo ${1}${2}
+	}
+
 	capitalize(){
 		local str=${@}
 
