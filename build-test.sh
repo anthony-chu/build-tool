@@ -2,9 +2,20 @@ source ${projectDir}.init.sh
 
 include base.comparator.BaseComparator
 include logger.Logger
+include string.util.StringUtil
+include string.validator.StringValidator
+include test.util.TestUtil
 
-package string
-package test
+include test.AppServerValidatorTest
+include test.AppServerVersionConstantsTest
+include test.AppServerVersionTest
+include test.ArrayUtilTest
+include test.ArrayValidatorTest
+include test.BaseComparatorTest
+include test.BaseVarsTest
+include test.LoggerUtilTest
+include test.StringUtilTest
+include test.StringValidatorTest
 
 run-unit-tests(){
 

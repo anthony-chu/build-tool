@@ -1,6 +1,6 @@
 include array.validator.ArrayValidator
-
-package string
+include string.util.StringUtil
+include string.validator.StringValidator
 
 FileUtil(){
 	construct(){

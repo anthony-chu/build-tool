@@ -1,5 +1,11 @@
 source ${projectDir}.init.sh
 
+include app.server.validator.AppServerValidator
+include app.server.version.AppServerVersion
+include app.server.version.constants.AppServerVersionConstants
+include base.comparator.BaseComparator
+include base.util.BaseUtil
+include base.vars.BaseVars
 include database.Database
 include file.io.util.FileIOUtil
 include file.util.FileUtil
@@ -7,10 +13,8 @@ include finder.Finder
 include git.util.GitUtil
 include help.message.HelpMessage
 include logger.Logger
-
-package app
-package base
-package string
+include string.util.StringUtil
+include string.validator.StringValidator
 
 _clean_hard(){
 	Logger logProgressMsg "deleting_all_content_in_the_bundles_directory"

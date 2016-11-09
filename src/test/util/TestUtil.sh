@@ -1,7 +1,7 @@
 include base.util.BaseUtil
 include logger.util.LoggerUtil
-
-package string
+include string.util.StringUtil
+include string.Validator.StringValidator
 
 TestUtil(){
 	_getLogMsg(){
