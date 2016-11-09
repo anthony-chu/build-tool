@@ -13,7 +13,7 @@ LoggerUtil(){
 		while [[ $(BaseComparator isLessThan $(StringUtil
 			length ${logLevel}) ${maxLength}) ]]; do
 
-			logLevel+=_
+			logLevel=$(StringUtil append ${logLevel} _)
 		done
 
 		StringUtil toUpperCase ${logLevel}

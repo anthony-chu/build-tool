@@ -10,7 +10,7 @@ ArrayUtil(){
 
 		for a in ${array[@]}; do
 			while [ $(StringUtil length ${a}) -lt ${maxLength} ]; do
-				a+=${placeholder}
+				a=$(StringUtil append ${a} ${placeholder})
 			done
 
 			newArray+=(${a})
