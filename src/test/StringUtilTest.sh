@@ -4,6 +4,7 @@ include test.executor.TestExecutor
 StringUtilTest(){
 	run(){
 		local tests=(
+			append
 			capitalize
 			length
 			replace[space]
@@ -15,6 +16,14 @@ StringUtilTest(){
 		)
 
 		TestExecutor executeTest StringUtilTest ${tests[@]}
+	}
+
+	testAppend(){
+		if [[ $(StringUtil append foo bar) == foobar ]]; then
+			echo PASS
+		else
+			echo FAIL
+		fi
 	}
 
 	testCapitalize(){
