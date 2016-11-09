@@ -2,19 +2,11 @@ include logger.Logger
 
 GitException(){
 	curBranchException(){
-		action=${1}
-		branch=${2}
-
-		Logger logErrorMsg "cannot_${action}_${branch}_because_${branch}_is_the_
-			current_branch"
+		Logger logErrorMsg "cannot_${1}_${2}_because_${2}_is_the_current_branch"
 	}
 
 	existingBranchException(){
-		action=${1}
-		branch=${2}
-
-		Logger logErrorMsg "cannot_${action}_${branch}_because_${branch}_already
-			_exists"
+		Logger logErrorMsg "cannot_${1}_${2}_because_${2}_already_exists"
 	}
 
 	$@
