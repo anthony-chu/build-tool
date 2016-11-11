@@ -123,9 +123,3 @@ all the functionality provided in that script.
 - **Example:**
 	- `$ build.sh` - This will bring up the help message for the `build.sh`
 	script, listing out all of the available standalone functions.
-
-## Roadmap
-
-- One major feature in the works is the extraction of the core functions (not
-	top-level scripts) in order to make them more accessible and reusable across
-	multiple projects.
