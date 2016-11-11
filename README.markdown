@@ -63,6 +63,12 @@ build.sh to run an instance of portal on the desired app server.
 
 	<sup>\* Replacing <code>master</code> with another branch will execute the
 	same function on the specified branch.</sup>
+	</br>
+	<sup>\*\* The parameters <code>master</code> and <code>tomcat</code> are
+	implicit for <code>build.sh</code> and <code>branch.sh</code>. For <code>
+	test.sh</code>, the parameter <code>master</code> is implicit. This means
+	not passing in a branch and/or app server parameter will cause the script to
+	assume the master branch and tomcat app server.</sup>
 
 ### branch.sh
 
