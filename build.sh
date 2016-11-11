@@ -52,7 +52,7 @@ _clean_source(){
 
 	git reset --hard -q
 
-	git clean -fdqx -e "*.anthonychu.properties"
+	git clean -fdqx -e "*.${HOSTNAME}.properties"
 
 	Logger logCompletedMsg
 }
