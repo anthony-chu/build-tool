@@ -1,16 +1,25 @@
 # build-tool
 
 ### Table of Contents
-1. [About](#about)
+1. [Announcements](#announcements)
+2. [About](#about)
 2. [The Main Toolkit](#the-main-toolkit)
 	- [.init.sh](#initsh)
 	- [build.sh](#buildsh)
 	- [branch.sh](#branchsh)
 	- [test.sh](#testsh)
-3. [Additional Tools](#additional-tools)
+4. [Additional Tools](#additional-tools)
 	- [build-test.sh](#build-testsh)
-4. [Help!](#help)
-5. [Roadmap](#roadmap)
+5. [Help!](#help)
+6. [Roadmap](#roadmap)
+
+## Announcements
+
+I am pleased to announce that the `src` directory is no more and has since been
+replaced by the `bash-toolbox` project, which you can learn more about [here](
+	https://github.com/anthony-chu/bash-toolbox). It is currently being
+maintained by the git-submodule package, which you can learn more about [here](
+	https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 ## About
 
