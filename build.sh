@@ -1,4 +1,4 @@
-source ${projectDir}.init.sh
+source bash-toolbox/init.sh
 
 include app.server.validator.AppServerValidator
 include app.server.version.AppServerVersion

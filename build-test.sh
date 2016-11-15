@@ -1,4 +1,4 @@
-source ${projectDir}.init.sh
+source bash-toolbox/init.sh
 
 include base.comparator.BaseComparator
 include logger.Logger

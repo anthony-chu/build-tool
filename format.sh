@@ -1,4 +1,4 @@
-source ${projectDir}.init.sh
+source bash-toolbox/init.sh
 
 include array.validator.ArrayValidator
 include file.util.FileUtil
