@@ -55,7 +55,9 @@ Format(){
 			fi
 
 			if [[ ${length} > 80 ]]; then
-				Logger logErrorMsg "character_limit_exceeded:_${file}:${lineNumber}"
+					n=${lineNumber}
+
+				Logger logErrorMsg "character_limit_exceeded:_${file}:${n}"
 			fi
 
 			lineNumber=$((${lineNumber}+1))
