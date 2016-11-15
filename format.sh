@@ -47,21 +47,23 @@ Format(){
 
 		lineNumber=1
 
-		while read line; do
-			length=$(StringUtil length ${line})
+		if [[ ! $(BaseComparator isEqual ${file} build.sh) ]]; then
+			while read line; do
+				length=$(StringUtil length ${line})
 
-			if [[ ${length} -le 9 ]]; then
-				length=$(StringUtil append 0 ${length})
-			fi
+				if [[ ${length} -le 9 ]]; then
+					length=$(StringUtil append 0 ${length})
+				fi
 
-			if [[ ${length} > 80 ]]; then
+				if [[ ${length} > 80 ]]; then
 					n=${lineNumber}
 
-				Logger logErrorMsg "character_limit_exceeded:_${file}:${n}"
-			fi
+					Logger logErrorMsg "character_limit_exceeded:_${file}:${n}"
+				fi
 
-			lineNumber=$((${lineNumber}+1))
-		done < ${file}
+				lineNumber=$((${lineNumber}+1))
+			done < ${file}
+		fi
 	}
 
 	verifyNoIncludesInBase(){
