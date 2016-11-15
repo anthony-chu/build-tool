@@ -123,10 +123,10 @@ continue reading below.
 ### build-test.sh
 
 As the number of functions grew, there arose a need to maintain some level of
-testing across the source scripts. `build-test.sh` (along with the `test` directory)
-were created in order to do just that. You will find in the `test/` directory
-`TestExecutor.sh` along with an assortment of unit tests for many of the
-functions.
+testing across the source scripts. `build-test.sh` (along with the `test`
+directory) were created in order to do just that. You will find in the `test/`
+directory `TestExecutor.sh` along with an assortment of unit tests for many of
+the functions.
 
 ## Help!
 
