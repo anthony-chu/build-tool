@@ -56,10 +56,7 @@ pr(){
 
 		comment=https://issues.liferay.com/browse/${issueKey}
 
-		if [[ $# == 1 ]]; then
-			branch=$(StringUtil strip ${title} -[a-zA-Z]\*-[0-9]\*)
-			user=${1}
-		fi
+		user=${1}
 
 		detailText=("${branch}" "${user}" "${comment}" "${title}")
 
