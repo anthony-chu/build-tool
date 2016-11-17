@@ -48,8 +48,13 @@ pr(){
 			fi
 
 			issueKey=${_project}-$(StringUtil strip ${title} *-)
-		else
+		elif [[ $(BaseComparator isEqualIgnoreCase $(_getIssueKey) lps)) || $(
+				BaseComparator isEqualIgnoreCase $(_getIssueKey) lrqa) ]]; then
+
 			issueKey=$(_getIssueKey)
+		else
+			Logger logErrorMsg "invalid_branch_name_and/or_commit_message"
+			exit
 		fi
 
 		comment=https://issues.liferay.com/browse/${issueKey}
