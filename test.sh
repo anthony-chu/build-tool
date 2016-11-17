@@ -137,7 +137,7 @@ test(){
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
 
-		testname=$(StringUtil replace ${test} [#] _)
+		testname=$(StringUtil replace ${test} [\#] _)
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
@@ -178,7 +178,7 @@ fi
 
 if [[ $(StringValidator isNull ${args}) ]]; then
 	HelpMessage testHelpMessage
-elif [[ ${args} == *#* ]]; then
+elif [[ ${args} == *\#* ]]; then
 	test ${args}
 else
 	${args}
