@@ -36,11 +36,9 @@ pr(){
 
 		_issueKey=$(_getIssueKey)
 
-		if [[ $(StringValidator isSubstring ${_issueKey} LRQA) || $(
-			StringValidator isSubstring ${_issueKey} LPS) ]]; then
+		if [[ $(StringValidator isSubstring ${title} qa) || $(StringValidator
+			isSubstring ${title} lps) ]]; then
 
-			issueKey=${_issueKey}
-		else
 			titleArray=($(StringUtil replace ${title} - space))
 
 			if [[ $(BaseComparator isEqual ${titleArray[1]} qa) ]]; then
@@ -49,9 +47,9 @@ pr(){
 				_project=LPS
 			fi
 
-			_key=$(StringUtil strip ${title} *-)
-
-			issueKey=$(StringUtil toUpperCase ${_project})-${_key}
+			issueKey=${_project}-$(StringUtil strip ${title} *-)
+		else
+			issueKey=$(_getIssueKey)
 		fi
 
 		comment=https://issues.liferay.com/browse/${issueKey}
