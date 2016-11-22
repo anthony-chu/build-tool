@@ -48,8 +48,8 @@ pr(){
 			fi
 
 			issueKey=${_project}-$(StringUtil strip ${title} *-)
-		elif [[ $(BaseComparator isEqualIgnoreCase $(_getIssueKey) lps) || $(
-				BaseComparator isEqualIgnoreCase $(_getIssueKey) lrqa) ]]; then
+		elif [[ $(StringValidator isSubstring $(_getIssueKey) LPS) || $(
+				StringValidator isSubstring $(_getIssueKey) LRQA) ]]; then
 
 			issueKey=$(_getIssueKey)
 		else
