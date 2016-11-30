@@ -23,6 +23,24 @@ Format(){
 		sed -i "s/[ ][ ][ ][ ]/\t/g" ${file}
 	}
 
+	enforceBashToolboxLocalVariables(){
+		file=${1}
+
+		if [[ $(StringValidator isSubstring ${file} bash-toolbox) ]]; then
+			n=1
+
+			while read line; do
+				if [[ ${line} =~ [a-zA-Z]+= && ${line} != export* && ${line} != *for* && ${line} != local* ]]; then
+					f=${file}
+
+					Logger logErrorMsg "set_variable_scope_to_local:_${f}:${n}"
+				fi
+
+				n=$((${n}+1))
+			done < ${file}
+		fi
+	}
+
 	enforceLoggerMessageQuotes(){
 		file=${1}
 
@@ -88,6 +106,7 @@ files=($(Finder findBySubstring sh))
 tasks=(
 	applyUnixLineEndings
 	convertSpacesToTabs
+	enforceBashToolboxLocalVariables
 	enforceLoggerMessageQuotes
 	verifyCharacterLimitPerLine
 	verifyNoIncludesInBase
