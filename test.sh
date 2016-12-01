@@ -61,7 +61,7 @@ pr(){
 
 		user=${1}
 
-		detailText=("${branch}" "${user}" "${comment}" "${title}")
+		detailText=(${branch} ${user} "${comment}" "${title}")
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
 			echo -e "\t${newDetailHeading[i]}................${detailText[i]}"
