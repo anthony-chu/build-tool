@@ -6,6 +6,7 @@ include file.util.FileUtil
 include file.io.util.FileIOUtil
 include finder.Finder
 include logger.Logger
+include math.util.MathUtil
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -36,7 +37,7 @@ Format(){
 					Logger logErrorMsg "set_variable_scope_to_local:_${f}:${n}"
 				fi
 
-				n=$((${n}+1))
+				n=$(MathUtil increment ${n})
 			done < ${file}
 		fi
 	}
@@ -56,7 +57,7 @@ Format(){
 				fi
 			fi
 
-			lineNumber=$((${lineNumber}+1))
+			lineNumber=$(MathUtil increment ${lineNumber})
 		done < ${file}
 	}
 
@@ -79,7 +80,7 @@ Format(){
 					Logger logErrorMsg "character_limit_exceeded:_${file}:${n}"
 				fi
 
-				lineNumber=$((${lineNumber}+1))
+				lineNumber=$(MathUtil increment ${lineNumber})
 			done < ${file}
 		fi
 	}
