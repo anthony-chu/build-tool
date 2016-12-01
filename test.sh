@@ -61,7 +61,7 @@ pr(){
 
 		user=${1}
 
-		detailText=(${branch} ${user} "${comment}" "${title}")
+		detailText=(${branch} ${user} "${comment}" "${issueKey} | ${branch}")
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
 			echo -e "\t${newDetailHeading[i]}................${detailText[i]}"
@@ -71,7 +71,7 @@ pr(){
 
 		git push -f origin ${title}
 
-		BaseUtil gitpr -b ${branch} -u ${user} submit ${comment} ${title}
+		BaseUtil gitpr submit --update-branch=${branch} "${comment}" "${issueKey} | ${branch}" -u ${user}
 
 		Logger logCompletedMsg
 
