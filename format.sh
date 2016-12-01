@@ -73,7 +73,7 @@ Format(){
 					length=$(StringUtil append 0 ${length})
 				fi
 
-				if [[ ${length} > 80 ]]; then
+				if [[ ${length} > 80	&& ${line} != *gitpr* ]]; then
 					n=${lineNumber}
 
 					Logger logErrorMsg "character_limit_exceeded:_${file}:${n}"
