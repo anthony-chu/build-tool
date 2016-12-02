@@ -14,6 +14,7 @@ include test.ArrayValidatorTest
 include test.BaseComparatorTest
 include test.BaseVarsTest
 include test.LoggerUtilTest
+include test.MathUtilTest
 include test.StringUtilTest
 include test.StringValidatorTest
 
@@ -29,6 +30,7 @@ run-unit-tests(){
 			BaseComparatorTest
 			BaseVarsTest
 			LoggerUtilTest
+			MathUtilTest
 			StringUtilTest
 			StringValidatorTest
 		)
