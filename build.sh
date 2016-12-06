@@ -53,7 +53,9 @@ _clean_source(){
 
 	git reset --hard -q
 
-	if [[ $(MathUtil isEven $(BaseUtil getDate -d)) ]]; then
+	if [[ $(MathUtil isEven $(BaseUtil getDate -d)) || $(
+		BaseComparator isEqual ${1} true) ]] ; then
+
 		git clean -fdqx -e "*.${HOSTNAME}.properties"
 	fi
 
@@ -168,7 +170,14 @@ build(){
 
 	_clean_hard ${appServer}
 
-	_clean_source
+	if [[ $(StringValidator isOption ${1}) ]]; then
+		if [[ $(StringUtil returnOption ${1}) == c ]]; then
+
+			doClean=true
+		fi
+	fi
+
+	_clean_source ${doClean}
 
 	cd ${buildDir}
 
