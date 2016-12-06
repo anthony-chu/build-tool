@@ -1,12 +1,18 @@
 source bash-toolbox/init.sh
 
 include array.validator.ArrayValidator
+
 include base.comparator.BaseComparator
+
 include file.util.FileUtil
 include file.io.util.FileIOUtil
+
 include finder.Finder
+
 include logger.Logger
+
 include math.util.MathUtil
+
 include string.util.StringUtil
 include string.validator.StringValidator
 

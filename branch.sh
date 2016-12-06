@@ -3,13 +3,19 @@ source bash-toolbox/init.sh
 include app.server.validator.AppServerValidator
 include app.server.version.AppServerVersion
 include app.server.version.constants.AppServerVersionConstants
+
 include base.comparator.BaseComparator
 include base.util.BaseUtil
+
 include base.vars.BaseVars
+
 include git.exception.GitException
 include git.util.GitUtil
+
 include help.message.HelpMessage
+
 include logger.Logger
+
 include string.util.StringUtil
 include string.validator.StringValidator
 

@@ -1,10 +1,11 @@
 source bash-toolbox/init.sh
 
 include base.comparator.BaseComparator
+
 include logger.Logger
+
 include string.util.StringUtil
 include string.validator.StringValidator
-include test.util.TestUtil
 
 include test.AppServerValidatorTest
 include test.AppServerVersionConstantsTest
@@ -17,6 +18,8 @@ include test.LoggerUtilTest
 include test.MathUtilTest
 include test.StringUtilTest
 include test.StringValidatorTest
+
+include test.util.TestUtil
 
 run-unit-tests(){
 
