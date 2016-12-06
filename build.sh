@@ -13,6 +13,7 @@ include finder.Finder
 include git.util.GitUtil
 include help.message.HelpMessage
 include logger.Logger
+include math.util.MathUtil
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -52,7 +53,9 @@ _clean_source(){
 
 	git reset --hard -q
 
-	git clean -fdqx -e "*.${HOSTNAME}.properties"
+	if [[ $(MathUtil isDivisible $(BaseUtil getDate -d) 2) ]]; then
+		git clean -fdqx -e "*.${HOSTNAME}.properties"
+	fi
 
 	Logger logCompletedMsg
 }
