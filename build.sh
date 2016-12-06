@@ -53,7 +53,7 @@ _clean_source(){
 
 	git reset --hard -q
 
-	if [[ $(MathUtil isDivisible $(BaseUtil getDate -d) 2) ]]; then
+	if [[ $(MathUtil isEven $(BaseUtil getDate -d)) ]]; then
 		git clean -fdqx -e "*.${HOSTNAME}.properties"
 	fi
 
