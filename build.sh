@@ -87,16 +87,6 @@ _config(){
 		${replace} ${asProps} app.server.type=.* app.server.type=${appServer}
 		${replace} ${buildProps} app.server.type=.* app.server.type=${appServer}
 		${append} ${asProps} "app.server.parent.dir=${bundleDir}"
-
-		if [[ $(AppServerValidator isJboss ${appServer}) ]]; then
-			local asv=$(StringUtil strip $(AppServerVersion
-				returnAppServerVersion ${appServer}) *-)
-
-			${append} ${asProps} app.server.jboss.version=${asv}
-			${append} ${asProps} app.server.jboss.zip.name=jboss-eap-\${app.server.jboss.version}.zip
-			${append} ${asProps} app.server.jboss.zip.url=http://www.jboss.org/download-manager/file/\${app.server.jboss.zip.name}
-		fi
-
 		${append} ${buildProps} "app.server.parent.dir=${bundleDir}"
 		${append} ${buildProps} "jsp.precompile=on"
 
