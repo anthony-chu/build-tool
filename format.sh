@@ -2,6 +2,8 @@ source bash-toolbox/init.sh
 
 include finder.Finder
 
+include formatter.Formatter
+
 include logger.Logger
 
 Logger logProgressMsg "validating_formatting_rules"
