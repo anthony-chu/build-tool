@@ -6,23 +6,27 @@ include formatter.Formatter
 
 include logger.Logger
 
-Logger logProgressMsg "validating_formatting_rules"
+main(){
+	Logger logProgressMsg "validating_formatting_rules"
 
-files=($(Finder findBySubstring sh))
+	files=($(Finder findBySubstring sh))
 
-tasks=(
-	applyUnixLineEndings
-	convertSpacesToTabs
-	enforceBashToolboxLocalVariables
-	enforceLoggerMessageQuotes
-	verifyCharacterLimitPerLine
-	verifyNoIncludesInBase
-)
+	tasks=(
+		applyUnixLineEndings
+		convertSpacesToTabs
+		enforceBashToolboxLocalVariables
+		enforceLoggerMessageQuotes
+		verifyCharacterLimitPerLine
+		verifyNoIncludesInBase
+	)
 
-for file in ${files[@]}; do
-	for task in ${tasks[@]}; do
-		Format ${task} ${file}
+	for file in ${files[@]}; do
+		for task in ${tasks[@]}; do
+			Formatter ${task} ${file}
+		done
 	done
-done
 
-Logger logCompletedMsg
+	Logger logCompletedMsg
+}
+
+main
