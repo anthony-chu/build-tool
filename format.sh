@@ -41,7 +41,16 @@ Format(){
 					if [[ ${line} != *for* && ${line} != local* ]]; then
 						f=${file}
 
-					Logger logErrorMsg "set_variable_scope_to_local:_${f}:${n}"
+						local _message=(set_variable_scope_to_local_ ${f}:${n})
+
+						for _m in ${_message[@]}; do
+							local message=$(StringUtil append ${message} ${_m})
+						done
+
+						Logger logErrorMsg "${message}"
+
+						unset message
+					fi
 				fi
 
 				n=$(MathUtil increment ${n})
