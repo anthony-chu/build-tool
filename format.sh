@@ -37,8 +37,9 @@ Format(){
 			n=1
 
 			while read line; do
-				if [[ ${line} =~ [a-zA-Z]+= && ${line} != export* && ${line} != *for* && ${line} != local* ]]; then
-					f=${file}
+				if [[ ${line} =~ [a-zA-Z]+= && ${line} != export* ]]; then
+					if [[ ${line} != *for* && ${line} != local* ]]; then
+						f=${file}
 
 					Logger logErrorMsg "set_variable_scope_to_local:_${f}:${n}"
 				fi
