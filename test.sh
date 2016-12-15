@@ -109,7 +109,7 @@ sf(){
 	if [[ $(BaseComparator isEqualIgnoreCase ${opt} c) ]]; then
 		option="-current-branch"
 	else
-		Logger logProgressMsg "running_source_formatter_on_all_changes"
+		option="all_changes"
 	fi
 
 	ant format-source${option}
