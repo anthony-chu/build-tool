@@ -108,14 +108,6 @@ sf(){
 
 	if [[ $(BaseComparator isEqualIgnoreCase ${opt} c) ]]; then
 		option="-current-branch"
-
-		Logger logProgressMsg "running_source-formatter_on_$(StringUtil
-			replace ${option} - _)"
-	elif [[ $(BaseComparator isEqualIgnoreCase ${opt} l) ]]; then
-		option="-local-changes"
-
-		Logger logProgressMsg "running_source_formatter_on$(StringUtil
-			replace ${option} - _)"
 	else
 		Logger logProgressMsg "running_source_formatter_on_all_changes"
 	fi
