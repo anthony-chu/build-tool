@@ -259,11 +259,11 @@ bundleDir=$(BaseVars returnBundleDir $@)
 if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
 else
-	CommandValidator validateCommand ${0} ${1}
-
 	if [[ ${1} == ${branch} ]]; then
 		shift
 	fi
+
+	CommandValidator validateCommand ${0} ${1}
 
 	$@
 fi

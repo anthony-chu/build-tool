@@ -270,8 +270,6 @@ BaseUtil setJavaHome ${branch}
 if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage buildHelpMessage
 else
-	CommandValidator validateCommand ${0} ${1}
-
 	until [[ $(StringValidator isNull ${1}) ]]; do
 		if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(
 			BaseComparator isEqual ${1} ${branch}) || $(
@@ -279,6 +277,8 @@ else
 
 			shift
 		else
+			CommandValidator validateCommand ${0} ${1}
+
 			${1}
 		fi
 
