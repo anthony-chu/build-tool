@@ -6,7 +6,6 @@ include app.server.version.constants.AppServerVersionConstants
 
 include base.comparator.BaseComparator
 include base.util.BaseUtil
-
 include base.vars.BaseVars
 
 include git.exception.GitException
