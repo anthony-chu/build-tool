@@ -96,9 +96,14 @@ sf(){
 		sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
 
 		if [ ! -e ${buildDir}/${sf_lib} ]; then
+			Logger logProgressMsg "building_$(
+				StringUtil toUpperCase sdk)_directory"
+
 			cd ${buildDir}
 
 			ant setup-sdk
+
+			Logger logCompletedMsg
 		fi
 	fi
 
