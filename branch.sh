@@ -8,6 +8,8 @@ include base.comparator.BaseComparator
 include base.util.BaseUtil
 include base.vars.BaseVars
 
+include command.validator.CommandValidator
+
 include git.exception.GitException
 include git.util.GitUtil
 
@@ -257,6 +259,8 @@ bundleDir=$(BaseVars returnBundleDir $@)
 if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
 else
+	CommandValidator validateCommand ${0} ${1}
+
 	if [[ ${1} == ${branch} ]]; then
 		shift
 	fi
