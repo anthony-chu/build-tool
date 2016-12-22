@@ -262,6 +262,7 @@ bundleDir=$(BaseVars returnBundleDir $@)
 
 append="FileIOUtil append"
 ASValidator="AppServerValidator"
+baseDir=$(pwd)
 replace="FileIOUtil replace"
 
 BaseUtil extendAntOpts ${branch}
@@ -277,6 +278,8 @@ else
 
 			shift
 		else
+			cd ${baseDir}
+
 			CommandValidator validateCommand ${0} ${1}
 
 			${1}
