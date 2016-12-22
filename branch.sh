@@ -234,7 +234,11 @@ rename(){
 reset(){
 	cd ${buildDir}
 
-	git reset --hard ${1}
+	if [[ $(StringValidator isAlphaNum ${1}) ]]; then
+		commit=${1}
+	fi
+
+	git reset --hard ${commit}
 }
 
 switch(){
