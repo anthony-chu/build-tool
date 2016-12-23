@@ -171,11 +171,8 @@ build(){
 
 	_clean_hard ${appServer}
 
-	if [[ $(StringValidator isOption ${1}) ]]; then
-		if [[ $(StringUtil returnOption ${1}) == c ]]; then
-
-			doClean=true
-		fi
+	if [[ $(StringUtil returnOption ${1}) == c ]]; then
+		doClean=true
 	fi
 
 	_clean_source ${doClean}
