@@ -63,7 +63,7 @@ dev(){
 	local dev=${1}
 	local branch=${2}
 
-	if [[ $(StringValidator isSubstring ${branch} ee-) ]]; then
+	if [[ $(BaseVars isPrivate ${branch}) ]]; then
 		repo=liferay-portal-ee
 	else
 		repo=liferay-portal
