@@ -35,7 +35,7 @@ pr(){
 
 		detailHeading=(branch: reviewer: comment: title:)
 
-		newDetailHeading=($(ArrayUtil appendArrayEntry ${detailHeading[@]}))
+		newDetailHeading=($(ArrayUtil appendArrayEntry detailHeading))
 
 		cd ${buildDir}
 		title=$(GitUtil getCurBranch)
@@ -187,16 +187,16 @@ bundleDir=$(BaseVars returnBundleDir $@)
 BaseUtil extendAntOpts ${branch}
 BaseUtil setJavaHome ${branch}
 
-args=$@
+args=($@)
 
 if [[ $@ =~ ${branch} ]]; then
-	args=$(ArrayUtil strip ${args} ${branch})
+	args=$(ArrayUtil strip args ${branch})
 fi
 
-if [[ $(StringValidator isNull ${args}) ]]; then
+if [[ $(StringValidator isNull ${args[@]}) ]]; then
 	HelpMessage testHelpMessage
-elif [[ ${args} == *\#* ]]; then
-	test ${args}
+elif [[ ${args[@]} == *\#* ]]; then
+	test ${args[@]}
 else
-	${args}
+	${args[@]}
 fi

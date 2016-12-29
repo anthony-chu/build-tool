@@ -104,14 +104,14 @@ _config(){
 		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
 		Logger logProgressMsg "increasing_memory_limit"
-		if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
+		if [[ $(AppServerValidator isTomcat appServer) ]]; then
 			${replace} ${appServerDir}/bin/setenv.sh Xmx1024m Xmx2048m
 
 			string1=XX:MaxPermSize=384m
 			string2=Xms1024m
 
 			${replace} ${appServerDir}/bin/setenv.sh ${string1} ${string2}
-		elif [[ $(AppServerValidator isWildfly ${appServer}) ]]; then
+		elif [[ $(AppServerValidator isWildfly appServer) ]]; then
 			d=[[:digit:]]
 
 			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}\+m Xmx2048m
@@ -238,21 +238,24 @@ run(){
 
 	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
 
-	if [[ $(${ASValidator} isJboss ${appServer}) ]]; then
+	if [[ $(${ASValidator} isJboss appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(${ASValidator} isTCServer ${appServer}) ]]; then
+	elif [[ $(${ASValidator} isTCServer appServer) ]]; then
 		${appServerDir}/liferay/bin/tcruntime-ctl.sh liferay run
-	elif [[ $(${ASValidator} isTomcat ${appServer}) ]]; then
+	elif [[ $(${ASValidator} isTomcat appServer) ]]; then
 		${appServerDir}/bin/catalina.sh run
-	elif [[ $(${ASValidator} isWeblogic ${appServer}) ]]; then
+	elif [[ $(${ASValidator} isWeblogic appServer) ]]; then
 		${appServerDir}/domains/liferay/bin/startWebLogic.sh
-	elif [[ $(${ASValidator} isWildfly ${appServer}) ]]; then
+	elif [[ $(${ASValidator} isWildfly appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
 	fi
 }
 
 clear
-appServer=$(AppServerValidator returnAppServer $@)
+
+args=(${@})
+
+appServer=$(AppServerValidator returnAppServer args)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)

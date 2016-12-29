@@ -75,7 +75,9 @@ dev(){
 }
 
 jira(){
-	appServer=$(AppServerValidator returnAppServer $@)
+	args=(${@})
+
+	appServer=$(AppServerValidator returnAppServer args)
 
 	_longLog(){
 		cd ${buildDir}
@@ -139,7 +141,9 @@ log(){
 new(){
 	cd ${buildDir}
 
-	if [[ $(ArrayValidator hasEntry $(GitUtil listBranches) ${1}) ]]; then
+	local branches=($(GitUtil listBranches))
+
+	if [[ $(ArrayValidator hasEntry branches ${1}) ]]; then
 		GitException existingBranchException create ${1}
 	else
 		git checkout -q -b ${1}
