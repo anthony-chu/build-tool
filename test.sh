@@ -45,7 +45,7 @@ pr(){
 		if [[ $(StringValidator isSubstring ${title} qa) || $(StringValidator
 			isSubstring ${title} lps) ]]; then
 
-			titleArray=($(StringUtil replace ${title} - space))
+			titleArray=($(StringUtil replace title - space))
 
 			if [[ $(BaseComparator isEqual ${titleArray[1]} qa) ]]; then
 				_project=LRQA
@@ -53,7 +53,7 @@ pr(){
 				_project=LPS
 			fi
 
-			issueKey=${_project}-$(StringUtil strip ${title} .*-)
+			issueKey=${_project}-$(StringUtil strip title .*-)
 		elif [[ $(StringValidator isSubstring $(_getIssueKey) LPS) || $(
 				StringValidator isSubstring $(_getIssueKey) LRQA) ]]; then
 
@@ -118,7 +118,7 @@ sf(){
 	fi
 
 	Logger logProgressMsg "running_source-formatter_on$(StringUtil
-		replace ${option} - _)_against_$(GitUtil getCurBranch)"
+		replace option - _)_against_$(GitUtil getCurBranch)"
 
 	if [[ ! $(BaseComparator isEqual ${option} _all_changes) ]]; then
 		ant format-source${option}
@@ -154,7 +154,7 @@ test(){
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
 
-		testname=$(StringUtil replace ${test} \# _)
+		testname=$(StringUtil replace test \# _)
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
@@ -167,7 +167,7 @@ test(){
 		mv index.html ${test}_index.html
 
 		cd ${testDir}/${testname}
-		testcase=$(StringUtil replace ${testname} _ %23)
+		testcase=$(StringUtil replace testname _ %23)
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 		rawFile="${testDir}/${testname}/${testcase}_index.html"
 
