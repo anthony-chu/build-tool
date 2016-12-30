@@ -53,7 +53,7 @@ pr(){
 				_project=LPS
 			fi
 
-			issueKey=${_project}-$(StringUtil strip ${title} *-)
+			issueKey=${_project}-$(StringUtil strip ${title} .*-)
 		elif [[ $(StringValidator isSubstring $(_getIssueKey) LPS) || $(
 				StringValidator isSubstring $(_getIssueKey) LRQA) ]]; then
 
@@ -154,7 +154,7 @@ test(){
 		cd ${buildDir}
 		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
 
-		testname=$(StringUtil replace ${test} [\#] _)
+		testname=$(StringUtil replace ${test} \# _)
 
 		resultDir=${buildDir}/portal-web/test-results/${testname}
 
@@ -167,7 +167,7 @@ test(){
 		mv index.html ${test}_index.html
 
 		cd ${testDir}/${testname}
-		testcase=$(StringUtil replace ${testname} [_] %23)
+		testcase=$(StringUtil replace ${testname} _ %23)
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 		rawFile="${testDir}/${testname}/${testcase}_index.html"
 
