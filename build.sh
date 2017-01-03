@@ -197,7 +197,7 @@ build(){
 }
 
 clean(){
-	local database=lportal$(StringUtil strip ${branch} [-.])
+	local database=lportal$(StringUtil strip branch [-.])
 
 	Database rebuild ${database} utf8
 
