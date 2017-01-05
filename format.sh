@@ -1,10 +1,17 @@
 source bash-toolbox/init.sh
 
+include base.comparator.BaseComparator
+
 include finder.Finder
 
 include formatter.Formatter
 
+include help.message.HelpMessage
+
 include logger.Logger
+
+include string.util.StringUtil
+include string.validator.StringValidator
 
 main(){
 	Logger logProgressMsg "validating_formatting_rules"
@@ -29,4 +36,12 @@ main(){
 	Logger logCompletedMsg
 }
 
-main
+if [[ ! $(StringValidator isNull ${1}) ]]; then
+	if [[ $(BaseComparator isEqual $(StringUtil returnOption ${1}) h) || $(
+		BaseComparator isEqual $(StringUtil returnOption ${1}) help) ]]; then
+
+		HelpMessage formatHelpMessage
+	fi
+else
+	main
+fi

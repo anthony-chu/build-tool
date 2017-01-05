@@ -2,6 +2,8 @@ source bash-toolbox/init.sh
 
 include base.comparator.BaseComparator
 
+include help.message.HelpMessage
+
 include logger.Logger
 
 include string.util.StringUtil
@@ -59,7 +61,7 @@ run-unit-tests(){
 }
 
 if [[ $(StringValidator isNull ${1}) ]]; then
-	Logger logErrorMsg "please_provide_a_command_to_execute"
+	HelpMessage buildTestHelpMessage
 elif [[ $(BaseComparator isEqual ${1} run-unit-tests) ]]; then
 	${1}
 else
