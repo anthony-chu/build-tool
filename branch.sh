@@ -15,6 +15,8 @@ include git.util.GitUtil
 
 include help.message.HelpMessage
 
+include language.util.LanguageUtil
+
 include logger.Logger
 
 include string.util.StringUtil
@@ -198,11 +200,7 @@ rebase(){
 	start(){
 		local value=$(StringUtil returnOption ${1})
 
-		if [[ $(BaseComparator isGreaterThan ${value} 1) ]]; then
-			isPlural=s
-		fi
-
-		Logger logProgressMsg "rebasing_the_last_${value}_commit${isPlural}"
+		Logger logProgressMsg "rebasing_the_last_${value}_$(LanguageUtil togglePlurality ${value} commit commits)"
 
 		cd ${buildDir}
 
