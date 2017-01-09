@@ -8,6 +8,8 @@ include base.comparator.BaseComparator
 include base.util.BaseUtil
 include base.vars.BaseVars
 
+include bundle.util.BundleUtil
+
 include command.validator.CommandValidator
 
 include database.Database
@@ -27,35 +29,6 @@ include math.util.MathUtil
 
 include string.util.StringUtil
 include string.validator.StringValidator
-
-_clean_hard(){
-	Logger logProgressMsg "deleting_all_content_in_the_bundles_directory"
-
-	for dir in ${appServer}* data deploy logs osgi; do
-		rm -rf ${dir}
-	done
-
-	Logger logCompletedMsg
-}
-
-_clean_bundle(){
-	local appServer=${appServer}
-
-	appServerVersion=$(AppServerVersion
-		returnAppServerVersion ${appServer} ${branch})
-
-	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
-
-	Logger logProgressMsg "deleting_liferay_home_folders"
-	rm -rf ${bundleDir}/data ${bundleDir}/logs
-	Logger logCompletedMsg
-	echo
-
-	Logger logProgressMsg "deleting_temp_files"
-	rm -rf ${appServerDir}/temp ${appServerDir}/work
-	Logger logCompletedMsg
-	echo
-}
 
 _clean_source(){
 	Logger logProgressMsg "resetting_the_source_directory"
@@ -93,41 +66,6 @@ _config(){
 		${append} ${buildProps} "jsp.precompile=on"
 
 		Logger logCompletedMsg
-	}
-
-	appServer(){
-		local appServer=${appServer}
-
-		appServerVersion=$(AppServerVersion
-			returnAppServerVersion ${appServer} ${branch})
-
-		local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
-
-		Logger logProgressMsg "increasing_memory_limit"
-		if [[ $(AppServerValidator isTomcat appServer) ]]; then
-			${replace} ${appServerDir}/bin/setenv.sh Xmx1024m Xmx2048m
-
-			string1=XX:MaxPermSize=384m
-			string2=Xms1024m
-
-			${replace} ${appServerDir}/bin/setenv.sh ${string1} ${string2}
-		elif [[ $(AppServerValidator isWildfly appServer) ]]; then
-			d=[[:digit:]]
-
-			${replace} ${appServerDir}/bin/standalone.conf Xmx${d}\+m Xmx2048m
-
-			string1=MaxMetaspaceSize=${d}\+m
-			string2=MaxMetaspaceSize=1024m
-
-			${replace} ${appServerDir}/bin/standalone.conf ${string1} ${string2}
-		fi
-		Logger logCompletedMsg
-
-		if [[ $(BaseComparator isEqual ${branch} ee-6.2.x) ]]; then
-			Logger logProgressMsg "changing_port_for_${branch}"
-			${replace} ${appServerDir}/conf/server.xml "\"8" "\"7"
-			Logger logCompletedMsg
-		fi
 	}
 
 	$@
@@ -169,7 +107,7 @@ build(){
 
 	_generateBuildLog ${appServer} ${branch}
 
-	_clean_hard ${appServer}
+	BundleUtil deleteBundleContent ${branch} ${appServer}
 
 	if [[ $(StringUtil returnOption ${1}) == c ]]; then
 		doClean=true
@@ -185,7 +123,7 @@ build(){
 	ant -f build-dist.xml unzip-${appServer}
 	Logger logCompletedMsg
 
-	_config appServer ${appServer}
+	BundleUtil configure ${branch} ${appServer}
 
 	Logger logProgressMsg "building_portal"
 
@@ -201,7 +139,9 @@ clean(){
 
 	Database rebuild ${database} utf8
 
-	_clean_bundle
+	BundleUtil deleteHomeFolders ${branch} ${appServer}
+
+	BundleUtil deleteTempFiles ${branch} ${appServer}
 }
 
 pull(){
