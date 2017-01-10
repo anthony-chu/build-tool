@@ -1,5 +1,6 @@
 source bash-toolbox/init.sh
 
+include app.server.factory.AppServerFactory
 include app.server.validator.AppServerValidator
 include app.server.version.AppServerVersion
 include app.server.version.constants.AppServerVersionConstants
@@ -51,8 +52,8 @@ _config(){
 		Logger logProgressMsg "building_properties"
 
 		local appServer=${appServer}
-		local appServerDir=${bundleDir}/${appServer}-$(AppServerVersion
-			returnAppServerVersion ${appServer} ${branch})
+		local appServerDir=$(AppServerFactory
+			getAppServerDir ${branch} ${appServer})
 
 		cp ${buildDir}/../properties/*.anthonychu.properties -d ${buildDir}
 
@@ -176,7 +177,8 @@ run(){
 	appServerVersion=$(AppServerVersion
 		returnAppServerVersion ${appServer} ${branch})
 
-	local appServerDir=${bundleDir}/${appServer}-${appServerVersion}
+		local appServerDir=$(AppServerFactory
+			getAppServerDir ${branch} ${appServer})
 
 	if [[ $(${ASValidator} isJboss appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
