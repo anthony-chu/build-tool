@@ -31,22 +31,6 @@ include math.util.MathUtil
 include string.util.StringUtil
 include string.validator.StringValidator
 
-_clean_source(){
-	Logger logProgressMsg "resetting_the_source_directory"
-
-	cd ${buildDir}
-
-	git reset --hard -q
-
-	if [[ $(MathUtil isEven $(BaseUtil getDate -d)) || $(
-		BaseComparator isEqual ${1} true) ]] ; then
-
-		git clean -fdqx -e "*.${HOSTNAME}.properties"
-	fi
-
-	Logger logCompletedMsg
-}
-
 _config(){
 	source(){
 		Logger logProgressMsg "building_properties"
@@ -118,7 +102,7 @@ build(){
 
 	cd ${buildDir}
 
-	_config source ${appServer}
+	GitUtil configSource ${branch} ${appServer}
 
 	Logger logProgressMsg "unzipping_${appServer}"
 	ant -f build-dist.xml unzip-${appServer}
