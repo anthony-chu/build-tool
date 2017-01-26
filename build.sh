@@ -28,6 +28,8 @@ include logger.Logger
 
 include math.util.MathUtil
 
+include props.writer.PropsWriter
+
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -37,14 +39,13 @@ _config(){
 
 		cp ${buildDir}/../properties/*.${HOSTNAME}.properties -d ${buildDir}
 
-		local asProps=${buildDir}/app.server.${HOSTNAME}.properties
-		local buildProps=${buildDir}/build.${HOSTNAME}.properties
+		local b=${branch}
 
-		${replace} ${asProps} app.server.type=.* app.server.type=${appServer}
-		${replace} ${buildProps} app.server.type=.* app.server.type=${appServer}
-		${append} ${asProps} "app.server.parent.dir=${bundleDir}"
-		${append} ${buildProps} "app.server.parent.dir=${bundleDir}"
-		${append} ${buildProps} "jsp.precompile=on"
+		PropsWriter setAppServerProps ${b} app.server.type ${appServer}
+		PropsWriter setBuildProps ${b} app.server.type ${appServer}
+		PropsWriter writeAppServerProps ${b} app.server.parent.dir=${bundleDir}
+		PropsWriter writeBuildProps ${b} app.server.parent.dir=${bundleDir}
+		PropsWriter writeBuildProps ${b} jsp.precompile=on
 
 		Logger logCompletedMsg
 	}
