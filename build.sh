@@ -98,7 +98,7 @@ build(){
 		doClean=true
 	fi
 
-	_clean_source ${doClean}
+	GitUtil cleanSource ${doClean} ${branch} ${appServer}
 
 	cd ${buildDir}
 
@@ -130,7 +130,7 @@ clean(){
 }
 
 pull(){
-	_clean_source
+	GitUtil cleanSource ${branch} ${appServer}
 
 	cd ${buildDir}
 
