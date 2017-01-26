@@ -35,10 +35,6 @@ _config(){
 	source(){
 		Logger logProgressMsg "building_properties"
 
-		local appServer=${appServer}
-		local appServerDir=$(AppServerFactory
-			getAppServerDir ${branch} ${appServer})
-
 		cp ${buildDir}/../properties/*.${HOSTNAME}.properties -d ${buildDir}
 
 		local asProps=${buildDir}/app.server.${HOSTNAME}.properties
