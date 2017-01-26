@@ -39,10 +39,10 @@ _config(){
 		local appServerDir=$(AppServerFactory
 			getAppServerDir ${branch} ${appServer})
 
-		cp ${buildDir}/../properties/*.anthonychu.properties -d ${buildDir}
+		cp ${buildDir}/../properties/*.${HOSTNAME}.properties -d ${buildDir}
 
-		local asProps=${buildDir}/app.server.anthonychu.properties
-		local buildProps=${buildDir}/build.anthonychu.properties
+		local asProps=${buildDir}/app.server.${HOSTNAME}.properties
+		local buildProps=${buildDir}/build.${HOSTNAME}.properties
 
 		${replace} ${asProps} app.server.type=.* app.server.type=${appServer}
 		${replace} ${buildProps} app.server.type=.* app.server.type=${appServer}
