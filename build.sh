@@ -102,7 +102,7 @@ build(){
 
 	cd ${buildDir}
 
-	GitUtil configSource ${branch} ${appServer}
+	_config source ${appServer}
 
 	Logger logProgressMsg "unzipping_${appServer}"
 	ant -f build-dist.xml unzip-${appServer}
