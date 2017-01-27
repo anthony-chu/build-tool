@@ -41,10 +41,10 @@ _config(){
 
 		local b=${branch}
 
-		PropsWriter setAppServerProps ${b} app.server.type ${appServer}
-		PropsWriter setBuildProps ${b} app.server.type ${appServer}
 		PropsWriter setAppServerProps ${b} app.server.parent.dir ${bundleDir}
+		PropsWriter setAppServerProps ${b} app.server.type ${appServer}
 		PropsWriter setBuildProps ${b} app.server.parent.dir ${bundleDir}
+		PropsWriter setBuildProps ${b} app.server.type ${appServer}
 		PropsWriter writeBuildProps ${b} jsp.precompile=on
 
 		Logger logCompletedMsg
