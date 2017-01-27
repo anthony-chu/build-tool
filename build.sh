@@ -81,10 +81,6 @@ _gitlog(){
 }
 
 build(){
-	_returnToConsole(){
-		Logger logCompletedMsg
-	}
-
 	local appServer=${appServer}
 
 	_generateBuildLog ${appServer} ${branch}
@@ -111,7 +107,7 @@ build(){
 
 	logFile=$(_getLogFile ${appServer} ${branch})
 
-	trap _returnToConsole SIGINT
+	trap "Logger logCompletedMsg" SIGINT
 
 	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
 }
