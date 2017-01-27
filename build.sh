@@ -43,8 +43,8 @@ _config(){
 
 		PropsWriter setAppServerProps ${b} app.server.type ${appServer}
 		PropsWriter setBuildProps ${b} app.server.type ${appServer}
-		PropsWriter writeAppServerProps ${b} app.server.parent.dir=${bundleDir}
-		PropsWriter writeBuildProps ${b} app.server.parent.dir=${bundleDir}
+		PropsWriter setAppServerProps ${b} app.server.parent.dir ${bundleDir}
+		PropsWriter setBuildProps ${b} app.server.parent.dir ${bundleDir}
 		PropsWriter writeBuildProps ${b} jsp.precompile=on
 
 		Logger logCompletedMsg
