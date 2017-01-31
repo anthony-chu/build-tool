@@ -88,7 +88,9 @@ build(){
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
 	if [[ $(StringUtil returnOption ${1}) == c ]]; then
-		doClean=true
+		local doClean=true
+	else
+		local doClean=false
 	fi
 
 	GitUtil cleanSource ${doClean} ${branch} ${appServer}
@@ -123,7 +125,13 @@ clean(){
 }
 
 pull(){
-	GitUtil cleanSource ${branch} ${appServer}
+	if [[ $(StringUtil returnOption ${1}) == c ]]; then
+		local doClean=true
+	else
+		local doClean=false
+	fi
+
+	GitUtil cleanSource ${doClean} ${branch} ${appServer}
 
 	cd ${buildDir}
 
