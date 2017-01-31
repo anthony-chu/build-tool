@@ -93,7 +93,7 @@ build(){
 		local doClean=false
 	fi
 
-	GitUtil cleanSource ${doClean} ${branch} ${appServer}
+	GitUtil cleanSource ${doClean} ${branch}
 
 	cd ${buildDir}
 
@@ -131,7 +131,7 @@ pull(){
 		local doClean=false
 	fi
 
-	GitUtil cleanSource ${doClean} ${branch} ${appServer}
+	GitUtil cleanSource ${doClean} ${branch}
 
 	cd ${buildDir}
 
