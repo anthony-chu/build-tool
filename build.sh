@@ -1,14 +1,5 @@
 source bash-toolbox/init.sh
 
-include app.server.factory.AppServerFactory
-include app.server.validator.AppServerValidator
-include app.server.version.AppServerVersion
-include app.server.version.constants.AppServerVersionConstants
-
-include base.comparator.BaseComparator
-include base.util.BaseUtil
-include base.vars.BaseVars
-
 include bundle.util.BundleUtil
 
 include command.validator.CommandValidator
@@ -32,6 +23,9 @@ include props.writer.PropsWriter
 
 include string.util.StringUtil
 include string.validator.StringValidator
+
+package app.server
+package base
 
 _config(){
 	source(){

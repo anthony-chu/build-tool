@@ -9,20 +9,7 @@ include logger.Logger
 include string.util.StringUtil
 include string.validator.StringValidator
 
-include test.AppServerValidatorTest
-include test.AppServerVersionConstantsTest
-include test.AppServerVersionTest
-include test.ArrayUtilTest
-include test.ArrayValidatorTest
-include test.BaseComparatorTest
-include test.BaseVarsTest
-include test.LanguageUtilTest
-include test.LoggerUtilTest
-include test.MathUtilTest
-include test.StringUtilTest
-include test.StringValidatorTest
-
-include test.util.TestUtil
+package test
 
 run-unit-tests(){
 
