@@ -31,7 +31,11 @@ _config(){
 	source(){
 		Logger logProgressMsg "building_properties"
 
-		cp ${buildDir}/../properties/*.${HOSTNAME}.properties -d ${buildDir}
+		local props=(app.server build)
+
+		for prop in ${props[@]}; do
+			touch ${buildDir}/${prop}.${HOSTNAME}.properties
+		done
 
 		local b=${branch}
 
