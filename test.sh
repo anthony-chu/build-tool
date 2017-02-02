@@ -198,5 +198,7 @@ if [[ $(StringValidator isNull ${args[@]}) ]]; then
 elif [[ ${args[@]} == *\#* ]]; then
 	test ${args[@]}
 else
+	CommandValidator validateCommand ${0} ${1}
+
 	${args[@]}
 fi
