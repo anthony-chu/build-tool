@@ -200,7 +200,12 @@ rebase(){
 	start(){
 		local value=$(StringUtil returnOption ${1})
 
-		Logger logProgressMsg "rebasing_the_last_${value}_$(LanguageUtil togglePlurality ${value} commit commits)"
+		local _message=(
+			rebasing_the_last_${value}_
+			$(LanguageUtil togglePlurality ${value} commit commits)
+		)
+
+		Logger logProgressMsg "$(StringUtil build _message)"
 
 		cd ${buildDir}
 
