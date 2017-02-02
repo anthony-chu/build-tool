@@ -135,6 +135,8 @@ log(){
 		git log -1 --oneline
 	elif [[ $(StringValidator isOption ${1}) ]]; then
 		git log ${1} --oneline
+	elif [[ ! $(StringValidator isOption ${1}) ]]; then
+		Logger logErrorMsg "please_provide_a_valid_log_option"
 	fi
 }
 
