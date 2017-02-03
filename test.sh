@@ -7,6 +7,8 @@ include base.comparator.BaseComparator
 include base.util.BaseUtil
 include base.vars.BaseVars
 
+include command.validator.CommandValidator
+
 include file.name.util.FileNameUtil
 include file.util.FileUtil
 
