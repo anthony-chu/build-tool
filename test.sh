@@ -47,7 +47,7 @@ pr(){
 		if [[ $(StringValidator isSubstring ${title} qa) || $(StringValidator
 			isSubstring ${title} lps) ]]; then
 
-			titleArray=($(StringUtil replace title - space))
+			titleArray=($(StringUtil split title -))
 
 			if [[ $(BaseComparator isEqual ${titleArray[1]} qa) ]]; then
 				_project=LRQA
