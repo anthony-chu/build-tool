@@ -75,10 +75,6 @@ dev(){
 }
 
 jira(){
-	args=(${@})
-
-	appServer=$(AppServerValidator returnAppServer args)
-
 	_longLog(){
 		cd ${buildDir}
 
@@ -119,7 +115,9 @@ jira(){
 		${1}
 	fi
 
-	echo $(_env ${appServer})
+	args=(${@})
+
+	echo $(_env $(AppServerValidator returnAppServer args))
 	echo ${gitinfo}
 }
 
