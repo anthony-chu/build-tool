@@ -82,7 +82,8 @@ jira(){
 	_longLog(){
 		cd ${buildDir}
 
-		git --git-dir=${buildDir}/.git rev-parse origin/${branch}
+		git --git-dir=${buildDir}/.git rev-parse origin/$(StringUtil
+			toLowerCase ${branch})
 	}
 
 	if [[ $(BaseComparator isEqual ${branch} master) ]]; then
