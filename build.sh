@@ -58,12 +58,13 @@ _generateBuildLog(){
 	local appServer=${1}
 	local branch=${2}
 	local clock=$(BaseUtil timestamp clock)
+	local SHA=$(GitUtil getSHA ${buildDir} short)
 
 	logDir=/d/logs/${branch}/${appServer}/$(BaseUtil timestamp date)
 
 	FileUtil construct ${logDir}
 
-	touch ${logDir}/${branch}-build-$(_gitlog)-${clock}.log
+	touch ${logDir}/${branch}-build-${SHA}-${clock}.log
 }
 
 _getLogFile(){
