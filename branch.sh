@@ -73,50 +73,11 @@ dev(){
 }
 
 jira(){
-	_longLog(){
-		cd ${buildDir}
-
-		git --git-dir=${buildDir}/.git rev-parse origin/$(StringUtil
-			toLowerCase ${branch})
-	}
-
-	if [[ $(BaseComparator isEqual ${branch} master) ]]; then
-		branch=$(StringUtil capitalize ${branch})
-	else
-		branch=${branch}
-	fi
-
-	local gitinfo="Portal ${branch} GIT ID: $(_longLog)"
-
-	fixed(){
-		echo \*Fixed on:\*
-	}
-
-	nlr(){
-		echo \*No Longer Reproducible on:\*
-	}
-
-	repro(){
-		echo \*Reproduced on:\*
-	}
-
-	_env(){
-		local appServerVersion=$(AppServerVersion
-			returnAppServerVersion ${1} ${branch})
-
-		echo $(StringUtil capitalize ${1}) ${appServerVersion} + MySQL 5.7
-	}
-
 	if [[ $(BaseComparator isEqual ${1} fixed) || $(BaseComparator
 		isEqual ${1} nlr) || $(BaseComparator isEqual ${1} repro) ]]; then
 
 		${1}
 	fi
-
-	args=(${@})
-
-	echo $(_env $(AppServerValidator returnAppServer args))
-	echo ${gitinfo}
 }
 
 list(){
