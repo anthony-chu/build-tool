@@ -166,9 +166,10 @@ switch(){
 }
 
 clear
-branch=$(BaseVars returnBranch $@)
-buildDir=$(BaseVars returnBuildDir $@)
-bundleDir=$(BaseVars returnBundleDir $@)
+args=(${@})
+branch=$(BaseVars returnBranch ${args[@]})
+buildDir=$(BaseVars returnBuildDir ${args[@]})
+bundleDir=$(BaseVars returnBundleDir ${args[@]})
 
 if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
@@ -177,5 +178,5 @@ else
 
 	CommandValidator validateCommand ${0} ${1}
 
-	$@
+	${args[@]}
 fi
