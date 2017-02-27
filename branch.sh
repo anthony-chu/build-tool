@@ -8,6 +8,8 @@ include command.validator.CommandValidator
 
 include help.message.HelpMessage
 
+include jira.util.JiraUtil
+
 include language.util.LanguageUtil
 
 include logger.Logger
@@ -76,7 +78,7 @@ jira(){
 	if [[ $(BaseComparator isEqual ${1} fixed) || $(BaseComparator
 		isEqual ${1} nlr) || $(BaseComparator isEqual ${1} repro) ]]; then
 
-		${1}
+		JiraUtil ${1}
 	fi
 }
 
