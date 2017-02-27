@@ -132,6 +132,8 @@ pull(){
 		local doClean=false
 	fi
 
+	GitUtil clearIndexLock ${branch}
+
 	GitUtil cleanSource ${doClean} ${branch}
 
 	cd ${buildDir}

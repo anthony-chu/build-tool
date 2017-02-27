@@ -269,6 +269,8 @@ bundleDir=$(BaseVars returnBundleDir $@)
 if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
 else
+	GitUtil clearIndexLock ${branch}
+
 	CommandValidator validateCommand ${0} ${1}
 
 	$@
