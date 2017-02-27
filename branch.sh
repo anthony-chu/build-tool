@@ -6,9 +6,6 @@ include app.server.version.constants.AppServerVersionConstants
 
 include command.validator.CommandValidator
 
-include git.exception.GitException
-include git.util.GitUtil
-
 include help.message.HelpMessage
 
 include language.util.LanguageUtil
@@ -19,6 +16,7 @@ include string.util.StringUtil
 include string.validator.StringValidator
 
 package base
+package git
 
 _hardReset(){
 	cd ${buildDir}
