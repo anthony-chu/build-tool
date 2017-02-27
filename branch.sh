@@ -78,7 +78,7 @@ jira(){
 	if [[ $(BaseComparator isEqual ${1} fixed) || $(BaseComparator
 		isEqual ${1} nlr) || $(BaseComparator isEqual ${1} repro) ]]; then
 
-		JiraUtil ${1}
+		JiraUtil ${1} ${appServer} ${branch}
 	fi
 }
 
@@ -167,6 +167,7 @@ switch(){
 
 clear
 args=(${@})
+appServer=$(AppServerValidator returnAppServer args)
 branch=$(BaseVars returnBranch ${args[@]})
 buildDir=$(BaseVars returnBuildDir ${args[@]})
 bundleDir=$(BaseVars returnBundleDir ${args[@]})
