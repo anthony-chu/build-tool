@@ -76,11 +76,6 @@ _getLogFile(){
 	echo ${logDir}/${logs[0]}
 }
 
-_gitlog(){
-	cd ${buildDir}
-	git log --oneline --pretty=format:%h -1
-}
-
 build(){
 	local appServer=${appServer}
 
