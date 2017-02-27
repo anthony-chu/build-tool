@@ -160,12 +160,14 @@ rebase(){
 	fi
 
 	case $(StringUtil returnOption ${1}) in
-		[0-9]*) start ${1};;
-		a) amend;;
-		c) cont;;
-		d) default;;
-		q) abort;;
+		[0-9]*) local cmd="start ${branch} ${1}";;
+		a) local cmd=amend;;
+		c) local cmd=cont;;
+		d) local cmd=default;;
+		q) local cmd=abort;;
 	esac
+
+	GitRebaseUtil ${cmd}
 }
 
 rename(){
