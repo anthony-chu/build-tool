@@ -18,6 +18,8 @@ include help.message.HelpMessage
 
 include logger.Logger
 
+include props.writer.PropsWriter
+
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -149,6 +151,8 @@ test(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "missing_test_name"
 	else
+		PropsWriter setTestProps timeout.explicit.wait 60
+
 		test=${1}
 		shift
 		Logger logProgressMsg "running_test_${test}"
