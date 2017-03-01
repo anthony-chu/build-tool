@@ -3,10 +3,6 @@ source bash-toolbox/init.sh
 include array.util.ArrayUtil
 include array.validator.ArrayValidator
 
-include base.comparator.BaseComparator
-include base.util.BaseUtil
-include base.vars.BaseVars
-
 include command.validator.CommandValidator
 
 include file.name.util.FileNameUtil
@@ -22,6 +18,8 @@ include props.writer.PropsWriter
 
 include string.util.StringUtil
 include string.validator.StringValidator
+
+package base
 
 pr(){
 	_getIssueKey(){
