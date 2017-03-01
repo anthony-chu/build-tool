@@ -9,8 +9,6 @@ include database.Database
 include file.io.util.FileIOUtil
 include file.util.FileUtil
 
-include finder.Finder
-
 include git.util.GitUtil
 
 include help.message.HelpMessage
