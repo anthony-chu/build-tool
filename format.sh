@@ -2,8 +2,6 @@ source bash-toolbox/init.sh
 
 include base.comparator.BaseComparator
 
-include finder.Finder
-
 include formatter.Formatter
 
 include help.message.HelpMessage
@@ -16,7 +14,7 @@ include string.validator.StringValidator
 main(){
 	Logger logProgressMsg "validating_formatting_rules"
 
-	files=($(Finder findBySubstring sh))
+	files=($(find * -type f -iname "*.sh"))
 
 	tasks=(
 		applyUnixLineEndings
