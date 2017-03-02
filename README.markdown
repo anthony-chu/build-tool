@@ -10,7 +10,6 @@
 4. [Additional Tools](#additional-tools)
 	- [build-test.sh](#build-testsh)
 5. [Help!](#help)
-6. [Roadmap](#roadmap)
 
 ## Announcements
 
