@@ -26,7 +26,7 @@ package app.server
 package base
 
 _config(){
-	source(){
+	_source(){
 		Logger logProgressMsg "building_properties"
 
 		local props=(app.server build)
@@ -92,7 +92,7 @@ build(){
 
 	cd ${buildDir}
 
-	_config source ${appServer}
+	_config _source ${appServer}
 
 	Logger logProgressMsg "unzipping_${appServer}"
 	ant -f build-dist.xml unzip-${appServer}

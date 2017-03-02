@@ -11,7 +11,7 @@ include logger.Logger
 include string.util.StringUtil
 include string.validator.StringValidator
 
-main(){
+_main(){
 	Logger logProgressMsg "validating_formatting_rules"
 
 	files=($(find * -type f -iname "*.sh"))
@@ -41,5 +41,5 @@ if [[ ! $(StringValidator isNull ${1}) ]]; then
 		HelpMessage formatHelpMessage
 	fi
 else
-	main
+	_main
 fi

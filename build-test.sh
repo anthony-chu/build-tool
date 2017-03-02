@@ -13,7 +13,7 @@ package test
 
 run-unit-tests(){
 
-	execute-tests(){
+	_execute-tests(){
 		tests=(
 			AppServerValidatorTest
 			AppServerVersionConstantsTest
@@ -36,7 +36,7 @@ run-unit-tests(){
 
 	Logger logProgressMsg "running_all_unit_tests"
 
-	failures=($(execute-tests))
+	failures=($(_execute-tests))
 
 	if [[ ${failures} ]]; then
 		Logger logErrorMsg "$(StringUtil toUpperCase some_tests_failed)"
