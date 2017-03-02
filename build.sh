@@ -62,23 +62,16 @@ _generateBuildLog(){
 
 	FileUtil construct ${logDir}
 
-	touch ${logDir}/${branch}-build-${SHA}-${clock}.log
-}
+	local fileName=${logDir}/${branch}-build-${SHA}-${clock}.log
 
-_getLogFile(){
-	local appServer=${1}
-	local branch=${2}
-
-	local logDir=d:/logs/${branch}/${appServer}/$(BaseUtil timestamp date)
-	local logs=($(ls ${logDir} -t))
-
-	echo ${logDir}/${logs[0]}
+	touch ${fileName}
+	echo ${fileName}
 }
 
 build(){
 	local appServer=${appServer}
 
-	_generateBuildLog ${appServer} ${branch}
+	local logFile=$(_generateBuildLog ${appServer} ${branch})
 
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
@@ -101,8 +94,6 @@ build(){
 	BundleUtil configure ${branch} ${appServer}
 
 	Logger logProgressMsg "building_portal"
-
-	logFile=$(_getLogFile ${appServer} ${branch})
 
 	trap "Logger logCompletedMsg" SIGINT
 
