@@ -4,7 +4,6 @@
 1. [Announcements](#announcements)
 2. [About](#about)
 2. [The Main Toolkit](#the-main-toolkit)
-	- [init.sh](#initsh)
 	- [build.sh](#buildsh)
 	- [branch.sh](#branchsh)
 	- [test.sh](#testsh)
@@ -31,14 +30,6 @@ There are three main scripts - [build.sh](#buildsh), [branch.sh](#branchsh), and
 building and/or testing portal.
 
 ## The Main Toolkit
-
-### init.sh
-
-The purpose of this script is to source all the necessary library files in a
-single location. Instead of having to uniquely source each library file through
-the main functional scripts (e.g., build.sh, branch.sh, etc...), the functional
-scripts can source `bash-toolbox/init.sh`, thereby making available all the
-files in the `lib` directory.
 
 ### build.sh
 
