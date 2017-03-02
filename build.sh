@@ -48,26 +48,14 @@ _config(){
 	Logger logCompletedMsg
 }
 
-_generateBuildLog(){
-	local appServer=${1}
-	local branch=${2}
-	local clock=$(BaseUtil timestamp clock)
-	local SHA=$(GitUtil getSHA ${buildDir} short)
-
-	logDir=/d/logs/${branch}/${appServer}/$(BaseUtil timestamp date)
-
-	FileUtil construct ${logDir}
-
-	local fileName=${logDir}/${branch}-build-${SHA}-${clock}.log
-
-	touch ${fileName}
-	echo ${fileName}
-}
-
 build(){
-	local appServer=${appServer}
+	local _logFile=(/d/logs/${branch}/${appServer}/
+		$(BaseUtil timestamp date)/
+		${branch}-build-$(GitUtil getSHA ${buildDir} short)-
+		$(BaseUtil timestamp clock).log
+	)
 
-	local logFile=$(_generateBuildLog ${appServer} ${branch})
+	local logFile=$(FileUtil makeFile $(StringUtil join _logFile))
 
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
