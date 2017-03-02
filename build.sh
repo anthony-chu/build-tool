@@ -26,30 +26,26 @@ package app.server
 package base
 
 _config(){
-	_source(){
-		Logger logProgressMsg "building_properties"
+	Logger logProgressMsg "building_properties"
 
-		local props=(app.server build)
+	local props=(app.server build)
 
-		for prop in ${props[@]}; do
-			touch ${buildDir}/${prop}.${HOSTNAME}.properties
-		done
+	for prop in ${props[@]}; do
+		touch ${buildDir}/${prop}.${HOSTNAME}.properties
+	done
 
-		local b=${branch}
+	local b=${branch}
 
-		PropsWriter setAppServerProps ${b} app.server.parent.dir ${bundleDir}
-		PropsWriter setAppServerProps ${b} app.server.type ${appServer}
+	PropsWriter setAppServerProps ${b} app.server.parent.dir ${bundleDir}
+	PropsWriter setAppServerProps ${b} app.server.type ${appServer}
 
-		PropsWriter setBuildProps ${b} app.server.parent.dir ${bundleDir}
-		PropsWriter setBuildProps ${b} app.server.type ${appServer}
-		PropsWriter setBuildProps ${b} auto.deploy.dir=${bundleDir}/deploy
-		PropsWriter setBuildProps ${b} lp.source.dir ${buildDir}
-		PropsWriter setBuildProps ${b} jsp.precompile on
+	PropsWriter setBuildProps ${b} app.server.parent.dir ${bundleDir}
+	PropsWriter setBuildProps ${b} app.server.type ${appServer}
+	PropsWriter setBuildProps ${b} auto.deploy.dir=${bundleDir}/deploy
+	PropsWriter setBuildProps ${b} lp.source.dir ${buildDir}
+	PropsWriter setBuildProps ${b} jsp.precompile on
 
-		Logger logCompletedMsg
-	}
-
-	$@
+	Logger logCompletedMsg
 }
 
 _generateBuildLog(){
@@ -85,7 +81,7 @@ build(){
 
 	cd ${buildDir}
 
-	_config _source ${appServer}
+	_config ${appServer}
 
 	Logger logProgressMsg "unzipping_${appServer}"
 	ant -f build-dist.xml unzip-${appServer}
