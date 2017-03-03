@@ -131,11 +131,8 @@ run(){
 	sleep 5s
 	clear
 
-	appServerVersion=$(AppServerVersion
-		returnAppServerVersion ${appServer} ${branch})
-
-		local appServerDir=$(AppServerFactory
-			getAppServerDir ${branch} ${appServer})
+	local appServerDir=$(AppServerFactory
+		getAppServerDir ${branch} ${appServer})
 
 	if [[ $(${ASValidator} isJboss appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
