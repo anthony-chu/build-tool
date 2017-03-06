@@ -17,6 +17,8 @@ include logger.Logger
 
 include math.util.MathUtil
 
+include osgi.util.OSGiUtil
+
 include props.writer.PropsWriter
 
 include string.util.StringUtil
@@ -92,6 +94,8 @@ clean(){
 	BundleUtil deleteHomeFolders ${branch} ${appServer}
 
 	BundleUtil deleteTempFiles ${branch} ${appServer}
+
+	OSGiUtil resetState ${branch}
 }
 
 pull(){
