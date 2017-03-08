@@ -68,8 +68,6 @@ build(){
 
 	GitUtil cleanSource ${doClean} ${branch}
 
-	cd ${buildDir}
-
 	_config ${appServer}
 
 	Logger logProgressMsg "unzipping_${appServer}"
