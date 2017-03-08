@@ -6,7 +6,6 @@ include command.validator.CommandValidator
 
 include database.Database
 
-include file.io.util.FileIOUtil
 include file.util.FileUtil
 
 include git.util.GitUtil
@@ -162,10 +161,8 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
-append="FileIOUtil append"
 ASValidator="AppServerValidator"
 baseDir=$(pwd)
-replace="FileIOUtil replace"
 
 BaseUtil extendAntOpts ${branch}
 BaseUtil setJavaHome ${branch}
