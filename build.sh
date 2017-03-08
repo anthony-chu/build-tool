@@ -37,16 +37,14 @@ _config(){
 		touch ${buildDir}/${prop}.${HOSTNAME}.properties
 	done
 
-	local b=${branch}
+	PropsWriter setAppServerProps ${branch} app.server.parent.dir ${bundleDir}
+	PropsWriter setAppServerProps ${branch} app.server.type ${appServer}
 
-	PropsWriter setAppServerProps ${b} app.server.parent.dir ${bundleDir}
-	PropsWriter setAppServerProps ${b} app.server.type ${appServer}
-
-	PropsWriter setBuildProps ${b} app.server.parent.dir ${bundleDir}
-	PropsWriter setBuildProps ${b} app.server.type ${appServer}
-	PropsWriter setBuildProps ${b} auto.deploy.dir=${bundleDir}/deploy
-	PropsWriter setBuildProps ${b} lp.source.dir ${buildDir}
-	PropsWriter setBuildProps ${b} jsp.precompile on
+	PropsWriter setBuildProps ${branch} app.server.parent.dir ${bundleDir}
+	PropsWriter setBuildProps ${branch} app.server.type ${appServer}
+	PropsWriter setBuildProps ${branch} auto.deploy.dir=${bundleDir}/deploy
+	PropsWriter setBuildProps ${branch} lp.source.dir ${buildDir}
+	PropsWriter setBuildProps ${branch} jsp.precompile on
 
 	Logger logCompletedMsg
 }
