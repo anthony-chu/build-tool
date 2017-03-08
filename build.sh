@@ -139,15 +139,15 @@ run(){
 	local appServerDir=$(AppServerFactory
 		getAppServerDir ${branch} ${appServer})
 
-	if [[ $(${ASValidator} isJboss appServer) ]]; then
+	if [[ $(AppServerValidator isJboss appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
-	elif [[ $(${ASValidator} isTCServer appServer) ]]; then
+	elif [[ $(AppServerValidator isTCServer appServer) ]]; then
 		${appServerDir}/liferay/bin/tcruntime-ctl.sh liferay run
-	elif [[ $(${ASValidator} isTomcat appServer) ]]; then
+	elif [[ $(AppServerValidator isTomcat appServer) ]]; then
 		${appServerDir}/bin/catalina.sh run
-	elif [[ $(${ASValidator} isWeblogic appServer) ]]; then
+	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
 		${appServerDir}/domains/liferay/bin/startWebLogic.sh
-	elif [[ $(${ASValidator} isWildfly appServer) ]]; then
+	elif [[ $(AppServerValidator isWildfly appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
 	fi
 }
@@ -161,7 +161,6 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
-ASValidator="AppServerValidator"
 baseDir=$(pwd)
 
 BaseUtil extendAntOpts ${branch}
