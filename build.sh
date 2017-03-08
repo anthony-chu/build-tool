@@ -157,11 +157,10 @@ clear
 args=(${@})
 
 appServer=$(AppServerValidator returnAppServer args)
+baseDir=$(pwd)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
-
-baseDir=$(pwd)
 
 BaseUtil extendAntOpts ${branch}
 BaseUtil setJavaHome ${branch}
