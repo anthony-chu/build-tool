@@ -5,6 +5,8 @@ include app.server.validator.AppServerValidator
 
 include bundle.util.BundleUtil
 
+include calendar.util.CalendarUtil
+
 include command.validator.CommandValidator
 
 include database.Database
@@ -51,9 +53,9 @@ _config(){
 
 build(){
 	local _logFile=(/d/logs/${branch}/${appServer}/
-		$(BaseUtil timestamp date)/
+		$(CalendarUtil getTimestamp date)/
 		${branch}-build-$(GitUtil getSHA ${buildDir} short)-
-		$(BaseUtil timestamp clock).log
+		$(CalendarUtil getTimestamp clock).log
 	)
 
 	local logFile=$(FileUtil makeFile $(StringUtil join _logFile))
