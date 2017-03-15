@@ -3,6 +3,9 @@ source bash-toolbox/init.sh
 include app.server.factory.AppServerFactory
 include app.server.validator.AppServerValidator
 
+include base.comparator.BaseComparator
+include base.vars.BaseVars
+
 include bundle.util.BundleUtil
 
 include calendar.util.CalendarUtil
