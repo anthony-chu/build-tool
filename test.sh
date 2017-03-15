@@ -3,6 +3,9 @@ source bash-toolbox/init.sh
 include array.util.ArrayUtil
 include array.validator.ArrayValidator
 
+include base.comparator.BaseComparator
+include base.vars.BaseVars
+
 include command.validator.CommandValidator
 
 include file.name.util.FileNameUtil
@@ -19,7 +22,7 @@ include props.writer.PropsWriter
 include string.util.StringUtil
 include string.validator.StringValidator
 
-package base
+include system.System
 
 pr(){
 	_getIssueKey(){
@@ -79,7 +82,7 @@ pr(){
 
 		git push -f origin ${title}
 
-		BaseUtil gitpr submit --update-branch=${branch} "${comment}" "${issueKey} | ${branch}" -u ${user}
+		GitUtil pr submit --update-branch=${branch} "${comment}" "${issueKey} | ${branch}" -u ${user}
 
 		Logger logCompletedMsg
 
@@ -188,8 +191,8 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
-BaseUtil extendAntOpts ${branch}
-BaseUtil setJavaHome ${branch}
+System extendAntOpts ${branch}
+System setJavaHome ${branch}
 
 args=($@)
 
