@@ -4,6 +4,9 @@ include app.server.validator.AppServerValidator
 include app.server.version.AppServerVersion
 include app.server.version.constants.AppServerVersionConstants
 
+include base.comparator.BaseComparator
+include base.vars.BaseVars
+
 include command.validator.CommandValidator
 
 include help.message.HelpMessage
@@ -17,7 +20,6 @@ include logger.Logger
 include string.util.StringUtil
 include string.validator.StringValidator
 
-package base
 package git
 
 changes(){
