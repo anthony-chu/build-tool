@@ -28,7 +28,7 @@ include props.writer.PropsWriter
 include string.util.StringUtil
 include string.validator.StringValidator
 
-package base
+include system.System
 
 _config(){
 	Logger logProgressMsg "building_properties"
@@ -162,8 +162,8 @@ branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir $@)
 bundleDir=$(BaseVars returnBundleDir $@)
 
-BaseUtil extendAntOpts ${branch}
-BaseUtil setJavaHome ${branch}
+System extendAntOpts ${branch}
+System setJavaHome ${branch}
 
 if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage buildHelpMessage
