@@ -152,7 +152,7 @@ test(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "missing_test_name"
 	else
-		PropsWriter setTestProps timeout.explicit.wait 60
+		PropsWriter setTestProps ${branch} timeout.explicit.wait 60
 
 		test=${1}
 		shift
