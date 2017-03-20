@@ -145,9 +145,7 @@ validate(){
 }
 
 test(){
-	testDir=/d/test-results/${branch}
-
-	FileUtil construct ${testDir}
+	testDir=$(FileUtil construct /d/test-results/${branch})
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "missing_test_name"
