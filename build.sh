@@ -49,7 +49,12 @@ _config(){
 	PropsWriter setBuildProps ${branch} app.server.type ${appServer}
 	PropsWriter setBuildProps ${branch} auto.deploy.dir=${bundleDir}/deploy
 	PropsWriter setBuildProps ${branch} lp.source.dir ${buildDir}
-	PropsWriter setBuildProps ${branch} jsp.precompile on
+
+	if [[ $(StringValidator isSubstring ${branch} 6.1) ]]; then
+		PropsWriter setBuildProps ${branch} jsp.precompile off
+	else
+		PropsWriter setBuildProps ${branch} jsp.precompile on
+	fi
 
 	Logger logCompletedMsg
 }
