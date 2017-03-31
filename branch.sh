@@ -1,8 +1,6 @@
 source bash-toolbox/init.sh
 
 include app.server.validator.AppServerValidator
-include app.server.version.AppServerVersion
-include app.server.version.constants.AppServerVersionConstants
 
 include base.comparator.BaseComparator
 include base.vars.BaseVars
