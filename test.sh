@@ -23,6 +23,7 @@ include string.util.StringUtil
 include string.validator.StringValidator
 
 include system.System
+include system.validator.SystemValidator
 
 pr(){
 	_getIssueKey(){
@@ -179,7 +180,13 @@ test(){
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 		rawFile="${testDir}/${testname}/${testcase}_index.html"
 
-		file="\/\/\/$(FileNameUtil getPath ${rawFile})"
+		if [[ $(SystemValidator isWindows) ]]; then
+			local _env="win"
+		else
+			local _env="nix"
+		fi
+
+		file="\/\/\/$(FileNameUtil getPath ${_env} ${rawFile})"
 
 		"${chromeDir}/chrome.exe" "file:${file}"
 
