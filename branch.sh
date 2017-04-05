@@ -118,7 +118,7 @@ rebase(){
 		q) local cmd=abort;;
 	esac
 
-	GitRebaseUtil ${cmd}
+	GitRebaseUtil ${cmd} ${branch}
 }
 
 rename(){
