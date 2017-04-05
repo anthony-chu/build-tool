@@ -197,7 +197,6 @@ test(){
 clear
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir ${branch})
-bundleDir=$(BaseVars returnBundleDir $@)
 
 System extendAntOpts ${branch}
 System setJavaHome ${branch}
