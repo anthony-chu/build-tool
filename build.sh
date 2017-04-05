@@ -167,8 +167,8 @@ args=(${@})
 appServer=$(AppServerValidator returnAppServer args)
 baseDir=$(pwd)
 branch=$(BaseVars returnBranch $@)
-buildDir=$(BaseVars returnBuildDir $@)
-bundleDir=$(BaseVars returnBundleDir $@)
+buildDir=$(BaseVars returnBuildDir ${branch})
+bundleDir=$(BaseVars returnBundleDir ${branch})
 
 System extendAntOpts ${branch}
 System setJavaHome ${branch}

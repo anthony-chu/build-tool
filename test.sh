@@ -196,7 +196,7 @@ test(){
 
 clear
 branch=$(BaseVars returnBranch $@)
-buildDir=$(BaseVars returnBuildDir $@)
+buildDir=$(BaseVars returnBuildDir ${branch})
 bundleDir=$(BaseVars returnBundleDir $@)
 
 System extendAntOpts ${branch}
