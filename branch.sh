@@ -111,7 +111,7 @@ rebase(){
 	fi
 
 	case $(StringUtil returnOption ${1}) in
-		[0-9]*) local cmd="start ${branch} ${1}";;
+		[0-9]*) local cmd="start ${1}";;
 		a) local cmd=amend;;
 		c) local cmd=cont;;
 		d) local cmd=default;;
