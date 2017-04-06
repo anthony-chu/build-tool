@@ -135,16 +135,6 @@ sf(){
 	Logger logCompletedMsg
 }
 
-validate(){
-	cd ${buildDir}
-
-	Logger logProgressMsg "running_$(StringUtil capitalize poshi)_validation"
-
-	ant -f build-test.xml run-poshi-validation $@
-
-	Logger logCompletedMsg
-}
-
 test(){
 	testDir=$(FileUtil construct /d/test-results/${branch})
 
@@ -192,6 +182,16 @@ test(){
 
 		Logger logCompletedMsg
 	fi
+}
+
+validate(){
+	cd ${buildDir}
+
+	Logger logProgressMsg "running_$(StringUtil capitalize poshi)_validation"
+
+	ant -f build-test.xml run-poshi-validation $@
+
+	Logger logCompletedMsg
 }
 
 clear
