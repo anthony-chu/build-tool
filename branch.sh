@@ -159,8 +159,8 @@ clear
 args=(${@})
 appServer=$(AppServerValidator returnAppServer args)
 branch=$(BaseVars returnBranch ${args[@]})
-buildDir=$(BaseVars returnBuildDir ${args[@]})
-bundleDir=$(BaseVars returnBundleDir ${args[@]})
+buildDir=$(BaseVars returnBuildDir ${branch})
+bundleDir=$(BaseVars returnBundleDir ${branch})
 
 if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
