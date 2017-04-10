@@ -48,10 +48,10 @@ pr(){
 
 		_issueKey=$(_getIssueKey)
 
-		if [[ $(StringValidator isSubstring $(_getIssueKey) LPS) || $(
-				StringValidator isSubstring $(_getIssueKey) LRQA) ]]; then
+		if [[ $(StringValidator isSubstring ${_issueKey} LPS) || $(
+				StringValidator isSubstring ${_issueKey} LRQA) ]]; then
 
-			issueKey=$(_getIssueKey)
+			issueKey=${_issueKey}
 		elif [[ $(StringValidator isSubstring ${title} qa) || $(StringValidator
 			isSubstring ${title} lps) ]]; then
 
