@@ -162,7 +162,6 @@ test(){
 
 		mv index.html ${test}_index.html
 
-		cd ${testDir}/${testname}
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 		rawFile="${testDir}/${testname}/$(StringUtil
 			replace testname _ %23)_index.html"
