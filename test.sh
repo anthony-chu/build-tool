@@ -163,9 +163,9 @@ test(){
 		mv index.html ${test}_index.html
 
 		cd ${testDir}/${testname}
-		testcase=$(StringUtil replace testname _ %23)
 		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
-		rawFile="${testDir}/${testname}/${testcase}_index.html"
+		rawFile="${testDir}/${testname}/$(StringUtil
+			replace testname _ %23)_index.html"
 
 		if [[ $(SystemValidator isWindows) ]]; then
 			local _env="win"
