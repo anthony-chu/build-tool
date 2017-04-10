@@ -141,9 +141,6 @@ test(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "missing_test_name"
 	else
-		local propsFile=$(FileUtil
-			makeFile ${testDir}/test.${HOSTNAME}.properties)
-
 		PropsWriter setTestProps ${branch} timeout.explicit.wait 60
 
 		test=${1}
