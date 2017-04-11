@@ -117,9 +117,9 @@ sf(){
 
 	cd ${buildDir}/portal-impl
 
-	opt=$(StringUtil returnOption ${1})
+	if [[ $(BaseComparator isEqualIgnoreCase $(StringUtil
+		returnOption ${1}) c) ]]; then
 
-	if [[ $(BaseComparator isEqualIgnoreCase ${opt} c) ]]; then
 		option="-current-branch"
 	else
 		option="_all_changes"
