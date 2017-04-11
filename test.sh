@@ -84,7 +84,15 @@ pr(){
 
 		git push -f origin ${title}
 
-		GitUtil pr submit --update-branch=${branch} "${comment}" "${issueKey} | ${branch}" -u ${user}
+		local params=(
+			--update-branch=${branch}
+			https://issues.liferay.com/browse/${issueKey}
+			${issueKey}
+			-u
+			${1}
+		)
+
+		GitUtil pr submit ${params[@]}
 
 		Logger logCompletedMsg
 
