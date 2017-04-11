@@ -39,10 +39,6 @@ pr(){
 	else
 		Logger logProgressMsg "submitting_pull_request"
 
-		detailHeading=(branch: reviewer: comment: title:)
-
-		newDetailHeading=($(ArrayUtil appendArrayEntry detailHeading))
-
 		cd ${buildDir}
 		title=$(GitUtil getCurBranch)
 
@@ -69,11 +65,16 @@ pr(){
 			exit
 		fi
 
-		comment=https://issues.liferay.com/browse/${issueKey}
+		detailHeading=(branch: reviewer: comment: title:)
 
-		user=${1}
+		detailText=(
+			${branch}
+			${1}
+			https://issues.liferay.com/browse/${issueKey}
+			${issueKey}
+		)
 
-		detailText=(${branch} ${user} "${comment}" "${issueKey} | ${branch}")
+		newDetailHeading=($(ArrayUtil appendArrayEntry detailHeading))
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
 			echo -e "\t${newDetailHeading[i]}................${detailText[i]}"
