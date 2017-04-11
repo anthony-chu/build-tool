@@ -48,18 +48,11 @@ pr(){
 				StringValidator isSubstring ${_issueKey} LRQA) ]]; then
 
 			issueKey=${_issueKey}
-		elif [[ $(StringValidator isSubstring ${title} qa) || $(StringValidator
-			isSubstring ${title} lps) ]]; then
+		elif [[ $(StringValidator isSubstring ${title} lrqa) || $(
+			StringValidator isSubstring ${title} lps); then
 
-			titleArray=($(StringUtil split title -))
-
-			if [[ $(BaseComparator isEqual ${titleArray[1]} qa) ]]; then
-				_project=LRQA
-			elif [[ $(BaseComparator isEqual ${titleArray[1]} lps) ]]; then
-				_project=LPS
-			fi
-
-			issueKey=${_project}-$(StringUtil strip title .*-)
+			issueKey=$(StringUtil toUpperCase $(
+				StringUtil strip title ${branch-}))
 		else
 			Logger logErrorMsg "invalid_branch_name_and/or_commit_message"
 			exit
