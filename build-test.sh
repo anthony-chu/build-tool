@@ -1,15 +1,31 @@
 source bash-toolbox/init.sh
 
+include app.server.validator.test.AppServerValidatorTest
+include app.server.version.constants.test.AppServerVersionConstantsTest
+include app.server.version.test.AppServerVersionTest
+
+include array.util.test.ArrayUtilTest
+include array.validator.test.ArrayValidatorTest
+
 include base.comparator.BaseComparator
+include base.comparator.test.BaseComparatorTest
+include base.vars.test.BaseVarsTest
 
 include help.message.HelpMessage
 
+include language.util.test.LanguageUtilTest
+
 include logger.Logger
+include logger.util.test.LoggerUtilTest
+
+include math.util.test.MathUtilTest
 
 include string.util.StringUtil
+include string.util.test.StringUtilTest
 include string.validator.StringValidator
+include string.validator.test.StringValidatorTest
 
-package test
+include test.util.TestUtil
 
 run-unit-tests(){
 
