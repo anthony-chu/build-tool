@@ -49,7 +49,7 @@ pr(){
 
 			issueKey=${_issueKey}
 		elif [[ $(StringValidator isSubstring ${title} lrqa) || $(
-			StringValidator isSubstring ${title} lps); then
+			StringValidator isSubstring ${title} lps) ]]; then
 
 			issueKey=$(StringUtil toUpperCase $(
 				StringUtil strip title ${branch-}))
