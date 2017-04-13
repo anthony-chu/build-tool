@@ -100,7 +100,7 @@ clean(){
 
 	BundleUtil deleteTempFiles ${branch} ${appServer}
 
-	OSGiUtil resetState ${branch}
+	BundleUtil resetOSGiState ${branch}
 }
 
 pull(){
