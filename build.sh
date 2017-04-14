@@ -33,32 +33,6 @@ include string.validator.StringValidator
 
 include system.System
 
-_config(){
-	Logger logProgressMsg "building_properties"
-
-	local props=(app.server build)
-
-	for prop in ${props[@]}; do
-		touch ${buildDir}/${prop}.${HOSTNAME}.properties
-	done
-
-	PropsWriter setAppServerProps ${branch} app.server.parent.dir ${bundleDir}
-	PropsWriter setAppServerProps ${branch} app.server.type ${appServer}
-
-	PropsWriter setBuildProps ${branch} app.server.parent.dir ${bundleDir}
-	PropsWriter setBuildProps ${branch} app.server.type ${appServer}
-	PropsWriter setBuildProps ${branch} auto.deploy.dir=${bundleDir}/deploy
-	PropsWriter setBuildProps ${branch} lp.source.dir ${buildDir}
-
-	if [[ $(StringValidator isSubstring ${branch} 6.1) ]]; then
-		PropsWriter setBuildProps ${branch} jsp.precompile off
-	else
-		PropsWriter setBuildProps ${branch} jsp.precompile on
-	fi
-
-	Logger logCompletedMsg
-}
-
 build(){
 	local _logFile=(/d/logs/${branch}/${appServer}/
 		$(CalendarUtil getTimestamp date)/
@@ -78,7 +52,7 @@ build(){
 
 	GitUtil cleanSource ${doClean} ${branch}
 
-	_config ${appServer}
+	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "unzipping_${appServer}"
 	ant -f build-dist.xml unzip-${appServer}
