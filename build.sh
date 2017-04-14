@@ -26,6 +26,8 @@ include math.util.MathUtil
 
 include props.writer.PropsWriter
 
+include source.util.SourceUtil
+
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -113,6 +115,8 @@ pull(){
 	GitUtil clearIndexLock ${branch}
 
 	GitUtil cleanSource ${doClean} ${branch}
+
+	SourceUtil clearGradleCache ${branch}
 
 	cd ${buildDir}
 

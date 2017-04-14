@@ -15,6 +15,8 @@ include language.util.LanguageUtil
 
 include logger.Logger
 
+include source.util.SourceUtil
+
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -166,6 +168,8 @@ if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
 else
 	GitUtil clearIndexLock ${branch}
+
+	SourceUtil clearGradleCache ${branch}
 
 	CommandValidator validateCommand ${0} ${1}
 
