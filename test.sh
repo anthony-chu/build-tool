@@ -52,7 +52,7 @@ pr(){
 			StringValidator isSubstring ${title} lps) ]]; then
 
 			issueKey=$(StringUtil toUpperCase $(
-				StringUtil strip title ${branch-}))
+				StringUtil strip title ${branch}- ))
 		else
 			Logger logErrorMsg "invalid_branch_name_and/or_commit_message"
 			exit
