@@ -144,6 +144,9 @@ reset(){
 }
 
 switch(){
+
+	SourceUtil clearGradleCache ${branch}
+
 	cd ${buildDir}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
@@ -168,8 +171,6 @@ if [[ $(StringValidator isNull ${1}) ]]; then
 	HelpMessage branchHelpMessage
 else
 	GitUtil clearIndexLock ${branch}
-
-	SourceUtil clearGradleCache ${branch}
 
 	CommandValidator validateCommand ${0} ${1}
 
