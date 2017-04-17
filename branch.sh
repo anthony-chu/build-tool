@@ -144,7 +144,6 @@ reset(){
 }
 
 switch(){
-
 	SourceUtil clearGradleCache ${branch}
 
 	cd ${buildDir}
