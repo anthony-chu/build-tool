@@ -112,6 +112,8 @@ rebase(){
 		exit
 	fi
 
+	SourceUtil clearGradleCache ${branch}
+
 	case $(StringUtil returnOption ${1}) in
 		[0-9]*) local cmd="start ${1}";;
 		a) local cmd=amend;;
