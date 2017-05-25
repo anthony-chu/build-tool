@@ -121,6 +121,10 @@ sf(){
 		returnOption ${1}) c) ]]; then
 
 		option="-current-branch"
+	elif [[ $(BaseComparator isEqualIgnoreCase $(StringUtil
+		returnOption ${1}) l) ]]; then
+
+		option="-local-changes"
 	else
 		option="_all_changes"
 	fi
