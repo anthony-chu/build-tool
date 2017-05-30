@@ -34,7 +34,7 @@ include system.System
 build(){
 	local _logFile=(/d/logs/${branch}/${appServer}/
 		$(CalendarUtil getTimestamp date)/
-		${branch}-build-$(GitUtil getSHA ${buildDir} short)-
+		${branch}-build-$(GitUtil getSHA ${branch} short)-
 		$(CalendarUtil getTimestamp clock).log
 	)
 
