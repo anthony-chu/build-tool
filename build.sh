@@ -77,6 +77,40 @@ clean(){
 	BundleUtil resetOSGiState ${branch}
 }
 
+deploy(){
+	local _logFile=(/d/logs/${branch}/${appServer}/
+		$(CalendarUtil getTimestamp date)/
+		${branch}-build-$(GitUtil getSHA ${branch} short)-
+		$(CalendarUtil getTimestamp clock).log
+	)
+
+	local logFile=$(FileUtil makeFile $(StringUtil join _logFile))
+
+	BundleUtil deleteBundleContent ${branch} ${appServer}
+
+	if [[ $(StringUtil returnOption ${1}) == c ]]; then
+		local doClean=true
+	else
+		local doClean=false
+	fi
+
+	GitUtil cleanSource ${doClean} ${branch}
+
+	SourceUtil config ${appServer} ${branch}
+
+	Logger logProgressMsg "unzipping_${appServer}"
+	ant -f build-dist.xml unzip-${appServer}
+	Logger logCompletedMsg
+
+	BundleUtil configure ${branch} ${appServer}
+
+	Logger logProgressMsg "building_portal"
+
+	trap "Logger logCompletedMsg" SIGINT
+
+	ant deploy >> ${logFile} | tail -f --pid=$$ ${logFile}
+}
+
 pull(){
 	if [[ $(StringUtil returnOption ${1}) == c ]]; then
 		local doClean=true
