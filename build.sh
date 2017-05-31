@@ -104,7 +104,7 @@ deploy(){
 
 	BundleUtil configure ${branch} ${appServer}
 
-	Logger logProgressMsg "building_portal"
+	Logger logProgressMsg "deploying_portal"
 
 	trap "Logger logCompletedMsg" SIGINT
 
