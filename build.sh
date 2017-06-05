@@ -86,23 +86,7 @@ deploy(){
 
 	local logFile=$(FileUtil makeFile $(StringUtil join _logFile))
 
-	BundleUtil deleteBundleContent ${branch} ${appServer}
-
-	if [[ $(StringUtil returnOption ${1}) == c ]]; then
-		local doClean=true
-	else
-		local doClean=false
-	fi
-
-	GitUtil cleanSource ${doClean} ${branch}
-
 	SourceUtil config ${appServer} ${branch}
-
-	Logger logProgressMsg "unzipping_${appServer}"
-	ant -f build-dist.xml unzip-${appServer}
-	Logger logCompletedMsg
-
-	BundleUtil configure ${branch} ${appServer}
 
 	Logger logProgressMsg "deploying_portal"
 
