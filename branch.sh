@@ -159,9 +159,8 @@ switch(){
 }
 
 clear
-args=(${@})
-appServer=$(AppServerValidator returnAppServer args)
-branch=$(BaseVars returnBranch ${args[@]})
+appServer=$(AppServerValidator returnAppServer ${@})
+branch=$(BaseVars returnBranch ${@})
 buildDir=$(BaseVars returnBuildDir ${branch})
 bundleDir=$(BaseVars returnBundleDir ${branch})
 
@@ -172,5 +171,5 @@ else
 
 	CommandValidator validateCommand ${0} ${1}
 
-	${args[@]}
+	${@}
 fi
