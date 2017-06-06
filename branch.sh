@@ -68,7 +68,7 @@ dev(){
 
 jira(){
 	if [[ $(BaseComparator isEqual ${1} fixed) || $(BaseComparator
-		isEqual ${1} nlr) || $(BaseComparator isEqual ${1} repro) ]]; then
+		isEqual ${1} nlr) || $(BaseComparator isEqual ${1} repro) || ! ${1} ]]; then
 
 		JiraUtil ${1} ${appServer} ${branch}
 	fi
