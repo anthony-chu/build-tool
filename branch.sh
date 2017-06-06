@@ -31,9 +31,7 @@ changes(){
 current(){
 	cd ${buildDir}
 
-	name=$(GitUtil getCurBranch)
-
-	Logger logInfoMsg "current_${branch}_branch:_${name}"
+	Logger logInfoMsg "current_${branch}_branch:_$(GitUtil getCurBranch)"
 }
 
 delete(){
@@ -129,11 +127,9 @@ rebase(){
 rename(){
 	cd ${buildDir}
 
-	local originalBranch=$(GitUtil getCurBranch)
-
 	git branch -q -m ${1}
 
-	Logger logInfoMsg "renamed_branch_from_${originalBranch}_to_${1}"
+	Logger logInfoMsg "renamed_branch_from_$(GitUtil getCurBranch)_to_${1}"
 }
 
 reset(){
