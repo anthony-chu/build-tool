@@ -189,7 +189,14 @@ test(){
 validate(){
 	cd ${buildDir}
 
-	Logger logProgressMsg "running_$(StringUtil capitalize poshi)_validation"
+	local message=(
+		running_
+		$(StringUtil capitalize poshi)_
+		validation_against_
+		$(GitUtil getCurBranch)
+	)
+
+	Logger logProgressMsg "$(StringUtil join message)"
 
 	ant -f build-test.xml run-poshi-validation $@
 
