@@ -1,7 +1,6 @@
 source bash-toolbox/init.sh
 
 include array.util.ArrayUtil
-include array.validator.ArrayValidator
 
 include base.comparator.BaseComparator
 include base.vars.BaseVars

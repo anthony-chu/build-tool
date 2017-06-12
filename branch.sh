@@ -11,8 +11,6 @@ include help.message.HelpMessage
 
 include jira.util.JiraUtil
 
-include language.util.LanguageUtil
-
 include logger.Logger
 
 include source.util.SourceUtil
