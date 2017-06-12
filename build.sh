@@ -92,6 +92,8 @@ deploy(){
 
 	trap "Logger logCompletedMsg" SIGINT
 
+	cd ${buildDir}
+
 	ant deploy >> ${logFile} | tail -f --pid=$$ ${logFile}
 }
 
