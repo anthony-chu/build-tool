@@ -181,7 +181,13 @@ else
 
 			CommandValidator validateCommand ${0} ${1}
 
-			${1}
+			if [[ ${1} == "run" ]]; then
+				Logger logProgressMsg "${1}ning_a_${branch}_${appServer}_bundle"
+			elif [[ ${1} == pull || ${1} == push ]]; then
+				Logger logProgressMsg "${1}ing_the_latest_changes_for_${branch}"
+			else
+				Logger logProgressMsg "${1}ing_a_${branch}_${appServer}_bundle"
+			fi
 		fi
 
 		shift
