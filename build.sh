@@ -188,6 +188,8 @@ else
 			else
 				Logger logProgressMsg "${1}ing_a_${branch}_${appServer}_bundle"
 			fi
+
+			${1}
 		fi
 
 		shift
