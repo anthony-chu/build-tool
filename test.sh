@@ -31,7 +31,7 @@ _executeTest(){
 
 	local test=${1}
 	shift
-	Logger logProgressMsg "running_test_${test}"
+	Logger logProgressMsg "running_test_${test}_against_${branch}"
 	echo
 	cd ${buildDir}
 	ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
