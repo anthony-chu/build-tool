@@ -184,6 +184,12 @@ sf(){
 test(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "missing_test_name"
+	elif [[ $(StringValidator isSubstring ${1} ,) ]]; then
+		local tests=${1}
+
+		for _test in $(StringUtil split tests ,); do
+			_executeTest ${_test}
+		done
 	else
 		_executeTest ${1}
 	fi
