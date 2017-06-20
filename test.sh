@@ -24,6 +24,47 @@ include string.validator.StringValidator
 include system.System
 include system.validator.SystemValidator
 
+_executeTest(){
+	local testDir=$(FileUtil construct /d/test-results/${branch})
+
+	PropsWriter setTestProps ${branch} timeout.explicit.wait 60
+
+	local test=${1}
+	shift
+	Logger logProgressMsg "running_test_${test}"
+	echo
+	cd ${buildDir}
+	ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
+
+	local testname=$(StringUtil replace test \# _)
+
+	local resultDir=${buildDir}/portal-web/test-results/${testname}
+
+	Logger logProgressMsg "moving_test_results"
+
+	cp -r ${resultDir} ${testDir}
+
+	cd ${testDir}/${testname}
+
+	mv index.html ${test}_index.html
+
+	local chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
+	local rawFile="${testDir}/${testname}/$(StringUtil
+		replace testname _ %23)_index.html"
+
+	if [[ $(SystemValidator isWindows) ]]; then
+		local _env="win"
+	else
+		local _env="nix"
+	fi
+
+	local file="\/\/\/$(FileNameUtil getPath ${_env} ${rawFile})"
+
+	"${chromeDir}/chrome.exe" "file:${file}"
+
+	Logger logCompletedMsg
+}
+
 pr(){
 	_getIssueKey(){
 		cd ${buildDir}
@@ -141,47 +182,10 @@ sf(){
 }
 
 test(){
-	testDir=$(FileUtil construct /d/test-results/${branch})
-
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "missing_test_name"
 	else
-		PropsWriter setTestProps ${branch} timeout.explicit.wait 60
-
-		test=${1}
-		shift
-		Logger logProgressMsg "running_test_${test}"
-		echo
-		cd ${buildDir}
-		ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
-
-		testname=$(StringUtil replace test \# _)
-
-		resultDir=${buildDir}/portal-web/test-results/${testname}
-
-		Logger logProgressMsg "moving_test_results"
-
-		cp -r ${resultDir} ${testDir}
-
-		cd ${testDir}/${testname}
-
-		mv index.html ${test}_index.html
-
-		chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
-		rawFile="${testDir}/${testname}/$(StringUtil
-			replace testname _ %23)_index.html"
-
-		if [[ $(SystemValidator isWindows) ]]; then
-			local _env="win"
-		else
-			local _env="nix"
-		fi
-
-		file="\/\/\/$(FileNameUtil getPath ${_env} ${rawFile})"
-
-		"${chromeDir}/chrome.exe" "file:${file}"
-
-		Logger logCompletedMsg
+		_executeTest ${1}
 	fi
 }
 
