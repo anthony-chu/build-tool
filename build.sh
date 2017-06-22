@@ -156,9 +156,7 @@ run(){
 
 clear
 
-args=(${@})
-
-appServer=$(AppServerValidator returnAppServer args)
+appServer=$(AppServerValidator returnAppServer ${@})
 baseDir=$(pwd)
 branch=$(BaseVars returnBranch $@)
 buildDir=$(BaseVars returnBuildDir ${branch})
