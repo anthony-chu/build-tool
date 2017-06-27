@@ -148,6 +148,10 @@ run(){
 	elif [[ $(AppServerValidator isTomcat appServer) ]]; then
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
+		local portalProps=${bundleDir}/portal-ext.properties
+
+		cp ${portalProps} ${appServerDir}/domains/
+
 		${appServerDir}/domains/liferay/bin/startWebLogic.sh
 	elif [[ $(AppServerValidator isWildfly appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
