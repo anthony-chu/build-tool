@@ -60,8 +60,6 @@ build(){
 
 	Logger logProgressMsg "building_portal"
 
-	trap "Logger logCompletedMsg" SIGINT
-
 	ant all |& tee -a ${logFile}
 }
 
@@ -89,8 +87,6 @@ deploy(){
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "deploying_portal"
-
-	trap "Logger logCompletedMsg" SIGINT
 
 	cd ${buildDir}
 
