@@ -61,6 +61,8 @@ build(){
 	Logger logProgressMsg "building_portal"
 
 	ant all |& tee -a ${logFile}
+
+	Logger logCompletedMsg
 }
 
 clean(){
@@ -91,6 +93,8 @@ deploy(){
 	cd ${buildDir}
 
 	ant deploy |& tee -a ${logFile}
+
+	Logger logCompletedMsg
 }
 
 pull(){
