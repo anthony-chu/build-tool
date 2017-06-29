@@ -53,7 +53,7 @@ build(){
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "unzipping_${appServer}"
-	ant -f build-dist.xml unzip-${appServer} >> ${logFile}
+	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
 	Logger logCompletedMsg
 
 	BundleUtil configure ${branch} ${appServer}
@@ -62,7 +62,7 @@ build(){
 
 	trap "Logger logCompletedMsg" SIGINT
 
-	ant all >> ${logFile} | tail -f --pid=$$ ${logFile}
+	ant all |& tee -a ${logFile}
 }
 
 clean(){
@@ -94,7 +94,7 @@ deploy(){
 
 	cd ${buildDir}
 
-	ant deploy >> ${logFile} | tail -f --pid=$$ ${logFile}
+	ant deploy |& tee -a ${logFile}
 }
 
 pull(){
