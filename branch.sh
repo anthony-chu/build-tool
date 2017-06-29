@@ -125,9 +125,9 @@ rebase(){
 rename(){
 	cd ${buildDir}
 
-	git branch -q -m ${1}
+	Logger logInfoMsg "renaming_branch_from_$(GitUtil getCurBranch)_to_${1}"
 
-	Logger logInfoMsg "renamed_branch_from_$(GitUtil getCurBranch)_to_${1}"
+	git branch -q -m ${1}
 }
 
 reset(){
