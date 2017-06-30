@@ -232,7 +232,7 @@ if [[ $@ =~ ${branch} ]]; then
 fi
 
 if [[ $(StringValidator isNull ${args[@]}) ]]; then
-	HelpMessage testHelpMessage
+	HelpMessage printHelpMessage $(FileUtil getCurFile true)
 elif [[ ${args[@]} == *\#* ]]; then
 	test ${args[@]}
 else

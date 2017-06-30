@@ -67,7 +67,7 @@ run-unit-tests(){
 }
 
 if [[ $(StringValidator isNull ${1}) ]]; then
-	HelpMessage buildTestHelpMessage
+	HelpMessage printHelpMessage $(FileUtil getCurFile true)
 elif [[ $(BaseComparator isEqual ${1} run-unit-tests) ]]; then
 	${1}
 else
