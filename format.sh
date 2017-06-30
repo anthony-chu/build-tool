@@ -4,8 +4,6 @@ include base.comparator.BaseComparator
 
 include formatter.Formatter
 
-include help.message.HelpMessage
-
 include logger.Logger
 
 include string.util.StringUtil
@@ -34,12 +32,4 @@ _main(){
 	Logger logCompletedMsg
 }
 
-if [[ ! $(StringValidator isNull ${1}) ]]; then
-	if [[ $(BaseComparator isEqual $(StringUtil returnOption ${1}) h) || $(
-		BaseComparator isEqual $(StringUtil returnOption ${1}) help) ]]; then
-
-		HelpMessage formatHelpMessage
-	fi
-else
-	_main
-fi
+_main
