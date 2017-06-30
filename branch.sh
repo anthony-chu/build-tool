@@ -20,18 +20,21 @@ include string.validator.StringValidator
 
 package git
 
+@description displays_all_changes_made_to_current_branch
 changes(){
 	cd ${buildDir}
 
 	git status
 }
 
+@description displays_the_current_branch
 current(){
 	cd ${buildDir}
 
 	Logger logInfoMsg "current_${branch}_branch:_$(GitUtil getCurBranch)"
 }
 
+@description deletes_the_indicated_branch
 delete(){
 	cd ${buildDir}
 
@@ -45,6 +48,7 @@ delete(){
 	fi
 }
 
+@description fetches_a_developer\'s_branch
 dev(){
 	cd ${buildDir}
 
@@ -62,6 +66,7 @@ dev(){
 	log
 }
 
+@description prints_a_formatted_Jira_comment
 jira(){
 	if [[ $(BaseComparator isEqual ${1} fixed) || $(
 		BaseComparator isEqual ${1} nlr) || $(
@@ -71,12 +76,14 @@ jira(){
 	fi
 }
 
+@description displays_all_local_branches
 list(){
 	cd ${buildDir}
 
 	GitUtil listBranches
 }
 
+@description displays_the_log_for_the_current_branch
 log(){
 	cd ${buildDir}
 
@@ -89,6 +96,7 @@ log(){
 	fi
 }
 
+@description creates_and_switches_to_the_indicated_branch
 new(){
 	cd ${buildDir}
 
@@ -103,6 +111,7 @@ new(){
 	current
 }
 
+@description provides_options_for_and_executes_an_interative_rebase
 rebase(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "please_provide_a_valid_rebase_option"
@@ -121,7 +130,7 @@ rebase(){
 
 	GitRebaseUtil ${cmd} ${branch}
 }
-
+ @description renames_the_current_branch
 rename(){
 	cd ${buildDir}
 
@@ -132,6 +141,7 @@ rename(){
 	Logger logCompletedMsg
 }
 
+@description restores_source_code_the_designated_commit
 reset(){
 	cd ${buildDir}
 
@@ -142,6 +152,7 @@ reset(){
 	git reset --hard ${commit}
 }
 
+@description changes_to_a_different_local_branch
 switch(){
 	SourceUtil clearGradleCache ${branch}
 

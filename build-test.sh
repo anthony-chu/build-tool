@@ -27,6 +27,7 @@ include string.validator.test.StringValidatorTest
 
 include test.util.TestUtil
 
+@description runs_all_unit_tests_in_/test_directory
 run-unit-tests(){
 
 	_execute-tests(){

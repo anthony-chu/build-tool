@@ -31,6 +31,7 @@ include string.validator.StringValidator
 
 include system.System
 
+@description builds_bundle_on_specified_app_server
 build(){
 	local _logFile=(/d/logs/${branch}/${appServer}/
 		$(CalendarUtil getTimestamp date)/
@@ -65,6 +66,7 @@ build(){
 	Logger logCompletedMsg
 }
 
+@description rebuilds_database_and_prepares_bundle_for_runtime
 clean(){
 	local database=lportal$(StringUtil strip branch [-.])
 
@@ -77,6 +79,7 @@ clean(){
 	BundleUtil resetOSGiState ${branch}
 }
 
+@description deploys_compiled_files_to_the_indicated_app_server
 deploy(){
 	local _logFile=(/d/logs/${branch}/${appServer}/
 		$(CalendarUtil getTimestamp date)/
@@ -97,6 +100,7 @@ deploy(){
 	Logger logCompletedMsg
 }
 
+@description pulls_changes_from_upstream_on_the_indicated_branch
 pull(){
 	if [[ $(StringUtil returnOption ${1}) == c ]]; then
 		local doClean=true
@@ -117,6 +121,7 @@ pull(){
 	Logger logCompletedMsg
 }
 
+@description pushes_changes_to_origin_on_the_indicated_branch
 push(){
 	cd ${buildDir}
 
@@ -129,6 +134,7 @@ push(){
 	Logger logCompletedMsg
 }
 
+@description runs_a_bundle_on_the_specified_app_server
 run(){
 	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
 

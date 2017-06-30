@@ -65,6 +65,7 @@ _executeTest(){
 	Logger logCompletedMsg
 }
 
+@description submits_a_pull_request
 pr(){
 	_getIssueKey(){
 		cd ${buildDir}
@@ -137,6 +138,7 @@ pr(){
 	fi
 }
 
+@description formats_source_files
 sf(){
 	if [[ $(BaseComparator isEqual ${branch} master) || $(StringValidator
 		isSubstring ${branch} 7.0.x) ]]; then
@@ -181,6 +183,7 @@ sf(){
 	Logger logCompletedMsg
 }
 
+@description executes_a_frontend_test
 test(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		Logger logErrorMsg "missing_test_name"
@@ -197,6 +200,7 @@ test(){
 	fi
 }
 
+@description runs_poshi_validation
 validate(){
 	cd ${buildDir}
 
