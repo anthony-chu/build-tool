@@ -43,7 +43,12 @@ delete(){
 	if [[ $(BaseComparator isEqual ${1} ${curBranch}) ]]; then
 		GitException curBranchException delete ${1}
 	else
-		git branch -q -D ${1}
+		if ! $(git branch -q -D ${1}); then
+			GitException branchDoesNotExistException delete ${1}
+
+			return
+		fi
+
 		Logger logInfoMsg "deleted_local_branch:_${1}"
 	fi
 }
