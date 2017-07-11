@@ -176,7 +176,7 @@ System extendAntOpts ${branch}
 System setJavaHome ${branch}
 
 if [[ $(StringValidator isNull ${1}) ]]; then
-	HelpMessage printHelpMessage $(FileUtil getCurFile true)
+	HelpMessage printHelpMessage
 else
 	until [[ $(StringValidator isNull ${1}) ]]; do
 		if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(

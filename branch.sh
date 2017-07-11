@@ -182,7 +182,7 @@ buildDir=$(BaseVars returnBuildDir ${branch})
 bundleDir=$(BaseVars returnBundleDir ${branch})
 
 if [[ $(StringValidator isNull ${1}) ]]; then
-	HelpMessage printHelpMessage $(FileUtil getCurFile true)
+	HelpMessage printHelpMessage
 else
 	GitUtil clearIndexLock ${branch}
 
