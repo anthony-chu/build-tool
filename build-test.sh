@@ -11,6 +11,10 @@ include base.comparator.BaseComparator
 include base.comparator.test.BaseComparatorTest
 include base.vars.test.BaseVarsTest
 
+include file.name.util.test.FileNameUtilTest
+include file.util.Test.FileUtilTest
+include file.writer.test.FileWriterTest
+
 include help.message.HelpMessage
 
 include language.util.test.LanguageUtilTest
@@ -39,6 +43,9 @@ run-unit-tests(){
 			ArrayValidatorTest
 			BaseComparatorTest
 			BaseVarsTest
+			FileNameUtilTest
+			FileUtilTest
+			FileWriterTest
 			LanguageUtilTest
 			LoggerUtilTest
 			MathUtilTest
