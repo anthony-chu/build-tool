@@ -56,8 +56,6 @@ run-unit-tests(){
 	for group in ${tests[@]}; do
 		${group} run
 	done
-
-	_execute-tests
 }
 
 if [[ $(StringValidator isNull ${1}) ]]; then
