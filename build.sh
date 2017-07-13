@@ -77,6 +77,8 @@ clean(){
 	BundleUtil deleteTempFiles ${branch} ${appServer}
 
 	BundleUtil resetOSGiState ${branch}
+
+	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
 }
 
 @description deploys_compiled_files_to_the_indicated_app_server
@@ -136,8 +138,6 @@ push(){
 
 @description runs_a_bundle_on_the_specified_app_server
 run(){
-	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
-
 	local _appServer=$(StringUtil capitalize ${appServer})
 
 	Logger logProgressMsg "starting_${branch}_Liferay_bundle_on_${_appServer}"
