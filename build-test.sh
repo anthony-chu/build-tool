@@ -56,6 +56,8 @@ run-unit-tests(){
 	for group in ${tests[@]}; do
 		${group} run
 	done
+
+	Logger logCompletedMsg
 }
 
 if [[ $(StringValidator isNull ${1}) ]]; then
