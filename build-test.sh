@@ -33,32 +33,29 @@ include test.util.TestUtil
 
 @description runs_all_unit_tests_in_/test_directory
 run-unit-tests(){
-
-	_execute-tests(){
-		tests=(
-			AppServerValidatorTest
-			AppServerVersionConstantsTest
-			AppServerVersionTest
-			ArrayUtilTest
-			ArrayValidatorTest
-			BaseComparatorTest
-			BaseVarsTest
-			FileNameUtilTest
-			FileUtilTest
-			FileWriterTest
-			LanguageUtilTest
-			LoggerUtilTest
-			MathUtilTest
-			StringUtilTest
-			StringValidatorTest
-		)
-
-		for group in ${tests[@]}; do
-			${group} run
-		done
-	}
-
 	Logger logProgressMsg "running_all_unit_tests"
+
+	local tests=(
+		AppServerValidatorTest
+		AppServerVersionConstantsTest
+		AppServerVersionTest
+		ArrayUtilTest
+		ArrayValidatorTest
+		BaseComparatorTest
+		BaseVarsTest
+		FileNameUtilTest
+		FileUtilTest
+		FileWriterTest
+		LanguageUtilTest
+		LoggerUtilTest
+		MathUtilTest
+		StringUtilTest
+		StringValidatorTest
+	)
+
+	for group in ${tests[@]}; do
+		${group} run
+	done
 
 	_execute-tests
 }
