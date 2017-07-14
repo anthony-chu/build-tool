@@ -33,6 +33,8 @@ include string.util.test.StringUtilTest
 include string.validator.StringValidator
 include string.validator.test.StringValidatorTest
 
+include system.test.SystemTest
+
 include test.util.TestUtil
 
 @description runs_all_unit_tests_in_/test_directory
@@ -58,6 +60,7 @@ run-unit-tests(){
 		PropsWriterUtilTest
 		StringUtilTest
 		StringValidatorTest
+		SystemTest
 	)
 
 	for group in ${tests[@]}; do
