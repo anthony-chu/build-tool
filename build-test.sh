@@ -24,6 +24,10 @@ include logger.util.test.LoggerUtilTest
 
 include math.util.test.MathUtilTest
 
+include props.reader.util.test.PropsReaderUtilTest
+include props.util.test.PropsUtilTest
+include props.writer.util.test.PropsWriterUtilTest
+
 include string.util.StringUtil
 include string.util.test.StringUtilTest
 include string.validator.StringValidator
@@ -49,6 +53,9 @@ run-unit-tests(){
 		LanguageUtilTest
 		LoggerUtilTest
 		MathUtilTest
+		PropsReaderUtilTest
+		PropsUtilTest
+		PropsWriterUtilTest
 		StringUtilTest
 		StringValidatorTest
 	)
