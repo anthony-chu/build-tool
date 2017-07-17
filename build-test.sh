@@ -28,14 +28,11 @@ include props.reader.util.test.PropsReaderUtilTest
 include props.util.test.PropsUtilTest
 include props.writer.util.test.PropsWriterUtilTest
 
-include string.util.StringUtil
 include string.util.test.StringUtilTest
 include string.validator.StringValidator
 include string.validator.test.StringValidatorTest
 
 include system.test.SystemTest
-
-include test.util.TestUtil
 
 @description runs_all_unit_tests_in_/test_directory
 run-unit-tests(){
