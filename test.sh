@@ -111,7 +111,7 @@ pr(){
 		newDetailHeading=($(ArrayUtil appendArrayEntry detailHeading))
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
-			echo -e "\t${newDetailHeading[i]} ................ ${detailText[i]}"
+			echo -e "\t${newDetailHeading[i]}................${detailText[i]}"
 		done
 
 		echo
