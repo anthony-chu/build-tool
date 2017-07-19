@@ -112,9 +112,9 @@ pull(){
 
 	GitUtil clearIndexLock ${branch}
 
-	GitUtil cleanSource ${doClean} ${branch}
-
 	SourceUtil clearGradleCache ${branch}
+
+	GitUtil cleanSource ${doClean} ${branch}
 
 	cd ${buildDir}
 
