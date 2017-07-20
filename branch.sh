@@ -136,7 +136,8 @@ rebase(){
 
 	GitRebaseUtil ${cmd} ${branch}
 }
- @description renames_the_current_branch
+
+@description renames_the_current_branch
 rename(){
 	cd ${buildDir}
 
