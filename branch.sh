@@ -170,7 +170,13 @@ switch(){
 		b=${1}
 	fi
 
-	git checkout -q ${b}
+	local allBranches=($(GitUtil listBranches))
+
+	if [[ ! $(StringValidator isSubstring allBranches b) ]]; then
+		GitException noSuchBranchException switch_to ${b}
+	else
+		git checkout -q ${b}
+	fi
 
 	current
 }
