@@ -116,6 +116,16 @@ pull(){
 
 	cd ${buildDir}
 
+	local curBranch=$(GitUtil getCurBranch)
+
+	if [[ ${curBranch} != ${branch} ]]; then
+		Logger logProgressMsg "switching_from_${curBranch}_to_${branch}"
+
+		git checkout -q ${branch}
+
+		Logger logCompletedMsg
+	fi
+
 	GitUtil cleanSource ${doClean} ${branch}
 
 	Logger logProgressMsg "pulling_changes_from_upstream"
