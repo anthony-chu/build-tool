@@ -114,9 +114,9 @@ pull(){
 
 	SourceUtil clearGradleCache ${branch}
 
-	GitUtil cleanSource ${doClean} ${branch}
-
 	cd ${buildDir}
+
+	GitUtil cleanSource ${doClean} ${branch}
 
 	Logger logProgressMsg "pulling_changes_from_upstream"
 	git pull upstream ${branch}
