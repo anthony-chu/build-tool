@@ -12,9 +12,9 @@ include string.validator.StringValidator
 _main(){
 	Logger logProgressMsg "validating_formatting_rules"
 
-	files=($(find * -type f -iname "*.sh"))
+	local files=($(find * -type f -iname "*.sh"))
 
-	tasks=(
+	local tasks=(
 		applyUnixLineEndings
 		convertSpacesToTabs
 		enforceBashToolboxLocalVariables

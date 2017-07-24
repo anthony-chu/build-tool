@@ -61,9 +61,9 @@ dev(){
 	local branch=${2}
 
 	if [[ $(BaseVars isPrivate ${branch}) ]]; then
-		repo=liferay-portal-ee
+		local repo=liferay-portal-ee
 	else
-		repo=liferay-portal
+		local repo=liferay-portal
 	fi
 
 	git pull git@github.com:${dev}/${repo}.git ${branch}
@@ -153,7 +153,7 @@ reset(){
 	cd ${buildDir}
 
 	if [[ $(StringValidator isAlphaNum ${1}) ]]; then
-		commit=${1}
+		local commit=${1}
 	fi
 
 	git reset --hard ${commit}
@@ -166,9 +166,9 @@ switch(){
 	cd ${buildDir}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		b=master
+		local b=master
 	else
-		b=${1}
+		local b=${1}
 	fi
 
 	local allBranches=($(GitUtil listBranches))

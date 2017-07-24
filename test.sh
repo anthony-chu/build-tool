@@ -70,7 +70,7 @@ pr(){
 	_getIssueKey(){
 		cd ${buildDir}
 
-		gitLogOutput=($(git log --oneline --pretty=format:%s -1))
+		local gitLogOutput=($(git log --oneline --pretty=format:%s -1))
 
 		echo ${gitLogOutput[0]}
 	}
@@ -81,34 +81,34 @@ pr(){
 		Logger logProgressMsg "submitting_pull_request"
 
 		cd ${buildDir}
-		title=$(GitUtil getCurBranch)
+		local title=$(GitUtil getCurBranch)
 
-		_issueKey=$(_getIssueKey)
+		local _issueKey=$(_getIssueKey)
 
 		if [[ $(StringValidator isSubstring ${_issueKey} LPS) || $(
 				StringValidator isSubstring ${_issueKey} LRQA) ]]; then
 
-			issueKey=${_issueKey}
+			local issueKey=${_issueKey}
 		elif [[ $(StringValidator isSubstring ${title} lrqa) || $(
 			StringValidator isSubstring ${title} lps) ]]; then
 
-			issueKey=$(StringUtil toUpperCase $(
+			local issueKey=$(StringUtil toUpperCase $(
 				StringUtil strip title ${branch}- ))
 		else
 			Logger logErrorMsg "invalid_branch_name_and/or_commit_message"
 			exit
 		fi
 
-		detailHeading=(branch: reviewer: comment: title:)
+		local detailHeading=(branch: reviewer: comment: title:)
 
-		detailText=(
+		local detailText=(
 			${branch}
 			${1}
 			https://issues.liferay.com/browse/${issueKey}
 			${issueKey}
 		)
 
-		newDetailHeading=($(ArrayUtil appendArrayEntry detailHeading))
+		local newDetailHeading=($(ArrayUtil appendArrayEntry detailHeading))
 
 		for (( i=0; i<${#detailText[@]}; i++)); do
 			echo -e "\t${newDetailHeading[i]}................${detailText[i]}"
@@ -143,7 +143,7 @@ sf(){
 	if [[ $(BaseComparator isEqual ${branch} master) || $(StringValidator
 		isSubstring ${branch} 7.0.x) ]]; then
 
-		sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
+		local sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
 
 		if [ ! -e ${buildDir}/${sf_lib} ]; then
 			Logger logProgressMsg "building_$(
@@ -162,13 +162,13 @@ sf(){
 	if [[ $(BaseComparator isEqualIgnoreCase $(StringUtil
 		returnOption ${1}) c) ]]; then
 
-		option="-current-branch"
+		local option="-current-branch"
 	elif [[ $(BaseComparator isEqualIgnoreCase $(StringUtil
 		returnOption ${1}) l) ]]; then
 
-		option="-local-changes"
+		local option="-local-changes"
 	else
-		option="_all_changes"
+		local option="_all_changes"
 	fi
 
 	Logger logProgressMsg "running_source-formatter_on$(StringUtil
