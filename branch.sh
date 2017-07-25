@@ -73,13 +73,16 @@ dev(){
 
 @description prints_a_formatted_Jira_comment
 jira(){
-	if [[ $(BaseComparator isEqual ${1} fixed) || $(
-		BaseComparator isEqual ${1} nlr) || $(
-		BaseComparator isEqual ${1} repro) || $(
-		BaseComparator isEqual ${1} ${branch}) || ! ${1} ]]; then
+	local cmd=""
 
-		JiraUtil ${1} ${appServer} ${branch}
-	fi
+	case ${1} in
+		-f|--fixed|fixed) cmd="fixed" ;;
+		-n|--nlr|nlr) cmd="nlr" ;;
+		-r|--repro|repro) cmd="repro" ;;
+		-t|--tested|tested) cmd="tested" ;;
+	esac
+
+	JiraUtil ${cmd} ${appServer} ${branch}
 }
 
 @description displays_all_local_branches
