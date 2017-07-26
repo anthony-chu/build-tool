@@ -101,6 +101,40 @@ deploy(){
 	Logger logCompletedMsg
 }
 
+main(){
+	clear
+
+	local appServer=$(AppServerValidator returnAppServer ${@})
+	local baseDir=$(pwd)
+	local branch=$(BaseVars returnBranch $@)
+	local buildDir=$(BaseVars returnBuildDir ${branch})
+	local bundleDir=$(BaseVars returnBundleDir ${branch})
+
+	System extendAntOpts ${branch}
+	System setJavaHome ${branch}
+
+	if [[ $(StringValidator isNull ${1}) ]]; then
+		HelpMessage printHelpMessage
+	else
+		until [[ $(StringValidator isNull ${1}) ]]; do
+			if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(
+				BaseComparator isEqual ${1} ${branch}) || $(
+				BaseComparator isEqual ${1} -c) ]]; then
+
+				shift
+			else
+				cd ${baseDir}
+
+				CommandValidator validateCommand ${0} ${1}
+
+				${1}
+			fi
+
+			shift
+		done
+	fi
+}
+
 @description pulls_changes_from_upstream_on_the_indicated_branch
 pull(){
 	if [[ $(StringUtil returnOption ${1}) == c ]]; then
@@ -173,34 +207,4 @@ run(){
 	fi
 }
 
-clear
-
-appServer=$(AppServerValidator returnAppServer ${@})
-baseDir=$(pwd)
-branch=$(BaseVars returnBranch $@)
-buildDir=$(BaseVars returnBuildDir ${branch})
-bundleDir=$(BaseVars returnBundleDir ${branch})
-
-System extendAntOpts ${branch}
-System setJavaHome ${branch}
-
-if [[ $(StringValidator isNull ${1}) ]]; then
-	HelpMessage printHelpMessage
-else
-	until [[ $(StringValidator isNull ${1}) ]]; do
-		if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(
-			BaseComparator isEqual ${1} ${branch}) || $(
-			BaseComparator isEqual ${1} -c) ]]; then
-
-			shift
-		else
-			cd ${baseDir}
-
-			CommandValidator validateCommand ${0} ${1}
-
-			${1}
-		fi
-
-		shift
-	done
-fi
+main $@
