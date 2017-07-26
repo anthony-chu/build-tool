@@ -31,8 +31,8 @@ include string.validator.StringValidator
 
 include system.System
 
-@description builds_bundle_on_specified_app_server
-build(){
+@private
+_getLogFile(){
 	local _logFile=(/d/logs/${branch}/${appServer}/
 		$(CalendarUtil getTimestamp date)/
 		${branch}-build-$(GitUtil getSHA ${branch} short)-
@@ -40,6 +40,11 @@ build(){
 	)
 
 	local logFile=$(FileUtil makeFile $(StringUtil join _logFile))
+}
+
+@description builds_bundle_on_specified_app_server
+build(){
+	local logFile=$(_getLogFile)
 
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
@@ -83,13 +88,7 @@ clean(){
 
 @description deploys_compiled_files_to_the_indicated_app_server
 deploy(){
-	local _logFile=(/d/logs/${branch}/${appServer}/
-		$(CalendarUtil getTimestamp date)/
-		${branch}-build-$(GitUtil getSHA ${branch} short)-
-		$(CalendarUtil getTimestamp clock).log
-	)
-
-	local logFile=$(FileUtil makeFile $(StringUtil join _logFile))
+	local logFile=$(_getLogFile)
 
 	SourceUtil config ${appServer} ${branch}
 
