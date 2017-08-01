@@ -38,7 +38,7 @@ current(){
 delete(){
 	cd ${buildDir}
 
-	curBranch=$(GitUtil getCurBranch)
+	local curBranch=$(GitUtil getCurBranch)
 
 	if [[ $(BaseComparator isEqual ${1} ${curBranch}) ]]; then
 		GitException curBranchException delete ${1}
