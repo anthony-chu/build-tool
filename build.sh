@@ -39,7 +39,7 @@ _getLogFile(){
 		$(CalendarUtil getTimestamp clock).log
 	)
 
-	local logFile=$(FileUtil makeFile $(StringUtil join _logFile))
+	FileUtil makeFile $(StringUtil join _logFile)
 }
 
 @description builds_bundle_on_specified_app_server
