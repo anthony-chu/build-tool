@@ -55,6 +55,7 @@ build(){
 	cd ${buildDir}
 
 	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
+
 	Logger logCompletedMsg
 
 	BundleUtil configure ${branch} ${appServer}
