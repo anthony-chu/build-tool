@@ -48,14 +48,6 @@ build(){
 
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
-	if [[ $(StringUtil returnOption ${1}) == c ]]; then
-		local doClean=true
-	else
-		local doClean=false
-	fi
-
-	GitUtil cleanSource ${doClean} ${branch}
-
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "unzipping_${appServer}"
@@ -118,8 +110,7 @@ main(){
 	else
 		until [[ $(StringValidator isNull ${1}) ]]; do
 			if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(
-				BaseComparator isEqual ${1} ${branch}) || $(
-				BaseComparator isEqual ${1} -c) ]]; then
+				BaseComparator isEqual ${1} ${branch}) ]]; then
 
 				shift
 			else
@@ -137,14 +128,6 @@ main(){
 
 @description pulls_changes_from_upstream_on_the_indicated_branch
 pull(){
-	if [[ $(StringUtil returnOption ${1}) == c ]]; then
-		local doClean=true
-	else
-		local doClean=false
-	fi
-
-	GitUtil clearIndexLock ${branch}
-
 	SourceUtil clearGradleCache ${branch}
 
 	cd ${buildDir}
