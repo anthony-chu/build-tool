@@ -51,6 +51,9 @@ build(){
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "unzipping_${appServer}"
+
+	cd ${buildDir}
+
 	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
 	Logger logCompletedMsg
 
