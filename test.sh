@@ -28,6 +28,7 @@ include system.validator.SystemValidator
 _executeTest(){
 	local testDir=$(FileUtil construct /d/test-results/${branch})
 
+	PropsWriter setTestProps ${branch} test.skip.tear.down true
 	PropsWriter setTestProps ${branch} timeout.explicit.wait 60
 
 	local test=${1}
