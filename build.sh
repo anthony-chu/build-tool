@@ -148,7 +148,7 @@ pull(){
 
 	GitUtil cleanSource ${doClean} ${branch}
 
-	Logger logProgressMsg "pulling_changes_from_upstream"
+	Logger logProgressMsg "pulling_changes_for_${branch}_from_upstream"
 	git pull upstream ${branch}
 	Logger logCompletedMsg
 }
