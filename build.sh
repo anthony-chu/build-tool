@@ -194,4 +194,32 @@ run(){
 	fi
 }
 
+@description fetches_and_applies_portal_changes_to_private_repo
+update(){
+	cd ${buildDir}
+
+	Logger logProgressMsg "writing_*.properties_files"
+
+	local writer=PropsWriter
+
+	for props in {AppServer,Build}; do
+		${writer} set${props}Props ${branch} app.server.parent.dir ${bundleDir}
+		${writer} set${props}Props ${branch} app.server.type ${appServer}
+	done
+
+	Logger logCompletedMsg
+
+	Logger logProgressMsg "fetching_portal_changes"
+
+	git fetch upstream $(StringUtil strip branch -private)
+
+	Logger logCompletedMsg
+
+	Logger logProgressMsg "applying_portal_changes"
+
+	ant -f build-working-dir.xml
+
+	Logger logCompletedMsg
+}
+
 main $@
