@@ -2,12 +2,17 @@ source bash-toolbox/init.sh
 
 package props
 
+include logger.Logger
+
 include string.util.StringUtil
 include string.validator.StringValidator
 
 main(){
 	if [[ ! $(StringValidator isNull ${1}) ]]; then
-		local _cmd=${1}
+		case ${1} in
+			read|set|unset) local _cmd=${1} ;;
+			*) Logger logErrorMsg "\"${1}\" is not a valid command" ;;
+		esac
 
 		shift
 
