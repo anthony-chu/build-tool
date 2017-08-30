@@ -11,7 +11,7 @@ main(){
 	if [[ ! $(StringValidator isNull ${1}) ]]; then
 		case ${1} in
 			read|set|unset) local _cmd=${1} ;;
-			*) Logger logErrorMsg "\"${1}\" is not a valid command" ;;
+			*) Logger logErrorMsg "\"${1}\"_is_not_a_valid_command" ;;
 		esac
 
 		shift
