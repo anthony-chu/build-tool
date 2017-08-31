@@ -80,6 +80,16 @@ clean(){
 	BundleUtil resetOSGiState ${branch}
 
 	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
+
+	local propsName=module.framework.properties.blacklist.portal.profile.names
+	local propsValue=(
+		com.liferay.chat.service
+		com.liferay.chat.web
+		opensocial-portlet
+	)
+
+	PropsWriter setPortalProps ${branch} ${propsName} $(
+		StringUtil replace propsValue space ,)
 }
 
 @description deploys_compiled_files_to_the_indicated_app_server
