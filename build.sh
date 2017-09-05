@@ -22,6 +22,8 @@ include help.message.HelpMessage
 
 include logger.Logger
 
+include math.util.MathUtil
+
 include props.writer.PropsWriter
 
 include source.util.SourceUtil
@@ -69,9 +71,7 @@ build(){
 
 @description rebuilds_database_and_prepares_bundle_for_runtime
 clean(){
-	local database=lportal$(StringUtil strip branch [-.])
-
-	Database rebuild ${database} utf8
+	Database rebuild lportal$(StringUtil strip branch [-.]) utf8
 
 	BundleUtil deleteHomeFolders ${branch} ${appServer}
 
