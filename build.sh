@@ -89,7 +89,7 @@ clean(){
 	)
 
 	PropsWriter setPortalProps ${branch} ${propsName} $(
-		StringUtil replace propsValue space ,)
+		StringUtil join propsValue ,)
 }
 
 @description deploys_compiled_files_to_the_indicated_app_server
