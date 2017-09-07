@@ -173,8 +173,7 @@ sf(){
 		local sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
 
 		if [ ! -e ${buildDir}/${sf_lib} ]; then
-			Logger logProgressMsg "building_$(
-				StringUtil toUpperCase sdk)_directory"
+			Logger logProgressMsg "building_SDK_directory"
 
 			cd ${buildDir}
 
