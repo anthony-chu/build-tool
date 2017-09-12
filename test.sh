@@ -50,7 +50,6 @@ _executeTest(){
 
 	mv index.html ${test}_index.html
 
-	local chromeDir="C:/Program Files (x86)/Google/Chrome/Application"
 	local rawFile="${testDir}/${testname}/$(StringUtil
 		replace testname _ %23)_index.html"
 
@@ -60,9 +59,7 @@ _executeTest(){
 		local _env="nix"
 	fi
 
-	local file="\/\/\/$(FileNameUtil getPath ${_env} ${rawFile})"
-
-	"${chromeDir}/chrome.exe" "file:${file}"
+	FileUtil open $(FileNameUtil getPath ${_env} ${rawFile})
 
 	Logger logCompletedMsg
 }
