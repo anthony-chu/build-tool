@@ -59,7 +59,7 @@ _executeTest(){
 		local _env="nix"
 	fi
 
-	FileUtil open $(FileNameUtil getPath ${_env} ${rawFile})
+	FileUtil open "$(FileNameUtil getPath ${_env} ${rawFile})"
 
 	Logger logCompletedMsg
 }
