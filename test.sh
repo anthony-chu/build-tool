@@ -42,26 +42,29 @@ _executeTest(){
 
 	local resultDir=${buildDir}/portal-web/test-results/${testname}
 
-	Logger logProgressMsg "moving_test_results"
+	if [[ -e ${resultsDir} ]]; then
 
-	cp -r ${resultDir} ${testDir}
+		Logger logProgressMsg "moving_test_results"
 
-	cd ${testDir}/${testname}
+		cp -r ${resultDir} ${testDir}
 
-	mv index.html ${test}_index.html
+		cd ${testDir}/${testname}
 
-	local rawFile="${testDir}/${testname}/$(StringUtil
-		replace testname _ \#)_index.html"
+		mv index.html ${test}_index.html
 
-	if [[ $(SystemValidator isWindows) ]]; then
-		local _env="win"
-	else
-		local _env="nix"
+		local rawFile="${testDir}/${testname}/$(StringUtil
+			replace testname _ \#)_index.html"
+
+		if [[ $(SystemValidator isWindows) ]]; then
+			local _env="win"
+		else
+			local _env="nix"
+		fi
+
+		FileUtil open "$(FileNameUtil getPath ${_env} ${rawFile})"
+
+		Logger logCompletedMsg
 	fi
-
-	FileUtil open "$(FileNameUtil getPath ${_env} ${rawFile})"
-
-	Logger logCompletedMsg
 }
 
 main(){
