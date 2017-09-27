@@ -62,11 +62,29 @@ build(){
 
 	BundleUtil configure ${branch} ${appServer}
 
+	# temporary workaround for adaptive-media compilation error
+
+	local amFiles=(
+		$(find modules/apps/adaptive-media -type f -iname ".lfrbuild-portal")
+	)
+
+	if [[ ${amFiles} ]]; then
+		Logger logDebugMsg "removing_adaptive-media_module_from_build_process"
+
+		rm -rf ${amFiles[@]}
+
+		Logger logCompletedMsg
+	fi
+
 	Logger logProgressMsg "building_portal"
 
 	ant all |& tee -a ${logFile}
 
 	Logger logCompletedMsg
+
+	if [[ ${amFiles} ]]; then
+		git reset --hard -q
+	fi
 }
 
 @description rebuilds_database_and_prepares_bundle_for_runtime
