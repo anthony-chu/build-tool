@@ -53,24 +53,6 @@ delete(){
 	fi
 }
 
-@description fetches_a_developer\'s_branch
-dev(){
-	cd ${buildDir}
-
-	local dev=${1}
-	local branch=${2}
-
-	if [[ $(BaseVars isPrivate ${branch}) ]]; then
-		local repo=liferay-portal-ee
-	else
-		local repo=liferay-portal
-	fi
-
-	git pull git@github.com:${dev}/${repo}.git ${branch}
-
-	log
-}
-
 @description prints_a_formatted_Jira_comment
 jira(){
 	local cmd=""
