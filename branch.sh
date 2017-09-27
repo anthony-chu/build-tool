@@ -53,6 +53,28 @@ delete(){
 	fi
 }
 
+@description fetches_a_branch_from_a_pull_request
+fetch(){
+	cd ${buildDir}
+
+	local _id=${1}
+
+	Logger logProgressMsg "fetching_pr#${_id}_into_${branch}-ac-${_id}"
+
+	if [[ "$(GitUtil listBranches)" =~ ${branch}-ac-${_id} ]]; then
+		local message=(
+			cannot_fetch_pr#${_id}_because
+			branch_${branch}-ac-${_id}_exists
+		)
+
+		Logger logErrorMsg "$(StringUtil join message _)"
+	else
+		git fetch upstream pull/${_id}/head:${branch}-ac-${_id}
+
+		Logger logCompletedMsg
+	fi
+}
+
 @description prints_a_formatted_Jira_comment
 jira(){
 	local cmd=""
