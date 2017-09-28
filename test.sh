@@ -42,7 +42,7 @@ _executeTest(){
 
 	local resultDir=${buildDir}/portal-web/test-results/${testname}
 
-	if [[ -e ${resultsDir} ]]; then
+	if [[ -d ${resultDir} ]]; then
 
 		Logger logProgressMsg "moving_test_results"
 
