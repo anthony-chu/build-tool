@@ -69,7 +69,7 @@ fetch(){
 
 		Logger logErrorMsg "$(StringUtil join message _)"
 	else
-		git fetch upstream pull/${_id}/head:${branch}-ac-${_id}
+		git fetch origin pull/${_id}/head:${branch}-ac-${_id}
 
 		Logger logCompletedMsg
 	fi
