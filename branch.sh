@@ -109,24 +109,6 @@ log(){
 	fi
 }
 
-main(){
-	clear
-	local appServer=$(AppServerValidator returnAppServer ${@})
-	local branch=$(BaseVars returnBranch ${@})
-	local buildDir=$(BaseVars returnBuildDir ${branch})
-	local bundleDir=$(BaseVars returnBundleDir ${branch})
-
-	if [[ $(StringValidator isNull ${1}) ]]; then
-		HelpMessage printHelpMessage
-	else
-		GitUtil clearIndexLock ${branch}
-
-		CommandValidator validateCommand ${0} ${1}
-
-		${@}
-	fi
-}
-
 @description creates_and_switches_to_the_indicated_branch
 new(){
 	cd ${buildDir}
@@ -205,6 +187,24 @@ switch(){
 	fi
 
 	current
+}
+
+main(){
+	clear
+	local appServer=$(AppServerValidator returnAppServer ${@})
+	local branch=$(BaseVars returnBranch ${@})
+	local buildDir=$(BaseVars returnBuildDir ${branch})
+	local bundleDir=$(BaseVars returnBundleDir ${branch})
+
+	if [[ $(StringValidator isNull ${1}) ]]; then
+		HelpMessage printHelpMessage
+	else
+		GitUtil clearIndexLock ${branch}
+
+		CommandValidator validateCommand ${0} ${1}
+
+		${@}
+	fi
 }
 
 main $@

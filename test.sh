@@ -67,31 +67,6 @@ _executeTest(){
 	fi
 }
 
-main(){
-	clear
-	local branch=$(BaseVars returnBranch $@)
-	local buildDir=$(BaseVars returnBuildDir ${branch})
-
-	System extendAntOpts ${branch}
-	System setJavaHome ${branch}
-
-	local args=($@)
-
-	if [[ $@ =~ ${branch} ]]; then
-		args=($(ArrayUtil strip args ${branch}))
-	fi
-
-	if [[ $(StringValidator isNull ${args[@]}) ]]; then
-		HelpMessage printHelpMessage
-	elif [[ ${args[@]} == *\#* ]]; then
-		test ${args[@]}
-	else
-		CommandValidator validateCommand ${0} ${1}
-
-		${args[@]}
-	fi
-}
-
 @description submits_a_pull_request
 pr(){
 	_getIssueKey(){
@@ -242,6 +217,31 @@ validate(){
 	ant -f build-test.xml run-poshi-validation $@
 
 	Logger logCompletedMsg
+}
+
+main(){
+	clear
+	local branch=$(BaseVars returnBranch $@)
+	local buildDir=$(BaseVars returnBuildDir ${branch})
+
+	System extendAntOpts ${branch}
+	System setJavaHome ${branch}
+
+	local args=($@)
+
+	if [[ $@ =~ ${branch} ]]; then
+		args=($(ArrayUtil strip args ${branch}))
+	fi
+
+	if [[ $(StringValidator isNull ${args[@]}) ]]; then
+		HelpMessage printHelpMessage
+	elif [[ ${args[@]} == *\#* ]]; then
+		test ${args[@]}
+	else
+		CommandValidator validateCommand ${0} ${1}
+
+		${args[@]}
+	fi
 }
 
 main $@

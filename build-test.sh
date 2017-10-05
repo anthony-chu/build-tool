@@ -34,17 +34,6 @@ include string.validator.test.StringValidatorTest
 
 include system.test.SystemTest
 
-main(){
-	if [[ $(StringValidator isNull ${1}) ]]; then
-		HelpMessage printHelpMessage
-	elif [[ $(BaseComparator isEqual ${1} run-unit-tests) ]]; then
-		clear
-		${1}
-	else
-		Logger logErrorMsg "${1}_is_not_a_valid_command"
-	fi
-}
-
 @description runs_all_unit_tests_in_/test_directory
 run-unit-tests(){
 	Logger logProgressMsg "running_all_unit_tests"
@@ -76,6 +65,17 @@ run-unit-tests(){
 	done
 
 	Logger logCompletedMsg
+}
+
+main(){
+	if [[ $(StringValidator isNull ${1}) ]]; then
+		HelpMessage printHelpMessage
+	elif [[ $(BaseComparator isEqual ${1} run-unit-tests) ]]; then
+		clear
+		${1}
+	else
+		Logger logErrorMsg "${1}_is_not_a_valid_command"
+	fi
 }
 
 main $@
