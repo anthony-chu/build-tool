@@ -46,6 +46,10 @@ _getLogFile(){
 
 @description builds_bundle_on_specified_app_server
 build(){
+	catch(){
+		Logger logErrorMsg "the_build_process_was_interrupted"
+	}
+
 	local logFile=$(_getLogFile)
 
 	BundleUtil deleteBundleContent ${branch} ${appServer}
@@ -55,6 +59,8 @@ build(){
 	Logger logProgressMsg "unzipping_${appServer}"
 
 	cd ${buildDir}
+
+	trap catch SIGINT
 
 	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
 
@@ -94,11 +100,17 @@ clean(){
 
 @description deploys_compiled_files_to_the_indicated_app_server
 deploy(){
+	catch(){
+		Logger logErrorMsg "the_build_process_was_interrupted"
+	}
+
 	local logFile=$(_getLogFile)
 
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "deploying_portal"
+
+	trap catch SIGINT
 
 	cd ${buildDir}
 
