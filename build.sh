@@ -87,6 +87,10 @@ clean(){
 
 	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
 
+	if [[ ! ${branch} =~ 6 ]]; then
+		PropsWriter setPortalProps ${branch} virtual.hosts.default.site.name
+	fi
+
 	local propsName=module.framework.properties.blacklist.portal.profile.names
 	local propsValue=(
 		com.liferay.chat.service
