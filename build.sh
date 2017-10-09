@@ -165,7 +165,6 @@ run(){
 
 	Logger logProgressMsg "starting_${branch}_Liferay_bundle_on_${_appServer}"
 	sleep 5s
-	clear
 
 	local appServerDir=$(AppServerFactory
 		getAppServerDir ${branch} ${appServer})
@@ -216,8 +215,6 @@ update(){
 }
 
 main(){
-	clear
-
 	local appServer=$(AppServerValidator returnAppServer ${@})
 	local baseDir=$(pwd)
 	local branch=$(BaseVars returnBranch $@)

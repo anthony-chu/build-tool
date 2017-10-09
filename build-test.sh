@@ -71,7 +71,6 @@ main(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage
 	elif [[ $(BaseComparator isEqual ${1} run-unit-tests) ]]; then
-		clear
 		${1}
 	else
 		Logger logErrorMsg "${1}_is_not_a_valid_command"

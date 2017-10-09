@@ -220,7 +220,6 @@ validate(){
 }
 
 main(){
-	clear
 	local branch=$(BaseVars returnBranch $@)
 	local buildDir=$(BaseVars returnBuildDir ${branch})
 

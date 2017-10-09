@@ -190,7 +190,6 @@ switch(){
 }
 
 main(){
-	clear
 	local appServer=$(AppServerValidator returnAppServer ${@})
 	local branch=$(BaseVars returnBranch ${@})
 	local buildDir=$(BaseVars returnBuildDir ${branch})
