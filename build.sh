@@ -190,7 +190,7 @@ run(){
 update(){
 	cd ${buildDir}
 
-	Logger logProgressMsg "writing_*.properties_files"
+	Logger logProgressMsg "writing_\*.properties_files"
 
 	local writer=PropsWriter
 
