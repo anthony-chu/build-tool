@@ -190,7 +190,11 @@ run(){
 update(){
 	cd ${buildDir}
 
-	Logger logProgressMsg "writing_\*.properties_files"
+	Logger logProgressMsg "cleaning_source_directory"
+
+	GitUtil cleanSource ${branch}
+
+	Logger logProgressMsg "writing_""*"".properties_files"
 
 	local writer=PropsWriter
 
