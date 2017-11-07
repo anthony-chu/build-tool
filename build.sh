@@ -194,7 +194,7 @@ update(){
 
 	GitUtil cleanSource ${branch}
 
-	Logger logProgressMsg "writing_""*"".properties_files"
+	Logger logProgressMsg "writing_properties_files"
 
 	local writer=PropsWriter
 
