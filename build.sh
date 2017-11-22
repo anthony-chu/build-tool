@@ -87,7 +87,7 @@ clean(){
 
 	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
 
-	if [[ ! ${branch} =~ 6 ]]; then
+	if [[ ! $(StringValidator isSubstring branch 6.) ]]; then
 		PropsWriter setPortalProps ${branch} virtual.hosts.default.site.name
 	fi
 
