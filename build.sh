@@ -207,7 +207,7 @@ update(){
 
 	Logger logProgressMsg "fetching_portal_changes"
 
-	git fetch upstream $(StringUtil strip branch -private)
+	git fetch --no-tags upstream $(StringUtil strip branch -private)
 
 	Logger logCompletedMsg
 
