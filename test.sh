@@ -38,6 +38,12 @@ _executeTest(){
 	cd ${buildDir}
 	ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
 
+	Logger logProgressMsg "cleaning_up_temporary_test_files"
+
+	rm -rf ${bundleDir}/poshi/*
+
+	Logger logCompletedMsg
+
 	local testname=$(StringUtil replace test \# _)
 
 	local resultDir=${buildDir}/portal-web/test-results/${testname}
