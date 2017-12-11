@@ -67,9 +67,13 @@ _executeTest(){
 			local _env="nix"
 		fi
 
-		FileUtil open "$(FileNameUtil getPath ${_env} ${rawFile})"
+		if [[ $(cat ${rawFile} | grep "Cause:") ]]; then
+			FileUtil open "$(FileNameUtil getPath ${_env} ${rawFile})"
 
-		Logger logCompletedMsg
+			Logger logCompletedMsg
+		else
+			Logger logSuccessMsg ${test}_PASSED
+		fi
 	fi
 }
 
