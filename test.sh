@@ -72,7 +72,7 @@ _executeTest(){
 
 			Logger logCompletedMsg
 		else
-			Logger logSuccessMsg ${test}_PASSED
+			Logger logSuccessMsg "${test}_PASSED"
 		fi
 	fi
 }
