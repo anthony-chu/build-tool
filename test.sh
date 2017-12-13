@@ -240,7 +240,7 @@ main(){
 	local args=($@)
 
 	if [[ $@ =~ ${branch} ]]; then
-		args=($(ArrayUtil strip args ${branch}))
+		local args=($(ArrayUtil strip args ${branch}))
 	fi
 
 	if [[ $(StringValidator isNull ${args[@]}) ]]; then

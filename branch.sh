@@ -80,10 +80,10 @@ jira(){
 	local cmd=""
 
 	case ${1} in
-		-f|--fixed|fixed) cmd="fixed" ;;
-		-n|--nlr|nlr) cmd="nlr" ;;
-		-r|--repro|repro) cmd="repro" ;;
-		-t|--tested|tested) cmd="tested" ;;
+		-f|--fixed|fixed) local cmd="fixed" ;;
+		-n|--nlr|nlr) local cmd="nlr" ;;
+		-r|--repro|repro) local cmd="repro" ;;
+		-t|--tested|tested) local cmd="tested" ;;
 	esac
 
 	JiraUtil ${cmd} ${appServer} ${branch}
