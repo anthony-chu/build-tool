@@ -61,7 +61,7 @@ run-unit-tests(){
 	)
 
 	for group in ${tests[@]}; do
-		${group} run
+		${group} run |& tee -a results.txt
 	done
 
 	Logger logCompletedMsg
