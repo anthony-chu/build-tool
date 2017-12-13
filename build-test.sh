@@ -60,6 +60,10 @@ run-unit-tests(){
 		SystemTest
 	)
 
+	if [[ -e results.txt ]]; then
+		rm results.txt
+	fi
+
 	for group in ${tests[@]}; do
 		${group} run |& tee -a results.txt
 	done
