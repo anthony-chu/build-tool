@@ -11,6 +11,8 @@ include base.comparator.BaseComparator
 include base.comparator.test.BaseComparatorTest
 include base.vars.test.BaseVarsTest
 
+include command.validator.test.CommandValidatorTest
+
 include file.name.util.test.FileNameUtilTest
 include file.util.Test.FileUtilTest
 include file.writer.test.FileWriterTest
@@ -46,6 +48,7 @@ run-unit-tests(){
 		ArrayValidatorTest
 		BaseComparatorTest
 		BaseVarsTest
+		CommandValidatorTest
 		FileNameUtilTest
 		FileUtilTest
 		FileWriterTest
