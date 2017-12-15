@@ -13,9 +13,9 @@ include string.util.StringUtil
 _main(){
 	Logger logProgressMsg "validating_formatting_rules"
 
+	local files=($(find * -type f -iname "*.sh"))
 	local skipVariableValidation=$(PropsReaderUtil
 		readProps $(pwd)/formatter.properties ignore_local_variables)
-	local files=($(find * -type f -iname "*.sh"))
 	local tasks=($(CommandValidator
 		getValidFunctions bash-toolbox/formatter/Formatter.sh))
 
