@@ -78,9 +78,7 @@ clean(){
 	Database rebuild lportal$(StringUtil strip branch [-.]) utf8
 
 	BundleUtil deleteHomeFolders ${branch} ${appServer}
-
 	BundleUtil deleteTempFiles ${branch} ${appServer}
-
 	BundleUtil resetOSGiState ${branch}
 
 	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
