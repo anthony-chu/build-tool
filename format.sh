@@ -1,7 +1,5 @@
 source bash-toolbox/init.sh
 
-include base.comparator.BaseComparator
-
 include command.validator.CommandValidator
 
 include formatter.Formatter
@@ -11,7 +9,6 @@ include logger.Logger
 include props.reader.util.PropsReaderUtil
 
 include string.util.StringUtil
-include string.validator.StringValidator
 
 _main(){
 	Logger logProgressMsg "validating_formatting_rules"
