@@ -49,13 +49,13 @@ _getLogFile(){
 
 @description builds_bundle_on_specified_app_server
 build(){
-	local logFile=$(_getLogFile)
-
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "unzipping_${appServer}"
+
+	local logFile=$(_getLogFile)
 
 	cd ${buildDir}
 
@@ -101,13 +101,13 @@ clean(){
 
 @description deploys_compiled_files_to_the_indicated_app_server
 deploy(){
-	local logFile=$(_getLogFile)
-
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "deploying_portal"
 
 	trap _catch SIGINT
+
+	local logFile=$(_getLogFile)
 
 	cd ${buildDir}
 
