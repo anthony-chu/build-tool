@@ -32,6 +32,11 @@ include string.validator.StringValidator
 include system.System
 
 @private
+_catch(){
+	Logger logErrorMsg "the_build_process_was_interrupted"
+}
+
+@private
 _getLogFile(){
 	local _logFile=(/d/logs/${branch}/${appServer}/
 		$(CalendarUtil getTimestamp date)/
@@ -44,10 +49,6 @@ _getLogFile(){
 
 @description builds_bundle_on_specified_app_server
 build(){
-	catch(){
-		Logger logErrorMsg "the_build_process_was_interrupted"
-	}
-
 	local logFile=$(_getLogFile)
 
 	BundleUtil deleteBundleContent ${branch} ${appServer}
@@ -58,7 +59,7 @@ build(){
 
 	cd ${buildDir}
 
-	trap catch SIGINT
+	trap _catch SIGINT
 
 	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
 
@@ -100,17 +101,13 @@ clean(){
 
 @description deploys_compiled_files_to_the_indicated_app_server
 deploy(){
-	catch(){
-		Logger logErrorMsg "the_build_process_was_interrupted"
-	}
-
 	local logFile=$(_getLogFile)
 
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "deploying_portal"
 
-	trap catch SIGINT
+	trap _catch SIGINT
 
 	cd ${buildDir}
 
