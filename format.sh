@@ -25,9 +25,9 @@ _main(){
 	for file in ${files[@]}; do
 		for task in $(StringUtil strip tasks Formatter); do
 			if [[ ${task} == enforceLocalVariables &&
-				! ${skipVariableValidation} =~ ${file} ]]; then
+				${skipVariableValidation} =~ ${file} ]]; then
 
-				Formatter ${task} ${file}
+				continue
 			else
 				Formatter ${task} ${file}
 			fi
