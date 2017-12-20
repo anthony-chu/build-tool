@@ -81,6 +81,10 @@ _update(){
 
 @description builds_bundle_on_specified_app_server
 build(){
+	if [[ $(StringValidator isSubstring ${branch} private) ]]; then
+		_update
+	fi
+
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
 	SourceUtil config ${appServer} ${branch}
