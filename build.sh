@@ -179,8 +179,8 @@ run(){
 	fi
 }
 
-@description fetches_and_applies_portal_changes_to_private_repo
-update(){
+@private
+_update(){
 	cd ${buildDir}
 
 	Logger logProgressMsg "cleaning_source_directory"
