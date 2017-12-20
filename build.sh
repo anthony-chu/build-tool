@@ -47,6 +47,38 @@ _getLogFile(){
 	FileUtil makeFile $(StringUtil join _logFile)
 }
 
+@private
+_update(){
+	cd ${buildDir}
+
+	Logger logProgressMsg "cleaning_source_directory"
+
+	GitUtil cleanSource ${branch}
+
+	Logger logProgressMsg "writing_properties_files"
+
+	local writer=PropsWriter
+
+	for props in {AppServer,Build}; do
+		${writer} set${props}Props ${branch} app.server.parent.dir ${bundleDir}
+		${writer} set${props}Props ${branch} app.server.type ${appServer}
+	done
+
+	Logger logCompletedMsg
+
+	Logger logProgressMsg "fetching_portal_changes"
+
+	git fetch --no-tags upstream $(StringUtil strip branch -private)
+
+	Logger logCompletedMsg
+
+	Logger logProgressMsg "applying_portal_changes"
+
+	ant -f build-working-dir.xml
+
+	Logger logCompletedMsg
+}
+
 @description builds_bundle_on_specified_app_server
 build(){
 	BundleUtil deleteBundleContent ${branch} ${appServer}
@@ -177,38 +209,6 @@ run(){
 	elif [[ $(AppServerValidator isWildfly appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
 	fi
-}
-
-@private
-_update(){
-	cd ${buildDir}
-
-	Logger logProgressMsg "cleaning_source_directory"
-
-	GitUtil cleanSource ${branch}
-
-	Logger logProgressMsg "writing_properties_files"
-
-	local writer=PropsWriter
-
-	for props in {AppServer,Build}; do
-		${writer} set${props}Props ${branch} app.server.parent.dir ${bundleDir}
-		${writer} set${props}Props ${branch} app.server.type ${appServer}
-	done
-
-	Logger logCompletedMsg
-
-	Logger logProgressMsg "fetching_portal_changes"
-
-	git fetch --no-tags upstream $(StringUtil strip branch -private)
-
-	Logger logCompletedMsg
-
-	Logger logProgressMsg "applying_portal_changes"
-
-	ant -f build-working-dir.xml
-
-	Logger logCompletedMsg
 }
 
 main(){
