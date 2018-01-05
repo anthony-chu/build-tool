@@ -190,7 +190,10 @@ switch(){
 }
 
 main(){
+	@param the_app_server_\(optional\)
 	local appServer=$(AppServerValidator returnAppServer ${@})
+
+	@param the_branch_name_\(optional\)
 	local branch=$(BaseVars returnBranch ${@})
 	local buildDir=$(BaseVars returnBuildDir ${branch})
 	local bundleDir=$(BaseVars returnBundleDir ${branch})

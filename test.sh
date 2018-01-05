@@ -230,6 +230,7 @@ validate(){
 }
 
 main(){
+	@param the_branch_name_\(optional\)
 	local branch=$(BaseVars returnBranch $@)
 	local buildDir=$(BaseVars returnBuildDir ${branch})
 	local bundleDir=$(BaseVars returnBundleDir ${branch})
