@@ -147,7 +147,7 @@ deploy(){
 
 	cd ${buildDir}
 
-	ant deploy |& tee -a ${logFile}
+	ant compile deploy |& tee -a ${logFile}
 
 	Logger logCompletedMsg
 }
