@@ -14,7 +14,7 @@ include base.vars.test.BaseVarsTest
 include command.validator.test.CommandValidatorTest
 
 include file.name.util.test.FileNameUtilTest
-include file.util.Test.FileUtilTest
+include file.util.test.FileUtilTest
 include file.writer.test.FileWriterTest
 
 include help.message.HelpMessage
