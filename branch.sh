@@ -9,7 +9,7 @@ include command.validator.CommandValidator
 
 include help.message.HelpMessage
 
-include jira.util.JiraUtil
+include jira.comment.util.JiraCommentUtil
 
 include logger.Logger
 
@@ -86,7 +86,7 @@ jira(){
 		-t|--tested|tested) local cmd="tested" ;;
 	esac
 
-	JiraUtil ${cmd} ${appServer} ${branch}
+	JiraCommentUtil ${cmd} ${appServer} ${branch}
 }
 
 @description displays_all_local_branches
