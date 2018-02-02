@@ -1,6 +1,7 @@
 source bash-toolbox/init.sh
 
 include array.util.ArrayUtil
+include array.validator.ArrayValidator
 
 include base.comparator.BaseComparator
 include base.vars.BaseVars
@@ -238,6 +239,12 @@ main(){
 		CommandValidator validateCommand ${0} ${1}
 
 		SourceUtil setupSDK
+
+		if [[ $(ArrayValidator hasEntry args local.release) ]]; then
+			local _file=${buildDir}/modules/test/poshi-runner/settings.gradle
+
+			rm -rf ${_file}
+		fi
 
 		${args[@]}
 	fi
