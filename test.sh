@@ -18,6 +18,8 @@ include logger.Logger
 
 include props.writer.PropsWriter
 
+include source.util.SourceUtil
+
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -152,22 +154,6 @@ pr(){
 
 @description formats_source_files
 sf(){
-	if [[ $(BaseComparator isEqual ${branch} master) || $(StringValidator
-		isSubstring ${branch} 7.0.x) ]]; then
-
-		local sf_lib="tools/sdk/dependencies/com.liferay.source.formatter/lib"
-
-		if [ ! -e ${buildDir}/${sf_lib} ]; then
-			Logger logProgressMsg "building_SDK_directory"
-
-			cd ${buildDir}
-
-			ant setup-sdk
-
-			Logger logCompletedMsg
-		fi
-	fi
-
 	cd ${buildDir}/portal-impl
 
 	if [[ $(BaseComparator isEqualIgnoreCase $(StringUtil
@@ -250,6 +236,8 @@ main(){
 		test ${args[@]}
 	else
 		CommandValidator validateCommand ${0} ${1}
+
+		SourceUtil setupSDK
 
 		${args[@]}
 	fi
