@@ -238,7 +238,7 @@ main(){
 	else
 		CommandValidator validateCommand ${0} ${1}
 
-		SourceUtil setupSDK
+		SourceUtil setupSDK ${branch}
 
 		if [[ $(ArrayValidator hasEntry args local.release) ]]; then
 			local _file=${buildDir}/modules/test/poshi-runner/settings.gradle
