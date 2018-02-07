@@ -40,7 +40,7 @@ include system.test.SystemTest
 run-unit-tests(){
 	Logger logProgressMsg "running_all_unit_tests"
 
-	local tests=(
+	local classes=(
 		AppServerValidatorTest
 		AppServerVersionConstantsTest
 		AppServerVersionTest
@@ -67,8 +67,8 @@ run-unit-tests(){
 		rm results.txt
 	fi
 
-	for group in ${tests[@]}; do
-		${group} run |& tee -a results.txt
+	for class in ${tests[@]}; do
+		${class} run |& tee -a results.txt
 	done
 
 	Logger logCompletedMsg
