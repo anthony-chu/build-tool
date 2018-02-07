@@ -36,6 +36,8 @@ include string.validator.test.StringValidatorTest
 
 include system.test.SystemTest
 
+include test.executor.TestExecutor
+
 @description runs_all_unit_tests_in_/test_directory
 run-unit-tests(){
 	Logger logProgressMsg "running_all_unit_tests"
@@ -68,7 +70,7 @@ run-unit-tests(){
 	fi
 
 	for class in ${tests[@]}; do
-		${class} run |& tee -a results.txt
+		TestExecutor executeTest ${class} |& tee -a results.txt
 	done
 
 	Logger logCompletedMsg
