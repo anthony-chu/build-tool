@@ -13,11 +13,15 @@ include base.vars.test.BaseVarsTest
 
 include command.validator.test.CommandValidatorTest
 
+include curl.util.test.CurlUtilTest
+
 include file.name.util.test.FileNameUtilTest
 include file.util.test.FileUtilTest
 include file.writer.test.FileWriterTest
 
 include help.message.HelpMessage
+
+include jira.util.test.JiraUtilTest
 
 include language.util.test.LanguageUtilTest
 
@@ -51,9 +55,11 @@ run-unit-tests(){
 		BaseComparatorTest
 		BaseVarsTest
 		CommandValidatorTest
+		CurlUtilTest
 		FileNameUtilTest
 		FileUtilTest
 		FileWriterTest
+		JiraUtilTest
 		LanguageUtilTest
 		LoggerUtilTest
 		MathUtilTest
