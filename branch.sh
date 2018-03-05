@@ -126,11 +126,6 @@ new(){
 
 @description provides_options_for_and_executes_an_interative_rebase
 rebase(){
-	if [[ $(StringValidator isNull ${1}) ]]; then
-		Logger logErrorMsg "please_provide_a_valid_rebase_option"
-		exit
-	fi
-
 	SourceUtil clearGradleCache ${branch}
 
 	case $(StringUtil returnOption ${1}) in
@@ -139,6 +134,7 @@ rebase(){
 		c) local cmd=cont;;
 		d) local cmd=default;;
 		q) local cmd=abort;;
+		*) Logger logErrorMsg "please_provide_a_valid_rebase_option" && exit ;;
 	esac
 
 	GitRebaseUtil ${cmd} ${branch}
