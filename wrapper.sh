@@ -10,7 +10,7 @@ main(){
 	shift 2
 	local args=$@
 
-	if [[ ! ${1} ]]; then
+	if [[ ! ${_className} ]]; then
 		Logger logErrorMsg "please_provide_a_classname_and_command."
 		exit
 	fi

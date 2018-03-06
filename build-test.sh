@@ -75,7 +75,7 @@ run-unit-tests(){
 		rm results.txt
 	fi
 
-	for class in ${tests[@]}; do
+	for class in ${classes[@]}; do
 		TestExecutor executeTest ${class} |& tee -a results.txt
 	done
 
