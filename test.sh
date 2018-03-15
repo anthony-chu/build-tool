@@ -61,8 +61,7 @@ _executeTest(){
 
 		mv index.html ${test}_index.html
 
-		local rawFile="${testDir}/${testname}/$(StringUtil
-			replace testname _ \#)_index.html"
+		local rawFile="${testDir}/${testname}/${test}_index.html"
 
 		if [[ $(SystemValidator isWindows) ]]; then
 			local _env="win"
