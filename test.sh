@@ -63,14 +63,8 @@ _executeTest(){
 
 		local rawFile="${testDir}/${testname}/${test}_index.html"
 
-		if [[ $(SystemValidator isWindows) ]]; then
-			local _env="win"
-		else
-			local _env="nix"
-		fi
-
 		if [[ $(cat ${rawFile} | grep "Cause:") ]]; then
-			FileUtil open "$(FileNameUtil getPath ${_env} ${rawFile})"
+			FileUtil open "$(FileNameUtil getPath ${rawFile})"
 
 			Logger logCompletedMsg
 		else
