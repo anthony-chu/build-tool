@@ -47,7 +47,7 @@ _executeTest(){
 
 	Logger logCompletedMsg
 
-	local testname=$(StringUtil replace test \# _)
+	local testname=LocalFile.$(StringUtil replace test \# _)
 
 	local resultDir=${buildDir}/portal-web/test-results/${testname}
 
