@@ -215,9 +215,6 @@ main(){
 	local buildDir=$(BaseVars returnBuildDir ${branch})
 	local bundleDir=$(BaseVars returnBundleDir ${branch})
 
-	System extendAntOpts ${branch}
-	System setJavaHome ${branch}
-
 	local args=($@)
 
 	if [[ $@ =~ ${branch} ]]; then
