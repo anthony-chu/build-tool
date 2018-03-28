@@ -226,8 +226,8 @@ main(){
 	local buildDir=$(BaseVars returnBuildDir ${branch})
 	local bundleDir=$(BaseVars returnBundleDir ${branch})
 
-	System extendAntOpts ${branch}
-	System setJavaHome ${branch}
+	System extendAntOpts ${branch//ee-/}
+	System setJavaHome ${branch//ee-/}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage
