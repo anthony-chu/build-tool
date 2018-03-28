@@ -17,6 +17,7 @@ include curl.util.test.CurlUtilTest
 
 include file.name.util.test.FileNameUtilTest
 include file.util.test.FileUtilTest
+include file.validator.test.FileValidatorTest
 include file.writer.test.FileWriterTest
 
 include help.message.HelpMessage
@@ -27,6 +28,8 @@ include language.util.test.LanguageUtilTest
 
 include logger.Logger
 include logger.util.test.LoggerUtilTest
+
+include matcher.test.MatcherTest
 
 include math.util.test.MathUtilTest
 
@@ -58,10 +61,12 @@ run-unit-tests(){
 		CurlUtilTest
 		FileNameUtilTest
 		FileUtilTest
+		FileValidatorTest
 		FileWriterTest
 		JiraUtilTest
 		LanguageUtilTest
 		LoggerUtilTest
+		MatcherTest
 		MathUtilTest
 		PropsReaderUtilTest
 		PropsUtilTest
