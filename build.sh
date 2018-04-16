@@ -66,9 +66,11 @@ _update(){
 
 	Logger logCompletedMsg
 
-	Logger logProgressMsg "fetching_portal_changes"
+	local baseBranch=$(StringUtil strip branch -private)
 
-	git fetch --no-tags upstream $(StringUtil strip branch -private)
+	Logger logProgressMsg "fetching_${baseBranch}_portal_changes_into_${branch}"
+
+	git fetch --no-tags upstream ${baseBranch}
 
 	Logger logCompletedMsg
 
