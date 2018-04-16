@@ -190,9 +190,9 @@ main(){
 	local appServer=$(AppServerValidator returnAppServer ${@})
 
 	@param the_branch_name_\(optional\)
-	local branch=$(BaseVars returnBranch ${@})
-	local buildDir=$(BaseVars returnBuildDir ${branch})
-	local bundleDir=$(BaseVars returnBundleDir ${branch})
+	local branch=$(BaseVars getBranch ${@})
+	local buildDir=$(BaseVars getBuildDir ${branch})
+	local bundleDir=$(BaseVars getBundleDir ${branch})
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage

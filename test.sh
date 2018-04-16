@@ -211,9 +211,9 @@ validate(){
 
 main(){
 	@param the_branch_name_\(optional\)
-	local branch=$(BaseVars returnBranch $@)
-	local buildDir=$(BaseVars returnBuildDir ${branch})
-	local bundleDir=$(BaseVars returnBundleDir ${branch})
+	local branch=$(BaseVars getBranch $@)
+	local buildDir=$(BaseVars getBuildDir ${branch})
+	local bundleDir=$(BaseVars getBundleDir ${branch})
 
 	local args=($@)
 
