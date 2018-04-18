@@ -110,6 +110,17 @@ build(){
 	ant all -Dclean.node.modules=true |& tee -a ${logFile}
 
 	Logger logCompletedMsg
+
+	if [[ $(BaseComparator isEqual ${appServer} weblogic) ]]; then
+		Logger logProgressMsg "copying_osgi_directory_into_domain_directory"
+
+		local appServerDir=$(AppServerFactory
+			getAppServerDir ${branch} ${appServer})
+
+		cp -rf ${appServerDir}/osgi ${appServerDir}/domains/liferay
+
+		Logger logCompletedMsg
+	fi
 }
 
 @description rebuilds_database_and_prepares_bundle_for_runtime
