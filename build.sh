@@ -103,8 +103,6 @@ build(){
 
 	Logger logCompletedMsg
 
-	BundleUtil configure ${branch} ${appServer}
-
 	Logger logProgressMsg "building_portal"
 
 	ant all -Dclean.node.modules=true |& tee -a ${logFile}
@@ -216,6 +214,8 @@ run(){
 	elif [[ $(AppServerValidator isTCServer appServer) ]]; then
 		${appServerDir}/liferay/bin/tcruntime-ctl.sh liferay run
 	elif [[ $(AppServerValidator isTomcat appServer) ]]; then
+		BundleUtil configure ${branch} ${appServer}
+
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
 		local portalProps=${bundleDir}/portal-ext.properties
