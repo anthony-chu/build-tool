@@ -115,7 +115,9 @@ build(){
 		local appServerDir=$(AppServerFactory
 			getAppServerDir ${branch} ${appServer})
 
-		cp -rf ${appServerDir}/osgi ${appServerDir}/domains/liferay
+		for path in {data,deploy,osgi,portal-ext.properties}; do
+			cp -rf ${appServerDir}/${path} -d ${appServerDir}/domains/liferay
+		done
 
 		Logger logCompletedMsg
 	fi
@@ -218,11 +220,7 @@ run(){
 
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
-		local portalProps=${bundleDir}/portal-ext.properties
-
-		cp ${portalProps} ${appServerDir}/domains/
-
-		${appServerDir}/domains/liferay/bin/startWebLogic.sh
+		start ${appServerDir}/domains/liferay/bin/startWebLogic.cmd
 	elif [[ $(AppServerValidator isWildfly appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
 	fi
