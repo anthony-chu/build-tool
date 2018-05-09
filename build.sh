@@ -165,6 +165,15 @@ deploy(){
 	Logger logCompletedMsg
 }
 
+@description downloads_a_nightly_Tomcat_bundle_on_the_indicated_branch
+nightly(){
+	cd ${buildDir}
+
+	ant nightly
+
+	Logger logCompletedMsg
+}
+
 @description pulls_changes_from_upstream_on_the_indicated_branch
 pull(){
 	SourceUtil clearGradleCache ${branch}
