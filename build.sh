@@ -105,7 +105,7 @@ build(){
 
 	Logger logProgressMsg "building_portal"
 
-	ant all -Dclean.node.modules=true |& tee -a ${logFile}
+	ant all |& tee -a ${logFile}
 
 	Logger logCompletedMsg
 
