@@ -81,6 +81,10 @@ jira(){
 
 	local args="${appServer} ${branch}"
 
+	if [[ $@ =~ "nightly" ]]; then
+		local args="${args} nightly"
+	fi
+
 	case ${1} in
 		-f|--fixed|fixed) local cmd="fixed" ;;
 		-n|--nlr|nlr) local cmd="nlr" ;;
