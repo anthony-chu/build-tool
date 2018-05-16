@@ -79,6 +79,8 @@ fetch(){
 jira(){
 	local cmd=""
 
+	local args="${appServer} ${branch}"
+
 	case ${1} in
 		-f|--fixed|fixed) local cmd="fixed" ;;
 		-n|--nlr|nlr) local cmd="nlr" ;;
@@ -86,7 +88,7 @@ jira(){
 		-t|--tested|tested) local cmd="tested" ;;
 	esac
 
-	JiraCommentUtil ${cmd} ${appServer} ${branch}
+	JiraCommentUtil ${cmd} ${args}
 }
 
 @description displays_all_local_branches
