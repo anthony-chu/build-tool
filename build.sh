@@ -109,6 +109,12 @@ build(){
 
 	Logger logCompletedMsg
 
+	Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
+
+	ant -f build-test.xml record-git-commit-bottom-test-jsp
+
+	Logger logCompletedMsg
+
 	if [[ $(BaseComparator isEqual ${appServer} weblogic) ]]; then
 		Logger logProgressMsg "copying_osgi_directory_into_domain_directory"
 
@@ -161,6 +167,12 @@ deploy(){
 	cd ${buildDir}
 
 	ant deploy |& tee -a ${logFile}
+
+	Logger logCompletedMsg
+
+	Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
+
+	ant -f build-test.xml record-git-commit-bottom-test-jsp
 
 	Logger logCompletedMsg
 }
@@ -226,6 +238,8 @@ run(){
 		${appServerDir}/liferay/bin/tcruntime-ctl.sh liferay run
 	elif [[ $(AppServerValidator isTomcat appServer) ]]; then
 		BundleUtil configure ${branch} ${appServer}
+
+		trap ${appServerDir}/bin/shutdown.sh SIGINT
 
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
