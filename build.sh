@@ -184,6 +184,23 @@ nightly(){
 	ant nightly
 
 	Logger logCompletedMsg
+
+	Logger logProgressMsg moving_nightly_bundle_to_nightly_directory
+
+	local nightlyDir="/d/nightly/${branch}/bundles"
+
+	if [[ -e ${nightlyDir} ]]; then
+		rm -rf ${nightlyDir}/*
+	else
+		FileUtil construct ${nightlyDir}
+	fi
+
+	local appServerDir=$(AppServerFactory
+		getAppServerDir ${branch} ${appServer})
+
+	cp -rf ${appServerDir}/* -d /d/nightly/${branch}/bundles
+
+	Logger logCompletedMsg
 }
 
 @description pulls_changes_from_upstream_on_the_indicated_branch
