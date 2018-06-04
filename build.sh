@@ -190,8 +190,12 @@ nightly(){
 	local nightlyDir="/d/nightly/${branch}/bundles"
 
 	if [[ -e ${nightlyDir} ]]; then
+		Logger logInfoMsg cleaning_out_nightly_directory
+
 		rm -rf ${nightlyDir}/*
 	else
+		Logger logInfoMsg constructing_nightly_directory
+
 		FileUtil construct ${nightlyDir}
 	fi
 
