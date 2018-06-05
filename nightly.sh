@@ -8,7 +8,10 @@ include base.vars.BaseVars
 
 include command.validator.CommandValidator
 
+include database.Database
+
 include file.util.FileUtil
+include file.writer.FileWriter
 
 include help.message.HelpMessage
 
@@ -16,8 +19,6 @@ include logger.Logger
 
 include string.util.StringUtil
 include string.validator.StringValidator
-
-include system.System
 
 @description downloads_a_nightly_Tomcat_bundle_on_the_indicated_branch
 get(){
@@ -55,6 +56,12 @@ get(){
 		cp -rf ${bundleDir}/${fileDir} -d ${nightlyDir}
 	done
 
+	Logger logInfoMsg updating_portal_properties
+
+	local props=${nightlyDir}/portal-ext.properties
+
+	FileWriter replace ${props} lportal${branch} lportal${branch}nightly
+
 	Logger logCompletedMsg
 }
 
@@ -63,6 +70,8 @@ run(){
 	local _appServer=$(StringUtil toUpperCase ${appServer})
 	local appServerVersion=$(AppServerVersion
 		getAppServerVersion ${appServer} ${branch})
+
+	Database rebuild lportal${branch}nightly utf8
 
 	Logger logInfoMsg starting_up_a_${_appServer}_nightly_bundle
 
@@ -83,9 +92,6 @@ main(){
 	local bundleDir=$(BaseVars getBundleDir ${branch})
 
 	local nightlyDir=/d/nightly/${branch}/bundles
-
-	System extendAntOpts ${branch//ee-/}
-	System setJavaHome ${branch//ee-/}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage
