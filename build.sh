@@ -196,7 +196,7 @@ nightly(){
 	else
 		Logger logInfoMsg constructing_nightly_directory
 
-		FileUtil construct ${nightlyDir}
+		local _nightlyDir=$(FileUtil construct ${nightlyDir})
 	fi
 
 	local appServerDir=$(AppServerFactory
@@ -260,14 +260,24 @@ run(){
 	elif [[ $(AppServerValidator isTomcat appServer) ]]; then
 		BundleUtil configure ${branch} ${appServer}
 
-		trap ${appServerDir}/bin/shutdown.sh SIGINT
-
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
 		start ${appServerDir}/domains/liferay/bin/startWebLogic.cmd
 	elif [[ $(AppServerValidator isWildfly appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
 	fi
+}
+
+@description stops_the_current_bundle_on_the_specified_app_server
+stop(){
+	if [[ $(AppServerValidator isTomcat appServer) ]]; then
+		local stopCommand="bin/shutdown.sh"
+	fi
+
+	local appServerDir=$(AppServerFactory
+		getAppServerDir ${branch} ${appServer})
+
+	${appServerDir}/${stopCommand}
 }
 
 main(){
