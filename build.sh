@@ -185,8 +185,6 @@ nightly(){
 
 	Logger logCompletedMsg
 
-	Logger logProgressMsg moving_nightly_bundle_to_nightly_directory
-
 	local nightlyDir="/d/nightly/${branch}/bundles"
 
 	if [[ -e ${nightlyDir} ]]; then
@@ -201,6 +199,8 @@ nightly(){
 
 	local appServerDir=$(AppServerFactory
 		getAppServerDir ${branch} ${appServer})
+
+	Logger logProgressMsg moving_nightly_bundle_to_nightly_directory
 
 	cp -rf ${appServerDir}/../* -d ${nightlyDir}
 
