@@ -202,7 +202,7 @@ nightly(){
 	local appServerDir=$(AppServerFactory
 		getAppServerDir ${branch} ${appServer})
 
-	cp -rf ${appServerDir}/* -d /d/nightly/${branch}/bundles
+	cp -rf ${appServerDir}/../* -d /d/nightly/${branch}/bundles
 
 	Logger logCompletedMsg
 }
