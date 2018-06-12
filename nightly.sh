@@ -6,6 +6,8 @@ include app.server.version.AppServerVersion
 include base.comparator.BaseComparator
 include base.vars.BaseVars
 
+include bundle.util.BundleUtil
+
 include command.validator.CommandValidator
 
 include database.Database
@@ -20,6 +22,26 @@ include logger.Logger
 include string.util.StringUtil
 include string.validator.StringValidator
 
+@description rebuids_database_and_prepares_bundle_for_runtime
+clean(){
+	for dir in {data,logs,osgi/state}; do
+		rm -rf ${nightlyDir}/${dir}
+	done
+
+	local appServerVersion=$(AppServerVersion
+		getAppServerVersion ${appServer} ${branch})
+
+	local appServerDir=${nightlyDir}/${appServer}-${appServerVersion}
+
+	for dir in {temp,work}; do
+		rm -rf ${appServerDir}/${dir}
+	done
+
+	local database=lportal${branch//[-.]/}nightly
+
+	Database rebuild ${database} utf8
+}
+
 @description downloads_a_nightly_Tomcat_bundle_on_the_indicated_branch
 get(){
 	cd ${buildDir}
@@ -27,6 +49,8 @@ get(){
 	ant nightly
 
 	Logger logCompletedMsg
+
+	BundleUtil configure ${branch} ${appServer}
 
 	if [[ -e ${nightlyDir} ]]; then
 		Logger logInfoMsg cleaning_out_nightly_directory
@@ -41,7 +65,6 @@ get(){
 	Logger logProgressMsg moving_nightly_bundle_to_nightly_directory
 
 	local fileDirs=(
-		data
 		deploy
 		license
 		osgi
@@ -53,14 +76,20 @@ get(){
 	)
 
 	for fileDir in ${fileDirs[@]}; do
-		cp -rf ${bundleDir}/${fileDir} -d ${nightlyDir}
+		local _fileDir=${bundleDir}/${fileDir}
+
+		if [[ -e ${_fileDir} || -d ${_fileDir} ]]; then
+			cp -rf ${bundleDir}/${fileDir} -d ${nightlyDir}
+		fi
 	done
 
 	Logger logInfoMsg updating_portal_properties
 
 	local props=${nightlyDir}/portal-ext.properties
 
-	FileWriter replace ${props} lportal${branch} lportal${branch}nightly
+	local database=lportal${branch//[-.]/}
+
+	FileWriter replace ${props} ${database} ${database}nightly
 
 	Logger logCompletedMsg
 }
@@ -70,8 +99,6 @@ run(){
 	local _appServer=$(StringUtil toUpperCase ${appServer})
 	local appServerVersion=$(AppServerVersion
 		getAppServerVersion ${appServer} ${branch})
-
-	Database rebuild lportal${branch}nightly utf8
 
 	Logger logInfoMsg starting_up_a_${_appServer}_nightly_bundle
 
