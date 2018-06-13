@@ -223,12 +223,13 @@ run(){
 	local appServerDir=$(AppServerFactory
 		getAppServerDir ${branch} ${appServer})
 
+	BundleUtil configure ${branch} ${appServer}
+
 	if [[ $(AppServerValidator isJboss appServer) ]]; then
 		${appServerDir}/bin/standalone.sh
 	elif [[ $(AppServerValidator isTCServer appServer) ]]; then
 		${appServerDir}/liferay/bin/tcruntime-ctl.sh liferay run
 	elif [[ $(AppServerValidator isTomcat appServer) ]]; then
-		BundleUtil configure ${branch} ${appServer}
 
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
