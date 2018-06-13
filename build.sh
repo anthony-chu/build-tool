@@ -225,8 +225,10 @@ run(){
 
 	BundleUtil configure ${branch} ${appServer}
 
-	if [[ $(AppServerValidator isJboss appServer) ]]; then
-		${appServerDir}/bin/standalone.sh
+	if [[ $(AppServerValidator isJboss appServer) ||
+			$(AppServerValidator isWildfly appServer) ]]; then
+
+		${appServerDir}/bin/standalone.sh -b 0.0.0
 	elif [[ $(AppServerValidator isTCServer appServer) ]]; then
 		${appServerDir}/liferay/bin/tcruntime-ctl.sh liferay run
 	elif [[ $(AppServerValidator isTomcat appServer) ]]; then
@@ -234,8 +236,6 @@ run(){
 		${appServerDir}/bin/catalina.sh run
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
 		start ${appServerDir}/domains/liferay/bin/startWebLogic.cmd
-	elif [[ $(AppServerValidator isWildfly appServer) ]]; then
-		${appServerDir}/bin/standalone.sh -b 0.0.0
 	fi
 }
 
