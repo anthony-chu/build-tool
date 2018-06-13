@@ -235,7 +235,7 @@ run(){
 	elif [[ $(AppServerValidator isWeblogic appServer) ]]; then
 		start ${appServerDir}/domains/liferay/bin/startWebLogic.cmd
 	elif [[ $(AppServerValidator isWildfly appServer) ]]; then
-		${appServerDir}/bin/standalone.sh
+		${appServerDir}/bin/standalone.sh -b 0.0.0
 	fi
 }
 
