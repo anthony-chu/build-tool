@@ -76,7 +76,7 @@ _update(){
 
 	Logger logProgressMsg "applying_portal_changes"
 
-	ant -f build-working-dir.xml
+	ant -f build-working-dir.xml > ${logFile}
 
 	Logger logCompletedMsg
 }
