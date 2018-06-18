@@ -83,6 +83,8 @@ _update(){
 
 @description builds_bundle_on_specified_app_server
 build(){
+	local logFile=$(_getLogFile)
+
 	if [[ $(StringValidator isSubstring ${branch} private) ]]; then
 		_update
 	fi
@@ -92,8 +94,6 @@ build(){
 	SourceUtil config ${appServer} ${branch}
 
 	Logger logProgressMsg "unzipping_${appServer}"
-
-	local logFile=$(_getLogFile)
 
 	cd ${buildDir}
 
