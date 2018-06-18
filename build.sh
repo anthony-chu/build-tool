@@ -47,42 +47,42 @@ _getLogFile(){
 	FileUtil makeFile $(StringUtil join _logFile)
 }
 
-@private
-_update(){
-	cd ${buildDir}
-
-	Logger logProgressMsg "cleaning_source_directory"
-
-	GitUtil cleanSource ${branch}
-
-	Logger logProgressMsg "writing_properties_files"
-
-	local writer=PropsWriter
-
-	for props in {AppServer,Build}; do
-		${writer} set${props}Props ${branch} app.server.parent.dir ${bundleDir}
-		${writer} set${props}Props ${branch} app.server.type ${appServer}
-	done
-
-	Logger logCompletedMsg
-
-	local baseBranch=$(StringUtil strip branch -private)
-
-	Logger logProgressMsg "fetching_${baseBranch}_portal_changes_into_${branch}"
-
-	git fetch --no-tags upstream ${baseBranch}
-
-	Logger logCompletedMsg
-
-	Logger logProgressMsg "applying_portal_changes"
-
-	ant -f build-working-dir.xml > ${logFile}
-
-	Logger logCompletedMsg
-}
-
 @description builds_bundle_on_specified_app_server
 build(){
+	@private
+	_update(){
+		cd ${buildDir}
+
+		Logger logProgressMsg "cleaning_source_directory"
+
+		GitUtil cleanSource ${branch}
+
+		Logger logProgressMsg "writing_properties_files"
+
+		local writer=PropsWriter
+
+		for props in {AppServer,Build}; do
+			${writer} set${props}Props ${branch} app.server.parent.dir ${bundleDir}
+			${writer} set${props}Props ${branch} app.server.type ${appServer}
+		done
+
+		Logger logCompletedMsg
+
+		local baseBranch=$(StringUtil strip branch -private)
+
+		Logger logProgressMsg "fetching_${baseBranch}_portal_changes_into_${branch}"
+
+		git fetch --no-tags upstream ${baseBranch}
+
+		Logger logCompletedMsg
+
+		Logger logProgressMsg "applying_portal_changes"
+
+		ant -f build-working-dir.xml > ${logFile}
+
+		Logger logCompletedMsg
+	}
+
 	local logFile=$(_getLogFile)
 
 	if [[ $(StringValidator isSubstring ${branch} private) ]]; then
