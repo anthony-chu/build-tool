@@ -251,6 +251,30 @@ stop(){
 	${appServerDir}/${stopCommand}
 }
 
+@description zips_a_bundle_on_the_specified_app_server
+zip(){
+	local appServerVersion=$(AppServerVersion
+			getAppServerVersion ${appServer} ${branch})
+
+	local appServerDir=${appServer}-${appServerVersion}
+
+	Logger logProgressMsg zipping_up_a_${appServer}_bundle_for_${branch}
+
+	cd ${bundleDir}
+
+	7z a liferay-portal-${branch}.zip \
+		data/\
+		deploy/\
+		osgi/\
+		portal-ext.properties\
+		tools\
+		${appServerDir}/\
+		work\
+		.liferay-home
+
+	Logger logCompletedMsg
+}
+
 main(){
 	@param the_app_server_\(optional\)
 	local appServer=$(AppServerValidator returnAppServer ${@})
