@@ -262,7 +262,7 @@ zip(){
 
 	cd ${bundleDir}
 
-	local zipFile=liferay-portal-${branch}-${appServer}.zip
+	local zipFile=liferay-portal-${appServer}-${branch}.zip
 
 	if [[ -e ${zipFile} ]]; then
 		rm -rf ${zipFile}
