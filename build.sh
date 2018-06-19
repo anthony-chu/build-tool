@@ -262,7 +262,13 @@ zip(){
 
 	cd ${bundleDir}
 
-	7z a liferay-portal-${branch}-${appServer}.zip \
+	local zipFile=liferay-portal-${branch}-${appServer}.zip
+
+	if [[ -e ${zipFile} ]]; then
+		rm -rf ${zipFile}
+	fi
+
+	7z a ${zipFile} \
 		data/\
 		deploy/\
 		osgi/\
