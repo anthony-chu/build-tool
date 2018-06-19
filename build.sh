@@ -268,15 +268,19 @@ zip(){
 		rm -rf ${zipFile}
 	fi
 
-	7z a ${zipFile} \
-		data/\
-		deploy/\
-		osgi/\
-		portal-ext.properties\
-		tools\
-		${appServerDir}/\
-		work\
+	local archiveList=()
+	local filepaths=(
+		data deploy osgi portal-ext.properties ${appServerDir} work
 		.liferay-home
+	)
+
+	for filepath in ${filepaths[@]}; do
+		if [[ -e ${filepath} || -d ${filepath} ]]; then
+			archiveList+=(${filepath})
+		fi
+	done
+
+	7z a ${zipFile} ${archiveList[@]}
 
 	Logger logCompletedMsg
 }
