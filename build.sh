@@ -270,7 +270,7 @@ zip(){
 
 	local archiveList=()
 	local filepaths=(
-		data deploy osgi portal-ext.properties ${appServerDir} work
+		data deploy osgi portal-ext.properties ${appServerDir} tools work
 		.liferay-home
 	)
 
