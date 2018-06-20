@@ -109,7 +109,7 @@ run(){
 
 main(){
 	@param the_app_server_\(optional\)
-	local appServer=$(AppServerValidator returnAppServer ${@})
+	local appServer=tomcat
 
 	local baseDir=$(pwd)
 
