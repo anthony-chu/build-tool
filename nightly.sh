@@ -19,6 +19,8 @@ include help.message.HelpMessage
 
 include logger.Logger
 
+include props.writer.util.PropsWriterUtil
+
 include string.util.StringUtil
 include string.validator.StringValidator
 
@@ -90,6 +92,8 @@ get(){
 	local database=lportal${branch//[-.]/}
 
 	FileWriter replace ${props} ${database} ${database}nightly
+	PropsWriterUtil setProps ${props} liferay.home $(
+			FileNameUtil getPath 1 ${nightlyDir})
 
 	Logger logCompletedMsg
 }
