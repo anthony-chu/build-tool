@@ -109,11 +109,13 @@ build(){
 
 	Logger logCompletedMsg
 
-	Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
+	if [[ $(AppServerValidator isTomcat appServer) ]]; then
+		Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
 
-	ant -f build-test.xml record-git-commit-bottom-test-jsp
+		ant -f build-test.xml record-git-commit-bottom-test-jsp
 
-	Logger logCompletedMsg
+		Logger logCompletedMsg
+	fi
 
 	if [[ $(BaseComparator isEqual ${appServer} weblogic) ]]; then
 		Logger logProgressMsg "copying_osgi_directory_into_domain_directory"
