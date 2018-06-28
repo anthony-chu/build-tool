@@ -39,7 +39,7 @@ clean(){
 		rm -rf ${appServerDir}/${dir}
 	done
 
-	Database rebuild lportal${branch//[-.]/}nightly utf8
+	Database rebuild ${baseDatabase}nightly utf8
 }
 
 @description downloads_a_nightly_Tomcat_bundle_on_the_indicated_branch
@@ -87,9 +87,7 @@ get(){
 
 	local props=${nightlyDir}/portal-ext.properties
 
-	local database=lportal${branch//[-.]/}
-
-	FileWriter replace ${props} ${database} ${database}nightly
+	FileWriter replace ${props} ${baseDatabase} ${baseDatabase}nightly
 	PropsWriterUtil setProps ${props} liferay.home $(
 			FileNameUtil getPath 1 ${nightlyDir})
 
@@ -119,6 +117,8 @@ main(){
 	local branch=$(BaseVars getBranch $@)
 	local buildDir=$(BaseVars getBuildDir ${branch})
 	local bundleDir=$(BaseVars getBundleDir ${branch})
+
+	local baseDatabase=lportal${branch//[-.]/}
 
 	local nightlyDir=/d/nightly/${branch}/bundles
 
