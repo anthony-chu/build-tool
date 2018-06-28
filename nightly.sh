@@ -120,7 +120,7 @@ main(){
 
 	local baseDatabase=lportal${branch//[-.]/}
 
-	local nightlyDir=/d/nightly/${branch}/bundles
+	local nightlyDir=${HOME}/Desktop/nightly/${branch}/bundles
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage
