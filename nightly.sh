@@ -39,9 +39,7 @@ clean(){
 		rm -rf ${appServerDir}/${dir}
 	done
 
-	local database=lportal${branch//[-.]/}nightly
-
-	Database rebuild ${database} utf8
+	Database rebuild lportal${branch//[-.]/}nightly utf8
 }
 
 @description downloads_a_nightly_Tomcat_bundle_on_the_indicated_branch
