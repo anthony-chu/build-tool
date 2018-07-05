@@ -78,7 +78,7 @@ build(){
 
 		Logger logProgressMsg "applying_portal_changes"
 
-		ant -f build-working-dir.xml > ${logFile}
+		ant -f build-working-dir.xml |& tee -a ${logFile}
 
 		Logger logCompletedMsg
 	}
