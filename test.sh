@@ -165,7 +165,7 @@ sf(){
 	Logger logProgressMsg "running_source-formatter_on$(StringUtil
 		replace option - _)_against_$(GitUtil getCurBranch)"
 
-	local sfDir=${buildDir}/tools/sdk/dependeicies/com.liferay.source.formatter
+	local sfDir=${buildDir}/tools/sdk/dependencies/com.liferay.source.formatter
 
 	if [[ ! -d ${sfDir} ]]; then
 		SourceUtil setupSDK ${branch}
