@@ -182,11 +182,13 @@ deploy(){
 
 	Logger logCompletedMsg
 
-	Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
+	if [[ $(AppServerValidator isTomcat appServer) ]]; then
+		Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
 
-	ant -f build-test.xml record-git-commit-bottom-test-jsp
+		ant -f build-test.xml record-git-commit-bottom-test-jsp
 
-	Logger logCompletedMsg
+		Logger logCompletedMsg
+	fi
 }
 
 @description pulls_changes_from_upstream_on_the_indicated_branch
