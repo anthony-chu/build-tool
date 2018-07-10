@@ -162,6 +162,14 @@ clean(){
 deploy(){
 	SourceUtil config ${appServer} ${branch}
 
+	Logger logProgressMsg "unzipping_${appServer}"
+
+	cd ${buildDir}
+
+	trap _catch SIGINT
+
+	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
+
 	Logger logProgressMsg "deploying_portal"
 
 	trap _catch SIGINT
