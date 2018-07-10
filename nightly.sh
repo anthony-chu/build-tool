@@ -62,7 +62,7 @@ get(){
 		local _nightlyDir=$(FileUtil construct ${nightlyDir})
 	fi
 
-	Logger logProgressMsg copying_nightly_bundle_to_nightly_directory
+	Logger logProgressMsg copying_${branch}_nightly_bundle_to_nightly_directory
 
 	local fileDirs=(
 		deploy
