@@ -55,6 +55,8 @@ build(){
 
 		Logger logProgressMsg "cleaning_source_directory"
 
+		FileUtil deleteIfExists ${buildDir}/modules/apps
+
 		GitUtil cleanSource ${branch}
 
 		Logger logProgressMsg "writing_properties_files"
@@ -193,6 +195,10 @@ pull(){
 		git checkout -q ${branch}
 
 		Logger logCompletedMsg
+	fi
+
+	if [[ $(StringValidator isSubstring branch -private) ]]; then
+		FileUtil deleteIfExists ${buildDir}/modules/apps
 	fi
 
 	GitUtil cleanSource ${branch}
