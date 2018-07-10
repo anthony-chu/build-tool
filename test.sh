@@ -165,6 +165,12 @@ sf(){
 	Logger logProgressMsg "running_source-formatter_on$(StringUtil
 		replace option - _)_against_$(GitUtil getCurBranch)"
 
+	local sfDir=${buildDir}/tools/sdk/dependeicies/com.liferay.source.formatter
+
+	if [[ ! -d ${sfDir} ]]; then
+		SourceUtil setupSDK ${branch}
+	fi
+
 	if [[ ! $(BaseComparator isEqual ${option} _all_changes) ]]; then
 		ant format-source${option}
 	else
