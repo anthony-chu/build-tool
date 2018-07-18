@@ -31,7 +31,7 @@ changes(){
 current(){
 	cd ${buildDir}
 
-	Logger logInfoMsg "current_${branch}_branch:_$(GitUtil getCurBranch)"
+	${_log} info "current_${branch}_branch:_$(GitUtil getCurBranch)"
 }
 
 @description deletes_the_indicated_branch
@@ -49,7 +49,7 @@ delete(){
 			return
 		fi
 
-		Logger logInfoMsg "deleted_local_branch:_${1}"
+		${_log} info "deleted_local_branch:_${1}"
 	fi
 }
 
@@ -59,7 +59,7 @@ fetch(){
 
 	local _id=${1}
 
-	Logger logProgressMsg "fetching_pr#${_id}_into_${branch}-ac-${_id}"
+	${_log} info "fetching_pr#${_id}_into_${branch}-ac-${_id}..."
 
 	if [[ "$(GitUtil listBranches)" =~ ${branch}-ac-${_id} ]]; then
 		local message=(
@@ -67,11 +67,11 @@ fetch(){
 			branch_${branch}-ac-${_id}_exists
 		)
 
-		Logger logErrorMsg "$(StringUtil join message _)"
+		${_log} error"$(StringUtil join message _)"
 	else
 		git fetch origin pull/${_id}/head:${branch}-ac-${_id}
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 	fi
 }
 
@@ -111,7 +111,7 @@ log(){
 	elif [[ $(StringValidator isOption ${1}) ]]; then
 		git log ${1} --oneline
 	elif [[ ! $(StringValidator isOption ${1}) ]]; then
-		Logger logErrorMsg "please_provide_a_valid_log_option"
+		${_log} error"please_provide_a_valid_log_option"
 	fi
 }
 
@@ -140,7 +140,7 @@ rebase(){
 		c) local cmd=cont;;
 		d) local cmd=default;;
 		q) local cmd=abort;;
-		*) Logger logErrorMsg "please_provide_a_valid_rebase_option" && exit ;;
+		*) ${_log} error"please_provide_a_valid_rebase_option" && exit ;;
 	esac
 
 	GitRebaseUtil ${cmd} ${branch}
@@ -150,11 +150,11 @@ rebase(){
 rename(){
 	cd ${buildDir}
 
-	Logger logProgressMsg "renaming_branch_from_$(GitUtil getCurBranch)_to_${1}"
+	${_log} info "renaming_branch_from_$(GitUtil getCurBranch)_to_${1}..."
 
 	git branch -q -m ${1}
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 @description restores_source_code_the_designated_commit
@@ -192,6 +192,8 @@ switch(){
 }
 
 main(){
+	local _log="Logger log"
+
 	@param the_app_server_\(optional\)
 	local appServer=$(AppServerValidator returnAppServer ${@})
 

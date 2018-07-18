@@ -33,7 +33,7 @@ include system.System
 
 @private
 _catch(){
-	Logger logErrorMsg "the_build_process_was_interrupted"
+	${_log} error "the_build_process_was_interrupted"
 }
 
 @private
@@ -53,13 +53,13 @@ build(){
 	_update(){
 		cd ${buildDir}
 
-		Logger logProgressMsg "cleaning_source_directory"
+		${_log} info "cleaning_source_directory..."
 
 		FileUtil deleteIfExists ${buildDir}/modules/apps
 
 		GitUtil cleanSource ${branch}
 
-		Logger logProgressMsg "writing_properties_files"
+		${_log} info "writing_properties_files..."
 
 		local writer=PropsWriter
 
@@ -68,21 +68,21 @@ build(){
 			${writer} set${props}Props ${branch} app.server.type ${appServer}
 		done
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 
 		local baseBranch=$(StringUtil strip branch -private)
 
-		Logger logProgressMsg "fetching_${baseBranch}_portal_changes_into_${branch}"
+		${_log} info "fetching_${baseBranch}_portal_changes_into_${branch}..."
 
 		git fetch --no-tags upstream ${baseBranch}
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 
-		Logger logProgressMsg "applying_portal_changes"
+		${_log} info "applying_portal_changes..."
 
 		ant -f build-working-dir.xml |& tee -a ${logFile}
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 	}
 
 	local logFile=$(_getLogFile)
@@ -95,7 +95,7 @@ build(){
 
 	SourceUtil config ${appServer} ${branch}
 
-	Logger logProgressMsg "unzipping_${appServer}"
+	${_log} info "unzipping_${appServer}..."
 
 	cd ${buildDir}
 
@@ -103,24 +103,24 @@ build(){
 
 	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 
-	Logger logProgressMsg "building_portal"
+	${_log} info "building_portal..."
 
 	ant all |& tee -a ${logFile}
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 
 	if [[ $(AppServerValidator isTomcat appServer) ]]; then
-		Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
+		${_log} info "writing_git_commit_to_bottom-test.jsp..."
 
 		ant -f build-test.xml record-git-commit-bottom-test-jsp
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 	fi
 
 	if [[ $(BaseComparator isEqual ${appServer} weblogic) ]]; then
-		Logger logProgressMsg "copying_osgi_directory_into_domain_directory"
+		${_log} info "copying_osgi_directory_into_domain_directory..."
 
 		local appServerDir=$(AppServerFactory
 			getAppServerDir ${branch} ${appServer})
@@ -129,7 +129,7 @@ build(){
 			cp -rf ${appServerDir}/${path} -d ${appServerDir}/domains/liferay
 		done
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 	fi
 }
 
@@ -162,7 +162,7 @@ clean(){
 deploy(){
 	SourceUtil config ${appServer} ${branch}
 
-	Logger logProgressMsg "unzipping_${appServer}"
+	${_log} info "unzipping_${appServer}..."
 
 	cd ${buildDir}
 
@@ -170,7 +170,7 @@ deploy(){
 
 	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
 
-	Logger logProgressMsg "deploying_portal"
+	${_log} info "deploying_portal..."
 
 	trap _catch SIGINT
 
@@ -180,14 +180,14 @@ deploy(){
 
 	ant deploy |& tee -a ${logFile}
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 
 	if [[ $(AppServerValidator isTomcat appServer) ]]; then
-		Logger logProgressMsg "writing_git_commit_to_bottom-test.jsp"
+		${_log} info "writing_git_commit_to_bottom-test.jsp..."
 
 		ant -f build-test.xml record-git-commit-bottom-test-jsp
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 	fi
 }
 
@@ -200,11 +200,11 @@ pull(){
 	local curBranch=$(GitUtil getCurBranch)
 
 	if [[ ${curBranch} != ${branch} ]]; then
-		Logger logProgressMsg "switching_from_${curBranch}_to_${branch}"
+		${_log} info "switching_from_${curBranch}_to_${branch}..."
 
 		git checkout -q ${branch}
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 	fi
 
 	if [[ $(StringValidator isSubstring branch -private) ]]; then
@@ -213,9 +213,9 @@ pull(){
 
 	GitUtil cleanSource ${branch}
 
-	Logger logProgressMsg "pulling_changes_for_${branch}_from_upstream"
+	${_log} info "pulling_changes_for_${branch}_from_upstream..."
 	git pull upstream ${branch}
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 @description pushes_changes_to_origin_on_the_indicated_branch
@@ -224,18 +224,18 @@ push(){
 
 	local curBranch=$(GitUtil getCurBranch)
 
-	Logger logProgressMsg "pushing_changes_to_origin_branch_${curBranch}"
+	${_log} info "pushing_changes_to_origin_branch_${curBranch}..."
 
 	git push -f origin ${curBranch}
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 @description runs_a_bundle_on_the_specified_app_server
 run(){
 	local _appServer=$(StringUtil capitalize ${appServer})
 
-	Logger logProgressMsg "starting_${branch}_Liferay_bundle_on_${_appServer}"
+	${_log} info "starting_${branch}_Liferay_bundle_on_${_appServer}..."
 	sleep 5s
 
 	local appServerDir=$(AppServerFactory
@@ -276,7 +276,7 @@ zip(){
 
 	local appServerDir=${appServer}-${appServerVersion}
 
-	Logger logProgressMsg zipping_up_a_${appServer}_bundle_for_${branch}
+	_logProgressMsg zipping_up_a_${appServer}_bundle_for_${branch}
 
 	cd ${bundleDir}
 
@@ -300,10 +300,12 @@ zip(){
 
 	7z a ${zipFile} ${archiveList[@]}
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 main(){
+	local _log="Logger log"
+
 	@param the_app_server_\(optional\)
 	local appServer=$(AppServerValidator returnAppServer ${@})
 

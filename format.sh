@@ -11,7 +11,9 @@ include props.reader.util.PropsReaderUtil
 include string.util.StringUtil
 
 _main(){
-	Logger logProgressMsg "validating_formatting_rules"
+	local _log="Logger log"
+
+	_log info "validating_formatting_rules..."
 
 	local files=($(find * -type f -iname "*.sh"))
 	local skipVariableValidation=$(PropsReaderUtil
@@ -31,7 +33,7 @@ _main(){
 		done
 	done
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 _main

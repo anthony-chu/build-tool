@@ -36,16 +36,16 @@ _executeTest(){
 
 	local test=${1}
 	shift
-	Logger logProgressMsg "running_test_${test}_against_${branch}"
+	${_log} info "running_test_${test}_against_${branch}..."
 	echo
 	cd ${buildDir}
 	ant -f build-test.xml run-selenium-test -Dtest.class="${test}" $@
 
-	Logger logProgressMsg "cleaning_up_temporary_test_files"
+	${_log} info "cleaning_up_temporary_test_files..."
 
 	rm -rf ${bundleDir}/poshi/*
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 
 	local testname=LocalFile.$(StringUtil replace test \# _)
 
@@ -53,7 +53,7 @@ _executeTest(){
 
 	if [[ -d ${resultDir} ]]; then
 
-		Logger logProgressMsg "moving_test_results"
+		${_log} info "moving_test_results..."
 
 		cp -r ${resultDir} ${testDir}
 
@@ -66,9 +66,9 @@ _executeTest(){
 		if [[ $(cat ${rawFile} | grep "Cause:") ]]; then
 			FileUtil open "$(FileNameUtil getPath ${rawFile})"
 
-			Logger logCompletedMsg
+			${_log} info "completed"
 		else
-			Logger logSuccessMsg "${test}_PASSED"
+			${_log} info "${test}_PASSED"
 		fi
 	fi
 }
@@ -84,9 +84,9 @@ pr(){
 	}
 
 	if [[ $(StringValidator isNull ${@}) ]]; then
-		Logger logErrorMsg "missing_reviewer"
+		${_log} error"missing_reviewer"
 	else
-		Logger logProgressMsg "submitting_pull_request"
+		${_log} info "submitting_pull_request..."
 
 		cd ${buildDir}
 		local title=$(GitUtil getCurBranch)
@@ -103,7 +103,7 @@ pr(){
 			local issueKey=$(StringUtil toUpperCase $(
 				StringUtil strip title ${branch}- ))
 		else
-			Logger logErrorMsg "invalid_branch_name_and/or_commit_message"
+			${_log} error"invalid_branch_name_and/or_commit_message"
 			exit
 		fi
 
@@ -136,13 +136,13 @@ pr(){
 
 		GitUtil pr submit ${params[@]}
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 
-		Logger logProgressMsg "switching_branch_to_${branch}"
+		${_log} info "switching_branch_to_${branch}..."
 
 		git checkout ${branch}
 
-		Logger logCompletedMsg
+		${_log} info "completed"
 	fi
 }
 
@@ -177,13 +177,13 @@ sf(){
 		ant format-source
 	fi
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 @description executes_a_frontend_test
 test(){
 	if [[ $(StringValidator isNull ${1}) ]]; then
-		Logger logErrorMsg "missing_test_name"
+		${_log} error"missing_test_name"
 	elif [[ $(StringValidator isSubstring ${1} ,) ]]; then
 		local tests=${1}
 
@@ -208,14 +208,16 @@ validate(){
 		$(GitUtil getCurBranch)
 	)
 
-	Logger logProgressMsg "$(StringUtil join message)"
+	${_log} info "$(StringUtil join message)..."
 
 	ant -f build-test.xml run-poshi-validation $@
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 main(){
+	local _log="Logger log"
+
 	@param the_branch_name_\(optional\)
 	local branch=$(BaseVars getBranch $@)
 	local buildDir=$(BaseVars getBuildDir ${branch})

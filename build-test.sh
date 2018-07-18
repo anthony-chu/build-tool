@@ -84,10 +84,12 @@ run-unit-tests(){
 		TestExecutor executeTest ${class} |& tee -a results.txt
 	done
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 main(){
+	local _log="Logger log"
+
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage
 	elif [[ $(BaseComparator isEqual ${1} run-unit-tests) ]]; then

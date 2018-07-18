@@ -8,10 +8,12 @@ include string.util.StringUtil
 include string.validator.StringValidator
 
 main(){
+	local _log="Logger log"
+
 	if [[ ! $(StringValidator isNull ${1}) ]]; then
 		case ${1} in
 			read|set|unset) local _cmd=${1} ;;
-			*) Logger logErrorMsg "\"${1}\"_is_not_a_valid_command" && exit ;;
+			*) ${_log} error "\"${1}\"_is_not_a_valid_command" && exit ;;
 		esac
 
 		shift

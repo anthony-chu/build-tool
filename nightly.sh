@@ -48,21 +48,21 @@ get(){
 
 	ant nightly
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 
 	BundleUtil configure ${branch} ${appServer}
 
 	if [[ -e ${nightlyDir} ]]; then
-		Logger logInfoMsg cleaning_out_nightly_directory
+		${_log} info "cleaning_out_nightly_directory"
 
 		rm -rf ${nightlyDir}/*
 	else
-		Logger logInfoMsg constructing_nightly_directory
+		${_log} info "constructing_nightly_directory"
 
 		local _nightlyDir=$(FileUtil construct ${nightlyDir})
 	fi
 
-	Logger logProgressMsg copying_${branch}_nightly_bundle_to_nightly_directory
+	${_log} info "copying_${branch}_nightly_bundle_to_nightly_directory..."
 
 	local fileDirs=(
 		deploy
@@ -83,7 +83,7 @@ get(){
 		fi
 	done
 
-	Logger logInfoMsg updating_portal_properties
+	${_log} info "updating_portal_properties"
 
 	local props=${nightlyDir}/portal-ext.properties
 
@@ -91,7 +91,7 @@ get(){
 	PropsWriterUtil setProps ${props} liferay.home $(
 			FileNameUtil getPath 1 ${nightlyDir})
 
-	Logger logCompletedMsg
+	${_log} info "completed"
 }
 
 @description starts_up_a_nightly_bundle
@@ -100,7 +100,7 @@ run(){
 	local appServerVersion=$(AppServerVersion
 		getAppServerVersion ${appServer} ${branch})
 
-	Logger logInfoMsg starting_up_a_${_appServer}_nightly_bundle
+	${_log} info "starting_up_a_${_appServer}_nightly_bundle"
 
 	if [[ $(AppServerValidator isTomcat ${appServer}) ]]; then
 		${nightlyDir}/${appServer}-${appServerVersion}/bin/catalina.sh run
@@ -108,6 +108,8 @@ run(){
 }
 
 main(){
+	local _log="Logger log"
+
 	@param the_app_server_\(optional\)
 	local appServer=tomcat
 
