@@ -65,6 +65,7 @@ get(){
 	${_log} info "copying_${branch}_nightly_bundle_to_nightly_directory..."
 
 	local fileDirs=(
+		.githash
 		deploy
 		license
 		osgi
