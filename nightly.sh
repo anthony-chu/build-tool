@@ -46,7 +46,7 @@ clean(){
 get(){
 	cd ${buildDir}
 
-	ant nightly
+	ant snapshot-bundle
 
 	${_log} info "completed"
 
