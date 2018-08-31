@@ -68,6 +68,10 @@ build(){
 			${writer} set${props}Props ${branch} app.server.type ${appServer}
 		done
 
+		if [[ $(StringValidator isSubstring branch 6.2) ]]; then
+			${writer} setBuildProps ${branch} javac.compiler modern
+		fi
+
 		${_log} info "completed"
 
 		local baseBranch=$(StringUtil strip branch -private)
@@ -317,7 +321,7 @@ main(){
 	local bundleDir=$(BaseVars getBundleDir ${branch})
 
 	System extendAntOpts ${branch//ee-/}
-	System setJavaHome ${branch//ee-/}
+	System setJavaHome ${branch//ee/-}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage
