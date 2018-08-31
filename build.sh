@@ -276,7 +276,7 @@ zip(){
 
 	local appServerDir=${appServer}-${appServerVersion}
 
-	_logProgressMsg zipping_up_a_${appServer}_bundle_for_${branch}
+	${_log} info "zipping_up_a_${appServer}_bundle_for_${branch}..."
 
 	cd ${bundleDir}
 
