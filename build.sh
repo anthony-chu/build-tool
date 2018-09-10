@@ -135,6 +135,8 @@ build(){
 
 		${_log} info "completed"
 	fi
+
+	GitUtil cleanSource ${branch}
 }
 
 @description rebuilds_database_and_prepares_bundle_for_runtime
@@ -193,6 +195,8 @@ deploy(){
 
 		${_log} info "completed"
 	fi
+
+	GitUtil cleanSource ${branch}
 }
 
 @description pulls_changes_from_upstream_on_the_indicated_branch
