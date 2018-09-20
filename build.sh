@@ -59,20 +59,9 @@ build(){
 
 		GitUtil cleanSource ${branch}
 
-		${_log} info "writing_properties_files..."
-
-		local writer=PropsWriter
-
-		for props in {AppServer,Build}; do
-			${writer} set${props}Props ${branch} app.server.parent.dir ${bundleDir}
-			${writer} set${props}Props ${branch} app.server.type ${appServer}
-		done
-
 		if [[ $(StringValidator isSubstring branch 6.2) ]]; then
 			${writer} setBuildProps ${branch} javac.compiler modern
 		fi
-
-		${_log} info "completed"
 
 		local baseBranch=$(StringUtil strip branch -private)
 
