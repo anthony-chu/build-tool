@@ -249,10 +249,9 @@ run(){
 	${_log} info "starting_${branch}_Liferay_bundle_on_${_appServer}..."
 	sleep 5s
 
-	local appServerDir=$(AppServerFactory
-		getAppServerDir ${branch} ${appServer})
-
-	BundleUtil configure ${branch} ${appServer}
+	local appServerDir=$(
+		AppServerFactory getAppServerDir ${branch} ${appServer}
+	)
 
 	if [[ $(AppServerValidator isJboss appServer) ||
 			$(AppServerValidator isWildfly appServer) ]]; then
@@ -274,16 +273,18 @@ stop(){
 		local stopCommand="bin/shutdown.sh"
 	fi
 
-	local appServerDir=$(AppServerFactory
-		getAppServerDir ${branch} ${appServer})
+	local appServerDir=$(
+		AppServerFactory getAppServerDir ${branch} ${appServer}
+	)
 
 	${appServerDir}/${stopCommand}
 }
 
 @description zips_a_bundle_on_the_specified_app_server
 zip(){
-	local appServerVersion=$(AppServerVersion
-			getAppServerVersion ${appServer} ${branch})
+	local appServerVersion=$(
+		AppServerVersion getAppServerVersion ${appServer} ${branch}
+	)
 
 	local appServerDir=${appServer}-${appServerVersion}
 
