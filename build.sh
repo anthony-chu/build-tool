@@ -99,13 +99,26 @@ build(){
 
 	SourceUtil config ${appServer} ${branch}
 
+	if [[ $(AppServerValidator isWebsphere appServer) ]]; then
+		local zipName=agent.installer.win32.win32.x86_64_1.8.9000.20180313_1417.zip
+		local zipNameProp=app.server.websphere.jdk.zip.names
+
+		PropsWriter setAppServerProps ${branch} ${zipNameProp} ${zipName}
+	fi
+
 	${_log} info "unzipping_${appServer}..."
 
 	cd ${buildDir}
 
 	trap _catch SIGINT
 
-	ant -f build-dist.xml unzip-${appServer} |& tee -a ${logFile}
+	local _appServer=${appServer}
+
+	if [[ $(AppServerValidator isWebsphere appServer) ]]; then
+		local _appServer=${appServer}-custom
+	fi
+
+	ant -f build-dist.xml unzip-${_appServer} |& tee -a ${logFile}
 
 	${_log} info "completed"
 
@@ -126,8 +139,9 @@ build(){
 	if [[ $(BaseComparator isEqual ${appServer} weblogic) ]]; then
 		${_log} info "copying_osgi_directory_into_domain_directory..."
 
-		local appServerDir=$(AppServerFactory
-			getAppServerDir ${branch} ${appServer})
+		local appServerDir=$(
+			AppServerFactory getAppServerDir ${branch} ${appServer}
+		)
 
 		for path in {data,deploy,osgi,portal-ext.properties}; do
 			cp -rf ${appServerDir}/${path} -d ${appServerDir}/domains/liferay
