@@ -310,7 +310,7 @@ zip(){
 		fi
 	done
 
-	7z a ${zipFile} ${archiveList[@]}
+	7z a ${zipFile} ${archiveList[@]} > /dev/null
 
 	${_log} info "completed"
 }
