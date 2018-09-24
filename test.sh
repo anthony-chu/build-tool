@@ -24,9 +24,6 @@ include source.util.SourceUtil
 include string.util.StringUtil
 include string.validator.StringValidator
 
-include system.System
-include system.validator.SystemValidator
-
 @private
 _executeTest(){
 	local testDir=$(FileUtil construct /d/test-results/${branch})
