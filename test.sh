@@ -162,8 +162,13 @@ sf(){
 		local option="_all_changes"
 	fi
 
-	Logger logProgressMsg "running_source-formatter_on$(StringUtil
-		replace option - _)_against_$(GitUtil getCurBranch)"
+	local _msg=(
+		running_source-formatter_on
+		$(StringUtil replace option - _)
+		_$(GitUtil getCurBranch)
+	)
+
+	${_log} info "$(StringUtil join _msg)"
 
 	local sfDir=${buildDir}/tools/sdk/dependencies/com.liferay.source.formatter
 
