@@ -41,14 +41,6 @@ get(){
 
 	${_log} info "completed."
 
-	${_log} info "applying_custom_memory_settings..."
-
-	local file=${bundleAppServerDir}/bin/setenv.sh
-
-	${replace} ${file} 'Xmx[0-9]\+m' 'Xms1024m\\ -Xmx2048m'
-
-	${_log} info "completed."
-
 	if [[ -e ${nightlyDir} ]]; then
 		${_log} info "cleaning_out_nightly_directory..."
 
