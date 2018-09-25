@@ -17,6 +17,7 @@ include help.message.HelpMessage
 
 include logger.Logger
 
+include props.writer.PropsWriter
 include props.writer.util.PropsWriterUtil
 
 include string.validator.StringValidator
@@ -26,6 +27,12 @@ get(){
 	cd ${buildDir}
 
 	${_log} info "downloading_nightly_bundle..."
+
+	if [[ $(BaseVars isPrivate ${branch}) ]]; then
+		local url=https://files.liferay.com/private/ee/portal/
+
+		PropsWriter setBuildProps ${branch} snapshot.bundle.base.url ${url}
+	fi
 
 	ant snapshot-bundle
 
@@ -92,12 +99,14 @@ get(){
 	${_log} info "completed."
 
 	Database rebuild ${nightlyDatabase} utf8
+
+	mv ${nightlyDir}/${APP_SERVER}-${appServerVersion} ${nightlyDir}/${APP_SERVER}
 }
 
 @description starts_up_nightly_bundle
 run(){
 	${_log} info "starting_up_${APP_SERVER}_nightly_bundle"
-	${nightlyDir}/${APP_SERVER}-${appServerVersion}/bin/catalina.sh run
+	${nightlyDir}/${APP_SERVER}/bin/catalina.sh run
 }
 
 main(){
