@@ -2,8 +2,6 @@ source bash-toolbox/init.sh
 
 include logger.Logger
 
-include string.util.StringUtil
-
 main(){
 	local _className=${1}
 	local _cmd=${2}
