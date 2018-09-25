@@ -26,7 +26,9 @@ include string.validator.StringValidator
 
 @private
 _executeTest(){
-	local testDir=$(FileUtil construct /d/test-results/${branch})
+	local testDir=/d/test-results/${branch}
+
+	mkdir -p ${testDir}
 
 	PropsWriter setTestProps ${branch} test.skip.tear.down true
 	PropsWriter setTestProps ${branch} timeout.explicit.wait 30
