@@ -29,6 +29,10 @@ get(){
 	${_log} info "downloading_nightly_bundle..."
 
 	if [[ $(BaseVars isPrivate ${branch}) ]]; then
+		if [[ ! -e build.xml ]]; then
+			ant -f build-working-dir.xml
+		fi
+
 		local url=https://files.liferay.com/private/ee/portal/
 
 		PropsWriter setBuildProps ${branch} snapshot.bundle.base.url ${url}
