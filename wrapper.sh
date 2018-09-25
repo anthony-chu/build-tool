@@ -15,9 +15,11 @@ main(){
 		exit
 	fi
 
-	local className=($(echo ${_className} |	sed "s#\([A-Z]\)#\ \L\1#g"))
-
-	include $(StringUtil replace className space .).${_className}
+	include $(
+		echo ${_className} | \
+		sed "s#\([A-Z]\)#\ \L\1#g" | \
+		sed "s#\([a-z]\)\ #\1.#g"
+	).${_className}
 
 	${_className} ${_cmd} ${args}
 }
