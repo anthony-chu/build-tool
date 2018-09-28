@@ -140,8 +140,6 @@ build(){
 
 		${_log} info "completed"
 	fi
-
-	GitUtil cleanSource ${branch}
 }
 
 @description rebuilds_database_and_prepares_bundle_for_runtime
