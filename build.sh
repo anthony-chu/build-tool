@@ -62,7 +62,7 @@ build(){
 		GitUtil cleanSource ${branch}
 
 		if [[ $(StringValidator isSubstring branch 6.2) ]]; then
-			${writer} setBuildProps ${branch} javac.compiler modern
+			PropsWriter setBuildProps ${branch} javac.compiler modern
 		fi
 
 		local baseBranch=$(StringUtil strip branch -private)
