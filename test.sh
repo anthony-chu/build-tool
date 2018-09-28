@@ -97,10 +97,13 @@ pr(){
 
 			local issueKey=${_issueKey}
 		elif [[ $(StringValidator isSubstring ${title} lrqa) || $(
-			StringValidator isSubstring ${title} lps) ]]; then
+				StringValidator isSubstring ${title} lps) ]]; then
 
-			local issueKey=$(StringUtil toUpperCase $(
-				StringUtil strip title ${branch}- ))
+			local issueKey=$(
+				StringUtil toUpperCase $(
+					StringUtil strip title ${branch}-
+				)
+			)
 		else
 			${_log} error"invalid_branch_name_and/or_commit_message"
 			exit
