@@ -200,8 +200,6 @@ deploy(){
 
 		${_log} info "completed"
 	fi
-
-	GitUtil cleanSource ${branch}
 }
 
 @description pulls_changes_from_upstream_on_the_indicated_branch
