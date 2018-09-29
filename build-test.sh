@@ -47,7 +47,7 @@ include test.executor.TestExecutor
 
 @description runs_all_unit_tests_in_/test_directory
 run-unit-tests(){
-	Logger logProgressMsg "running_all_unit_tests"
+	${_log} info "running_all_unit_tests..."
 
 	local classes=(
 		AppServerValidatorTest
