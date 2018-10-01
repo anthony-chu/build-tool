@@ -42,7 +42,7 @@ get(){
 
 	${_log} info "completed."
 
-	if [[ -e ${nightlyDir} ]]; then
+	if [[ -d ${nightlyDir} ]]; then
 		${_log} info "cleaning_out_nightly_directory..."
 
 		rm -rf ${nightlyDir}/*
