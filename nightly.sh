@@ -86,7 +86,7 @@ get(){
 
 	${replace} ${propsFile} ${baseDatabase} ${nightlyDatabase}
 
-	local _nightlyDir=$(FileNameUtil getPath 1 ${nightlyDir})
+	local _nightlyDir=$(FileNameUtil getPath ${nightlyDir})
 
 	PropsWriterUtil setProps ${propsFile} liferay.home ${_nightlyDir}
 
