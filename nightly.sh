@@ -42,16 +42,6 @@ get(){
 
 	${_log} info "completed."
 
-	${_log} info "renaming_tomcat_directory..."
-
-	local bundleAppServerDir=${bundleDir}/${APP_SERVER}-${appServerVersion}
-
-	FileUtil deleteIfExists ${bundleAppServerDir}
-
-	mv ${bundleDir}/${APP_SERVER} ${bundleAppServerDir}
-
-	${_log} info "completed."
-
 	if [[ -e ${nightlyDir} ]]; then
 		${_log} info "cleaning_out_nightly_directory..."
 
@@ -103,14 +93,12 @@ get(){
 	${_log} info "completed."
 
 	Database rebuild ${nightlyDatabase} utf8
-
-	mv ${nightlyDir}/${APP_SERVER}-${appServerVersion} ${nightlyDir}/${APP_SERVER}
 }
 
 @description starts_up_nightly_bundle
 run(){
 	${_log} info "starting_up_${APP_SERVER}_nightly_bundle"
-	${nightlyDir}/${APP_SERVER}/bin/catalina.sh run
+	${nightlyDir}/${APP_SERVER}=${appServerVersion}/bin/catalina.sh run
 }
 
 main(){
