@@ -329,7 +329,7 @@ main(){
 	local buildDir=$(BaseVars getBuildDir ${branch})
 	local bundleDir=$(BaseVars getBundleDir ${branch})
 
-	System extendAntOpts ${branch//ee-/}
+	System extendAntOpts
 	System setJavaHome ${branch//ee/-}
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
