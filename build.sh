@@ -283,7 +283,7 @@ zip(){
 	local zipFile=liferay-portal-${appServer}-${branch}-$(
 		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).zip
 
-		rm -rf ${zipFile}
+	rm -rf ${zipFile}
 
 	local archiveList=()
 	local filepaths=(
