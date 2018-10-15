@@ -148,6 +148,10 @@ clean(){
 
 	BundleUtil resetOSGiState ${branch}
 
+	local file=${appServerDir}/bin/setenv.sh
+
+	FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
+
 	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
 
 	if [[ ! $(StringValidator isSubstring branch 6.) ]]; then
