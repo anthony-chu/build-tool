@@ -274,7 +274,7 @@ zip(){
 		AppServerVersion getAppServerVersion ${appServer} ${branch}
 	)
 
-	local appServerDir=${appServer}-${appServerVersion}
+	local appServerRelativeDir=${appServer}-${appServerVersion}
 
 	${_log} info "zipping_up_a_${appServer}_bundle_for_${branch}..."
 
@@ -287,8 +287,8 @@ zip(){
 
 	local archiveList=()
 	local filepaths=(
-		data deploy osgi portal-ext.properties ${appServerDir} tools work
-		.liferay-home
+		data deploy osgi portal-ext.properties ${appServerRelativeDir}
+		tools work .liferay-home
 	)
 
 	for filepath in ${filepaths[@]}; do
