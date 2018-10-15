@@ -130,10 +130,6 @@ build(){
 	if [[ $(BaseComparator isEqual ${appServer} weblogic) ]]; then
 		${_log} info "copying_osgi_directory_into_domain_directory..."
 
-		local appServerDir=$(
-			AppServerFactory getAppServerDir ${branch} ${appServer}
-		)
-
 		for path in {data,deploy,osgi,portal-ext.properties}; do
 			cp -rf ${appServerDir}/${path} -d ${appServerDir}/domains/liferay
 		done
@@ -249,10 +245,6 @@ run(){
 	${_log} info "starting_${branch}_Liferay_bundle_on_${_appServer}..."
 	sleep 5s
 
-	local appServerDir=$(
-		AppServerFactory getAppServerDir ${branch} ${appServer}
-	)
-
 	if [[ $(AppServerValidator isJboss appServer) ||
 			$(AppServerValidator isWildfly appServer) ]]; then
 
@@ -272,10 +264,6 @@ stop(){
 	if [[ $(AppServerValidator isTomcat appServer) ]]; then
 		local stopCommand="bin/shutdown.sh"
 	fi
-
-	local appServerDir=$(
-		AppServerFactory getAppServerDir ${branch} ${appServer}
-	)
 
 	${appServerDir}/${stopCommand}
 }
@@ -324,6 +312,11 @@ main(){
 
 	@param the_branch_name_\(optional\)
 	local branch=$(BaseVars getBranch $@)
+
+	local appServerDir=$(
+		AppServerFactory getAppServerDir ${branch} ${appServer}
+	)
+
 	local buildDir=$(BaseVars getBuildDir ${branch})
 	local bundleDir=$(BaseVars getBundleDir ${branch})
 
