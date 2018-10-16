@@ -59,8 +59,6 @@ build(){
 
 		FileUtil deleteIfExists ${buildDir}/modules/apps
 
-		GitUtil cleanSource ${branch}
-
 		if [[ $(StringValidator isSubstring branch 6.2) ]]; then
 			PropsWriter setBuildProps ${branch} javac.compiler modern
 		fi
@@ -79,6 +77,8 @@ build(){
 
 		${_log} info "completed"
 	}
+
+	GitUtil cleanSource ${branch}
 
 	if [[ $(StringValidator isSubstring ${branch} private) ]]; then
 		_update
