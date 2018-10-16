@@ -80,8 +80,6 @@ build(){
 		${_log} info "completed"
 	}
 
-	local logFile=$(_getLogFile)
-
 	if [[ $(StringValidator isSubstring ${branch} private) ]]; then
 		_update
 	fi
@@ -108,6 +106,8 @@ build(){
 	if [[ $(AppServerValidator isWebsphere appServer) ]]; then
 		local _appServer=${appServer}-custom
 	fi
+
+	local logFile=$(_getLogFile)
 
 	ant -f build-dist.xml unzip-${_appServer} |& tee -a ${logFile}
 
