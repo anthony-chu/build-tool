@@ -153,7 +153,7 @@ clean(){
 
 	FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
 
-	PropsWriter setPortalProps ${branch} liferay.home ${bundleDir}
+	PropsWriter setPortalProps ${branch} liferay.home "${bundleDir//\\/\/}"
 
 	if [[ ! $(StringValidator isSubstring branch 6.) ]]; then
 		PropsWriter setPortalProps ${branch} virtual.hosts.default.site.name
