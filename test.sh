@@ -76,12 +76,12 @@ _executeTest(){
 sf(){
 	cd ${buildDir}/portal-impl
 
-	if [[ $(BaseComparator isEqualIgnoreCase $(StringUtil
-		returnOption ${1}) c) ]]; then
+	local flag=$(StringUtil returnOption ${1})
+
+	if [[ ${flag,,} == c) ]]; then
 
 		local option="-current-branch"
-	elif [[ $(BaseComparator isEqualIgnoreCase $(StringUtil
-		returnOption ${1}) l) ]]; then
+	elif [[ ${flag,,} == l) ]]; then
 
 		local option="-local-changes"
 	else
@@ -96,7 +96,7 @@ sf(){
 
 	${_log} info "$(StringUtil join _msg)"
 
-	if [[ ! $(BaseComparator isEqual ${option} _all_changes) ]]; then
+	if [[ ${option} != _all_changes ]]; then
 		ant format-source${option}
 	else
 		ant format-source

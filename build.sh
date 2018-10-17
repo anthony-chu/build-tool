@@ -129,7 +129,7 @@ build(){
 		${_log} info "completed"
 	fi
 
-	if [[ $(BaseComparator isEqual ${appServer} weblogic) ]]; then
+	if [[ ${appServer} == weblogic ]]; then
 		${_log} info "copying_osgi_directory_into_domain_directory..."
 
 		for path in {data,deploy,osgi,portal-ext.properties}; do
@@ -335,9 +335,7 @@ main(){
 		HelpMessage printHelpMessage
 	else
 		until [[ $(StringValidator isNull ${1}) ]]; do
-			if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(
-				BaseComparator isEqual ${1} ${branch}) ]]; then
-
+			if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
 				shift
 			else
 				cd ${baseDir}

@@ -125,9 +125,7 @@ main(){
 		HelpMessage printHelpMessage
 	else
 		until [[ $(StringValidator isNull ${1}) ]]; do
-			if [[ $(BaseComparator isEqual ${1} ${appServer}) || $(
-					BaseComparator isEqual ${1} ${branch}) ]]; then
-
+			if [[ ${1} == ${appServer}) || ${1} == ${branch} ]]; then
 				shift
 			else
 				cd ${baseDir}
