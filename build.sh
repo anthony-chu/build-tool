@@ -13,6 +13,7 @@ include command.validator.CommandValidator
 
 include database.Database
 
+include file.name.util.FileNameUtil
 include file.util.FileUtil
 
 include git.util.GitUtil
@@ -153,7 +154,9 @@ clean(){
 
 	FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
 
-	PropsWriter setPortalProps ${branch} liferay.home "${bundleDir//\\/\/}"
+	local hybridBundleDir=$(FileNameUtil getHybridPath ${bundleDir})
+
+	PropsWriter setPortalProps ${branch} liferay.home ${hybridBundleDir}
 
 	if [[ ! $(StringValidator isSubstring branch 6.) ]]; then
 		PropsWriter setPortalProps ${branch} virtual.hosts.default.site.name
