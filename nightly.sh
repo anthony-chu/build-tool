@@ -3,8 +3,6 @@ source bash-toolbox/init.sh
 include app.server.version.AppServerVersion
 
 include base.comparator.BaseComparator
-include base.vars.BaseVars
-
 include command.validator.CommandValidator
 
 include database.Database
@@ -19,6 +17,8 @@ include logger.Logger
 
 include props.writer.PropsWriter
 include props.writer.util.PropsWriterUtil
+
+include repo.Repo
 
 include string.validator.StringValidator
 

@@ -4,8 +4,6 @@ include array.util.ArrayUtil
 include array.validator.ArrayValidator
 
 include base.comparator.BaseComparator
-include base.vars.BaseVars
-
 include command.validator.CommandValidator
 
 include file.name.util.FileNameUtil
@@ -23,6 +21,8 @@ include source.util.SourceUtil
 
 include string.util.StringUtil
 include string.validator.StringValidator
+
+include repo.Repo
 
 @private
 _executeTest(){

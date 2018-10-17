@@ -2,13 +2,13 @@ source bash-toolbox/init.sh
 
 include app.server.validator.AppServerValidator
 
-include base.vars.BaseVars
-
 include command.validator.CommandValidator
 
 include help.message.HelpMessage
 
 include jira.comment.util.JiraCommentUtil
+
+include repo.Repo
 
 include string.validator.StringValidator
 
@@ -37,9 +37,9 @@ main(){
 	local appServer=$(AppServerValidator returnAppServer ${@})
 
 	@param the_branch_name_\(optional\)
-	local branch=$(BaseVars getBranch ${@})
-	local buildDir=$(BaseVars getBuildDir ${branch})
-	local bundleDir=$(BaseVars getBundleDir ${branch})
+	local branch=$(Repo getBranch ${@})
+	local buildDir=$(Repo getBuildDir ${branch})
+	local bundleDir=$(Repo getBundleDir ${branch})
 
 	if [[ $(StringValidator isNull ${1}) ]]; then
 		HelpMessage printHelpMessage

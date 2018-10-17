@@ -9,8 +9,6 @@ include array.validator.test.ArrayValidatorTest
 
 include base.comparator.BaseComparator
 include base.comparator.test.BaseComparatorTest
-include base.vars.test.BaseVarsTest
-
 include command.validator.test.CommandValidatorTest
 
 include curl.util.test.CurlUtilTest
@@ -36,6 +34,8 @@ include math.util.test.MathUtilTest
 include props.reader.util.test.PropsReaderUtilTest
 include props.util.test.PropsUtilTest
 include props.writer.util.test.PropsWriterUtilTest
+
+include repo.test.RepoTest
 
 include string.util.test.StringUtilTest
 include string.validator.StringValidator

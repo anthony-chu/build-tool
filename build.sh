@@ -4,7 +4,6 @@ include app.server.factory.AppServerFactory
 include app.server.validator.AppServerValidator
 
 include base.comparator.BaseComparator
-include base.vars.BaseVars
 
 include bundle.util.BundleUtil
 
@@ -23,6 +22,8 @@ include help.message.HelpMessage
 include logger.Logger
 
 include props.writer.PropsWriter
+
+include repo.Repo
 
 include source.util.SourceUtil
 
