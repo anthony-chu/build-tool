@@ -3,7 +3,6 @@ source bash-toolbox/init.sh
 include array.util.ArrayUtil
 include array.validator.ArrayValidator
 
-include base.comparator.BaseComparator
 include command.validator.CommandValidator
 
 include file.name.util.FileNameUtil

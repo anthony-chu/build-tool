@@ -2,7 +2,6 @@ source bash-toolbox/init.sh
 
 include app.server.version.AppServerVersion
 
-include base.comparator.BaseComparator
 include command.validator.CommandValidator
 
 include database.Database

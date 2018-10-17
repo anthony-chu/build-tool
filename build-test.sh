@@ -7,8 +7,6 @@ include app.server.version.test.AppServerVersionTest
 include array.util.test.ArrayUtilTest
 include array.validator.test.ArrayValidatorTest
 
-include base.comparator.BaseComparator
-include base.comparator.test.BaseComparatorTest
 include command.validator.test.CommandValidatorTest
 
 include curl.util.test.CurlUtilTest
@@ -55,7 +53,6 @@ run-unit-tests(){
 		AppServerVersionTest
 		ArrayUtilTest
 		ArrayValidatorTest
-		BaseComparatorTest
 		CommandValidatorTest
 		CurlUtilTest
 		FileNameUtilTest
