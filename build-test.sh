@@ -56,7 +56,6 @@ run-unit-tests(){
 		ArrayUtilTest
 		ArrayValidatorTest
 		BaseComparatorTest
-		BaseVarsTest
 		CommandValidatorTest
 		CurlUtilTest
 		FileNameUtilTest
@@ -71,6 +70,7 @@ run-unit-tests(){
 		PropsReaderUtilTest
 		PropsUtilTest
 		PropsWriterUtilTest
+		RepoTest
 		StringUtilTest
 		StringValidatorTest
 		SystemTest

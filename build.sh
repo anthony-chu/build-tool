@@ -316,14 +316,14 @@ main(){
 	local baseDir=$(pwd)
 
 	@param the_branch_name_\(optional\)
-	local branch=$(BaseVars getBranch $@)
+	local branch=$(Repo getBranch $@)
 
 	local appServerDir=$(
 		AppServerFactory getAppServerDir ${branch} ${appServer}
 	)
 
-	local buildDir=$(BaseVars getBuildDir ${branch})
-	local bundleDir=$(BaseVars getBundleDir ${branch})
+	local buildDir=$(Repo getBuildDir ${branch})
+	local bundleDir=$(Repo getBundleDir ${branch})
 
 	System extendAntOpts
 	System setJavaHome ${branch//ee/-}

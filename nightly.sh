@@ -28,7 +28,7 @@ get(){
 
 	${_log} info "downloading_nightly_bundle..."
 
-	if [[ $(BaseVars isPrivate ${branch}) ]]; then
+	if [[ $(Repo isPrivate ${branch}) ]]; then
 		if [[ ! -e build.xml ]]; then
 			ant -f build-working-dir.xml
 		fi
@@ -103,7 +103,7 @@ run(){
 
 main(){
 	local APP_SERVER=tomcat
-	local branch=$(BaseVars getBranch $@)
+	local branch=$(Repo getBranch $@)
 
 	local appServerVersion=$(
 		AppServerVersion getAppServerVersion ${APP_SERVER} ${branch}
@@ -112,8 +112,8 @@ main(){
 	local baseDatabase=lportal${branch//[-.]/}
 	local baseDir=$(pwd)
 
-	local buildDir=$(BaseVars getBuildDir ${branch})
-	local bundleDir=$(BaseVars getBundleDir ${branch})
+	local buildDir=$(Repo getBuildDir ${branch})
+	local bundleDir=$(Repo getBundleDir ${branch})
 
 	local nightlyDatabase=${baseDatabase}nightly
 	local nightlyDir=${HOME}/Desktop/nightly/${branch}/bundles
