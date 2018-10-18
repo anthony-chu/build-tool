@@ -106,9 +106,9 @@ sf(){
 
 @description executes_a_frontend_test
 test(){
-	if [[ $(StringValidator isNull ${1}) ]]; then
+	if [[ ! ${1} ]]; then
 		${_log} error"missing_test_name"
-	elif [[ $(StringValidator isSubstring ${1} ,) ]]; then
+	elif [[ ${1} =~ , ]]; then
 		local tests=${1}
 
 		shift
@@ -153,7 +153,7 @@ main(){
 		local args=($(ArrayUtil strip args ${branch}))
 	fi
 
-	if [[ $(StringValidator isNull ${args[@]}) ]]; then
+	if [[ ! ${args[@]} ]]; then
 		HelpMessage printHelpMessage
 	elif [[ ${args[@]} == *\#* ]]; then
 		test ${args[@]}

@@ -120,10 +120,10 @@ main(){
 	local _log="Logger log"
 	local replace="FileWriter replace"
 
-	if [[ $(StringValidator isNull ${1}) ]]; then
+	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
 	else
-		until [[ $(StringValidator isNull ${1}) ]]; do
+		until [[ ! ${1} ]]; do
 			if [[ ${1} == ${appServer}) || ${1} == ${branch} ]]; then
 				shift
 			else

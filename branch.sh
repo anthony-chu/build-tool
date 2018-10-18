@@ -41,7 +41,7 @@ main(){
 	local buildDir=$(Repo getBuildDir ${branch})
 	local bundleDir=$(Repo getBundleDir ${branch})
 
-	if [[ $(StringValidator isNull ${1}) ]]; then
+	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
 	else
 		CommandValidator validateCommand ${0} ${1}

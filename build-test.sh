@@ -87,7 +87,7 @@ run-unit-tests(){
 main(){
 	local _log="Logger log"
 
-	if [[ $(StringValidator isNull ${1}) ]]; then
+	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
 	elif [[ ${1} == run-unit-tests ]]; then
 		${1}
