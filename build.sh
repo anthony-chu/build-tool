@@ -59,7 +59,7 @@ build(){
 
 		FileUtil deleteIfExists ${buildDir}/modules/apps
 
-		if [[ $(StringValidator isSubstring branch 6.2) ]]; then
+		if [[ ${branch} =~ 6.2 ]]; then
 			PropsWriter setBuildProps ${branch} javac.compiler modern
 		fi
 
@@ -80,7 +80,7 @@ build(){
 
 	GitUtil cleanSource ${branch}
 
-	if [[ $(StringValidator isSubstring ${branch} private) ]]; then
+	if [[ ${branch} =~ private ]]; then
 		_update
 	fi
 
@@ -156,7 +156,7 @@ clean(){
 
 	PropsWriter setPortalProps ${branch} liferay.home ${hybridBundleDir}
 
-	if [[ ! $(StringValidator isSubstring branch 6.) ]]; then
+	if [[ ! ${branch} =~ 6. ]]; then
 		PropsWriter setPortalProps ${branch} virtual.hosts.default.site.name
 	fi
 
@@ -220,7 +220,7 @@ pull(){
 		${_log} info "completed"
 	fi
 
-	if [[ $(StringValidator isSubstring branch -private) ]]; then
+	if [[ ${branch} =~ -private ]]; then
 		FileUtil deleteIfExists ${buildDir}/modules/apps
 	fi
 
