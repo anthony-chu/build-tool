@@ -10,7 +10,7 @@ include string.validator.StringValidator
 main(){
 	local _log="Logger log"
 
-	if [[ ! $(StringValidator isNull ${1}) ]]; then
+	if [[ ${1} ]]; then
 		case ${1} in
 			read|set|unset) local _cmd=${1} ;;
 			*) ${_log} error "\"${1}\"_is_not_a_valid_command" && exit ;;
@@ -33,7 +33,7 @@ main(){
 
 		shift
 
-		if [[ $(StringValidator isSubstring _cmd "set") ]]; then
+		if [[ ${_cmd} =~ "set") ]]; then
 			local className=PropsWriter
 		else
 			local className=PropsReader
