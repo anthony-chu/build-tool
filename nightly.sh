@@ -124,7 +124,7 @@ main(){
 		HelpMessage printHelpMessage
 	else
 		until [[ ! ${1} ]]; do
-			if [[ ${1} == ${appServer}) || ${1} == ${branch} ]]; then
+			if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
 				shift
 			else
 				cd ${baseDir}
