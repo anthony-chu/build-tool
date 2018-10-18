@@ -19,8 +19,6 @@ include props.writer.util.PropsWriterUtil
 
 include repo.Repo
 
-include string.validator.StringValidator
-
 @description downloads_nightly_tomcat_bundle_on_indicated_branch
 get(){
 	cd ${buildDir}
