@@ -95,7 +95,7 @@ get(){
 @description starts_up_nightly_bundle
 run(){
 	${_log} info "starting_up_${APP_SERVER}_nightly_bundle"
-	${nightlyDir}/${APP_SERVER}=${appServerVersion}/bin/catalina.sh run
+	${nightlyDir}/${APP_SERVER}-${appServerVersion}/bin/catalina.sh run
 }
 
 main(){
