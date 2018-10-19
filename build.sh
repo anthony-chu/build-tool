@@ -299,30 +299,30 @@ zip(){
 }
 
 main(){
-	local _log="Logger log"
-
-	@param the_app_server_\(optional\)
-	local appServer=$(AppServerValidator returnAppServer ${@})
-
-	local baseDir=$(pwd)
-
-	@param the_branch_name_\(optional\)
-	local branch=$(Repo getBranch $@)
-
-	local appServerDir=$(
-		AppServerFactory getAppServerDir ${branch} ${appServer}
-	)
-
-	local buildDir=$(Repo getBuildDir ${branch})
-	local bundleDir=$(Repo getBundleDir ${branch})
-
-	System setJavaHome ${branch//ee/-}
-
-	System extendAntOpts
-
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
 	else
+		local _log="Logger log"
+
+		@param the_app_server_\(optional\)
+		local appServer=$(AppServerValidator returnAppServer ${@})
+
+		local baseDir=$(pwd)
+
+		@param the_branch_name_\(optional\)
+		local branch=$(Repo getBranch $@)
+
+		local appServerDir=$(
+			AppServerFactory getAppServerDir ${branch} ${appServer}
+		)
+
+		local buildDir=$(Repo getBuildDir ${branch})
+		local bundleDir=$(Repo getBundleDir ${branch})
+
+		System setJavaHome ${branch//ee/-}
+
+		System extendAntOpts
+
 		until [[ !  ${1} ]]; do
 			if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
 				shift

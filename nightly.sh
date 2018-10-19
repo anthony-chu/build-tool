@@ -99,28 +99,28 @@ run(){
 }
 
 main(){
-	local APP_SERVER=tomcat
-	local branch=$(Repo getBranch $@)
-
-	local appServerVersion=$(
-		AppServerVersion getAppServerVersion ${APP_SERVER} ${branch}
-	)
-
-	local baseDatabase=lportal${branch//[-.]/}
-	local baseDir=$(pwd)
-
-	local buildDir=$(Repo getBuildDir ${branch})
-	local bundleDir=$(Repo getBundleDir ${branch})
-
-	local nightlyDatabase=${baseDatabase}nightly
-	local nightlyDir=${HOME}/Desktop/nightly/${branch}/bundles
-
-	local _log="Logger log"
-	local replace="FileWriter replace"
-
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
 	else
+		local APP_SERVER=tomcat
+		local branch=$(Repo getBranch $@)
+
+		local appServerVersion=$(
+			AppServerVersion getAppServerVersion ${APP_SERVER} ${branch}
+		)
+
+		local baseDatabase=lportal${branch//[-.]/}
+		local baseDir=$(pwd)
+
+		local buildDir=$(Repo getBuildDir ${branch})
+		local bundleDir=$(Repo getBundleDir ${branch})
+
+		local nightlyDatabase=${baseDatabase}nightly
+		local nightlyDir=${HOME}/Desktop/nightly/${branch}/bundles
+
+		local _log="Logger log"
+		local replace="FileWriter replace"
+
 		until [[ ! ${1} ]]; do
 			if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
 				shift

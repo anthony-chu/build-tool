@@ -139,14 +139,10 @@ validate(){
 }
 
 main(){
-	local _log="Logger log"
+	local args=($@)
 
 	@param the_branch_name_\(optional\)
 	local branch=$(Repo getBranch $@)
-	local buildDir=$(Repo getBuildDir ${branch})
-	local bundleDir=$(Repo getBundleDir ${branch})
-
-	local args=($@)
 
 	if [[ $@ =~ ${branch} ]]; then
 		local args=($(ArrayUtil strip args ${branch}))
@@ -154,20 +150,27 @@ main(){
 
 	if [[ ! ${args[@]} ]]; then
 		HelpMessage printHelpMessage
-	elif [[ ${args[@]} == *\#* ]]; then
-		test ${args[@]}
 	else
-		CommandValidator validateCommand ${0} ${1}
+		if [[ ${args[@]} == *\#* ]]; then
+			test ${args[@]}
+		else
+			local _log="Logger log"
 
-		SourceUtil setupSDK
+			local buildDir=$(Repo getBuildDir ${branch})
+			local bundleDir=$(Repo getBundleDir ${branch})
 
-		if [[ $(ArrayValidator hasEntry args local.release) ]]; then
-			local _file=${buildDir}/modules/test/poshi-runner/settings.gradle
+			CommandValidator validateCommand ${0} ${1}
 
-			rm -rf ${_file}
+			if [[ $(ArrayValidator hasEntry args local.release) ]]; then
+				local _file=${buildDir}/modules/test/poshi-runner/settings.gradle
+
+				rm -rf ${_file}
+			fi
+
+			SourceUtil setupSDK
+
+			${args[@]}
 		fi
-
-		${args[@]}
 	fi
 }
 

@@ -85,11 +85,11 @@ run-unit-tests(){
 }
 
 main(){
-	local _log="Logger log"
-
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
 	elif [[ ${1} == run-unit-tests ]]; then
+		local _log="Logger log"
+
 		${1}
 	else
 		Logger logErrorMsg "${1}_is_not_a_valid_command"
