@@ -316,8 +316,9 @@ main(){
 	local buildDir=$(Repo getBuildDir ${branch})
 	local bundleDir=$(Repo getBundleDir ${branch})
 
-	System extendAntOpts
 	System setJavaHome ${branch//ee/-}
+
+	System extendAntOpts
 
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
