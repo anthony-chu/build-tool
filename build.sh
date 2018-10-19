@@ -152,7 +152,7 @@ clean(){
 
 	FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
 
-	${log} info "resetting_portal-ext.properties..."
+	${_log} info "resetting_portal-ext.properties..."
 
 	rm -rf ${bundleDir}/portal-ext.properties
 
