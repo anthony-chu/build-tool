@@ -20,6 +20,7 @@ include help.message.HelpMessage
 
 include logger.Logger
 
+include props.writer.ext.PortalPropsWriter
 include props.writer.PropsWriter
 
 include repo.Repo
@@ -151,23 +152,11 @@ clean(){
 
 	FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
 
-	local hybridBundleDir=$(FileNameUtil getHybridPath ${bundleDir})
+	rm -rf ${bundleDir}/portal-ext.properties
 
-	PropsWriter setPortalProps ${branch} liferay.home ${hybridBundleDir}
+	PortalPropsWriter writeBaseProps ${branch}
 
-	if [[ ! ${branch} =~ 6. ]]; then
-		PropsWriter setPortalProps ${branch} virtual.hosts.default.site.name
-	fi
-
-	local propsName=module.framework.properties.blacklist.portal.profile.names
-	local propsValue=(
-		com.liferay.chat.service
-		com.liferay.chat.web
-		opensocial-portlet
-	)
-
-	PropsWriter setPortalProps ${branch} ${propsName} $(
-		StringUtil join propsValue ,)
+	PortalPropsWriter writeDatabaseProps ${branch}
 }
 
 @description deploys_compiled_files_to_the_indicated_app_server
