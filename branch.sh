@@ -10,8 +10,6 @@ include jira.comment.util.JiraCommentUtil
 
 include repo.Repo
 
-include string.validator.StringValidator
-
 @description prints_a_formatted_Jira_comment
 jira(){
 	local cmd=""
