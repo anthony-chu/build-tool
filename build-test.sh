@@ -73,9 +73,7 @@ run-unit-tests(){
 		SystemTest
 	)
 
-	if [[ -e results.txt ]]; then
-		rm results.txt
-	fi
+	rf -rf results.txt
 
 	for class in ${classes[@]}; do
 		TestExecutor executeTest ${class} |& tee -a results.txt
