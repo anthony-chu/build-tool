@@ -101,13 +101,13 @@ build(){
 
 	trap _catch SIGINT
 
+	local logFile=$(_getLogFile)
+
 	local _appServer=${appServer}
 
 	if [[ $(AppServerValidator isWebsphere appServer) ]]; then
 		local _appServer=${appServer}-custom
 	fi
-
-	local logFile=$(_getLogFile)
 
 	ant -f build-dist.xml unzip-${_appServer} |& tee -a ${logFile}
 
