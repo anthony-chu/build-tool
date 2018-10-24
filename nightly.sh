@@ -42,12 +42,16 @@ get(){
 	BundleUtil deleteHomeFolders ${branch}
 	BundleUtil resetOSGiState ${APP_SERVER} ${branch}
 
+	local appServerDir=${bundleDir}/${APP_SERVER}-${appServerVersion}
+
+	rm -rf ${appServerDir}/webapps/ROOT/WEB-INF/classes/portal-ext.properties
+
 	${_log} info "completed."
 
 	if [[ -d ${nightlyDir} ]]; then
 		${_log} info "cleaning_out_nightly_directory..."
 
-		rm -rf ${nightlyDir}/*
+		rm -rf ${nightlyDir}/
 	else
 		${_log} info "constructing_nightly_directory..."
 
