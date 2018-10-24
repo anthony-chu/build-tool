@@ -2,6 +2,8 @@ source bash-toolbox/init.sh
 
 include app.server.version.AppServerVersion
 
+include bundle.util.BundleUtil
+
 include command.validator.CommandValidator
 
 include database.Database
@@ -36,6 +38,9 @@ get(){
 	fi
 
 	ant snapshot-bundle
+
+	BundleUtil deleteHomeFolders ${branch}
+	BundleUtil resetOSGiState ${APP_SERVER} ${branch}
 
 	${_log} info "completed."
 
