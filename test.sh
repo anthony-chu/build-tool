@@ -30,6 +30,9 @@ _executeTest(){
 
 	PropsWriter setTestProps ${branch} test.skip.tear.down true
 	PropsWriter setTestProps ${branch} timeout.explicit.wait 30
+	PropsWriter setTestProps ${branch} database.mysql.password
+	PropsWriter setTestProps ${branch} database.mysql.schema lportal${branch}
+	PropsWriter setTestProps ${branch} database.mysql.username
 
 	local test=${1}
 	shift
