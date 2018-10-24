@@ -59,10 +59,7 @@ get(){
 	${_log} info "copying_from_bundle_directory_to_nightly_directory..."
 
 	local filePaths=(
-		data
-		deploy
 		license
-		logs
 		osgi
 		${APP_SERVER}-${appServerVersion}
 		tools
