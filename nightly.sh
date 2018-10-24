@@ -42,7 +42,7 @@ get(){
 	BundleUtil deleteHomeFolders ${branch}
 	BundleUtil resetOSGiState ${APP_SERVER} ${branch}
 
-	local appServerDir=${bundleDir}/${APP_SERVER}-${appServerVersion}
+	local appServerDir=${bundleDir}/${appServerRelativeDir}
 
 	rm -rf ${appServerDir}/webapps/ROOT/WEB-INF/classes/portal-ext.properties
 
@@ -65,7 +65,7 @@ get(){
 	local filePaths=(
 		license
 		osgi
-		${APP_SERVER}-${appServerVersion}
+		${appServerRelativeDir}
 		tools
 		work
 		.githash
@@ -101,7 +101,7 @@ get(){
 @description starts_up_nightly_bundle
 run(){
 	${_log} info "starting_up_${APP_SERVER}_nightly_bundle"
-	${nightlyDir}/${APP_SERVER}-${appServerVersion}/bin/catalina.sh run
+	${nightlyDir}/${appServerRelativeDir}/bin/catalina.sh run
 }
 
 main(){
@@ -114,6 +114,8 @@ main(){
 		local appServerVersion=$(
 			AppServerVersion getAppServerVersion ${APP_SERVER} ${branch}
 		)
+
+		local appServerRelativeDir=${APP_SERVER}-${appServerVersion}
 
 		local baseDatabase=lportal${branch//[-.]/}
 		local baseDir=$(pwd)
