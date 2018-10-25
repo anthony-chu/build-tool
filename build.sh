@@ -194,6 +194,20 @@ deploy(){
 	fi
 }
 
+@description extracts_a_previously_compressed_bundle
+extract(){
+	BundleUtil deleteBundleContent ${branch} ${appServer}
+
+	local archives=(
+		$(
+			ls ${bundleDir} | \
+			grep liferay-portal-${appServer}-${branch}-.*.zip
+		)
+	)
+
+	FileUtil extract ${archives[-1]} ${bundleDir}
+}
+
 @description pulls_changes_from_upstream_on_the_indicated_branch
 pull(){
 	SourceUtil clearGradleCache ${branch}
