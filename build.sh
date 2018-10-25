@@ -20,7 +20,7 @@ include help.message.HelpMessage
 
 include logger.Logger
 
-include props.writer.ext.PortalPropsWriter
+include props.writer.ext.DefaultPortalPropsWriter
 include props.writer.PropsWriter
 
 include repo.Repo
@@ -156,9 +156,9 @@ clean(){
 
 	rm -rf ${bundleDir}/portal-ext.properties
 
-	PortalPropsWriter writeBaseProps ${branch}
+	DefaultPortalPropsWriter writeBaseProps ${branch}
 
-	PortalPropsWriter writeDatabaseProps ${branch}
+	DefaultPortalPropsWriter writeDatabaseProps ${branch}
 }
 
 @description deploys_compiled_files_to_the_indicated_app_server
