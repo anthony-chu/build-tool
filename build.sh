@@ -337,7 +337,7 @@ main(){
 
 		System extendAntOpts
 
-		until [[ !  ${1} ]]; do
+		until [[ ! ${1} ]]; do
 			if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
 				shift
 			else
