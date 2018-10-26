@@ -333,7 +333,7 @@ main(){
 		local buildDir=$(Repo getBuildDir ${branch})
 		local bundleDir=$(Repo getBundleDir ${branch})
 
-		System setJavaHome ${branch//ee/-}
+		System setJavaHome ${branch}
 
 		System extendAntOpts
 
