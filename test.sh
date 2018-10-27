@@ -154,14 +154,14 @@ main(){
 	if [[ ! ${args[@]} ]]; then
 		HelpMessage printHelpMessage
 	else
+		local _log="Logger log"
+
+		local buildDir=$(Repo getBuildDir ${branch})
+		local bundleDir=$(Repo getBundleDir ${branch})
+
 		if [[ ${args[@]} == *\#* ]]; then
 			test ${args[@]}
 		else
-			local _log="Logger log"
-
-			local buildDir=$(Repo getBuildDir ${branch})
-			local bundleDir=$(Repo getBundleDir ${branch})
-
 			CommandValidator validateCommand ${0} ${1}
 
 			if [[ $(ArrayValidator hasEntry args local.release) ]]; then
