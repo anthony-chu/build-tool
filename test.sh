@@ -79,10 +79,10 @@ sf(){
 
 	local flag=$(StringUtil returnOption ${1})
 
-	if [[ ${flag,,} == c) ]]; then
+	if [[ ${flag,,} == c ]]; then
 
 		local option="-current-branch"
-	elif [[ ${flag,,} == l) ]]; then
+	elif [[ ${flag,,} == l ]]; then
 
 		local option="-local-changes"
 	else
