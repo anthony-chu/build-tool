@@ -6,7 +6,6 @@ include props.reader.PropsReader
 include props.writer.PropsWriter
 
 include string.util.StringUtil
-include string.validator.StringValidator
 
 main(){
 	local _log="Logger log"
