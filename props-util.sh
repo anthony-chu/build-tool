@@ -1,8 +1,9 @@
 source bash-toolbox/init.sh
 
-package props
-
 include logger.Logger
+
+include props.reader.PropsReader
+include props.writer.PropsWriter
 
 include string.util.StringUtil
 include string.validator.StringValidator
