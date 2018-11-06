@@ -12,6 +12,8 @@ include file.name.util.FileNameUtil
 include file.util.FileUtil
 include file.writer.FileWriter
 
+include git.util.GitUtil
+
 include help.message.HelpMessage
 
 include logger.Logger
@@ -38,6 +40,10 @@ get(){
 	fi
 
 	ant snapshot-bundle
+
+	if [[ $(Repo isPrivate ${branch}) ]]; then
+		GitUtil cleanSource ${branch}
+	fi
 
 	BundleUtil deleteHomeFolders ${branch}
 	BundleUtil resetOSGiState ${APP_SERVER} ${branch}
