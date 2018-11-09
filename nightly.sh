@@ -41,7 +41,7 @@ get(){
 
 	ant snapshot-bundle
 
-	if [[ $(Repo isPrivate ${branch}) ]]; then
+	if [[ ${branch} == *-private ]]; then
 		GitUtil cleanSource ${branch}
 	fi
 
