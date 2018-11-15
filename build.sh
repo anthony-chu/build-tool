@@ -198,10 +198,11 @@ deploy(){
 extract(){
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
+	local pattern="liferay-portal-${appServer}-${branch}-\*.7z"
+
 	local archives=(
 		$(
-			ls ${bundleDir} | \
-			grep liferay-portal-${appServer}-${branch}-.*.zip
+			find ${bundleDir} -type f -iname "${pattern}"
 		)
 	)
 
