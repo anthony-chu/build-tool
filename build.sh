@@ -205,7 +205,14 @@ extract(){
 		)
 	)
 
-	FileUtil extract ${archives[-1]} ${bundleDir}
+	if [[ ${archives[@]} == ${archives} ]]; then
+		local file=${archives}
+	else
+		local file=${archives[-1]}
+	fi
+
+	FileUtil extract ${file} ${bundleDir}
+
 }
 
 @description pulls_changes_from_upstream_on_the_indicated_branch
