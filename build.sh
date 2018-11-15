@@ -302,7 +302,7 @@ zip(){
 	cd ${bundleDir}
 
 	local zipFile=liferay-portal-${appServer}-${branch}-$(
-		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).zip
+		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).7z
 
 	rm -rf ${zipFile}
 
