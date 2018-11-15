@@ -211,8 +211,11 @@ extract(){
 		local file=${archives[-1]}
 	fi
 
+	${_log} info "extracting_archived_${appServer}_${branch}_bundle"
+
 	FileUtil extract ${file} ${bundleDir}
 
+	${_log} info "completed"
 }
 
 @description pulls_changes_from_upstream_on_the_indicated_branch
