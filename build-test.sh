@@ -73,17 +73,17 @@ runUnitTests(){
 		SystemTest
 	)
 
-	rm -rf results.txt
+	rm -rf ${resultsFile}
 
 	for class in ${classes[@]}; do
-		TestExecutor executeTest ${class} |& tee -a results.txt
+		TestExecutor executeTest ${class} |& tee -a ${resultsFile}
 	done
 
 	${_log} info "completed"
 
 	${_log} info "removing_formatting_from_results_file..."
 
-	sed -i "s#\[0[0-9;]*m##g" results.txt
+	sed -i "s#\[0[0-9;]*m##g" ${resultsFile}
 
 	${_log} info "completed"
 }
@@ -93,6 +93,8 @@ main(){
 		HelpMessage printHelpMessage
 	elif [[ ${1} == runUnitTests ]]; then
 		local _log="Logger log"
+
+		local resultsFile=results.txt
 
 		${1}
 	else
