@@ -73,7 +73,7 @@ runUnitTests(){
 		SystemTest
 	)
 
-	rf -rf results.txt
+	rm -rf results.txt
 
 	for class in ${classes[@]}; do
 		TestExecutor executeTest ${class} |& tee -a results.txt
