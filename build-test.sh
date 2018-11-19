@@ -44,7 +44,7 @@ include system.test.SystemTest
 include test.executor.TestExecutor
 
 @description runs_all_unit_tests_in_/test_directory
-run-unit-tests(){
+runUnitTests(){
 	${_log} info "running_all_unit_tests..."
 
 	local classes=(
@@ -85,7 +85,7 @@ run-unit-tests(){
 main(){
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
-	elif [[ ${1} == run-unit-tests ]]; then
+	elif [[ ${1} == runUnitTests ]]; then
 		local _log="Logger log"
 
 		${1}
