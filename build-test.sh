@@ -36,7 +36,6 @@ include props.writer.util.test.PropsWriterUtilTest
 include repo.test.RepoTest
 
 include string.util.test.StringUtilTest
-include string.validator.StringValidator
 include string.validator.test.StringValidatorTest
 
 include system.test.SystemTest
