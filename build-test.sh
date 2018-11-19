@@ -80,6 +80,12 @@ runUnitTests(){
 	done
 
 	${_log} info "completed"
+
+	${_log} info "removing_formatting_from_results_file..."
+
+	sed -i "s#\[0[0-9;]*m##g" results.txt
+
+	${_log} info "completed"
 }
 
 main(){
