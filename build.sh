@@ -200,7 +200,7 @@ deploy(){
 extract(){
 	BundleUtil deleteBundleContent ${branch} ${appServer}
 
-	local pattern="liferay-portal-${appServer}-${branch}-\*.7z"
+	local pattern="liferay-portal-${appServer}-${branch}-*.7z"
 
 	local archives=(
 		$(
