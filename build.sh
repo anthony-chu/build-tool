@@ -148,9 +148,11 @@ clean(){
 
 	BundleUtil resetOSGiState ${branch}
 
-	local file=${appServerDir}/bin/setenv.sh
+	if [[ $(AppServerValidator isTomcat appServer) ]]; then
+		local file=${appServerDir}/bin/setenv.sh
 
-	FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
+		FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
+	fi
 
 	${_log} info "resetting_portal-ext.properties..."
 
