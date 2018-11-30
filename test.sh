@@ -24,16 +24,6 @@ include repo.Repo
 
 @private
 _executeTest(){
-	local testDir=/d/test-results/${branch}
-
-	mkdir -p ${testDir}
-
-	PropsWriter setTestProps ${branch} test.skip.tear.down true
-	PropsWriter setTestProps ${branch} timeout.explicit.wait 30
-	PropsWriter setTestProps ${branch} database.mysql.password
-	PropsWriter setTestProps ${branch} database.mysql.schema lportal${branch}
-	PropsWriter setTestProps ${branch} database.mysql.username
-
 	local test=${1}
 	shift
 	${_log} info "running_test_${test}_against_${branch}..."
@@ -71,6 +61,23 @@ _executeTest(){
 			${_log} info "${test}_PASSED"
 		fi
 	fi
+}
+
+@description sets_necessary_test_properties
+setup(){
+	local testDir=/d/test-results/${branch}
+
+	mkdir -p ${testDir}
+
+	${_log} info "preparing_test_properties..."
+
+	PropsWriter setTestProps ${branch} test.skip.tear.down true
+	PropsWriter setTestProps ${branch} timeout.explicit.wait 30
+	PropsWriter setTestProps ${branch} database.mysql.password
+	PropsWriter setTestProps ${branch} database.mysql.schema lportal${branch}
+	PropsWriter setTestProps ${branch} database.mysql.username
+
+	${_log} info "completed"
 }
 
 @description formats_source_files
@@ -114,6 +121,8 @@ test(){
 		local tests=${1}
 
 		shift
+
+		setup
 
 		for _test in $(StringUtil split tests ,); do
 			_executeTest ${_test} ${@}
