@@ -117,19 +117,19 @@ sf(){
 test(){
 	if [[ ! ${1} ]]; then
 		${_log} error"missing_test_name"
-	elif [[ ${1} =~ , ]]; then
-		local tests=${1}
 
-		shift
-
-		setup
-
-		for _test in $(StringUtil split tests ,); do
-			_executeTest ${_test} ${@}
-		done
-	else
-		_executeTest ${@}
+		return
 	fi
+
+	local tests=${1}
+
+	shift
+
+	setup
+
+	for test in $(StringUtil split tests ,); do
+		_executeTest ${_test} ${@}
+	done
 }
 
 @description runs_poshi_validation
