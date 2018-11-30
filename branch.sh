@@ -33,19 +33,21 @@ jira(){
 main(){
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
-	else
-		CommandValidator validateCommand ${0} ${1}
 
-		@param the_app_server_\(optional\)
-		local appServer=$(AppServerValidator returnAppServer ${@})
-
-		@param the_branch_name_\(optional\)
-		local branch=$(Repo getBranch ${@})
-		local buildDir=$(Repo getBuildDir ${branch})
-		local bundleDir=$(Repo getBundleDir ${branch})
-
-		${@}
+		return
 	fi
+
+	CommandValidator validateCommand ${0} ${1}
+
+	@param the_app_server_\(optional\)
+	local appServer=$(AppServerValidator returnAppServer ${@})
+
+	@param the_branch_name_\(optional\)
+	local branch=$(Repo getBranch ${@})
+	local buildDir=$(Repo getBuildDir ${branch})
+	local bundleDir=$(Repo getBundleDir ${branch})
+
+	${@}
 }
 
 main $@

@@ -328,42 +328,44 @@ zip(){
 main(){
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
-	else
-		local _log="Logger log"
 
-		@param the_app_server_\(optional\)
-		local appServer=$(AppServerValidator returnAppServer ${@})
-
-		local baseDir=$(pwd)
-
-		@param the_branch_name_\(optional\)
-		local branch=$(Repo getBranch $@)
-
-		local appServerDir=$(
-			AppServerFactory getAppServerDir ${branch} ${appServer}
-		)
-
-		local buildDir=$(Repo getBuildDir ${branch})
-		local bundleDir=$(Repo getBundleDir ${branch})
-
-		System setJavaHome ${branch}
-
-		System extendAntOpts
-
-		until [[ ! ${1} ]]; do
-			if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
-				shift
-			else
-				cd ${baseDir}
-
-				CommandValidator validateCommand ${0} ${1}
-
-				${1}
-			fi
-
-			shift
-		done
+		return
 	fi
+
+	local _log="Logger log"
+
+	@param the_app_server_\(optional\)
+	local appServer=$(AppServerValidator returnAppServer ${@})
+
+	local baseDir=$(pwd)
+
+	@param the_branch_name_\(optional\)
+	local branch=$(Repo getBranch $@)
+
+	local appServerDir=$(
+		AppServerFactory getAppServerDir ${branch} ${appServer}
+	)
+
+	local buildDir=$(Repo getBuildDir ${branch})
+	local bundleDir=$(Repo getBundleDir ${branch})
+
+	System setJavaHome ${branch}
+
+	System extendAntOpts
+
+	until [[ ! ${1} ]]; do
+		if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
+			shift
+		else
+			cd ${baseDir}
+
+			CommandValidator validateCommand ${0} ${1}
+
+			${1}
+		fi
+
+		shift
+	done
 }
 
 main $@
