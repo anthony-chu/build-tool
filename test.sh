@@ -153,17 +153,17 @@ validate(){
 main(){
 	local args=($@)
 
+	if [[ ! ${args[@]} ]]; then
+		HelpMessage printHelpMessage
+
+		return
+	fi
+
 	@param the_branch_name_\(optional\)
 	local branch=$(Repo getBranch $@)
 
 	if [[ $@ =~ ${branch} ]]; then
 		local args=($(ArrayUtil strip args ${branch}))
-	fi
-
-	if [[ ! ${args[@]} ]]; then
-		HelpMessage printHelpMessage
-
-		return
 	fi
 
 	local _log="Logger log"
