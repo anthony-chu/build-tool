@@ -162,27 +162,29 @@ main(){
 
 	if [[ ! ${args[@]} ]]; then
 		HelpMessage printHelpMessage
+
+		return
+	fi
+
+	local _log="Logger log"
+
+	local buildDir=$(Repo getBuildDir ${branch})
+	local bundleDir=$(Repo getBundleDir ${branch})
+
+	if [[ ${args[@]} == *\#* ]]; then
+		test ${args[@]}
 	else
-		local _log="Logger log"
+		CommandValidator validateCommand ${0} ${1}
 
-		local buildDir=$(Repo getBuildDir ${branch})
-		local bundleDir=$(Repo getBundleDir ${branch})
+		if [[ $(ArrayValidator hasEntry args local.release) ]]; then
+			local _file=${buildDir}/modules/test/poshi-runner/settings.gradle
 
-		if [[ ${args[@]} == *\#* ]]; then
-			test ${args[@]}
-		else
-			CommandValidator validateCommand ${0} ${1}
-
-			if [[ $(ArrayValidator hasEntry args local.release) ]]; then
-				local _file=${buildDir}/modules/test/poshi-runner/settings.gradle
-
-				rm -rf ${_file}
-			fi
-
-			SourceUtil setupSDK
-
-			${args[@]}
+			rm -rf ${_file}
 		fi
+
+		SourceUtil setupSDK
+
+		${args[@]}
 	fi
 }
 
