@@ -116,7 +116,7 @@ sf(){
 @description executes_a_frontend_test
 test(){
 	if [[ ! ${1} ]]; then
-		${_log} error"missing_test_name"
+		${_log} error "missing_test_name"
 
 		return
 	fi
