@@ -53,7 +53,7 @@ _executeTest(){
 
 		local rawFile="${testDir}/${testname}/${test}_index.html"
 
-		if [[ $(cat ${rawFile} | grep "Cause:") ]]; then
+		if [[ $(grep "Cause:" ${rawFile}) ]]; then
 			FileUtil open "$(FileNameUtil getPath ${rawFile})"
 
 			${_log} info "completed"
