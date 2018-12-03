@@ -33,7 +33,9 @@ get(){
 		if [[ ! -e build.xml ]]; then
 			ant -f build-working-dir.xml
 		fi
+	fi
 
+	if [[ $(Repo isPrivate ${branch}) ]]
 		local url=https://files.liferay.com/private/ee/portal/
 
 		PropsWriter setBuildProps ${branch} snapshot.bundle.base.url ${url}
