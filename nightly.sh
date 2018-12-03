@@ -29,7 +29,7 @@ get(){
 
 	${_log} info "downloading_nightly_bundle..."
 
-	if [[ $(Repo isPrivate ${branch}) ]]; then
+	if [[ ${branch} == *-private ]]; then
 		if [[ ! -e build.xml ]]; then
 			ant -f build-working-dir.xml
 		fi
