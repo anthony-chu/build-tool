@@ -39,6 +39,8 @@ get(){
 		PropsWriter setBuildProps ${branch} snapshot.bundle.base.url ${url}
 	fi
 
+	PropsWriter setAppServerProps ${branch} app.server.type ${APP_SERVER}
+
 	ant snapshot-bundle
 
 	if [[ ${branch} == *-private ]]; then
