@@ -42,7 +42,7 @@ get(){
 	fi
 
 	PropsWriter setAppServerProps ${branch} app.server.type ${APP_SERVER}
-	Propswriter setAppServerProps ${branch} app.server.version $(
+	PropsWriter setAppServerProps ${branch} app.server.version $(
 		AppServerVersion getAppServerVersion ${APP_SERVER} ${branch})
 
 	ant snapshot-bundle
