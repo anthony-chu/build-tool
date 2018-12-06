@@ -153,14 +153,6 @@ clean(){
 
 		FileWriter replace ${file} '\(MetaspaceSize\)=[0-9]\+' '\1=512'
 	fi
-
-	${_log} info "resetting_portal-ext.properties..."
-
-	rm -rf ${bundleDir}/portal-ext.properties
-
-	DefaultPortalPropsWriter writeBaseProps ${branch}
-
-	DefaultPortalPropsWriter writeDatabaseProps ${branch}
 }
 
 @description deploys_compiled_files_to_the_indicated_app_server
@@ -259,6 +251,17 @@ push(){
 	git push -f origin ${curBranch}
 
 	${_log} info "completed"
+}
+
+@description resets_portal-ext_properties_file
+reset(){
+	${_log} info "resetting_portal-ext.properties..."
+
+	rm -rf ${bundleDir}/portal-ext.properties
+
+	DefaultPortalPropsWriter writeBaseProps ${branch}
+
+	DefaultPortalPropsWriter writeDatabaseProps ${branch}
 }
 
 @description runs_a_bundle_on_the_specified_app_server
