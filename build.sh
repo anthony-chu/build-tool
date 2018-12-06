@@ -262,6 +262,8 @@ reset(){
 	DefaultPortalPropsWriter writeBaseProps ${branch}
 
 	DefaultPortalPropsWriter writeDatabaseProps ${branch}
+
+	${_log} info "completed"
 }
 
 @description runs_a_bundle_on_the_specified_app_server
