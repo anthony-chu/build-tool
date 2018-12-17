@@ -127,7 +127,7 @@ test(){
 
 	setup
 
-	for test in $(StringUtil split tests ,); do
+	for _test in $(StringUtil split tests ,); do
 		_executeTest ${_test} ${@}
 	done
 }
