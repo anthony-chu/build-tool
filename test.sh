@@ -65,8 +65,6 @@ _executeTest(){
 
 @description sets_necessary_test_properties
 setup(){
-	local testDir=/d/test-results/${branch}
-
 	mkdir -p ${testDir}
 
 	${_log} info "preparing_test_properties..."
@@ -172,6 +170,8 @@ main(){
 	local bundleDir=$(Repo getBundleDir ${branch})
 
 	if [[ ${args[@]} == *\#* ]]; then
+		local testDir=/d/test-results/${branch}
+
 		test ${args[@]}
 	else
 		CommandValidator validateCommand ${0} ${1}
