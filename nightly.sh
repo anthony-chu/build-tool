@@ -45,7 +45,7 @@ get(){
 	PropsWriter setAppServerProps ${branch} app.server.version $(
 		AppServerVersion getAppServerVersion ${APP_SERVER} ${branch})
 
-	ant snapshot-bundle
+	ant setup-sdk setup-libs snapshot-bundle
 
 	if [[ ${branch} == *-private ]]; then
 		GitUtil cleanSource ${branch}
