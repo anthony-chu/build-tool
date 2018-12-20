@@ -169,9 +169,9 @@ main(){
 	local buildDir=$(Repo getBuildDir ${branch})
 	local bundleDir=$(Repo getBundleDir ${branch})
 
-	if [[ ${args[@]} == *\#* ]]; then
-		local testDir=/d/test-results/${branch}
+	local testDir=/d/test-results/${branch}
 
+	if [[ ${args[@]} == *\#* ]]; then
 		test ${args[@]}
 	else
 		CommandValidator validateCommand ${0} ${1}
