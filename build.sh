@@ -57,8 +57,6 @@ build(){
 
 		${_log} info "cleaning_source_directory..."
 
-		FileUtil deleteIfExists ${buildDir}/modules/apps
-
 		GitUtil cleanSource ${branch}
 
 		if [[ ${branch} =~ 6.2 ]]; then
@@ -229,10 +227,6 @@ pull(){
 		git checkout -q ${branch}
 
 		${_log} info "completed"
-	fi
-
-	if [[ ${branch} =~ -private ]]; then
-		FileUtil deleteIfExists ${buildDir}/modules/apps
 	fi
 
 	GitUtil cleanSource ${branch}
