@@ -59,6 +59,8 @@ build(){
 
 		FileUtil deleteIfExists ${buildDir}/modules/apps
 
+		GitUtil cleanSource ${branch}
+
 		if [[ ${branch} =~ 6.2 ]]; then
 			PropsWriter setBuildProps ${branch} javac.compiler modern
 		fi
