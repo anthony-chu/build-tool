@@ -4,6 +4,8 @@ include app.server.version.AppServerVersion
 
 include bundle.util.BundleUtil
 
+include calendar.util.CalendarUtil
+
 include command.validator.CommandValidator
 
 include database.Database
@@ -56,24 +58,6 @@ get(){
 
 	local appServerDir=${bundleDir}/${appServerRelativeDir}
 
-	rm -rf ${appServerDir}/webapps/ROOT/WEB-INF/classes/portal-ext.properties
-
-	${_log} info "completed."
-
-	if [[ -d ${nightlyDir} ]]; then
-		${_log} info "cleaning_out_nightly_directory..."
-
-		rm -rf ${nightlyDir}/
-	else
-		${_log} info "constructing_nightly_directory..."
-
-		mkdir -p ${nightlyDir}
-	fi
-
-	${_log} info "completed."
-
-	${_log} info "copying_from_bundle_directory_to_nightly_directory..."
-
 	local filePaths=(
 		license
 		osgi
@@ -85,27 +69,18 @@ get(){
 		portal-ext.properties
 	)
 
-	for _filePath in ${filePaths[@]}; do
-		local filePath=${bundleDir}/${_filePath}
+	local zipFile=liferay-portal-${APP_SERVER}-${branch}-$(
+		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).7z
 
+	for filePath in ${filePaths[@]}; do
 		if [[ -e ${filePath} || -d ${filePath} ]]; then
-			cp -rf ${filePath} -d ${nightlyDir}
+			archiveList+=(${filePath})
 		fi
 	done
 
-	${_log} info "completed."
+	nullify 7z a ${zipFile} ${archiveList[@]}
 
-	${_log} info "updating_portal_properties"
-
-	local propsFile=${nightlyDir}/portal-ext.properties
-
-	${replace} ${propsFile} ${baseDatabase} ${nightlyDatabase}
-
-	local _nightlyDir=$(FileNameUtil getHybridPath ${nightlyDir})
-
-	PropsWriterUtil setProps ${propsFile} liferay.home ${_nightlyDir}
-
-	${_log} info "completed."
+	${_log} info "completed"
 
 	Database rebuild ${nightlyDatabase} utf8
 }
@@ -136,7 +111,6 @@ main(){
 		local bundleDir=$(Repo getBundleDir ${branch})
 
 		local nightlyDatabase=${baseDatabase}nightly
-		local nightlyDir=${HOME}/Desktop/nightly/${branch}/bundles
 
 		local _log="Logger log"
 		local replace="FileWriter replace"
