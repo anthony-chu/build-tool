@@ -69,6 +69,8 @@ get(){
 		portal-ext.properties
 	)
 
+	${_log} info "zipping_up_nightly_bundle_for_${branch}..."
+
 	local zipFile=liferay-portal-${APP_SERVER}-${branch}-$(
 		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).7z
 
