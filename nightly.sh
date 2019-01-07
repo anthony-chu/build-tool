@@ -74,6 +74,8 @@ get(){
 	local zipFile=liferay-portal-${APP_SERVER}-${branch}-$(
 		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).7z
 
+	cd ${bundleDir}
+
 	for filePath in ${filePaths[@]}; do
 		if [[ -e ${filePath} || -d ${filePath} ]]; then
 			archiveList+=(${filePath})
