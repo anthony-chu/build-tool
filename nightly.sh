@@ -8,8 +8,6 @@ include calendar.util.CalendarUtil
 
 include command.validator.CommandValidator
 
-include database.Database
-
 include file.name.util.FileNameUtil
 include file.util.FileUtil
 include file.writer.FileWriter
@@ -85,8 +83,6 @@ get(){
 	nullify 7z a ${zipFile} ${archiveList[@]}
 
 	${_log} info "completed"
-
-	Database rebuild ${nightlyDatabase} utf8
 }
 
 @description starts_up_nightly_bundle
@@ -108,13 +104,10 @@ main(){
 
 		local appServerRelativeDir=${APP_SERVER}-${appServerVersion}
 
-		local baseDatabase=lportal${branch//[-.]/}
 		local baseDir=$(pwd)
 
 		local buildDir=$(Repo getBuildDir ${branch})
 		local bundleDir=$(Repo getBundleDir ${branch})
-
-		local nightlyDatabase=${baseDatabase}nightly
 
 		local _log="Logger log"
 		local replace="FileWriter replace"
