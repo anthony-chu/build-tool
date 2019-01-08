@@ -8,9 +8,7 @@ include calendar.util.CalendarUtil
 
 include command.validator.CommandValidator
 
-include file.name.util.FileNameUtil
-include file.util.FileUtil
-include file.writer.FileWriter
+include Filele.writer.FileWriter
 
 include git.util.GitUtil
 
@@ -19,7 +17,6 @@ include help.message.HelpMessage
 include logger.Logger
 
 include props.writer.PropsWriter
-include props.writer.util.PropsWriterUtil
 
 include repo.Repo
 
