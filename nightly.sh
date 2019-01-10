@@ -82,12 +82,6 @@ get(){
 	${_log} info "completed"
 }
 
-@description starts_up_nightly_bundle
-run(){
-	${_log} info "starting_up_${APP_SERVER}_nightly_bundle"
-	${nightlyDir}/${appServerRelativeDir}/bin/catalina.sh run
-}
-
 main(){
 	if [[ ! ${1} ]]; then
 		HelpMessage printHelpMessage
