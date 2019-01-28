@@ -8,6 +8,7 @@ include calendar.util.CalendarUtil
 
 include command.validator.CommandValidator
 
+include file.util.FileUtil
 include file.writer.FileWriter
 
 include git.util.GitUtil
@@ -71,13 +72,7 @@ get(){
 
 	cd ${bundleDir}
 
-	for filePath in ${filePaths[@]}; do
-		if [[ -e ${filePath} || -d ${filePath} ]]; then
-			archiveList+=(${filePath})
-		fi
-	done
-
-	nullify 7z a ${zipFile} ${archiveList[@]}
+	FileUtil compress ${zipFile} filePaths
 
 	${_log} info "completed"
 }

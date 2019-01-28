@@ -307,21 +307,12 @@ zip(){
 	local zipFile=liferay-portal-${appServer}-${branch}-$(
 		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).7z
 
-	rm -rf ${zipFile}
-
-	local archiveList=()
 	local filepaths=(
 		data deploy osgi portal-ext.properties ${appServerRelativeDir}
 		tools work .liferay-home
 	)
 
-	for filepath in ${filepaths[@]}; do
-		if [[ -e ${filepath} || -d ${filepath} ]]; then
-			archiveList+=(${filepath})
-		fi
-	done
-
-	nullify 7z a ${zipFile} ${archiveList[@]}
+	FileUtil compress ${zipFile} filePaths
 
 	${_log} info "completed"
 }
