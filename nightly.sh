@@ -49,12 +49,11 @@ get(){
 		GitUtil cleanSource ${branch}
 	fi
 
-	BundleUtil deleteHomeFolders ${branch}
-	BundleUtil resetOSGiState ${APP_SERVER} ${branch}
-
 	local appServerDir=${bundleDir}/${appServerRelativeDir}
 
 	local filePaths=(
+		data
+		deploy
 		license
 		osgi
 		${appServerRelativeDir}
