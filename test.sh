@@ -75,6 +75,11 @@ setup(){
 	PropsWriter setTestProps ${branch} database.mysql.schema lportal${branch}
 	PropsWriter setTestProps ${branch} database.mysql.username
 
+	local binFile=C:/chromium/chrome.exe
+
+	PropsWriter setTestProps ${branch} browser.type chrome
+	PropsWriter setTestProps ${branch} browser.chrome.bin.file ${binFile}
+
 	${_log} info "completed"
 }
 
