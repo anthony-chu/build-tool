@@ -45,10 +45,6 @@ get(){
 
 	ant setup-sdk setup-libs snapshot-bundle
 
-	if [[ ${branch} == *-private ]]; then
-		GitUtil cleanSource ${branch}
-	fi
-
 	local appServerDir=${bundleDir}/${appServerRelativeDir}
 
 	local filePaths=(
