@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 source bash-toolbox/init.sh
 
 include app.server.factory.AppServerFactory
