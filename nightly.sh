@@ -27,6 +27,12 @@ include repo.Repo
 get(){
 	cd ${buildDir}
 
+	${_log} info "removing_previous_archives..."
+
+	rm -rf $(
+		find ${bundleDir} -type f -iname "liferay-portal-${APP_SERVER}-${branch}-*.7z"
+	)
+
 	${_log} info "downloading_nightly_bundle..."
 
 	if [[ ${branch} == *-private ]]; then
