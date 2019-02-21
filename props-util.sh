@@ -24,6 +24,7 @@ main(){
 			a) local propsType=AppServer;;
 			b) local propsType=Build;;
 			p) local propsType=Portal;;
+			s) local propsTyle=Sql;;
 			t) local propsType=Test;;
 		esac
 
