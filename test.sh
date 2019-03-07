@@ -71,6 +71,8 @@ setup(){
 
 	${_log} info "preparing_test_properties..."
 
+	rm -rf ${buildDir}/test.${USERNAME}.properties
+
 	PropsWriter setTestProps ${branch} test.skip.tear.down true
 	PropsWriter setTestProps ${branch} timeout.explicit.wait 30
 	PropsWriter setTestProps ${branch} database.mysql.password
