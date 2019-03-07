@@ -25,15 +25,9 @@ include repo.Repo
 
 @description downloads_nightly_tomcat_bundle_on_indicated_branch
 get(){
-	cd ${buildDir}
-
-	${_log} info "removing_previous_archives..."
-
-	rm -rf $(
-		find ${bundleDir} -type f -iname "liferay-portal-${APP_SERVER}-${branch}-*.7z"
-	)
-
 	${_log} info "downloading_nightly_bundle..."
+
+	cd ${buildDir}
 
 	if [[ ${branch} == *-private ]]; then
 		if [[ ! -e build.xml ]]; then
