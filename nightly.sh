@@ -35,7 +35,7 @@ get(){
 		fi
 	fi
 
-	if [[ $(Repo isPrivate ${branch}) ]]; then
+	if [[ ${branch} == *-private ]]; then
 		local url=https://files.liferay.com/private/ee/portal/
 
 		PropsWriter setBuildProps ${branch} snapshot.bundle.base.url ${url}
