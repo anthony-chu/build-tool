@@ -4,54 +4,45 @@ source bash-toolbox/init.sh
 
 include app.server.version.AppServerVersion
 
-include bundle.util.BundleUtil
-
 include calendar.util.CalendarUtil
 
 include command.validator.CommandValidator
 
+include curl.util.CurlUtil
+
 include file.util.FileUtil
-include file.writer.FileWriter
-
-include git.util.GitUtil
-
-include help.message.HelpMessage
 
 include logger.Logger
 
-include props.writer.PropsWriter
+include props.reader.util.PropsReaderUtil
 
 include repo.Repo
 
-@description downloads_nightly_tomcat_bundle_on_indicated_branch
 get(){
-	${_log} info "downloading_nightly_bundle..."
+	local baseUrl=$(PropsReaderUtil getValue ${snapshotProps} snapshot.url)
 
-	cd ${buildDir}
+	cd ${bundleDir}
 
-	if [[ ${branch} == *-private ]]; then
-		if [[ ! -e build.xml ]]; then
-			ant -f build-working-dir.xml
-		fi
-	fi
+	${_log} info "downloading_${branch}_snapshot_bundle..."
 
-	if [[ ${branch} == *-private ]]; then
-		local url=https://files.liferay.com/private/ee/portal/
+	local url=$(echo ${baseUrl} | \
+		sed "s#https\?://#http://mirrors/#g")/snapshot-${branch}/latest
 
-		PropsWriter setBuildProps ${branch} snapshot.bundle.base.url ${url}
-	fi
+	local snapshotFile=liferay-portal-${appServer}-${branch}.7z
 
-	PropsWriter setAppServerProps ${branch} app.server.type ${APP_SERVER}
-	PropsWriter setAppServerProps ${branch} app.server.version $(
-		AppServerVersion getAppServerVersion ${APP_SERVER} ${branch})
+	CurlUtil getFile ${url}/${snapshotFile}
 
-	ant setup-sdk setup-libs snapshot-bundle
+	local appServerVersion=$(AppServerVersion
+		getAppServerVersion ${appServer} ${branch})
+
+	local appServerRelativeDir=${appServer}-${appServerVersion}
 
 	local appServerDir=${bundleDir}/${appServerRelativeDir}
 
 	local filePaths=(
 		data
 		deploy
+		logs
 		license
 		osgi
 		${appServerRelativeDir}
@@ -59,56 +50,59 @@ get(){
 		work
 		.githash
 		.liferay-home
-		portal-ext.properties
 	)
 
-	${_log} info "zipping_up_nightly_bundle_for_${branch}..."
+	${_log} info "cleaning_up_bundle_files..."
 
-	local zipFile=liferay-portal-${APP_SERVER}-${branch}-$(
-		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).7z
+	rm -rf ${filePaths[@]}
 
-	cd ${bundleDir}
+	${_log} info "extracting_${branch}_snapshot_${bundle}..."
+
+	7z x ${snapshotFile} > /dev/null
+
+	for filePath in ${filePaths[@]}; do
+		if [[ -e liferay-portal-${branch}/${filePath} ]]; then
+			mv liferay-portal-${branch}/${filePath} .
+		fi
+	done
+
+	rm -rf liferay-portal-${branch} ${snapshotFile}
+
+	${_log} info "zipping_up_${branch}_snapshot_bundle..."
+
+	local zipFile=liferay-portal-${appServer}-${branch}-$(CalendarUtil
+		getTimestamp date)$(CalendarUtil getTimestamp clock).7z
+
+	filePaths+=(portal-ext.properties)
 
 	FileUtil compress ${zipFile} filePaths
 
-	${_log} info "completed"
+	${_log} info "completed."
 }
 
 main(){
-	if [[ ! ${1} ]]; then
-		HelpMessage printHelpMessage
-	else
-		local APP_SERVER=tomcat
-		local branch=$(Repo getBranch $@)
+	local appServer="tomcat"
+	local baseDir=$(pwd)
+	local branch=$(Repo getBranch $@)
+	local bundleDir=$(Repo getBundleDir ${branch})
 
-		local appServerVersion=$(
-			AppServerVersion getAppServerVersion ${APP_SERVER} ${branch}
-		)
+	local snapshotProps=build.snapshot.properties
 
-		local appServerRelativeDir=${APP_SERVER}-${appServerVersion}
+	local _log="Logger log"
 
-		local baseDir=$(pwd)
-
-		local buildDir=$(Repo getBuildDir ${branch})
-		local bundleDir=$(Repo getBundleDir ${branch})
-
-		local _log="Logger log"
-		local replace="FileWriter replace"
-
-		until [[ ! ${1} ]]; do
-			if [[ ${1} == ${APP_SERVER} || ${1} == ${branch} ]]; then
-				shift
-			else
-				cd ${baseDir}
-
-				CommandValidator validateCommand ${0} ${1}
-
-				${1}
-			fi
-
+	until [[ ! ${1} ]]; do
+		if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
 			shift
-		done
-	fi
+		else
+			cd ${baseDir}
+
+			CommandValidator validateCommand ${0} ${1}
+
+			${1}
+		fi
+
+		shift
+	done
 }
 
 main $@
