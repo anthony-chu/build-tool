@@ -117,6 +117,8 @@ build(){
 
 	${_log} info "building_portal..."
 
+	echo $(git log --pretty=format:%H -1) >> ${bundleDir}/.githash
+
 	ant all |& tee -a ${logFile}
 
 	${_log} info "completed"
