@@ -318,7 +318,7 @@ zip(){
 
 	local filePaths=(
 		data deploy osgi portal-ext.properties ${appServerRelativeDir}
-		tools work .liferay-home
+		tools work .liferay-home .githash
 	)
 
 	FileUtil compress ${zipFile} filePaths
