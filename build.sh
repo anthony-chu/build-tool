@@ -215,6 +215,11 @@ extract(){
 	${_log} info "completed"
 }
 
+@description returns_log_from_.githash_file_for_specified_bundle
+getBundleLog(){
+	cat ${bundleDir}/.githash
+}
+
 @description pulls_changes_from_upstream_on_the_indicated_branch
 pull(){
 	SourceUtil clearGradleCache ${branch}
@@ -309,7 +314,7 @@ zip(){
 	local zipFile=liferay-portal-${appServer}-${branch}-$(
 		CalendarUtil getTimestamp date)$(CalendarUtil getTimestamp clock).7z
 
-	local filepaths=(
+	local filePaths=(
 		data deploy osgi portal-ext.properties ${appServerRelativeDir}
 		tools work .liferay-home
 	)
