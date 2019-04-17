@@ -226,7 +226,7 @@ extract(){
 }
 
 @description returns_log_from_.githash_file_for_specified_bundle
-getBundleLog(){
+log(){
 	cat ${bundleDir}/.githash
 }
 
