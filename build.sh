@@ -119,6 +119,12 @@ build(){
 
 	echo $(git log --pretty=format:%H -1) >> ${bundleDir}/.githash
 
+	local nodeModules=$(find . -type d -name "node_modules")
+
+	if [[ ${nodeModules} ]]; then
+		rm -rf ${nodeModules}
+	fi
+
 	ant all |& tee -a ${logFile}
 
 	${_log} info "completed"
