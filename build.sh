@@ -122,6 +122,8 @@ build(){
 	local nodeModules=$(find . -type d -name "node_modules")
 
 	if [[ ${nodeModules} ]]; then
+		${_log} info "removing_remaining_node@UNDERSCORE@modules_directories..."
+
 		rm -rf ${nodeModules}
 	fi
 
