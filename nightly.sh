@@ -12,12 +12,15 @@ include curl.util.CurlUtil
 
 include file.util.FileUtil
 
+include help.message.HelpMessage
+
 include logger.Logger
 
 include props.reader.util.PropsReaderUtil
 
 include repo.Repo
 
+@description downloads_a__tomcat_snapshot_bundle_for_the_specified_branch
 get(){
 	local baseUrl=$(PropsReaderUtil getValue ${snapshotProps} snapshot.url)
 
@@ -89,6 +92,12 @@ main(){
 	local snapshotProps=build.snapshot.properties
 
 	local _log="Logger log"
+
+	if [[ ! ${1} ]]; then
+		HelpMessage printHelpMessage
+
+		return
+	fi
 
 	until [[ ! ${1} ]]; do
 		if [[ ${1} == ${appServer} || ${1} == ${branch} ]]; then
