@@ -22,7 +22,13 @@ include repo.Repo
 
 @description downloads_a__tomcat_snapshot_bundle_for_the_specified_branch
 get(){
-	local baseUrl=$(PropsReaderUtil getValue ${snapshotProps} snapshot.url)
+	if [[ ${branch} == *-private || ${branch} == ee-* ]]; then
+		local propsKey=snapshot.private.url
+	else
+		local propsKey=snapshot.public.url
+	fi
+
+	local baseUrl=$(PropsReaderUtil getValue ${snapshotProps} ${propsKey})
 
 	cd ${bundleDir}
 
