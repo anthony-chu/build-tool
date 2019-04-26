@@ -65,7 +65,7 @@ get(){
 
 	rm -rf ${filePaths[@]}
 
-	${_log} info "extracting_${branch}_snapshot_${bundle}..."
+	${_log} info "extracting_${branch}_snapshot_bundle..."
 
 	7z x ${snapshotFile} > /dev/null
 
