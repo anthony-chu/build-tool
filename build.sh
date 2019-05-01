@@ -223,6 +223,8 @@ extract(){
 	FileUtil extract ${file} ${bundleDir}
 
 	${_log} info "completed"
+
+	Database rebuild lportal$(StringUtil strip branch [-.]) utf8
 }
 
 @description returns_log_from_.githash_file_for_specified_bundle
